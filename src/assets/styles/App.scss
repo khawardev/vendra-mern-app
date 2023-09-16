@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./mixins.scss";
+
+
+@font-face {
+  font-family: "Circular-Std";
+  src: url(../fonts/FontsFree-Net-Circular-Std-Book.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Circular-Std";
+}

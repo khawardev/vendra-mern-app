@@ -65,7 +65,7 @@ const Header = () => {
                 </main>
 
 
-                <search className='md:hidden flex justify-center items-center border rounded-full'>
+                <search className='md:hidden flex justify-center items-center border rounded-full mb-4'>
                     <div className='px-3'>
                         <FiSearch size={17} />
                     </div>

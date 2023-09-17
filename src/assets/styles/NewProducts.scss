@@ -1,0 +1,12 @@
+.Parent-product-Image-Hover img {
+  width: 100%;
+  display: block;
+  transition: 0.3s;
+}
+.Parent-Col-Hover:hover  .Parent-product-Image-Hover img {
+  opacity: 0.9;
+  transform: scale(1.03);
+  transform-origin: 50% 50%;
+}
+
+

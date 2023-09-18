@@ -12,7 +12,7 @@ const NewProducts = ({ title, Banner, grid, discount }) => {
         <article key={index} className='cursor-pointer Parent-Col-Hover  '>
             <section className='flex justify-center items-center mb-3 rounded-xl p-4 relative bg-gray-100  border'>
                 {discount &&
-                    <div className='md:top-[0.80rem] top-[0.40rem] md:right-5  mr-[70px]  rounded-full  bg-green-400 md:px-3 px-2 absolute z-10'>
+                    <div className='md:top-[0.80rem] top-[0.40rem] md:left-5  mr-[70px]  rounded-full  bg-green-400 md:px-3 px-2 absolute z-10'>
                         53%
                     </div>
                 }

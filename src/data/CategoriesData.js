@@ -6,7 +6,7 @@ const CategoriesData = [
 
     },
     {
-        title: 'SmartPads & Accessories',
+        title: 'Accessories',
         url: 'https://res.cloudinary.com/denajbnh4/image/upload/v1694863601/category-3_mubw4t.jpg',
         Quantity: '8 •'
     },

@@ -62,7 +62,7 @@ function HeroSection() {
 
     // 
     return (
-        <div className='lg:w-11/12 m-auto my-2 bg-fit py-2  relative group'>
+        <div className='md:w-11/12 m-auto my-2 bg-fit py-2  relative group'>
 
                 {SlidesData.map((slide, slideIndex) => (
                     <div key={slideIndex}  style={{
@@ -75,7 +75,7 @@ function HeroSection() {
                             <>
                                 <section className="relative">
                                     <img
-                                        className="w-full md:rounded-2xl object-cover  lg:h-[600px] h-[240px]"
+                                        className="w-full md:rounded-2xl object-cover  md:h-[600px] h-[240px]"
                                         src={slide.url}
                                     />
                                 </section>
@@ -98,10 +98,10 @@ function HeroSection() {
                         )}
                     </div>
                 ))}
-            <div className='lg:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+            <div className='md:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                 <BsChevronCompactLeft onClick={prevSlide} size={30} />
             </div>
-            <div className='lg:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+            <div className='md:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                 <BsChevronCompactRight onClick={nextSlide} size={30} />
             </div>
 

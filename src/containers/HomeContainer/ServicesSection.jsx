@@ -55,7 +55,7 @@ const ServicesSection = () => {
                     );
                 })}
                 <main className=' mt-10 relative    '>
-                    <section className='absolute w-full top-12 left-9'>
+                    <section className='absolute  top-12 left-9 '>
                         <div className='flex'>
                             <p className='px-3 mb-3  text-sm items-center bg-yellow-500 rounded-full'>IPhone</p>
                         </div>

@@ -60,44 +60,48 @@ function HeroSection() {
                 ))}
             </div> */}
 
-
+    // 
     return (
-        <div className='max-w-[1400px] h-[620px] bg-fit w-full m-auto  py-2 relative group'>
-            <div className='image-container'>
+        <div className='lg:w-11/12 m-auto my-2 bg-fit py-2  relative group'>
+
                 {SlidesData.map((slide, slideIndex) => (
-                    <div
-                        key={slideIndex}
-                        className='w-full h-full rounded-2xl bg-center bg-cover absolute'
-                        style={{
-                            backgroundImage: `url(${slide.url})`,
+                    <div key={slideIndex}  style={{
+                            // backgroundImage: `url(${slide.url})`,
                             opacity: currentIndex === slideIndex ? opacity : 0,
                             transition: 'opacity 0.5s ease-in-out',
                         }}
                     >
-                        {/* Display tagline, description, and button on the active slide */}
                         {currentIndex === slideIndex && (
-                            <div className='text-black absolute top-40 left-20 z-10  p-4'>
-                                <div className='flex'>
-                                    <p className='px-4 py-1 text-sm items-center bg-yellow-500 rounded-full'>{slide.tag}</p>
-                                </div>
-                                <div className='mt-6 leading-5'>
+                            <>
+                                <section className="relative">
+                                    <img
+                                        className="w-full md:rounded-2xl object-cover  lg:h-[600px] h-[240px]"
+                                        src={slide.url}
+                                    />
+                                </section>
+                                <section  className='text-black  absolute top-10 md:top-40 md:left-20  p-4 '>
+                                    <div className='flex'>
+                                        <p className='md:px-4 px-3  md:py-1 text-sm items-center bg-yellow-500 rounded-full'>{slide.tag}</p>
+                                    </div>
+                                    <div className='md:mt-6 mt-3 md:leading-5 leading-3'>
 
-                                    <h1 className='text-4xl font-extralight'>{slide.tagline1}</h1>
-                                    <h1 className='text-6xl font-extrabold'>{slide.tagline2}</h1>
-                                </div>
-                                <p className='text-xl my-3 font-thin'>{slide.description}</p>
-                                <button className='bg-blue-500 text-white py-2  cursor-pointer  px-5 mt-2 rounded-full'>
-                                    {slide.buttonLabel}
-                                </button>
-                            </div>
+                                        <h1 className='md:text-4xl text-xl font-extralight '>{slide.tagline1}</h1>
+                                        <h1 className='md:text-6xl text-3xl font-extrabold leading-7'>{slide.tagline2}</h1>
+                                    </div>
+                                    <p className='md:block hidden  text-xl my-3 font-thin'>{slide.description}</p>
+                                    <button className='bg-blue-500 text-white md:py-2 py-1  cursor-pointer  md:px-5 px-3 mt-2 rounded-full'>
+                                        {slide.buttonLabel}
+                                    </button>
+                                </section>
+                            </>
+
                         )}
                     </div>
                 ))}
-            </div>
-            <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+            <div className='lg:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                 <BsChevronCompactLeft onClick={prevSlide} size={30} />
             </div>
-            <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+            <div className='lg:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                 <BsChevronCompactRight onClick={nextSlide} size={30} />
             </div>
 

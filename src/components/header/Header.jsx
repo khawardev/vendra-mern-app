@@ -21,23 +21,24 @@ const Header = () => {
                     </li>
                 </main>
             </div>
-            <hr className='md:hidden block' />
+            
+            <hr className='lg:hidden block' />
 
 
             <div className='w-11/12  m-auto '>
-                <main className='flex justify-between items-center bg-red- md:pt-0 pt-5  pb-5'>
+                <main className='flex justify-between items-center bg-red- lg:pt-0 pt-5  pb-5'>
                     <logo className='text-4xl font-extrabold'>
                         Vendra<sup className=' font-light text-sm'> &reg; </sup>
                     </logo>
-                    <search className='md:flex hidden justify-center items-center border rounded-full'>
+                    <search className='lg:flex hidden justify-center items-center border rounded-full'>
                         <div className='px-3'>
                             <FiSearch size={17} />
                         </div>
                         <input type="text" className='py-3 outline-none border-none ' size={65} placeholder='Search your favorite product ...' />
                         <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
                     </search>
-                    <section className='flex md:gap-6 gap-1 justify-center items-center'>
-                        <div className='md:flex hidden gap-2 justify-center items-center  leading-3'>
+                    <section className='flex lg:gap-6 gap-1 justify-center items-center'>
+                        <div className='lg:flex hidden gap-2 justify-center items-center  leading-3'>
                             <BsPerson size={28} />
                             <div>
                                 <span className='text-xs text-gray-500'>Sign in</span> <br />
@@ -65,20 +66,22 @@ const Header = () => {
                 </main>
 
 
-                <search className='md:hidden flex justify-center items-center border rounded-full mb-4'>
-                    <div className='px-3'>
-                        <FiSearch size={17} />
+                <search className='lg:hidden flex justify-between items-center border rounded-full mb-4'>
+                    <div className='flex justify-center items-center'>
+                        <div className='px-3'>
+                            <FiSearch size={17} />
+                        </div>
+                        <div>
+                            <input type="text" className='py-3 outline-none border-none w-full' placeholder='Search product ...' />
+                        </div>
                     </div>
-                    <div>
-                        <input type="text" className='py-3 outline-none border-none w-full' placeholder='Search product ...' />
-                    </div>
+                    
                     <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
-
                 </search>
 
 
 
-                <main className='  items-center justify-between list-none md:flex hidden '>
+                <main className='  items-center justify-between list-none lg:flex hidden '>
                     <categories className='flex justify-center items-center gap-12 bg-gray-100 cursor-pointer py-4 px-6 rounded-tr-lg  rounded-tl-lg'>
                         <div className='flex justify-center items-center gap-2'>
                             <BiCategory className="stroke-custom" size={24} />

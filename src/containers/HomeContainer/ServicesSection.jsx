@@ -8,32 +8,32 @@ import { TbTruckReturn } from 'react-icons/tb';
 const ServicesSection = () => {
     const ServicesData = [
         {
-            icon: <LiaShippingFastSolid size={25} />,
+            icon: <LiaShippingFastSolid className=' text-yellow-500' size={25} />,
             title: 'International Shipment',
             description: 'Your orders are shipped seamlessly between countries',
         },
         {
-            icon: <MdPayment size={25} />,
+            icon: <MdPayment size={25} className=' text-yellow-500' />,
             title: 'Secure Payment',
             description: 'Your payments are secure with our private security network.',
         },
         {
-            icon: <AiOutlineDollarCircle size={25} />,
+            icon: <AiOutlineDollarCircle size={25} className=' text-yellow-500' />,
             title: 'Great value',
             description: 'We offer competitive prices on over several items.',
         },
-        {
-            icon: <TbTruckReturn size={25} />,
+        { 
+            icon: <TbTruckReturn size={25} className=' text-yellow-500' />,
             title: 'Extended 45 day returns',
             description: 'You have the right to return your orders within 45 days.',
         },
         {
-            icon: <GoShieldCheck size={25} />,
+            icon: <GoShieldCheck size={25} className=' text-yellow-500' />,
             title: 'Shop with confidence',
             description: 'Our Buyer Protection policy covers your entire purchase journey.',
         },
         {
-            icon: <GoPeople size={25} />,
+            icon: <GoPeople size={25} className=' text-yellow-500' />,
             title: 'Help center',
             description: 'Round-the-clock assistance for a smooth shopping experience.',
         },

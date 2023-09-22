@@ -37,7 +37,7 @@ const NewProductsNestedSection = ({ discount }) => {
                         {discount ?
                             <div className='md:flex justify-center items-center gap-4 '>
                                 <p className='  text-sm text-gray-800 line-through '>$732.00</p>
-                                <p className=' text-lg text-gray-800 font-extrabold font-price leading-4'>$344.00</p>
+                                <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>$344.00</p>
                             </div>
                             :
                             <p className=' text-lg text-gray-800 font-extrabold font-price'>$744.00</p>

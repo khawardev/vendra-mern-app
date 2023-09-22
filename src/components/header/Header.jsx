@@ -6,8 +6,10 @@ import { FiSearch } from 'react-icons/fi';
 import { CiDiscount1 } from 'react-icons/ci';
 import { BiCategory } from 'react-icons/bi';
 // import { BiUser } from 'react-icons/bi';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const Navigate = useNavigate();
     return (
         <>
             <div className='w-11/12  m-auto'>
@@ -27,7 +29,7 @@ const Header = () => {
 
             <div className='w-11/12  m-auto '>
                 <main className='flex justify-between items-center bg-red- lg:pt-0 pt-5  pb-5'>
-                    <logo className='text-4xl font-extrabold'>
+                    <logo className='text-4xl font-extrabold cursor-pointer' onClick={() => Navigate("/")}>
                         Vendra<sup className=' font-light text-sm'> &reg; </sup>
                     </logo>
                     <search className='lg:flex hidden justify-center items-center border rounded-full'>
@@ -38,7 +40,7 @@ const Header = () => {
                         <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
                     </search>
                     <section className='flex lg:gap-6 gap-1 justify-center items-center'>
-                        <div className='lg:flex hidden gap-2 justify-center items-center  leading-3'>
+                        <div className='lg:flex hidden gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate("/account")}>
                             <BsPerson size={28} />
                             <div>
                                 <span className='text-xs text-gray-500'>Sign in</span> <br />

@@ -22,7 +22,7 @@ const Footer = () => {
     ));
     return (
         <>
-            <main className="mt-20  bg-[#041E42] ">
+            <main className=" bg-[#041E42] ">
                 <div className="w-11/12 m-auto md:flex  justify-between items-center md:px-28 md:pb-5 md:pt-28 py-8 ">
                     <section className=' md:text-start text-center md:mb-0 mb-4'>
                         <p className=" font-extrabold text-white text-2xl">

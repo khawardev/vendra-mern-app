@@ -5,7 +5,9 @@ import HeroSection from '../../containers/HomeContainer/HeroSection';
 import NewProducts from '../../containers/HomeContainer/NewProducts';
 import ServicesSection from '../../containers/HomeContainer/ServicesSection';
 import TrendingProducts from '../../containers/HomeContainer/TrendingProducts';
+
 export const HomePage = () => {
+  
     return (
         <>
             <HeroSection />

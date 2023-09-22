@@ -101,7 +101,6 @@ const AuthPage = () => {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        placeholder="password"
                     />
                 </div>
 

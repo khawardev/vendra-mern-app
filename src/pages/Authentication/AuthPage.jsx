@@ -25,7 +25,7 @@ const AuthPage = () => {
                     <span className="font-extrabold flex justify-center items-center gap-1">
                         <span>
                             <span
-                                className={`text-lg cursor-pointer  px-3 py-1 ${isRegistering ? 'text-gray-300' : 'text-gray-900  border rounded-full px-3 py-1'}`}
+                                className={`text-lg cursor-pointer  px-4 py-1 ${isRegistering ? 'text-gray-300' : 'text-gray-900 bg-slate-100 border rounded-full px-3 py-1'}`}
                                 onClick={() => setIsRegistering(false)}
                             >
                                 Login
@@ -33,7 +33,7 @@ const AuthPage = () => {
                         </span>
                         <span>
                             <span
-                                className={`text-lg cursor-pointer  px-3 py-1 ${isRegistering ? 'text-gray-900  border rounded-full px-3 py-1' : 'text-gray-300'}`}
+                                className={`text-lg cursor-pointer  px-4 py-1 ${isRegistering ? 'text-gray-900 bg-slate-100 border rounded-full px-3 py-1' : 'text-gray-300'}`}
                                 onClick={() => setIsRegistering(true)}
                             >
                                 Register

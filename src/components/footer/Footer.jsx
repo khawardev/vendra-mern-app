@@ -32,10 +32,10 @@ const Footer = () => {
                     </section>
                     <section className="flex justify-center items-center ">
                         <div>
-                            <input type="text" className="py-3 outline-none border-none px-7 rounded-bl-full rounded-tl-full w-full" placeholder='Your email address' />
+                            <input type="text" className="py-3 outline-none border-none px-7 rounded-bl rounded-tl w-full" placeholder='Your email address' />
                         </div>
                         <div>
-                            <button className="py-3 px-6 flex rounded-br-full rounded-tr-full bg-yellow-500 whitespace-nowrap">Sign up</button>
+                            <button className="py-3 px-6 flex rounded-br rounded-tr bg-yellow-500 whitespace-nowrap">Sign up</button>
                         </div>
                     </section>
                 </div>

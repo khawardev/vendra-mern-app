@@ -3,7 +3,7 @@ import '../../assets/styles/Carousel.scss';
 import { useRef } from "react";
 import CategoriesData from '../../data/CategoriesData';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-
+import CategoriesNested from '../../nestedContainer/HomeNestedContainer/CategoriesNestedSection';
 const CategoriesSection = () => {
     
 
@@ -26,15 +26,7 @@ const CategoriesSection = () => {
                 <div className='carouselItems  ' ref={carouselContainer}>
                     {CategoriesData?.map((Categories, index) => {
                         return (
-                            <div key={index} className='carouselItem ' >
-                                <div className='posterBlock flex justify-center items-center '>
-                                    <img className='text-white' width={250}  src={Categories.url} alt='' />
-                                </div>
-                                <div className='title  '>
-                                    <p className='flex  justify-center'>{Categories.title}</p>
-                                    <p className='flex text-sm justify-center text-gray-400'>{Categories.Quantity} Products</p>
-                                </div>
-                            </div>
+                            <CategoriesNested key={index} category={Categories} />
                         );
                     })}
                 </div>

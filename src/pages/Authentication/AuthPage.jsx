@@ -19,7 +19,7 @@ const AuthPage = () => {
     };
     return (
         <div className="flex justify-center items-center  md:py-24 md:w-[35%] w-11/12 m-auto">
-            <form onSubmit={handleSubmit} className="md:border rounded-lg  w-full  py-16  h-[600px]   md:px-12">
+            <form onSubmit={handleSubmit} className="md:border rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12">
                 <p className="text-center text-gray-500 text-sm mb-10 select-none">
                     <span className="font-extrabold flex justify-center items-center gap-1">
                         <span>

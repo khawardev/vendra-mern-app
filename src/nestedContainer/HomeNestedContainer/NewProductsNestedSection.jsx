@@ -10,7 +10,7 @@ const NewProductsNestedSection = ({ discount }) => {
             <article className='cursor-pointer Parent-Col-Hover relative  '>
                 <div>
                     {discount &&
-                        <div className='md:top-[1rem] top-[0.40rem]  md:left-[15px] left-[10px] rounded-full  bg-green-400 md:px-3 px-2 absolute z-10'>
+                        <div className='md:top-[1rem] top-[0.40rem] rounded-br-full   rounded-tr-full  bg-green-400 md:px-3 px-2 absolute z-10'>
                             53%
                         </div>
                     }
@@ -20,11 +20,7 @@ const NewProductsNestedSection = ({ discount }) => {
                 </div>
                
                 <section className='flex justify-center items-center  mb-3 rounded-xl p-4 relative bg-gray-100  border'>
-                    {/* {discount &&
-                      <div className='md:top-[1rem] top-[0.40rem]  left-[10px] rounded-full  bg-green-400 md:px-3 px-2 absolute z-10'>
-                          53%
-                      </div>
-                  } */}
+               
 
                   
                     <div className='Parent-product-Image-Hover '>

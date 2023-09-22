@@ -40,21 +40,21 @@ const Header = () => {
                         <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
                     </search>
                     <section className='flex lg:gap-6 gap-1 justify-center items-center'>
-                        <div className='lg:flex hidden gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate("/account")}>
+                        <div className='md:bg-transparent bg-slate-100 md:p-0 p-2 border rounded-full  gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate("/account")}>
                             <BsPerson size={28} />
-                            <div>
+                            <div className='lg:flex hidden'>
                                 <span className='text-xs text-gray-500'>Sign in</span> <br />
                                 Account
                             </div>
                         </div>
                         <div className='px-1 '>
-                            <div className='relative md:bg-transparent bg-slate-100 md:p-0 p-2 rounded-full'>
+                            <div className='relative md:bg-transparent bg-slate-100 border md:p-0 p-2 rounded-full'>
                                 <VscHeart size={26} />
                                 <span className=" absolute cart-popup md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">5</span>
                             </div>
                         </div>
                         <div className='flex gap-2 justify-center items-center leading-3'>
-                            <div className='relative md:bg-transparent bg-slate-100 md:p-0 p-2 rounded-full'>
+                            <div className='relative md:bg-transparent bg-slate-100 border md:p-0 p-2 rounded-full'>
                                 <BsCart2 size={26} />
                                 <span className=" absolute cart-popup  md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">5</span>
 

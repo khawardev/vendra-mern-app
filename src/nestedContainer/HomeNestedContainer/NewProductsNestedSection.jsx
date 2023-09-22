@@ -10,7 +10,7 @@ const NewProductsNestedSection = ({ discount }) => {
             <article className='cursor-pointer Parent-Col-Hover relative  '>
                 <div>
                     {discount &&
-                        <div className='md:top-[1rem] top-[0.40rem] rounded-br-full   rounded-tr-full  bg-green-400 md:px-3 px-2 absolute z-10'>
+                        <div className='md:top-[1rem] top-[0.40rem]  md:left-[15px] left-[10px]  rounded-full   rounded-tr-full  bg-green-400 md:px-3 px-2 absolute z-10'>
                             53%
                         </div>
                     }
@@ -20,9 +20,6 @@ const NewProductsNestedSection = ({ discount }) => {
                 </div>
                
                 <section className='flex justify-center items-center  mb-3 rounded-xl p-4 relative bg-gray-100  border'>
-               
-
-                  
                     <div className='Parent-product-Image-Hover '>
                         <img className='mix-blend-multiply ' src="https://res.cloudinary.com/denajbnh4/image/upload/v1694863601/category-1_w0bkdb.jpg" alt="" />
                     </div>
@@ -36,11 +33,11 @@ const NewProductsNestedSection = ({ discount }) => {
                         <AiFillStar className=' text-yellow-400' size={18} />
                         <AiOutlineStar className=' text-gray-300' size={18} />
                     </span>
-                    <section className='flex justify-between items-center'>
+                    <section className='flex justify-between items-center '>
                         {discount ?
-                            <div>
-                                <p className=' text-sm text-gray-800 line-through'>$732.00</p>
-                                <p className=' text-lg text-gray-800 font-extrabold font-price'>$344.00</p>
+                            <div className='md:flex justify-center items-center gap-4 '>
+                                <p className='  text-sm text-gray-800 line-through '>$732.00</p>
+                                <p className=' text-lg text-gray-800 font-extrabold font-price leading-4'>$344.00</p>
                             </div>
                             :
                             <p className=' text-lg text-gray-800 font-extrabold font-price'>$744.00</p>

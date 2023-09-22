@@ -20,7 +20,7 @@ const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
                         <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap">View more < BsArrowRightShort size={20} /></p>
                     </section>
                     <hr />
-                    <section className={`my-7 grid ${grid} gap-8 `}>
+                    <section className={`my-7 grid ${grid} gap-7 `}>
                         {items}
                     </section>
                 </main>

@@ -44,9 +44,9 @@ const ServicesSection = () => {
                 {ServicesData.map((service, index) => {
                     return (
                         <div key={index} className='border p-4 flex gap-5'>
-                            <icon>
+                            <section>
                                 {service.icon}
-                            </icon>
+                            </section>
                             <section className='leading-5'>
                                 <h1>{service.title}</h1>
                                 <p className='text-gray-400 text-sm'>{service.description}</p>

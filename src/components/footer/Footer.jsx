@@ -54,12 +54,12 @@ const Footer = () => {
             </main>
 
             <main className="w-11/12 m-auto md:my-16 my-10">
-                <section className="md:flex md:justify-between text-center items-center ">
-                    <logo className='text-4xl font-extrabold   '>
+                <main className="md:flex md:justify-between text-center items-center ">
+                    <section className='text-4xl font-extrabold   '>
                         Vendra<sup className=' font-light text-sm'> &reg; </sup>
-                    </logo>
+                    </section>
 
-                    <icon className="flex justify-center items-center gap-3 md:mt-0 mt-4">
+                    <section className="flex justify-center items-center gap-3 md:mt-0 mt-4">
                         <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
                             <SlSocialFacebook size={20} />
                         </div>
@@ -75,17 +75,17 @@ const Footer = () => {
                         <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
                             <BsInstagram size={20} />
                         </div>
-                    </icon>
-                </section>
+                    </section>
+                </main>
                 <hr className='my-6' />
-                <section className="flex justify-between items-center md:flex-row  flex-col-reverse ">
-                    <policy className='text-sm md:mt-0 mt-4' >
+                <main className="flex justify-between items-center md:flex-row  flex-col-reverse ">
+                    <section className='text-sm md:mt-0 mt-4' >
                         © Copyright 2023 All Right Reserved <span className=" text-yellow-600"><b>Vendra</b><sup className=' font-light text-sm'> &reg; </sup></span>
-                    </policy>
-                    <icon>
+                    </section>
+                    <section>
                         <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694950874/payment_mbisbh.png" alt="" />
-                    </icon>
-                </section>
+                    </section>
+                </main>
             </main>
 
         </>

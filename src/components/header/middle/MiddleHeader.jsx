@@ -10,16 +10,16 @@ const MiddleHeader = () => {
     <div>
       
       <main className='flex justify-between items-center bg-red- lg:pt-0 pt-5  pb-5'>
-        <logo className='text-4xl font-extrabold cursor-pointer' onClick={() => Navigate("/")}>
+        <section className='text-4xl font-extrabold cursor-pointer' onClick={() => Navigate("/")}>
           Vendra<sup className=' font-light text-sm'> &reg; </sup>
-        </logo>
-        <search className='lg:flex hidden justify-center items-center border rounded-full'>
+        </section>
+        <section className='lg:flex hidden justify-center items-center border rounded-full'>
           <div className='px-3'>
             <FiSearch size={17} />
           </div>
           <input type="text" className='py-3 outline-none border-none ' size={65} placeholder='Search your favorite product ...' />
           <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
-        </search>
+        </section>
         <section className='flex lg:gap-6 gap-1 justify-center items-center'>
           <div className='md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full  gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate("/account")}>
             <BsPerson size={28} />

@@ -18,9 +18,9 @@ const AuthPage = () => {
         e.preventDefault();
     };
     return (
-        <div className="flex justify-center items-center  md:py-24 md:w-[35%] w-11/12 m-auto">
-            <form onSubmit={handleSubmit} className="md:border rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12">
-                <p className="text-center text-gray-500 text-sm mb-10 select-none">
+        <div className="flex justify-center items-center  md:py-24 py-10 md:w-[35%] w-11/12 m-auto">
+            <form onSubmit={handleSubmit} className="border-2 rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5">
+                <p className="text-center text-gray-500 text-sm mb-10 select-none ">
                     <span className="font-extrabold flex justify-center items-center gap-1">
                         <span>
                             <span
@@ -39,11 +39,11 @@ const AuthPage = () => {
                                 Sign in
                             </span>
                         </span>
-                        
+
                     </span>
                 </p>
                 {isRegistering ? (
-                    <div>
+                    <>
                         <div className="mb-5">
                             <label className="block text-gray-700 text-sm mb-1" htmlFor="username">
                                 Username
@@ -72,37 +72,56 @@ const AuthPage = () => {
                                 placeholder="Email Address"
                             />
                         </div>
-                    </div>
+                        <div className="mb-7">
+                            <label className="block text-gray-700 text-sm  mb-1" htmlFor="password">
+                                Password
+                            </label>
+                            <input
+                                className=" text-xs appearance-none border-2 rounded w-full py-3 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={formData.registerpassword}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </>
+
                 ) : (
-                    <div className="mb-5 ">
-                        <label className="block text-gray-700 text-sm  mb-1" htmlFor="login-username-email">
-                            Username or Email Address
-                        </label>
-                        <input
-                            className=" appearance-none border-2 rounded w-full py-2 px-3  focus:border-yellow-500 focus:border-2  outline-none"
-                            type="text"
-                            id="login-username-email"
-                            name="usernameOrEmail"
-                            value={formData.usernameOrEmail}
-                            onChange={handleChange}
-                            placeholder="Username or Email Address"
-                        />
-                    </div>
+                    <>
+
+                        <div className="mb-5 ">
+                            <label className="block text-gray-700 text-sm  mb-1" htmlFor="login-username-email">
+                                Username or Email Address
+                            </label>
+                            <input
+                                className=" appearance-none border-2 rounded w-full py-2 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                type="text"
+                                id="login-username-email"
+                                name="usernameOrEmail"
+                                value={formData.usernameOrEmail}
+                                onChange={handleChange}
+                                placeholder="Username or Email Address"
+                            />
+                        </div>
+                        <div className="mb-7">
+                            <label className="block text-gray-700 text-sm  mb-1" htmlFor="password">
+                                Password
+                            </label>
+                            <input
+                                className=" text-xs appearance-none border-2 rounded w-full py-3 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                type="password"
+                                id="password"
+                                name="password"
+                                    value={formData.loginpassword}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </>
+
                 )}
 
-                <div className="mb-7">
-                    <label className="block text-gray-700 text-sm  mb-1" htmlFor="password">
-                        Password
-                    </label>
-                    <input
-                        className=" text-xs appearance-none border-2 rounded w-full py-3 px-3  focus:border-yellow-500 focus:border-2  outline-none"
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                </div>
+
 
 
 

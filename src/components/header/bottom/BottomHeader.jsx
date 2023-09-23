@@ -6,14 +6,14 @@ const BottomHeader = () => {
     <div>
       
       <main className='  items-center justify-between list-none lg:flex hidden '>
-        <categories className='flex justify-center items-center gap-12 bg-gray-100 cursor-pointer py-4 px-6 rounded-tr-lg  rounded-tl-lg'>
-          <div className='flex justify-center items-center gap-2'>
+        <main className='flex justify-center items-center gap-12 bg-gray-100 cursor-pointer py-4 px-6 rounded-tr-lg  rounded-tl-lg'>
+          <section className='flex justify-center items-center gap-2'>
             <BiCategory className="stroke-custom" size={24} />
             <p >All Departments</p>
-          </div>
+          </section>
           <HiOutlineChevronDown />
-        </categories>
-        <links>
+        </main>
+        <main>
           <li className=' flex  items-center gap-5'>
             <ul className='flex justify-center items-center gap-2 cursor-pointer bg-gray-200 rounded-full px-4 py-1'>Home </ul>
             <ul className='flex justify-center items-center gap-1 cursor-pointer'>Shop  <HiOutlineChevronDown size={12} /></ul>
@@ -21,15 +21,15 @@ const BottomHeader = () => {
             <ul className='flex justify-center items-center gap-2 cursor-pointer'>Blog</ul>
             <ul className='flex justify-center items-center gap-2 cursor-pointer'>Contact</ul>
           </li>
-        </links>
-        <discount className='flex items-center justify-center gap-3 leading-4'>
+        </main>
+        <main className='flex items-center justify-center gap-3 leading-4'>
           <CiDiscount1 size={28} />
-          <div>
+          <section>
             <span className='text-xs text-gray-500'>Only this weekend </span> <br />
             Super Discount
-          </div>
+          </section>
           <HiOutlineChevronDown />
-        </discount>
+        </main>
       </main>
 
 

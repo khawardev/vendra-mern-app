@@ -14,9 +14,9 @@ const Header = () => {
             <hr className='lg:hidden block' />
 
 
-            <div className='w-11/12  m-auto select-none'>
+            <main className='w-11/12  m-auto select-none'>
                 <MiddleHeader />
-                <mobilesearch className='lg:hidden flex justify-between items-center border rounded-full mb-4'>
+                <section className='lg:hidden flex justify-between items-center border rounded-full mb-4'>
                     <div className='flex justify-center items-center'>
                         <div className='px-3'>
                             <FiSearch size={17} />
@@ -27,10 +27,10 @@ const Header = () => {
                     </div>
 
                     <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
-                </mobilesearch>
+                </section>
                 <BottomHeader />
 
-            </div>
+            </main>
             <hr />
         </>
 

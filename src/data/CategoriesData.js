@@ -17,7 +17,7 @@ const CategoriesData = [
     },
 
     {
-        title: 'LCDs',
+        title: 'LCDsdsdsdsasdsdss',
         url: 'https://res.cloudinary.com/denajbnh4/image/upload/v1694863600/element1-768x768_muh0rk.jpg',
         Quantity: '5 •'
     },

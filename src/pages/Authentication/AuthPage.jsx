@@ -7,21 +7,45 @@ const AuthPage = () => {
         email: "",
         password: "",
     });
-    console.log("🚀 ~ file: AuthPage.jsx:10 ~ AuthPage ~ formData:", formData)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
+    const [submittedData, setSubmittedData] = useState(null);
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmittedData(formData);
+        setFormData({
+            username: "",
+            email: "",
+            password: '',
+        });
+
     };
+
+    console.log(submittedData);
+
+
+    // const { text, setText } = useState();
+    // const [query, setQuery] = useState('');
+
+    // const searchQueryHandler = (event) => {
+    //     if (event.key === 'Enter' && query.length > 0) {
+
+    //         if (!text && setText) {
+    //             setText(event.currentTarget.value);
+    //             setQuery('');
+    //         }
+    //     }
+    // };
+
+
     return (
         <div className="flex justify-center items-center  md:py-24 py-10 md:w-[35%] w-11/12 m-auto">
-            <form onSubmit={handleSubmit} className="border-2 rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5">
+            <form onSubmit={handleSubmit} className="border rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5">
                 <p className="text-center text-gray-500 text-sm mb-10 select-none ">
-                    <span className="font-extrabold  gap-1 bg-slate-100 px-[6px] pt-[17px] pb-[16px] rounded-full ">
+                    <span className="font-extrabold  gap-1 bg-slate-100 px-[6px] pt-[18px] pb-[16px] rounded-full ">
                         <span>
                             <span
                                 className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-900 bg-slate-200 border rounded-full px-3 py-1' : 'text-gray-500'}`}
@@ -81,7 +105,7 @@ const AuthPage = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                value={formData.registerpassword}
+                                value={formData.password}
                                 onChange={handleChange}
                             />
                         </div>
@@ -97,9 +121,9 @@ const AuthPage = () => {
                             <input
                                 className=" appearance-none border-2 rounded w-full py-2 px-3  focus:border-yellow-500 focus:border-2  outline-none"
                                 type="text"
-                                id="login-username-email"
-                                name="usernameOrEmail"
-                                value={formData.usernameOrEmail}
+                                    id="username"
+                                    name="username"
+                                    value={formData.username}
                                 onChange={handleChange}
                                 placeholder="Username or Email Address"
                             />
@@ -113,7 +137,7 @@ const AuthPage = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                    value={formData.loginpassword}
+                                    value={formData.password}
                                 onChange={handleChange}
                             />
                         </div>

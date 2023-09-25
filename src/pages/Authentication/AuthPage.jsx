@@ -13,26 +13,13 @@ const AuthPage = () => {
         setFormData({ ...formData, [name]: value });
     };
     const [submittedData, setSubmittedData] = useState(null);
+ 
 
-
-    console.log(submittedData);
-
-
-    // const { text, setText } = useState();
-    // const [query, setQuery] = useState('');
-
-    // const searchQueryHandler = (event) => {
-    //     if (event.key === 'Enter' && query.length > 0) {
-
-    //         if (!text && setText) {
-    //             setText(event.currentTarget.value);
-    //             setQuery('');
-    //         }
-    //     }
-    // };
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmittedData(formData);
+            console.log(submittedData);
+
         setFormData({
             username: "",
             email: "",
@@ -49,7 +36,7 @@ const AuthPage = () => {
         // Create the request body based on the action
         const requestBody = isRegistering
           ? JSON.stringify({ username, email, password }) // Update field names here
-          : JSON.stringify({email , password: password }); // Update field names here
+          : JSON.stringify({ username, password: password }); // Update field names here
     
         fetch(url, {
           method: "POST",

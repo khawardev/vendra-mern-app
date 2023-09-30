@@ -73,7 +73,7 @@ const AuthPage = () => {
                                 Username
                             </label>
                             <input
-                                className=" appearance-none border-2 rounded w-full py-2 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
                                 type="text"
                                 id="username"
                                 name="username"
@@ -87,7 +87,7 @@ const AuthPage = () => {
                                 Email Address
                             </label>
                             <input
-                                className=" appearance-none border-2 rounded w-full py-2 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
                                 type="email"
                                 id="email"
                                 name="email"
@@ -101,7 +101,7 @@ const AuthPage = () => {
                                 Password
                             </label>
                             <input
-                                className=" text-xs appearance-none border-2 rounded w-full py-3 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                className=" text-xs appearance-none border rounded w-full py-3 px-3  focus:border-yellow-500 focus:border  outline-none"
                                 type="password"
                                 id="password"
                                 name="password"
@@ -119,11 +119,11 @@ const AuthPage = () => {
                                 Username or Email Address
                             </label>
                             <input
-                                className=" appearance-none border-2 rounded w-full py-2 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
                                 type="text"
-                                    id="username"
-                                    name="username"
-                                    value={formData.username}
+                                id="username"
+                                name="username"
+                                value={formData.username}
                                 onChange={handleChange}
                                 placeholder="Username or Email Address"
                             />
@@ -133,11 +133,11 @@ const AuthPage = () => {
                                 Password
                             </label>
                             <input
-                                className=" text-xs appearance-none border-2 rounded w-full py-3 px-3  focus:border-yellow-500 focus:border-2  outline-none"
+                                className=" text-xs appearance-none border rounded w-full py-3 px-3  focus:border-yellow-500 focus:border  outline-none"
                                 type="password"
                                 id="password"
                                 name="password"
-                                    value={formData.password}
+                                value={formData.password}
                                 onChange={handleChange}
                             />
                         </div>

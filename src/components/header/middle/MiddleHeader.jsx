@@ -1,7 +1,7 @@
 import { VscHeart } from 'react-icons/vsc';
 import { BsCart2, BsPerson } from 'react-icons/bs';
-import { useNavigate } from "react-router-dom";
 import { FiSearch } from 'react-icons/fi';
+import { useNavigate } from "react-router-dom";
 
 const MiddleHeader = () => {
   const Navigate = useNavigate();

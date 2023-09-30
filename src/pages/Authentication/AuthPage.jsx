@@ -13,33 +13,58 @@ const AuthPage = () => {
         setFormData({ ...formData, [name]: value });
     };
     const [submittedData, setSubmittedData] = useState(null);
+ 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmittedData(formData);
+            console.log(submittedData);
+
         setFormData({
             username: "",
             email: "",
             password: '',
         });
-
-    };
-
-    console.log(submittedData);
-
-
-    // const { text, setText } = useState();
-    // const [query, setQuery] = useState('');
-
-    // const searchQueryHandler = (event) => {
-    //     if (event.key === 'Enter' && query.length > 0) {
-
-    //         if (!text && setText) {
-    //             setText(event.currentTarget.value);
-    //             setQuery('');
-    //         }
-    //     }
-    // };
-
+        const { username, email, password} =
+          formData;
+    
+        // Determine the URL based on whether the user is logging in or registering
+        const url = isRegistering
+          ? "http://localhost:8000/register"
+          : "http://localhost:8000/login-user";
+    
+        // Create the request body based on the action
+        const requestBody = isRegistering
+          ? JSON.stringify({ username, email, password }) // Update field names here
+          : JSON.stringify({ username, password: password }); // Update field names here
+    
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            // Add other headers as needed
+          },
+          body: requestBody,
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error(
+                isRegistering ? "Registration failed" : "Login failed"
+              );
+            }
+          })
+          .then((data) => {
+            console.log(data, isRegistering ? "Registration" : "Login");
+            // Optionally, you can redirect the user to a different page on successful login/registration
+          })
+          .catch((error) => {
+            console.error(error);
+            // Handle the error and display an error message to the user
+          });
+      };
 
     return (
         <div className="flex justify-center items-center  md:py-24 py-10 md:w-[35%] w-11/12 m-auto">

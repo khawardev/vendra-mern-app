@@ -6,6 +6,7 @@ function Rightbar() {
         { id: 1002, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '123456789' },
         { id: 1003, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '123456789' },
         { id: 1004, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '123456789' },
+
         // Add more users as needed
     ]);
 
@@ -14,11 +15,11 @@ function Rightbar() {
     };
 
     return (
-        <div className="relative overflow-x-auto bg-gray-100 py-10 px-8">
+        <div className="relative overflow-x-auto bg-gray-100  rounded-2xl p-8 ">
             <table className="w-full text-sm text-left">
-                <thead className="uppercase">
-                    <tr >
-                        <th scope="col" className="px-6 py-3">
+                <thead className="uppercase ">
+                    <tr  >
+                        <th scope="col" className="px-6 py-3  ">
                             User id
                         </th>
                         <th scope="col" className="px-6 py-3">
@@ -37,11 +38,11 @@ function Rightbar() {
                 </thead>
                 <tbody>
                     {users.map((user, index) => (
-                        <tr key={user.id} className={index % 2 === 0 ? 'bg-gray-200' : ''}>
+                        <tr key={user.id} className={index % 2 === 0 ? 'bg-gray-200 ' : ''}>
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {user.id}
                             </th>
-                            <td className="px-6 py-4">{user.username}</td>
+                            <td className="px-6 py-4 ">{user.username}</td>
                             <td className="px-6 py-4">{user.email}</td>
                             <td className="px-6 py-4">{user.password}</td>
                             <td className="text-white flex px-6 py-3 gap-2">

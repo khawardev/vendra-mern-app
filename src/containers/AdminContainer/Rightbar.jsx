@@ -24,16 +24,16 @@ function Rightbar() {
                     <thead className="uppercase ">
                         <tr  >
                             <th scope="col" className="px-6 py-3  ">
-                                User id
+                                 id
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                User name
+                                 name
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                User Email
+                                 Email
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                User Password
+                                 Password
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Action
@@ -57,14 +57,14 @@ function Rightbar() {
                                     <td className="text-white flex px-6 py-3 gap-2">
                                         <button
                                             href="#"
-                                            className="font-medium bg-blue-500 rounded-full py-1 px-3"
+                                            className="font-medium bg-blue-500 rounded py-1 px-3"
                                             onClick={() => console.log(`Edit user with ID ${user.id}`)}
                                         >
                                             <span className='flex justify-between items-center gap-2'> <BiEditAlt size={16} />   Edit</span>
                                         </button>
                                         <button
                                             href="#"
-                                            className="font-medium bg-red-500 rounded-full py-1 px-3"
+                                            className="font-medium bg-red-500 rounded py-1 px-3"
                                             onClick={() => deleteUser(user.id)}
                                         >
                                             <span className='flex justify-between items-center gap-1'> <MdOutlineDeleteSweep size={18} />   Delete</span>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from 'sweetalert2';
 
 const AuthPage = () => {
     const [isRegistering, setIsRegistering] = useState(true);
@@ -30,14 +31,14 @@ const AuthPage = () => {
     
         // Determine the URL based on whether the user is logging in or registering
         const url = isRegistering
-          ? "http://localhost:8000/register"
-          : "http://localhost:8000/login-user";
+          ? "http://localhost:5000/register"
+          : "http://localhost:5000/login-user";
     
         // Create the request body based on the action
         const requestBody = isRegistering
           ? JSON.stringify({ username, email, password }) // Update field names here
           : JSON.stringify({ username, password: password }); // Update field names here
-    
+          console.log("isRegistering before fetch:", isRegistering);
         fetch(url, {
           method: "POST",
           headers: {
@@ -56,10 +57,34 @@ const AuthPage = () => {
               );
             }
           })
-          .then((data) => {
-            console.log(data, isRegistering ? "Registration" : "Login");
-            // Optionally, you can redirect the user to a different page on successful login/registration
-          })
+.then((data) => {
+    console.log("Server Response Data:", data);
+    if (data.status.includes("ok")  && !isRegistering) {
+        Swal.fire(
+            'Successfully Login',
+            'success'
+          )        
+        // Use localStorage.setItem() to store the token
+        localStorage.setItem("token", data.data);
+        
+        // Add a console.log statement for debugging
+        console.log("Redirecting to admin-account page...");
+
+        // Redirect to the "admin-account" page
+        window.location.href = "./admin-account"; // Make sure the file path is correct
+    } else if (isRegistering && data.status.includes("ok")) {
+        // Handle successful registration here
+        Swal.fire(
+            'Successfully Registered',
+            'success'
+          ) 
+    } else {
+        alert("Login or Registration Failed");
+
+        // Handle cases where login or registration fails
+    }
+})
+
           .catch((error) => {
             console.error(error);
             // Handle the error and display an error message to the user

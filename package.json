@@ -15,7 +15,8 @@
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
     "react-slideshow-image": "^4.2.1",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "sweetalert2": "^11.7.31"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

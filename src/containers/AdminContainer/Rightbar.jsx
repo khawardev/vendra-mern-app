@@ -3,7 +3,7 @@ import { MdOutlineDeleteSweep } from 'react-icons/md';
 import { BiEditAlt } from 'react-icons/bi';
 function Rightbar() {
     const [users, setUsers] = useState([
-        { id: 1001, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '123456789' },
+        { id: 1001, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '12345678910' },
         { id: 1002, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '123456789' },
         { id: 1003, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '123456789' },
         { id: 1004, username: 'Khawar', email: 'Khawarsultan.develoepr@gmail.com', password: '123456789' },

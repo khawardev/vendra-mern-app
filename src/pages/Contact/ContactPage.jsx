@@ -1,8 +1,8 @@
 import contact from '../../assets/images/contact-1.jpg';
 const ContactPage = () => {
     return (
-        <main className=" w-11/12 m-auto py-20">
-            <section className='my-10'>
+        <main className=" w-11/12 m-auto md:py-20 py-3">
+            {/* <section className='my-10'>
                 <div className='flex'>
                     <p className=' text-2xl text-gray-700 bg-green-200 mb-2 px-5 rounded-full font-bold'>Pakistan</p>
                 </div>
@@ -12,23 +12,23 @@ const ContactPage = () => {
                     <p> (040) 4305005</p>
                     <a href="" className='text-blue-500'>contact@cuisahiwal.com</a>
                </div>
-            </section>
+            </section> */}
             <section className="my-10">
                 <p className=" text-2xl text-gray-600 mb-4">You can ask us questions !</p>
-                <p className=" text-5xl ">We are dedicated to providing exceptional support and assistance to our valued customer and partners  seeking information or assistance, our team is here to help.</p>
+                <p className=" md:text-5xl text-xl  font-bold leading-6  ">We are dedicated to providing exceptional support,`` assistance to our valued customer and partners  seeking information or assistance, our team is here to help.</p>
             </section>
 
              
-            <section className='flex gap-32 items-center py-10 '>
+            <section className='md:flex gap-32 items-center py-10 '>
                 <div className='w-full '>
-                    <p className=' text-xl mb-10 bg-gray-100 p-4  shadow rounded-lg'>If you have any general inquiries or feedback for us, please dont hesitate to get in touch.insights help us enhance the Vendra Ecommerce experience for everyone.</p>
+                    <p className=' text-xl mb-10'>If you have any general inquiries or feedback for us, please dont hesitate to get in touch.insights help us enhance the Vendra Ecommerce experience for everyone.</p>
                     <img src={contact}  className='rounded-xl' alt="" />
                 </div>
-                <div className='w-full shadow-xl bg-gray-100 p-14 rounded-xl'>
+                <div className='w-full md:shadow-xl md:bg-gray-100 md:p-14  rounded-xl md:mt-0 mt-10'>
                     <p className='text-3xl  font-extrabold '>Get in Touch</p>
                     <p className='text-xl text-gray-600'>If you have any query feel free to Contact us</p>
                     <form action="">
-                        <section className='flex  items-center gap-12 my-8'>
+                        <section className='flex  items-center md:gap-12 gap-5 my-8'>
                             <section className='w-full'>
                                 <div className='flex'>
                                     <p className=' mb-2 bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full shadow-lg' >Name</p>
@@ -53,7 +53,7 @@ const ContactPage = () => {
                             <div className='flex'>
                                 <p className=' mb-2 shadow-lg bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full' >Message</p>
                             </div>
-                            <textarea type="text" className='w-full py-2 shadow-sm  px-4  focus:border-yellow-500 focus:border  outline-none' name="" id="" cols="30" rows="10" />
+                            <textarea type="text" className='w-full py-2 shadow-sm  px-4 border  focus:border-yellow-500 focus:border  outline-none' name="" id="" cols="30" rows="10" />
                         </section>
 
 

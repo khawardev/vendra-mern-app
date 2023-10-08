@@ -1,4 +1,4 @@
-import contact from '../../assets/images/contact-1.jpg';
+import contact from '../assets/images/contact-1.jpg';
 const ContactPage = () => {
     return (
         <main className=" w-11/12 m-auto md:py-20 py-3">

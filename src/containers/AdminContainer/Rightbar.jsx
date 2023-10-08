@@ -17,9 +17,9 @@ function Rightbar() {
 
     return (
         <>
-            <p className='my-4 text-2xl  font-extrabold ml-1'> Registered Users</p>
+            <p className='my-4 text-2xl  font-extrabold ml-1 '> Registered Users</p>
 
-            <div className="relative overflow-x-auto bg-gray-100  rounded-2xl p-8 ">
+            <div className="relative overflow-x-auto bg-gray-100  rounded-2xl p-8  border border-yellow-500">
                 <table className="w-full text-sm text-left">
                     <thead className="uppercase ">
                         <tr  >

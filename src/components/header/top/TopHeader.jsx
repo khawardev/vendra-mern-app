@@ -1,5 +1,7 @@
 import { HiOutlineChevronDown } from 'react-icons/hi2';
 import { useNavigate } from "react-router-dom";
+import {BsPerson } from 'react-icons/bs';
+
 const TopHeader = () => {
     const Navigate = useNavigate();
     
@@ -8,6 +10,7 @@ const TopHeader = () => {
             <main className=" flex md:justify-between justify-center gap-4 items-center list-none md:py-5 py-3 text-sm select-none">
                 <li className=" flex gap-4 justify-center items-center ">
                     <ul className=' px-3 py-1 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-full' onClick={() => Navigate("/admin-account")}>Admin account</ul>
+                    <ul className=' px-3 py-1 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-full flex gap-1' onClick={() => Navigate("/user-account")}> <BsPerson size={18} />User account</ul>
                 </li>
                 <li className="flex gap-4 ">
                     <ul className=' flex justify-center items-center gap-2'>English <HiOutlineChevronDown /></ul>

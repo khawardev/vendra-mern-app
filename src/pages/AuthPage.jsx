@@ -14,82 +14,80 @@ const AuthPage = () => {
         setFormData({ ...formData, [name]: value });
     };
     const [submittedData, setSubmittedData] = useState(null);
- 
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmittedData(formData);
-            console.log(submittedData);
+        console.log(submittedData);
 
         setFormData({
             username: "",
             email: "",
             password: '',
         });
-        const { username, email, password} =
-          formData;
-    
+        const { username, email, password } =
+            formData;
+
         // Determine the URL based on whether the user is logging in or registering
         const url = isRegistering
-          ? "http://localhost:5000/register"
-          : "http://localhost:5000/login-user";
-    
+            ? "http://localhost:5000/register"
+            : "http://localhost:5000/login-user";
+
         // Create the request body based on the action
         const requestBody = isRegistering
-          ? JSON.stringify({ username, email, password }) // Update field names here
-          : JSON.stringify({ username, password: password }); // Update field names here
-          console.log("isRegistering before fetch:", isRegistering);
+            ? JSON.stringify({ username, email, password }) // Update field names here
+            : JSON.stringify({ username, password: password }); // Update field names here
+        console.log("isRegistering before fetch:", isRegistering);
         fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            // Add other headers as needed
-          },
-          body: requestBody,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                // Add other headers as needed
+            },
+            body: requestBody,
         })
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            } else {
-              throw new Error(
-                isRegistering ? "Registration failed" : "Login failed"
-              );
-            }
-          })
-.then((data) => {
-    console.log("Server Response Data:", data);
-    if (data.status.includes("ok")  && !isRegistering) {
-        Swal.fire(
-            'Successfully Login',
-            'success'
-          )        
-        // Use localStorage.setItem() to store the token
-        localStorage.setItem("token", data.data);
-        
-        // Add a console.log statement for debugging
-        console.log("Redirecting to admin-account page...");
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error(
+                        isRegistering ? "Registration failed" : "Login failed"
+                    );
+                }
+            })
+            .then((data) => {
+                console.log("Server Response Data:", data);
+                if (data.status.includes("ok") && !isRegistering) {
+                    Swal.fire(
+                        'Successfully Login',
+                        'success'
+                    )
+                    // Use localStorage.setItem() to store the token
+                    localStorage.setItem("token", data.data);
+                    localStorage.setItem("loggedIn", true);
+                    // Add a console.log statement for debugging
+                    console.log("Redirecting to admin-account page...");
+                    window.location.href = "./admin-account"; // Make sure the file path is correct
+                } else if (isRegistering && data.status.includes("ok")) {
+                    // Handle successful registration here
+                    Swal.fire(
+                        'Successfully Registered',
+                        'success'
+                    )
+                } else {
+                    alert("Login or Registration Failed");
 
-        // Redirect to the "admin-account" page
-        window.location.href = "./admin-account"; // Make sure the file path is correct
-    } else if (isRegistering && data.status.includes("ok")) {
-        // Handle successful registration here
-        Swal.fire(
-            'Successfully Registered',
-            'success'
-          ) 
-    } else {
-        alert("Login or Registration Failed");
+                    // Handle cases where login or registration fails
+                }
+            })
 
-        // Handle cases where login or registration fails
-    }
-})
-
-          .catch((error) => {
-            console.error(error);
-            // Handle the error and display an error message to the user
-          });
-      };
+            .catch((error) => {
+                console.error(error);
+                // Handle the error and display an error message to the user
+            });
+    };
 
     return (
         <div className="flex justify-center items-center  md:py-24 py-10 md:w-[35%] w-11/12 m-auto">

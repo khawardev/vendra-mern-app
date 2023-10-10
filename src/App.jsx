@@ -1,10 +1,12 @@
 import './assets/styles/App.scss'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from './components/header/Header';
-import { HomePage } from './pages/Home/HomePage';
+import { HomePage } from './pages/HomePage';
 import Footer from './components/footer/Footer';
-import AuthPage from './pages/Authentication/AuthPage';
-import AdminPage from './pages/Admin/AdminPage';
+import AuthPage from './pages/AuthPage';
+import AdminPage from './pages/AdminPage';
+import ContactPage from './pages/ContactPage';
+import UserPage from './pages/UserPage';
 function App() {
   return (
     <>
@@ -14,6 +16,8 @@ function App() {
           <Route exact path='/' element={<HomePage />} />
           <Route exact path='/account' element={<AuthPage />} />
           <Route exact path='/admin-account' element={<AdminPage />} />
+          <Route exact path='/contact' element={<ContactPage />} />
+          <Route exact path='/user-account' element={<UserPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

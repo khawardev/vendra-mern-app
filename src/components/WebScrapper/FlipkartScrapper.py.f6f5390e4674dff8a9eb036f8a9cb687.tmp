@@ -10,7 +10,7 @@ def find_data(URL):
         title_element = soup.find(class_='class="pdp-mod-product-badge-title"')
         # price_element = soup.find('div', class_='x-price-primary')
         # Refurbished_element = soup.find( class_='ux-icon-text__text')
-        
+        response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
         print(soup.prettify());
 

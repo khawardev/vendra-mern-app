@@ -101,7 +101,6 @@ const AuthPage = () => {
                                 onClick={() => setIsRegistering(true)}
                             >
                                 Register
-
                             </span>
                         </span>
                         <span>

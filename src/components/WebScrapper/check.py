@@ -1,24 +1,34 @@
 import requests
 from bs4 import BeautifulSoup
-url = 'https://www.ebay.com/itm/126013310065?_trkparms=pageci%3A85e85f59-6868-11ee-b57a-927f8491b1e7%7Cparentrq%3A201d243a18b0aab889094736ffffbd70%7Ciid%3A1'
+# response = requests.get(url)
+# soup = BeautifulSoup(response.content, 'html.parser')
+# print(soup.prettify());
+
+url = 'https://www.alibaba.com/product-detail/P8668i-DP4801e-walkie-talkie-long-range_1600740718350.html?spm=a2700.galleryofferlist.p_offer.d_image.5c262bccU4RWml&s=p'
+# title_element = soup.find( class_='product-title')
+
+# url = 'https://www.ebay.com/b/Jordan-1-Retro-OG-High-UNC-Toe/15709/bn_7119139207'
+# title_element = soup.find('h1', class_='bhp__title')
+
 def find_data(URL):
     headers = {"User-Agent": "Defined"}
-    r = requests.get(URL, headers=headers)
+    r = requests.get(URL, headers = headers)
 
     if r.status_code == 200:
         soup = BeautifulSoup(r.content, "html.parser")
-        title_element = soup.find(class_='class="pdp-mod-product-badge-title"')
+        title_element = soup.find( class_='price')
+
+
         # price_element = soup.find('div', class_='x-price-primary')
         # Refurbished_element = soup.find( class_='ux-icon-text__text')
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        print(soup.prettify());
 
-        # if title_element:
-        #     title_text = title_element.text.strip()
-        #     print("Title:", title_text)
-        # else:
-        #     print("Title element with class 'B_NuCI' not found on the page.")
+       
+
+        if title_element:
+            title_text = title_element.text.strip()
+            print("Title:", title_text)
+        else:
+            print("Title element with class 'B_NuCI' not found on the page.")
 
         # if Refurbished_element:
         #     Refurbished_text = Refurbished_element.text.strip()

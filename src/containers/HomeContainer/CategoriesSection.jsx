@@ -2,9 +2,8 @@ import "../../assets/styles/Carousel.scss";
 import { useRef } from "react";
 // import CategoriesData from "../../data/CategoriesData";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Axios from "axios";
-import collection_8 from '../../../../BACKEND/uploads/collection_8.png'
 //import CategoriesNested from '../../nestedContainer/HomeNestedContainer/CategoriesNestedSection';
 const CategoriesSection = () => {
 

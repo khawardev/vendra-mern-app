@@ -1,13 +1,27 @@
+
 /* eslint-disable react/prop-types */
 import { VscHeart } from 'react-icons/vsc';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
-const NewProductsNestedSection = ({ discount }) => {
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+const NewProductsNestedSection = ({discount} ) => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        // Fetch product data from your backend API when the component mounts
+        axios.get('http://localhost:5000/api/products') // Update the URL to match your backend route
+          .then((response) => {
+            setProducts(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching products:', error);
+          });
+      }, []); // The 
     return (
         <>
-
-
-            <article className='cursor-pointer Parent-Col-Hover relative  '>
+         {products.map((product) => (
+            <article  key={product._id} className="cursor-pointer Parent-Col-Hover relative">
                 <div>
                     {discount &&
                         <div className='md:top-[1rem] top-[0.40rem]  md:left-[15px] left-[10px]  rounded-full   rounded-tr-full  bg-green-400 md:px-3 px-2 absolute z-10'>
@@ -25,7 +39,7 @@ const NewProductsNestedSection = ({ discount }) => {
                     </div>
                 </section>
                 <main >
-                    <p className=' md:leading-6 leading-5 mb-2 line-clamp-2  hover:cursor-pointer hover:underline  hover:text-blue-600 '>Apple 13.3 inch MacBook Pro 1.4GHz i5 Quad-Core</p>
+                    <p className=' md:leading-6 leading-5 mb-2 line-clamp-2  hover:cursor-pointer hover:underline  hover:text-blue-600 '>{product.name}</p>
                     <span className='flex items-center gap-1  mb-2'>
                         <AiFillStar className=' text-yellow-400 ' size={18} />
                         <AiFillStar className=' text-yellow-400' size={18} />
@@ -37,10 +51,10 @@ const NewProductsNestedSection = ({ discount }) => {
                         {discount ?
                             <div className='md:flex justify-center items-center gap-4 '>
                                 <p className='  text-sm text-gray-800 line-through '>$732.00</p>
-                                <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>$344.00</p>
+                                <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p>
                             </div>
                             :
-                            <p className=' text-lg text-gray-800 font-extrabold font-price'>$744.00</p>
+                            <p className=' text-lg text-gray-800 font-extrabold font-price'>$24</p>
 
                         }
                         <div className='p-2 rounded-lg border hover:bg-yellow-100 cursor-pointer'>
@@ -49,8 +63,9 @@ const NewProductsNestedSection = ({ discount }) => {
                     </section>
                 </main>
             </article>
+         ))}
         </>
-    )
-}
+    );
+};
 
 export default NewProductsNestedSection

@@ -5,11 +5,14 @@ import NewProductsNestedSection from '../../nestedContainer/HomeNestedContainer/
 // import { TbGitCompare } from 'react-icons/tb';
 // import { AiOutlineEye } from 'react-icons/ai';
 const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
-    const items = Array.from({ length: 8 }, (_, index) => (
+   
+    const items = Array.from({ length: 4 }, (_, index) => (
         <main key={index}>
             <NewProductsNestedSection discount={discount} />
         </main>
     ));
+
+
 
     return (
         <>

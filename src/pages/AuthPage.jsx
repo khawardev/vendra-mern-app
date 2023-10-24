@@ -92,12 +92,12 @@ const AuthPage = () => {
 
     return (
         <div className="flex justify-center items-center  md:py-24 py-10 md:w-[35%] w-11/12 m-auto">
-            <form onSubmit={handleSubmit} className="border rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5">
-                <p className="text-center text-gray-500 text-sm mb-10 select-none ">
-                    <span className="font-extrabold  gap-1 bg-slate-100 px-[6px] pt-[18px] pb-[16px] rounded-full ">
+            <form onSubmit={handleSubmit} className="md:border border-yellow-500 rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5">
+                <p className="text-center text-gray-500  text-sm mb-10 select-none ">
+                    <span className="font-extrabold  gap-1 bg-slate-100 md:border border-yellow-500 px-[6px] pt-[18px] pb-[16px] rounded-full ">
                         <span>
                             <span
-                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-900 bg-slate-200 border rounded-full px-3 py-1' : 'text-gray-500'}`}
+                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-900 bg-slate-200 md:border border-yellow-500 rounded-full px-3 py-1' : 'text-gray-500'}`}
                                 onClick={() => setIsRegistering(true)}
                             >
                                 Register
@@ -105,7 +105,7 @@ const AuthPage = () => {
                         </span>
                         <span>
                             <span
-                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-500' : 'text-gray-900 bg-slate-200 border rounded-full px-3 py-1'}`}
+                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-500' : 'text-gray-900 bg-slate-200 md:border border-yellow-500 rounded-full px-3 py-1'}`}
                                 onClick={() => setIsRegistering(false)}
                             >
                                 Sign in

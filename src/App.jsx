@@ -17,6 +17,7 @@ function App() {
           <Route exact path='/' element={<HomePage />} />
           <Route exact path='/account' element={<AuthPage />} />
           <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
+
           <Route exact path='/contact' element={<ContactPage />} />
           <Route exact path='/user-account' element={<UserPage />} />
         </Routes>

@@ -21,9 +21,9 @@ function App() {
           <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
 
           <Route exact path='/contact' element={<ContactPage />} />
-          <Route exact path='/user-account' element={<UserPage />} />
-          <Route exact path='/add-category' element={<AdminCategoryPage />} />
-          <Route exact path='/add-categoryprodcuts' element={<AdminCategoryProductsPage />} />
+          <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
+          <Route exact path='/add-category'element={isLoggedIn == "true" ? <AdminCategoryPage />: < AuthPage /> } />
+          <Route exact path='/add-categoryprodcuts' element= {isLoggedIn == "true" ? <AdminCategoryProductsPage /> : < AuthPage /> } />
         </Routes>
         <Footer />
       </BrowserRouter>

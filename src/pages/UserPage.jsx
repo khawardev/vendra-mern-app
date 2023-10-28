@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
+
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import User from '../assets/images/user.png';
 const UserPage = () => {

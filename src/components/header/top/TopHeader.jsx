@@ -16,6 +16,7 @@ const TopHeader = () => {
                     <ul className=' px-3 py-1 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-lg flex gap-1' onClick={() => Navigate("/user-account")}> <span className=' md:flex hidden'><BsPerson size={18} /></span> User account</ul>
                     <ul className=' px-3 py-1 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-lg' onClick={() => Navigate("/add-category")}>Add Category</ul>
                     <ul className=' px-3 py-1 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-lg flex gap-1' onClick={() => Navigate("/add-categoryprodcuts")}> Add Products</ul>
+                    <ul className=' px-3 py-1 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-lg flex gap-1' onClick={() => Navigate("/uploadcare")}> Uploadcare</ul>
                 </li>
                 <li className="flex gap-4 ">
                     <ul className=' flex justify-center items-center gap-2'>English <HiOutlineChevronDown /></ul>

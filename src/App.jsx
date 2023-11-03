@@ -9,6 +9,7 @@ import ContactPage from './pages/ContactPage';
 import UserPage from './pages/UserPage';
 import AdminCategoryProductsPage from './pages/AdminCategoryProductsPage';
 import AdminCategoryPage from './pages/AdminCategoryPage';
+import UploadCare from './components/WebScrapper/Uploadcare';
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path='/user-account' element={<UserPage />} />
           <Route exact path='/add-category' element={<AdminCategoryPage />} />
           <Route exact path='/add-categoryprodcuts' element={<AdminCategoryProductsPage />} />
+          <Route exact path='/uploadcare' element={<UploadCare />} />
         </Routes>
         <Footer />
       </BrowserRouter>

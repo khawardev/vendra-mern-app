@@ -54,7 +54,7 @@ const NewProductsNestedSection = ({discount} ) => {
                                 <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p>
                             </div>
                             :
-                            <p className=' text-lg text-gray-800 font-extrabold font-price'>$24</p>
+                            <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
 
                         }
                         <div className='p-2 rounded-lg border hover:bg-yellow-100 cursor-pointer'>

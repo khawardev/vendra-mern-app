@@ -47,6 +47,7 @@ const AuthPage = () => {
                 Accept: "application/json",
                 // Add other headers as needed
             },
+            
             body: requestBody,
         })
             .then((res) => {

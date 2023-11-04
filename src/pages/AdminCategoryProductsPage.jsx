@@ -3,92 +3,92 @@ import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import '../assets/styles/AdminCategoryProducts.scss';
 function AdminCategoryProductsPage() {
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
-    const [category, setCategory] = useState('');
-    const [categories, setCategories] = useState([]);
-    useEffect(() => {
-        const fetchCategories = async () => {
-          try {
-            const response = await fetch('http://localhost:5000/api/categories');
-            if (response.ok) {
-              const data = await response.json();
-              setCategories(data);
-            } else {
-              console.error('Failed to fetch categories');
-            }
-          } catch (error) {
-            console.error('An error occurred:', error);
-          }
-        };
-    
-        fetchCategories();
-      }, []);
-    const handleNameChange = (event) => {
-      setName(event.target.value);
-    };
-    const handleDescriptionChange = (event) => {
-        setDescription(event.target.value);
-      };
-      const handlePriceChange = (event) => {
-        setPrice(event.target.value);
-      };
-    const handleCategoryChange = (event) => {
-        setCategory(event.target.value);
-      };
-
-
-
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-  
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("description", description);
-      formData.append("price", price);
-      formData.append('category', category);
-        try {
-          const response = await fetch('http://localhost:5000/api/products', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: name,
-              description: description,
-              price: price,
-              category: category, // This should be the _id of the selected category
-            }),
-          });
-      
-          if (response.ok) {
-            const data = await response.json();
-            Swal.fire(
-                'Successfully Product Added',
-                'success'
-            )
-            console.log('Product created:', data);
-          } else {
-            console.error('Failed to create product');
-            alert("Faliled to add product")
-          }
-        } catch (error) {
-          console.error('An error occurred:', error);
+  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/categories');
+        if (response.ok) {
+          const data = await response.json();
+          setCategories(data);
+        } else {
+          console.error('Failed to fetch categories');
         }
-      };
-      
-    return (
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    };
 
-        <div>
-             <main className=" md:w-1/2   m-auto md:py-20 py-10  ">
+    fetchCategories();
+  }, []);
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append('category', category);
+    try {
+      const response = await fetch('http://localhost:5000/api/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          description: description,
+          price: price,
+          category: category, // This should be the _id of the selected category
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        Swal.fire(
+          'Successfully Product Added',
+          'success'
+        )
+        console.log('Product created:', data);
+      } else {
+        console.error('Failed to create product');
+        alert("Faliled to add product")
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
+  return (
+
+    <div>
+      <main className=" md:w-1/2   m-auto md:py-20 py-10  ">
         <section className=" md:border border-yellow-500 rounded-xl  md:p-20 p-3 ">
           <p className="  font-extrabold text-4xl  md:mb-10 mb-3">
             Add Product
           </p>
           <form onSubmit={handleSubmit}>
-          <div className="mb-5">
+            <div className="mb-5">
               <label className="block text-gray-700 text-lg mb-2" htmlFor="categorySelect">
                 Select a Category
               </label>
@@ -106,7 +106,7 @@ function AdminCategoryProductsPage() {
                 ))}
               </select>
             </div>
-          <div className="mb-5">
+            <div className="mb-5">
               <label
                 className="block text-gray-700 text-lg  mb-2 "
                 htmlFor="login-username-email"
@@ -160,7 +160,7 @@ function AdminCategoryProductsPage() {
                 placeholder="Enter Name ..."
               />
             </div>
- 
+
             {/* <div className="mb-10">
               <label
                 className="block text-gray-700 text-lg  mb-2"
@@ -191,8 +191,8 @@ function AdminCategoryProductsPage() {
         </section>
       </main>
 
-        </div>
-    );
+    </div>
+  );
 }
 
 export default AdminCategoryProductsPage;

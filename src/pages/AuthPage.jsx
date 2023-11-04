@@ -9,7 +9,7 @@ const AuthPage = () => {
         password: "",
     });
 
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -47,7 +47,7 @@ const AuthPage = () => {
                 Accept: "application/json",
                 // Add other headers as needed
             },
-            
+
             body: requestBody,
         })
             .then((res) => {
@@ -98,7 +98,7 @@ const AuthPage = () => {
                     <span className="font-extrabold  gap-1 bg-slate-100 md:border border-yellow-500 px-[6px] pt-[18px] pb-[16px] rounded-full ">
                         <span>
                             <span
-                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-900 bg-slate-200 md:border border-yellow-500 rounded-full px-3 py-1' : 'text-gray-500'}`}
+                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-900 bg-slate-200 md:border rounded-full px-3 py-1' : 'text-gray-500'}`}
                                 onClick={() => setIsRegistering(true)}
                             >
                                 Register
@@ -106,7 +106,7 @@ const AuthPage = () => {
                         </span>
                         <span>
                             <span
-                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-500' : 'text-gray-900 bg-slate-200 md:border border-yellow-500 rounded-full px-3 py-1'}`}
+                                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering ? 'text-gray-500' : 'text-gray-900 bg-slate-200 md:border rounded-full px-3 py-1'}`}
                                 onClick={() => setIsRegistering(false)}
                             >
                                 Sign in

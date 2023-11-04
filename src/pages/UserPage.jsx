@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import User from '../assets/images/user.png';
+import '../assets/styles/UserPage.scss';
 const UserPage = () => {
 
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -12,7 +13,10 @@ const UserPage = () => {
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
-
+    const logOut = () => {
+        window.localStorage.clear();
+        window.location.href = "/account";
+    };
 
     return (
         <div className=" w-11/12 m-auto md:py-16 md:px-12 py-6  md:border my-10 rounded-xl md:border-yellow-500">
@@ -53,6 +57,9 @@ const UserPage = () => {
                 </section>
 
             </main>
+            <div className='mt-10 flex justify-end items-center'>
+                <button id="bottone1" className='text-white' onClick={logOut} ><strong>Logout</strong></button>
+            </div>
         </div>
     )
 }

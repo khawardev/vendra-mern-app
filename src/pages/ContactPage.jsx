@@ -18,11 +18,11 @@ const ContactPage = () => {
                 <p className=" md:text-5xl text-xl  font-bold leading-6  ">We are dedicated to providing exceptional support,`` assistance to our valued customer and partners  seeking information or assistance, our team is here to help.</p>
             </section>
 
-             
+
             <section className='md:flex gap-32 items-center py-10 '>
                 <div className='w-full '>
                     <p className=' text-xl mb-10'>If you have any general inquiries or feedback for us, please dont hesitate to get in touch.insights help us enhance the Vendra Ecommerce experience for everyone.</p>
-                    <img src={contact}  className='rounded-xl' alt="" />
+                    <img src={contact} className='rounded-xl' alt="" />
                 </div>
                 <div className='w-full md:shadow-xl md:bg-gray-100 md:p-14  rounded-xl md:mt-0 mt-10'>
                     <p className='text-3xl  font-extrabold '>Get in Touch</p>
@@ -58,7 +58,7 @@ const ContactPage = () => {
 
 
 
-                        <button type="submit" className='px-4 shadow-lg py-2 bg-blue-500 rounded-tr-full  rounded-br-full rounded-bl-full text-white font-bold'>Send Messege</button>
+                        <button type="submit" className='px-4 shadow-lg py-2 bg-yellow-500 rounded-tr-full  rounded-br-full rounded-bl-full text-white font-bold'>Send Messege</button>
 
                     </form>
                 </div>

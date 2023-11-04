@@ -22,7 +22,7 @@ const ServicesSection = () => {
             title: 'Great value',
             description: 'We offer competitive prices on over several items.',
         },
-        { 
+        {
             icon: <TbTruckReturn size={25} className=' text-yellow-500' />,
             title: 'Extended 45 day returns',
             description: 'You have the right to return your orders within 45 days.',
@@ -67,7 +67,7 @@ const ServicesSection = () => {
                 </main>
             </main>
 
-           
+
         </>
     )
 }

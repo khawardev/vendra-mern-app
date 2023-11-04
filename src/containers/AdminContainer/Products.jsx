@@ -25,7 +25,7 @@ export default function Rightbar({ productData }) {
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
     const [editProductId, setEditProductId] = useState(null); // Update the variable name
-  
+
     // Initialize data tables in the useEffect hook
 
     //   //fetching all user
@@ -34,8 +34,8 @@ export default function Rightbar({ productData }) {
     //   };
     const handleEdit = (product) => {
         setEditProductId(product._id);
-      };
-      
+    };
+
     const getAllProduct = () => {
         fetch("http://localhost:5000/api/products", {
             method: "GET",
@@ -54,10 +54,10 @@ export default function Rightbar({ productData }) {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data, "productData");
-    
+
                 // Set the data directly to the state variable
                 setData(data);
-    
+
                 // Initialize DataTable when data is available
                 initializeDataTable();
             })
@@ -65,7 +65,24 @@ export default function Rightbar({ productData }) {
                 console.error("Error fetching data:", error);
             });
     }, []);
-    
+    useEffect(() => {
+        fetch("http://localhost:5000/api/categories", {
+            method: "GET",
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data, "categoriesData");
+
+                // Set the data directly to the state variable
+                setData(data);
+
+                // Initialize DataTable when data is available
+                initializeDataTable();
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }, []);
     useEffect(() => {
         if (!tableRef.current) return;
 
@@ -93,47 +110,46 @@ export default function Rightbar({ productData }) {
     // Initialize DataTable when data changes
 
     //deleting user
-const deleteProduct = (id, name) => {
-    console.log("Button Clicked");
+    const deleteProduct = (id, name) => {
+        console.log("Button Clicked");
 
-    if (window.confirm(`Are you sure you want to delete ${name}`)) {
-        console.log("Entering");
-        fetch("http://localhost:5000/api/deleteProducts", {
-            method: "POST",
-            crossDomain: true,
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify({
-                productid: id,
-            }),
-        })
-            .then((res) => {
-                if (res.status === 200) {
-                    return res.json();
-                } else {
-                    throw new Error(`Failed to delete product: ${res.status}`);
-                }
+        if (window.confirm(`Are you sure you want to delete ${name}`)) {
+            console.log("Entering");
+            fetch("http://localhost:5000/api/deleteProducts", {
+                method: "POST",
+                crossDomain: true,
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({
+                    productid: id,
+                }),
             })
-            .then((data) => {
-                if (data.status === "Ok") {
-                    Swal.fire("Successfully Deleted", "success");
-                   
-                } else {
-                    Swal.fire("Deletion Failed", "error");
-                }
-            })
-            .catch((error) => {
-                console.error("Error deleting product:", error);
-            });
-    }
-};
+                .then((res) => {
+                    if (res.status === 200) {
+                        return res.json();
+                    } else {
+                        throw new Error(`Failed to delete product: ${res.status}`);
+                    }
+                })
+                .then((data) => {
+                    if (data.status === "Ok") {
+                        Swal.fire("Successfully Deleted", "success");
+
+                    } else {
+                        Swal.fire("Deletion Failed", "error");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error deleting product:", error);
+                });
+        }
+    };
 
     const logOut = () => {
         window.localStorage.clear();
-
         window.location.href = "/account";
     };
     function initializeDataTable() {
@@ -159,7 +175,7 @@ const deleteProduct = (id, name) => {
                     <table ref={tableRef} className="w-full text-sm text-left">
                         <thead>
                             <tr>
-                            <th className="px-6 py-4">Porduct ID</th>
+                                <th className="px-6 py-4">Porduct ID</th>
                                 <th className="px-6 py-4">Product Name</th>
                                 <th className="px-6 py-4">Product Discription</th>
                                 <th className="px-6 py-4">Product Price</th>
@@ -171,7 +187,7 @@ const deleteProduct = (id, name) => {
                         </thead>
                         <tfoot>
                             <tr>
-                            <th className="px-6 py-4">Porduct ID</th>
+                                <th className="px-6 py-4">Porduct ID</th>
                                 <th className="px-6 py-4">Product Name</th>
                                 <th className="px-6 py-4">Product Discription</th>
                                 <th className="px-6 py-4">Product Price</th>
@@ -200,7 +216,7 @@ const deleteProduct = (id, name) => {
                                             href="#"
                                             className="font-medium bg-blue-500 rounded py-1 px-3"
                                             onClick={() => handleEdit(product)} // Add handleEdit function
-                                            >
+                                        >
                                             <span className="flex justify-between items-center gap-2">
                                                 {" "}
                                                 <BiEditAlt size={16} /> Edit
@@ -218,14 +234,14 @@ const deleteProduct = (id, name) => {
                                         </button>
                                     </td>
                                     {/* Conditional rendering of the EditProduct component */}
-{editProductId === product._id && (
-  <td colSpan="6">
-    <EditProduct
-      product={product}
-      onClose={() => setEditProductId(null)} // Close edit form function
-    />
-  </td>
-)}
+                                    {editProductId === product._id && (
+                                        <td colSpan="6">
+                                            <EditProduct
+                                                product={product}
+                                                onClose={() => setEditProductId(null)} // Close edit form function
+                                            />
+                                        </td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>

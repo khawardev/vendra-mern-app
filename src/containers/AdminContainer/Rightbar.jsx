@@ -126,7 +126,6 @@ export default function Rightbar({ userData }) {
 
     const logOut = () => {
         window.localStorage.clear();
-
         window.location.href = "/account";
     };
     function initializeDataTable() {
@@ -142,18 +141,22 @@ export default function Rightbar({ userData }) {
         }
     }
     <button
-    href="#"
-    className="font-medium bg-blue-500 rounded py-1 px-3"
-    onClick={() => openEditForm(i)}
->
-    <span className="flex justify-between items-center gap-2">
-        <BiEditAlt size={16} /> Edit
-    </span>
-</button>
+        href="#"
+        className="font-medium bg-yellow-500 rounded py-1 px-3"
+        onClick={() => openEditForm(i)}
+    >
+        <span className="flex justify-between items-center gap-2">
+            <BiEditAlt size={16} /> Edit
+        </span>
+    </button>
     return (
-        <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
+        <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-10 my-6">
             <div className="auth-inner" style={{ width: "auto" }}>
-                <p className="my-4 text-2xl font-extrabold ml-1"> Registered Users <span><button onClick={logOut} className="font-small bg-green-500 rounded py-1 px-2"  >Logout</button></span> </p>
+                <section className="flex justify-between items-center">
+
+                    <p className="my-4 text-2xl font-extrabold ml-1"> Registered Users </p>
+                    <button onClick={logOut} id="bottone1" className='text-white p-5 font-bold'  >Logout</button>
+                </section>
                 <button></button>
                 {data.length === 0 ? (
                     <p>No data available in table</p>

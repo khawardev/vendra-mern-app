@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { BsArrowRightShort } from 'react-icons/bs';
 import '../../assets/styles/NewProducts.scss';
-import NewProductsNestedSection from '../../nestedContainer/HomeNestedContainer/NewProductsNestedSection';
+import NewProductsNestedSection from './HomeNestedContainer/NewProductsNestedSection';
 // import { TbGitCompare } from 'react-icons/tb';
 // import { AiOutlineEye } from 'react-icons/ai';
 const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
-   
+
     const items = Array.from({ length: 4 }, (_, index) => (
         <main key={index}>
             <NewProductsNestedSection discount={discount} />
@@ -28,7 +28,7 @@ const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
                     </section>
                 </main>
 
-                    
+
                 {NewProductBanner &&
                     <section className='relative '>
                         <div className='text-black absolute md:top-6 top-4 md:left-10  z-10  p-2'>

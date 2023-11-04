@@ -1,8 +1,7 @@
 import { useState, useRef } from 'react';
 import { UploadClient } from '@uploadcare/upload-client';
 import { listOfFiles, UploadcareSimpleAuthSchema } from '@uploadcare/rest-client';
-import TableProduct from './TableProduct';
-const Uploadcare = () => {
+const UploadcareUpload = () => {
     const [fileData, setFileData] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(null);
@@ -16,26 +15,20 @@ const Uploadcare = () => {
     const handleUpload = async () => {
         try {
             setUploading(true);
-
             if (fileData) {
                 const client = new UploadClient({ publicKey: 'da4cefbbff1ec62018df' });
                 const file = await client.uploadFile(fileData);
                 console.log(file.uuid);
             }
-
-            // Clear the file input by resetting its value
-            if (fileInputRef.current) {
-                fileInputRef.current.value = '';
-            }
-
-            // Handle the upload success as needed
-
             const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
                 publicKey: 'da4cefbbff1ec62018df',
                 secretKey: '3d337e66a72deab9e7c7',
             });
 
             const result = await listOfFiles({}, { authSchema: uploadcareSimpleAuthSchema });
+            if (fileInputRef.current) {
+                { result && (fileInputRef.current.value = '') }
+            }
             console.log(result);
 
         } catch (error) {
@@ -46,7 +39,7 @@ const Uploadcare = () => {
     };
 
     return (
-        <div>
+        <div className=' text-center'>
             <input
                 type="file"
                 onChange={handleFileChange}
@@ -56,11 +49,8 @@ const Uploadcare = () => {
                 {uploading ? 'Uploading...' : 'Submit'}
             </button>
             {error && <div>Error: {error}</div>}
-
-
-            <TableProduct />
         </div>
     );
 };
 
-export default Uploadcare;
+export default UploadcareUpload;

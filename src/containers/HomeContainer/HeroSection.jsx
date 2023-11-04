@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import SlidesData from '../../data/sliderData';
-
+import '../../assets/styles/ShopButton.scss';
 function HeroSection() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,8 +63,15 @@ function HeroSection() {
                                     <h1 className='md:text-6xl text-3xl font-extrabold leading-7'>{slide.tagline2}</h1>
                                 </div>
                                 <p className='md:block hidden  text-xl my-3 font-thin'>{slide.description}</p>
-                                <button className='bg-blue-500 text-white md:py-2 py-1  cursor-pointer  md:px-5 px-3 mt-2 rounded-full'>
-                                    {slide.buttonLabel}
+
+
+                                <button className="learn-more">
+                                    <span className="circle" aria-hidden="true">
+                                        <span className="icon arrow"></span>
+                                    </span>
+                                    <button className="button-text ">
+                                        {slide.buttonLabel}
+                                    </button>
                                 </button>
                             </section>
                         </>

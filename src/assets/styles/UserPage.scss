@@ -1,0 +1,21 @@
+#bottone1 {
+  padding: 14px 43px;
+ 
+  border-radius: 9px;
+  background: #ef2222;
+  border: none;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#bottone1:hover {
+  background: #e22020;
+  box-shadow: 7px 5px 56px -15px #ff0000;
+}
+
+#bottone1:active {
+  transform: scale(0.97);
+  box-shadow: 7px 5px 56px -10px #ff0000;
+}

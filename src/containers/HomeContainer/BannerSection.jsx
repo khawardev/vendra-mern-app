@@ -9,7 +9,7 @@ const BannerSection = () => {
                         <h1 className='text-4xl  text-white font-extrabold mb-1 md:block hidden'>Reach Your Peak with Our Fitness Watches</h1>
                         <h1 className='  text-white md:block hidden'>Embark on a transformative fitness journey with our advanced Fitness Watches.</h1>
                     </div>
-                    <button className='bg-blue-500 text-white md:py-1  cursor-pointer  md:px-5 px-3 md:mt-6 rounded-full'>
+                    <button className='bg-yellow-500 text-white md:py-1  cursor-pointer  md:px-5 px-3 md:mt-6 rounded-full'>
                         Explore
                     </button>
                 </div>

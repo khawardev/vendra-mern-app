@@ -6,11 +6,6 @@ import NewProductsNestedSection from './HomeNestedContainer/NewProductsNestedSec
 // import { AiOutlineEye } from 'react-icons/ai';
 const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
 
-    const items = Array.from({ length: 4 }, (_, index) => (
-        <main key={index}>
-            <NewProductsNestedSection discount={discount} />
-        </main>
-    ));
 
 
 
@@ -24,8 +19,9 @@ const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
                     </section>
                     <hr />
                     <section className={`my-7 grid ${grid} gap-7 `}>
-                        {items}
-                    </section>
+                        <NewProductsNestedSection  discount={discount} />
+                    </section >
+
                 </main>
 
 

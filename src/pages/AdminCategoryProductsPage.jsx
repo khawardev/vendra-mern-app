@@ -6,9 +6,10 @@ function AdminCategoryProductsPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
+
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -26,6 +27,8 @@ function AdminCategoryProductsPage() {
 
     fetchCategories();
   }, []);
+
+  
   const handleNameChange = (event) => {
     setName(event.target.value);
   };

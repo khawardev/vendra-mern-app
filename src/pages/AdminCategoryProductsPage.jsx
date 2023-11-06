@@ -9,6 +9,7 @@ function AdminCategoryProductsPage() {
 
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
+  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -49,6 +50,8 @@ function AdminCategoryProductsPage() {
     formData.append("description", description);
     formData.append("price", price);
     formData.append('category', category);
+    console.log(formData);
+
     try {
       const response = await fetch('http://localhost:5000/api/products', {
         method: 'POST',
@@ -62,6 +65,7 @@ function AdminCategoryProductsPage() {
           category: category, // This should be the _id of the selected category
         }),
       });
+      console.log( response)
 
       if (response.ok) {
         const data = await response.json();

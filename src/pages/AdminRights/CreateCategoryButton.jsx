@@ -48,31 +48,32 @@ const CreateCategoryButton = () => {
             });
 
             const result = await listOfFiles({}, { authSchema: uploadcareSimpleAuthSchema });
-            console.log(result.results[result.results.length - 1].originalFileUrl);
 
             if (fileInputRef.current) {
                 fileInputRef.current.value = ''
             }
 
-
-
-
-
-
-
-
             if (result) {
+                const name = Categoryname; // Assuming Categoryname holds the category name as a string
+                const image = result.results[result.results.length - 1].originalFileUrl; // Extracting the image URL
                 const formData = new FormData();
-                formData.append("name", Categoryname);
-                formData.append("image", Categoryname);
-
+                formData.append('name', name);
+                formData.append('image', image);
+                console.log(image);
+                console.log(name);
                 try {
                     const response = await fetch("http://localhost:5000/api/categories", {
-                        method: "POST",
-                        body: formData,
-                    });
-
-                    if (response.ok) {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          name: name,
+                          image: image,
+                        }),
+                      });
+                                         
+                      if (response.ok) {
                         // Handle success, e.g., show a success message or redirect to another page
                         console.log("Category created successfully");
                     } else {

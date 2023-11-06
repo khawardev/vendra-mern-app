@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { UploadClient } from '@uploadcare/upload-client';
 import { listOfFiles, UploadcareSimpleAuthSchema } from '@uploadcare/rest-client';
 const CreateCategoryButton = () => {
@@ -8,7 +8,7 @@ const CreateCategoryButton = () => {
     const [isHidden, setisHidden] = useState(true);
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploading, setUploading] = useState(false);
-    const [CategoryImage, setCategoryImage] = useState(false);
+    const [imageuuid, setimageuuid] = useState("");
     const [Categoryname, setCategoryname] = useState("");
 
     const handleCategoryNameChange = (e) => {
@@ -32,6 +32,51 @@ const CreateCategoryButton = () => {
         }
 
     };
+    useEffect(() => {
+        if (imageuuid) {
+            handlemongo();
+        }
+    }, [imageuuid])
+
+
+    const handlemongo = async () => {
+        // const image = result.results[result.results.length - 1].originalFileUrl; // Extracting the image URL
+        const name = Categoryname; // Assuming Categoryname holds the category name as a string
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('image', imageuuid);
+        console.log(imageuuid)
+        console.log(name)
+        try {
+            const response = await fetch("http://localhost:5000/api/categories", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    image: imageuuid,
+                }),
+            });
+
+            if (response.ok) {
+                // Handle success, e.g., show a success message or redirect to another page
+                console.log("Category created successfully");
+                setCategoryname('');
+                setSelectedFile(null);
+                setUploading(false);
+                setTimeout(() => {
+                    IsHiddenFunction();
+                }, 1000);
+            } else {
+                // Handle errors, e.g., display an error message
+                console.error("Failed to create category");
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    }
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -41,7 +86,10 @@ const CreateCategoryButton = () => {
             if (selectedFile) {
                 const client = new UploadClient({ publicKey: 'da4cefbbff1ec62018df' });
                 const file = await client.uploadFile(selectedFile);
-                console.log(file.uuid);
+                if (file.uuid) {
+                    setimageuuid(file.uuid);
+                }
+
             }
             const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
                 publicKey: 'da4cefbbff1ec62018df',
@@ -54,57 +102,11 @@ const CreateCategoryButton = () => {
                 fileInputRef.current.value = ''
             }
 
-            if (result) {
-                const name = Categoryname; // Assuming Categoryname holds the category name as a string
-                const image = result.results[result.results.length - 1].originalFileUrl; // Extracting the image URL
-                const formData = new FormData();
-                formData.append('name', name);
-                formData.append('image', image);
-                console.log(image);
-                console.log(name);
-                try {
-                    const response = await fetch("http://localhost:5000/api/categories", {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                          name: name,
-                          image: image,
-                        }),
-                      });
-                                         
-                      if (response.ok) {
-                        // Handle success, e.g., show a success message or redirect to another page
-                        console.log("Category created successfully");
-                    } else {
-                        // Handle errors, e.g., display an error message
-                        console.error("Failed to create category");
-                    }
-                } catch (error) {
-                    console.error("An error occurred:", error);
-                }
-
-                setCategoryname('');
-                setSelectedFile(null);
-                setTimeout(() => {
-                    IsHiddenFunction();
-                }, 1000);
-            }
-
-
-
-
-
-
-
 
 
 
         } catch (error) {
             console.log(error)
-        } finally {
-            setUploading(false);
         }
     };
 

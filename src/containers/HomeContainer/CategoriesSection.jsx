@@ -5,7 +5,7 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 // import file from '..//Vendra-React-App-Backend/uploads';
-//import CategoriesNested from '../../nestedContainer/HomeNestedContainer/CategoriesNestedSection';
+import CategoriesNested from './HomeNestedContainer/CategoriesNestedSection';
 const CategoriesSection = () => {
   // const Image_path= "/uploads/${category.image}";
 
@@ -27,7 +27,7 @@ const CategoriesSection = () => {
     Axios.get("http://localhost:5000/api/categories") // Update the URL to match your backend route
       .then((response) => {
         console.log("Fetched categories:", response.data); // Log the data received from the server
-        setCategories(response.data);
+        setCategories(response?.data);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -35,7 +35,7 @@ const CategoriesSection = () => {
   }, []);
 
   return (
-    <div className="my-7 w-8/12 m-auto">
+    <div className="my-7 w-11/12  m-auto ">
       <div className=" carousel relative flex justify-center items-center">
         <BsChevronCompactLeft
           className="carouselLeftNav arrow "
@@ -46,27 +46,11 @@ const CategoriesSection = () => {
           onClick={() => navigation("right")}
         />
         <div className="carouselItems  " ref={carouselContainer}>
-          {categories.map((category) => (
-            <div key={category._id} className="category">
-              {/* <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694863601/category-1_w0bkdb.jpg" alt="" /> */}
-              {/* <img src={`../../../../BACKEND/uploads/collection_8.png`} alt={category.name} /> */}
-              {console.log(category.name)}
-              {console.log(`${category.image}`)}
-              <img
-                src={`http://localhost:5000${category.image}`}
-                                // src={`http://localhost:5000/uploads/product-2.png`}
-                alt={category.name}
-              />
-
-              {/* <img src={`/uploads/${category.image.replace(/\\/g, '/')}`} alt={category.name} /> */}
-              <h3>{category.name}</h3>
-            </div>
-          ))}
-          {/*- {CategoriesData?.map((Categories, index) => {
-                        return (
-                            <CategoriesNested key={index} category={Categories} />
-                        );
-                    })} */}
+          {categories?.map((category) => {
+            return (
+              <CategoriesNested key={category._id} category={category} />
+            );
+          })}
         </div>
       </div>
     </div>

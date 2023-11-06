@@ -40,10 +40,10 @@ const ServicesSection = () => {
     ];
     return (
         <>
-            <main>
+            <main >
                 {ServicesData.map((service, index) => {
                     return (
-                        <div key={index} className='border p-4 flex gap-5'>
+                        <div key={index} className='border p-4 flex gap-5 select-none'>
                             <section>
                                 {service.icon}
                             </section>

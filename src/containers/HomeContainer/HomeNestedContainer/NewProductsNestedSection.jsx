@@ -22,53 +22,54 @@ const NewProductsNestedSection = ({ discount }) => {
     return (
         <>
 
-            {products.slice().reverse().map((product) => (
-                <article key={product._id} className="cursor-pointer Parent-Col-Hover relative">
-                    <div>
-                        {discount &&
-                            <div className='md:top-[1rem] top-[0.40rem]  md:left-[15px] left-[10px]  rounded-full   rounded-tr-full  bg-green-400 md:px-3 px-2 absolute z-10'>
-                                53%
+            {products.slice(-8).reverse().map((product) => (
+                <article key={product._id} className="cursor-pointer  flex flex-col justify-between  Parent-Col-Hover relative">
+                    <main>
+                        <div>
+                            {discount &&
+                                <div className='md:top-[1rem] top-[0.40rem]  md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100    bg-green-300 md:px-3 px-2 absolute z-10'>
+                                    53%
+                                </div>
+                            }
+                            <div className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border-4 border-gray-100  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.35rem] absolute  cursor-pointer z-10'>
+                                <VscHeart className='  font-bold ' size={19} />
                             </div>
-                        }
-                        <div className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border border-gray-300 hover:bg-red-100 rounded-full  p-[0.35rem] absolute  cursor-pointer z-10'>
-                            <VscHeart size={19} />
                         </div>
-                    </div>
 
-                    <section className='flex justify-center items-center  mb-3 rounded-xl p-4 relative bg-gray-100  border'>
-                        <div className='Parent-product-Image-Hover '>
-                            <img className='mix-blend-multiply ' src="https://res.cloudinary.com/denajbnh4/image/upload/v1694863601/category-1_w0bkdb.jpg" alt="" />
-                        </div>
-                    </section>
-                    <main className=' flex flex-col justify-between' >
+                        <section className='    mb-3 rounded-xl p-8 relative bg-gray-100  h-[17rem] flex justify-center items-center  border'>
+                            <div className='Parent-product-Image-Hover   '>
+                                <img className='mix-blend-multiply  rounded-xl w-full' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
+                            </div>
+                        </section>
                         <div className='upper'>
-                            <span className=' md:leading-5 mb-2 text-lg leading-5 line-clamp-2 font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                            <span className=' md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
                             <p className=' md:leading-5 leading-4 mb-3  line-clamp-3  hover:cursor-pointer  '>{product.description}</p>
                         </div>
-                        <div className='lower'>
-                            <div className='flex justify-between items-center '>
-                                {discount ?
-                                    <div className='md:flex justify-center items-center gap-4 '>
-                                        <p className='  text-sm text-gray-800 line-through '>$732.00</p>
-                                        <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p>
-                                    </div>
-                                    :
-                                    <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
+                    </main>
 
-                                }
-                                <div className='p-2 rounded-lg border hover:bg-yellow-100 cursor-pointer'>
-                                    <BsCart2 size={18} />
+                    <main  >
+
+                        <div className='flex justify-between items-center '>
+                            {discount ?
+                                <div className='md:flex justify-center items-center gap-4 '>
+                                    <p className='  text-sm  line-through text-red-600 '>$732.00</p>
+                                    <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p>
                                 </div>
-                            </div>
-                            <span className='flex items-center gap-1  mb-2'>
-                                <AiFillStar className=' text-yellow-400 ' size={18} />
-                                <AiFillStar className=' text-yellow-400' size={18} />
-                                <AiFillStar className=' text-yellow-400' size={18} />
-                                <AiFillStar className=' text-yellow-400' size={18} />
-                                <AiOutlineStar className=' text-gray-300' size={18} />
-                            </span>
-                        </div>
+                                :
+                                <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
 
+                            }
+                            <div className='p-2 rounded-lg border hover:bg-gray-100 cursor-pointer'>
+                                <BsCart2 size={18} />
+                            </div>
+                        </div>
+                        <span className='flex items-center gap-1  mb-2'>
+                            <AiFillStar className=' text-yellow-400 ' size={18} />
+                            <AiFillStar className=' text-yellow-400' size={18} />
+                            <AiFillStar className=' text-yellow-400' size={18} />
+                            <AiFillStar className=' text-yellow-400' size={18} />
+                            <AiOutlineStar className=' text-gray-300' size={18} />
+                        </span>
                     </main>
                 </article>
             ))}

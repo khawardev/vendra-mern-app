@@ -4,7 +4,7 @@ import { Context } from "../../context/AppContext";
 import PreviewProduct from './PreviewProduct';
 const BodyTableProduct = () => {
     const { isHiddenEdit, setisHiddenEdit } = useContext(Context);
-    const {isHiddenPreview, setisHiddenPreview} = useContext(Context);
+    const { isHiddenPreview, setisHiddenPreview } = useContext(Context);
 
     const isHiddenEditFunction = () => {
         setisHiddenEdit(true);
@@ -12,7 +12,7 @@ const BodyTableProduct = () => {
     const isHiddenPreviewFunction = () => {
         setisHiddenPreview(true);
     };
-   
+
     return (
         <tbody>
 
@@ -48,7 +48,7 @@ const BodyTableProduct = () => {
                 </th>
                 <td className="px-4 py-3  ">
                     <span className="bg-primary-100   text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                        Desktop 
+                        Desktop
                     </span>
                 </td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -58,15 +58,17 @@ const BodyTableProduct = () => {
                     </div>
                 </td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    
-                    <span className="bg-green-100 mr-1 text-green-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                        $
-                    </span>
-                      15
+                    <div className="flex items-center">
+                        <span className="bg-green-100 mr-1  text-green-800 text-xs font-medium flex justify-center items-center  h-4 w-4   rounded-full dark:bg-green-900 dark:text-green-300">
+                            $
+                        </span>
+                        15
+                    </div>
+
                 </td>
-               
-               
-              
+
+
+
                 <td className="px-4 py-3  "><div className=' line-clamp-1'>Standard glass, 3.8GHz 8-core 10ation 8-core 10th-generation 8-core 10th-generation 8-core 10th-generation 8-core 10th-generation 8-core 10th-generation 8-core 10th-generation Intth-generation Intth-generation Intth-generation Intel Core i7 processor, Turbo</div></td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {isHiddenEdit && <EditProduct />}
@@ -99,8 +101,8 @@ const BodyTableProduct = () => {
 
                         </button>
 
-                        
-                        <button 
+
+                        <button
                             onClick={isHiddenPreviewFunction}
                             type="button"
                             data-drawer-target="drawer-read-product-advanced"

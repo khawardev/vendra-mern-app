@@ -39,7 +39,7 @@ const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
                                 <b>Shop now</b>
                             </button>
                         </div>
-                        <div className='md:h-full h-[150px]'>
+                        <div className='md:h-full h-[150px] border'>
                             <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694938129/banner-4_uoyebo.jpg" className='object-cover w-full h-full' alt="" />
                         </div>
                     </section>

@@ -46,7 +46,7 @@ const CategoriesSection = () => {
           onClick={() => navigation("right")}
         />
         <div className="carouselItems  " ref={carouselContainer}>
-          {categories?.map((category) => {
+          {categories?.reverse().map((category) => {
             return (
               <CategoriesNested key={category._id} category={category} />
             );

@@ -3,34 +3,16 @@
 import { VscHeart } from 'react-icons/vsc';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+const CategoryProductsNestedSection = ({ filteredProducts }) => {
+    console.log(filteredProducts)
 
-const NewProductsNestedSection = ({ discount }) => {
-    const Navigate = useNavigate();
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/products') // Update the URL to match your backend route
-            .then((response) => {
-                setProducts(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-            });
-    }, []);
     return (
         <>
-
-            {products.slice(-8).reverse().map((product) => (
-                <article key={product._id} onClick={() => Navigate(`/viewsingleproduct/${product?._id}`)} className="cursor-pointer  flex flex-col justify-between  Parent-Col-Hover relative">
+            {filteredProducts?.map((product) => (
+                <article key={product._id} className="cursor-pointer  flex flex-col justify-between  Parent-Col-Hover relative">
                     <main>
                         <div>
-                            {discount &&
-                                <div className='md:top-[1rem] top-[0.40rem]  md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100    bg-green-300 md:px-3 px-2 absolute z-10'>
-                                    53%
-                                </div>
-                            }
+
                             <div className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border-4 border-gray-100  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.35rem] absolute  cursor-pointer z-10'>
                                 <VscHeart className='  font-bold ' size={19} />
                             </div>
@@ -38,7 +20,7 @@ const NewProductsNestedSection = ({ discount }) => {
 
                         <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
                             <div className='Parent-product-Image-Hover   '>
-                                <img className='mix-blend-multiply   h-[10rem] ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
+                                <img className='mix-blend-multiply   h-[11rem] ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
                             </div>
                         </section>
                         <div className='upper'>
@@ -50,15 +32,8 @@ const NewProductsNestedSection = ({ discount }) => {
                     <main  >
 
                         <div className='flex justify-between items-center '>
-                            {discount ?
-                                <div className='md:flex justify-center items-center gap-4 '>
-                                    <p className='  text-sm  line-through font-bold text-red-600 '>$732.00</p>
-                                    <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p>
-                                </div>
-                                :
-                                <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
+                            <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
 
-                            }
                             <div className='p-2 rounded-lg border hover:bg-gray-100 cursor-pointer'>
                                 <BsCart2 size={18} />
                             </div>
@@ -75,7 +50,7 @@ const NewProductsNestedSection = ({ discount }) => {
             ))}
 
         </>
-    );
-};
+    )
+}
 
-export default NewProductsNestedSection
+export default CategoryProductsNestedSection

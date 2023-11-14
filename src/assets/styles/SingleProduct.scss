@@ -1,0 +1,225 @@
+@import "./mixins.scss";
+.product {
+  display: flex;
+  align-items: center;
+}
+.quantity-wrapper {
+  border: 1px solid rgba(0, 0, 0, 0.259);
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  // margin-right: 16px;
+}
+
+.quantity-btn {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 7px;
+
+  @include md {
+    padding: 9px;
+  }
+}
+.minus {
+  border-right: 1px solid rgba(0, 0, 0, 0.259);
+}
+.plus {
+  border-left: 1px solid rgba(0, 0, 0, 0.259);
+}
+
+.quantity {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 12px;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.social-links {
+  display: flex;
+}
+.social-links a {
+  font-size: 16px;
+}
+
+.Singleproduct-image {
+  background-color: #eff4ee;
+
+  position: relative;
+  width: 100%;
+  @include md {
+    width: 80%;
+  }
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.Filled-Category-Button {
+  background-color: #872ce1;
+  color: white;
+  cursor: pointer;
+  padding: 0px 15px;
+  display: inline-block;
+  transition: 0.4s;
+  border: none;
+}
+
+.Filled-Category-Button:hover {
+  background-color: #6d1fbb;
+  color: white;
+  transition: 0.4s;
+  border: none;
+}
+.rounded-icon {
+  color: white;
+  min-width: 20px;
+  text-align: center;
+  background-color: #872ce1;
+  padding: 6px 2px;
+  font-size: 12px;
+  border-radius: 50%;
+}
+
+.Addtocartbutton:hover {
+  background-color: #6d1fbb;
+  color: white;
+  transition: 0.4s;
+  border: none;
+}
+.Addtocartbutton {
+  background-color: #872ce1;
+  color: white;
+  cursor: pointer;
+  padding: 10px 30px;
+  display: inline-block;
+  transition: 0.4s;
+  border: none;
+
+  --background: #872ce1;
+  --text: #fff;
+  --cart: #fff;
+  --tick: var(--background);
+  padding: auto 30px;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--background);
+  transform: scale(var(--scale, 1));
+  // transition: transform 0.4s cubic-bezier(0.36, 1.01, 0.32, 1.27);
+  &:active {
+    --scale: 0.99;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    position: relative;
+    line-height: 26px;
+    transform: translateY(var(--span-y, 0));
+    transition: transform 0.5s ease;
+  }
+  .cart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -13px 0 0 -18px;
+    transform-origin: 12px 23px;
+    transform: translateX(-120px) rotate(-18deg);
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+    }
+    &:before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 2px var(--cart);
+      bottom: 0;
+      left: 9px;
+      filter: drop-shadow(11px 0 0 var(--cart));
+    }
+    &:after {
+      // cart filled
+      width: 16px;
+      height: 9px;
+      background: var(--cart);
+      left: 9px;
+      bottom: 7px;
+      transform-origin: 50% 100%;
+      transform: perspective(4px) rotateX(-6deg) scaleY(var(--fill, 0));
+      transition: transform 1s ease var(--fill-d);
+    }
+    svg {
+      z-index: 1;
+      width: 36px;
+      height: 26px;
+      display: block;
+      position: relative;
+      fill: none;
+      stroke: var(--cart);
+      stroke-width: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      polyline {
+        &:last-child {
+          stroke: var(--tick);
+          stroke-dasharray: 10px;
+          stroke-dashoffset: var(--offset, 10px);
+          transition: stroke-dashoffset 0.4s ease var(--offset-d);
+        }
+      }
+    }
+  }
+  &.loading {
+    --scale: 0.95;
+    --span-y: -32px;
+    --icon-r: 180deg;
+    --fill: 1;
+    --fill-d: 0.8s;
+    --offset: 0;
+    --offset-d: 1.73s;
+    .cart {
+      animation: cart 3s linear forwards 0.2s;
+    }
+  }
+}
+
+@keyframes cart {
+  12.5% {
+    transform: translateX(-60px) rotate(-18deg);
+  }
+  25%,
+  45%,
+  55%,
+  75% {
+    transform: none;
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  44%,
+  56% {
+    transform-origin: 12px 23px;
+  }
+  45%,
+  55% {
+    transform-origin: 50% 50%;
+  }
+  87.5% {
+    transform: translateX(70px) rotate(-18deg);
+  }
+  100% {
+    transform: translateX(140px) rotate(-18deg);
+  }
+}

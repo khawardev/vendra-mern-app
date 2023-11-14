@@ -11,6 +11,8 @@ import AdminCategoryProductsPage from './pages/AdminCategoryProductsPage';
 import AdminCategoryPage from './pages/AdminCategoryPage';
 import UploadcarePage from './pages/UploadcarePage';
 import AppContext from './context/AppContext'
+import ViewCategoryProducts from './pages/ViewCategoryProductsPage';
+import ViewSingleProduct from './pages/ViewSingleProductPage';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -29,6 +31,8 @@ function App() {
           <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
           <Route exact path='/add-category' element={isLoggedIn == "true" ? <AdminCategoryPage /> : < AuthPage />} />
           <Route exact path='/add-categoryprodcuts' element={isLoggedIn == "true" ? <AdminCategoryProductsPage /> : < AuthPage />} />
+            <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
+            <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />
         </Routes>
         <Footer />
         </AppContext>

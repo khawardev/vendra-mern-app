@@ -1,4 +1,4 @@
-import TableProduct from './AdminRights/TableProduct';
+import TableProduct from '../components/AdminRights/TableProduct';
 const Uploadcare = () => {
 
     return (

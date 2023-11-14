@@ -2,9 +2,10 @@
 import { BsArrowRightShort } from 'react-icons/bs';
 import '../../assets/styles/NewProducts.scss';
 import NewProductsNestedSection from './HomeNestedContainer/NewProductsNestedSection';
+import CategoryProductsNestedSection from './HomeNestedContainer/CategoryProductsNestedSection';
 // import { TbGitCompare } from 'react-icons/tb';
 // import { AiOutlineEye } from 'react-icons/ai';
-const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
+const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts, viewmore }) => {
 
 
 
@@ -14,13 +15,21 @@ const NewProducts = ({ title, NewProductBanner, grid, discount }) => {
             <main className=' md:mt-0 mt-6  flex flex-col justify-between '>
                 <main>
                     <section className="flex justify-between items-center mb-3">
-                        <p className="text-2xl font-extrabold whitespace-nowrap">{title}</p>
-                        <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap">View more < BsArrowRightShort size={20} /></p>
+                        <p className="text-2xl font-extrabold whitespace-nowrap"> {!viewmore && '•'}  {title}</p>
+                        {viewmore && <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap">View more < BsArrowRightShort size={20} /></p>}
+
                     </section>
                     <hr />
-                    <section className={`my-7 grid ${grid} gap-7 `}>
-                        <NewProductsNestedSection  discount={discount} />
-                    </section >
+                    {viewmore ?
+                        <section className={`my-7 grid  ${grid} gap-7 `}>
+                            <NewProductsNestedSection discount={discount} />
+                        </section>
+                        :
+                        <section className={`my-7 grid  ${grid} gap-7 `}>
+                            <CategoryProductsNestedSection filteredProducts={filteredProducts} />
+                        </section>
+                    }
+
 
                 </main>
 

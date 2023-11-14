@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 
 const CategoriesNested = ({ category }) => {
+  const Navigate = useNavigate();
+
   return (
     <>
-      <div className='carouselItem select-none  flex-col justify-center items-center   '>
-        <div className='p-8  hover:bg-gray-100 flex border rounded-2xl   h-[245px]  '>
+      <div className='carouselItem select-none  flex-col justify-center items-center   ' onClick={() => Navigate(`/viewcategoryproducts/${category?._id}`)}
+>
+        <div className='p-8  hover:bg-gray-200 flex  justify-center items-center  border rounded-2xl     '>
           <img
             src={`https://ucarecdn.com/${category?.image}/`}
-            className="mix-blend-multiply  flex justify-center items-center w-full h-full "
+            className="mix-blend-multiply  flex justify-center items-center h-[9rem]"
             alt={category.name}
           />
         </div>

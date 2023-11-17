@@ -30,12 +30,12 @@ const Footer = () => {
                         </p>
                         <p className=" text-slate-300">Get E-mail updates about our latest shops  <span className=" text-yellow-300"> special offers. </span> </p>
                     </section>
-                    <section className="flex justify-center items-center ">
+                    <section className="flex justify-center items-center gap-2 ">
                         <div>
-                            <input type="text" className="py-3 outline-none border-none px-7 rounded-bl rounded-tl w-full" placeholder='Your email address' />
+                            <input type="text" className="py-3 outline-none border-none px-7  rounded-full w-full" placeholder='Your email address' />
                         </div>
                         <div>
-                            <button className="py-3 px-6 flex rounded-br rounded-tr bg-yellow-500 whitespace-nowrap">Sign up</button>
+                            <button className="py-3 px-6 flex rounded-full  bg-yellow-500 whitespace-nowrap">Sign up</button>
                         </div>
                     </section>
                 </div>

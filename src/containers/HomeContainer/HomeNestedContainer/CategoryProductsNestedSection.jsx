@@ -3,13 +3,15 @@
 import { VscHeart } from 'react-icons/vsc';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+
 const CategoryProductsNestedSection = ({ filteredProducts }) => {
-    console.log(filteredProducts)
+    const Navigate = useNavigate();
 
     return (
         <>
             {filteredProducts?.map((product) => (
-                <article key={product._id} className="cursor-pointer  flex flex-col justify-between  Parent-Col-Hover relative">
+                <article key={product._id} className="cursor-pointer  flex flex-col justify-between  Parent-Col-Hover relative" onClick={() => Navigate(`/viewsingleproduct/${product?._id}`)}>
                     <main>
                         <div>
 
@@ -39,7 +41,7 @@ const CategoryProductsNestedSection = ({ filteredProducts }) => {
                             </div>
                         </div>
                         <span className='flex items-center gap-1  mb-2'>
-                            <AiFillStar className=' text-yellow-400 ' size={18} />
+                            <AiFillStar className=' text-yellow-400' size={18} />
                             <AiFillStar className=' text-yellow-400' size={18} />
                             <AiFillStar className=' text-yellow-400' size={18} />
                             <AiFillStar className=' text-yellow-400' size={18} />

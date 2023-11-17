@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { BsArrowRightShort } from 'react-icons/bs';
 import '../../assets/styles/NewProducts.scss';
@@ -5,7 +6,7 @@ import NewProductsNestedSection from './HomeNestedContainer/NewProductsNestedSec
 import CategoryProductsNestedSection from './HomeNestedContainer/CategoryProductsNestedSection';
 // import { TbGitCompare } from 'react-icons/tb';
 // import { AiOutlineEye } from 'react-icons/ai';
-const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts, viewmore }) => {
+const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts, viewmore}) => {
 
 
 
@@ -16,7 +17,7 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
                 <main>
                     <section className="flex justify-between items-center mb-3">
                         <p className="text-2xl font-extrabold whitespace-nowrap"> {!viewmore && '•'}  {title}</p>
-                        {viewmore && <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap">View more < BsArrowRightShort size={20} /></p>}
+                        {viewmore && <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap"> View more < BsArrowRightShort size={20} /></p>}
 
                     </section>
                     <hr />
@@ -25,9 +26,10 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
                             <NewProductsNestedSection discount={discount} />
                         </section>
                         :
-                        <section className={`my-7 grid  ${grid} gap-7 `}>
-                            <CategoryProductsNestedSection filteredProducts={filteredProducts} />
+                        <section className={`my-7 grid ${grid} gap-7`}>
+                                <CategoryProductsNestedSection filteredProducts={filteredProducts} />
                         </section>
+
                     }
 
 

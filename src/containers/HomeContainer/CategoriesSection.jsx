@@ -23,7 +23,6 @@ const CategoriesSection = () => {
   };
 
   useEffect(() => {
-    // Fetch categories from the backend when the component mounts
     Axios.get("http://localhost:5000/api/categories") // Update the URL to match your backend route
       .then((response) => {
         console.log("Fetched categories:", response.data); // Log the data received from the server

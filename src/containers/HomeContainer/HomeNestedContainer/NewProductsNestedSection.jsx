@@ -51,9 +51,9 @@ const NewProductsNestedSection = ({ discount }) => {
 
                         <div className='flex justify-between items-center '>
                             {discount ?
-                                <div className='md:flex justify-center items-center gap-4 '>
-                                    <p className='  text-sm  line-through font-bold text-red-600 '>$732.00</p>
+                                <div className='md:flex justify-center items-center gap-2 '>
                                     <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p>
+                                    <p className='  text-sm  line-through font-bold text-red-500 '>$732.00</p>
                                 </div>
                                 :
                                 <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>

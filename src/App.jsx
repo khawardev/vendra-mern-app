@@ -19,22 +19,22 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <AppContext>
+        <AppContext>
 
-        <Header />
-        <Routes>
-          <Route exact path='/' element={<HomePage />} />
-          <Route exact path='/account' element={<AuthPage />} />
-          <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
-          <Route exact path='/contact' element={<ContactPage />} />
-          <Route exact path='/uploadcare' element={<UploadcarePage />} />
-          <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
-          <Route exact path='/add-category' element={isLoggedIn == "true" ? <AdminCategoryPage /> : < AuthPage />} />
-          <Route exact path='/add-categoryprodcuts' element={isLoggedIn == "true" ? <AdminCategoryProductsPage /> : < AuthPage />} />
+          <Header />
+          <Routes>
+            <Route exact path='/' element={<HomePage />} />
+            <Route exact path='/account' element={<AuthPage />} />
+            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
+            <Route exact path='/contact' element={<ContactPage />} />
+            <Route exact path='/uploadcare' element={<UploadcarePage />} />
+            <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
+            <Route exact path='/add-category' element={isLoggedIn == "true" ? <AdminCategoryPage /> : < AuthPage />} />
+            <Route exact path='/add-categoryprodcuts' element={isLoggedIn == "true" ? <AdminCategoryProductsPage /> : < AuthPage />} />
             <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
             <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />
-        </Routes>
-        <Footer />
+          </Routes>
+          <Footer />
         </AppContext>
       </BrowserRouter>
 

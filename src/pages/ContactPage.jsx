@@ -15,7 +15,7 @@ const ContactPage = () => {
             </section> */}
             <section className="my-10">
                 <p className=" text-2xl text-gray-600 mb-4">You can ask us questions !</p>
-                <p className=" md:text-5xl text-xl  font-bold leading-6  ">We are dedicated to providing exceptional support,`` assistance to our valued customer and partners  seeking information or assistance, our team is here to help.</p>
+                <p className=" md:text-5xl text-xl  font-bold leading-6  ">We are dedicated to providing exceptional support, assistance to our valued customer and partners  seeking information or assistance, our team is here to help.</p>
             </section>
 
 
@@ -24,41 +24,41 @@ const ContactPage = () => {
                     <p className=' text-xl mb-10'>If you have any general inquiries or feedback for us, please dont hesitate to get in touch.insights help us enhance the Vendra Ecommerce experience for everyone.</p>
                     <img src={contact} className='rounded-xl' alt="" />
                 </div>
-                <div className='w-full md:shadow-xl md:bg-gray-100 md:p-14  rounded-xl md:mt-0 mt-10'>
+                <div className='w-full  md:bg-gray-100 md:p-14  rounded-xl md:mt-0 mt-10'>
                     <p className='text-3xl  font-extrabold '>Get in Touch</p>
                     <p className='text-xl text-gray-600'>If you have any query feel free to Contact us</p>
                     <form action="">
                         <section className='flex  items-center md:gap-12 gap-5 my-8'>
                             <section className='w-full'>
                                 <div className='flex'>
-                                    <p className=' mb-2 bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full shadow-lg' >Name</p>
+                                    <p className=' mb-2 bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full ' >Name</p>
                                 </div>
-                                <input type="text" className='w-full py-2 rounded-tr-full border rounded-br-full rounded-bl-full  px-4 shadow-sm  focus:border-yellow-500 focus:border  outline-none' name="" id="" />
+                                <input type="text" className='w-full py-2 rounded-tr-full border rounded-br-full rounded-bl-full  px-4  focus:border-yellow-500 focus:border  outline-none' name="" id="" />
                             </section>
                             <section className='w-full'>
                                 <div className='flex'>
-                                    <p className='mb-2 shadow-lg bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full' >Email</p>
+                                    <p className='mb-2   bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full' >Email</p>
                                 </div>
-                                <input type="email" className=' shadow-sm w-full py-2 rounded-tr-full border rounded-br-full rounded-bl-full  px-4  focus:border-yellow-500 focus:border  outline-none' name="" id="" />
+                                <input type="email" className=' w-full py-2 rounded-tr-full border rounded-br-full rounded-bl-full  px-4  focus:border-yellow-500 focus:border  outline-none' name="" id="" />
                             </section>
 
                         </section>
                         <section className='my-6'>
                             <div className='flex'>
-                                <p className=' mb-2 shadow-lg bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full' >Subject</p>
+                                <p className=' mb-2   bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full' >Subject</p>
                             </div>
-                            <input type="text" className='w-full shadow-sm py-2 rounded-tr-full border rounded-br-full rounded-bl-full  px-4  focus:border-yellow-500 focus:border  outline-none' name="" id="" />
+                            <input type="text" className='w-full  py-2 rounded-tr-full border rounded-br-full rounded-bl-full  px-4  focus:border-yellow-500 focus:border  outline-none' name="" id="" />
                         </section>
                         <section className='my-6'>
                             <div className='flex'>
-                                <p className=' mb-2 shadow-lg bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full' >Message</p>
+                                <p className=' mb-2   bg-white flex py-1 px-4 border rounded-tr-full  rounded-br-full rounded-tl-full' >Message</p>
                             </div>
-                            <textarea type="text" className='w-full py-2 shadow-sm  px-4 border  focus:border-yellow-500 focus:border  outline-none' name="" id="" cols="30" rows="10" />
+                            <textarea type="text" className='w-full py-2   px-4 border  focus:border-yellow-500 focus:border  outline-none' name="" id="" cols="30" rows="10" />
                         </section>
 
 
 
-                        <button type="submit" className='px-4 shadow-lg py-2 bg-yellow-500 rounded-tr-full  rounded-br-full rounded-bl-full text-white font-bold'>Send Messege</button>
+                        <button type="submit" className='px-4   py-2 bg-yellow-500 rounded-tr-full  rounded-br-full rounded-bl-full text-white font-bold'>Send Messege</button>
 
                     </form>
                 </div>

@@ -38,6 +38,10 @@ const CreateCategoryButton = () => {
     }, [imageuuid])
 
 
+
+
+
+
     const handlemongo = async () => {
         // const image = result.results[result.results.length - 1].originalFileUrl; // Extracting the image URL
         const name = Categoryname; // Assuming Categoryname holds the category name as a string
@@ -103,33 +107,6 @@ const CreateCategoryButton = () => {
             console.log(error)
         }
     };
-
-
-    // const a = async (event) => {
-    //     event.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append("name", name);
-    //     formData.append("image", CategoryImage);
-
-    //     try {
-    //         const response = await fetch("http://localhost:5000/api/categories", {
-    //             method: "POST",
-    //             body: formData,
-    //         });
-
-    //         if (response.ok) {
-    //             // Handle success, e.g., show a success message or redirect to another page
-    //             console.log("Category created successfully");
-    //         } else {
-    //             // Handle errors, e.g., display an error message
-    //             console.error("Failed to create category");
-    //         }
-    //     } catch (error) {
-    //         console.error("An error occurred:", error);
-    //     }
-    // };
-
-
 
 
 

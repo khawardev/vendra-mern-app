@@ -1,24 +1,20 @@
+/* eslint-disable no-unused-vars */
 
 /* eslint-disable react/prop-types */
 import { VscHeart } from 'react-icons/vsc';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { selectProducts } from '../../../toolkit/Slices/ProductsSlice'
+import BackgroundRemoval from '../../../pages/BackgroundRemoval';
 const NewProductsNestedSection = ({ discount }) => {
     const Navigate = useNavigate();
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/products') // Update the URL to match your backend route
-            .then((response) => {
-                setProducts(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-            });
-    }, []);
+    const products = useSelector(selectProducts);
+
+
+
+
     return (
         <>
 
@@ -38,6 +34,7 @@ const NewProductsNestedSection = ({ discount }) => {
 
                         <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
                             <div className='Parent-product-Image-Hover   '>
+                                {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
                                 <img className='mix-blend-multiply   h-[10rem] ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
                             </div>
                         </section>

@@ -4,11 +4,11 @@ import { BsArrowRightShort } from 'react-icons/bs';
 import '../../assets/styles/NewProducts.scss';
 import NewProductsNestedSection from './HomeNestedContainer/NewProductsNestedSection';
 import CategoryProductsNestedSection from './HomeNestedContainer/CategoryProductsNestedSection';
-// import { TbGitCompare } from 'react-icons/tb';
-// import { AiOutlineEye } from 'react-icons/ai';
-const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts, viewmore}) => {
+import { ChevronLeft } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
-
+const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts, viewmore, Related }) => {
+    const Navigate = useNavigate();
 
 
     return (
@@ -16,7 +16,14 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
             <main className=' md:mt-0 mt-6  flex flex-col justify-between '>
                 <main>
                     <section className="flex justify-between items-center mb-3">
-                        <p className="text-2xl font-extrabold whitespace-nowrap"> {!viewmore && '•'}  {title}</p>
+                        <div className='flex  justify-center items-center gap-4'>
+                            {!Related && !viewmore &&
+                                <div onClick={() => Navigate(`/`)} className=' p-2  rounded-full bg-gray-200 hover:bg-gray-300 cursor-pointer transition-all ease-in flex justify-center items-center '>
+                                    {<ChevronLeft size={20} />}
+                                </div>
+                            }
+                            <p className="text-2xl font-extrabold whitespace-nowrap ">  {title}</p>
+                        </div>
                         {viewmore && <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap"> View more < BsArrowRightShort size={20} /></p>}
 
                     </section>
@@ -27,7 +34,7 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
                         </section>
                         :
                         <section className={`my-7 grid ${grid} gap-7`}>
-                                <CategoryProductsNestedSection filteredProducts={filteredProducts} />
+                            <CategoryProductsNestedSection filteredProducts={filteredProducts} />
                         </section>
 
                     }

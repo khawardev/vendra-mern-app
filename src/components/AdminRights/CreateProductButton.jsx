@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { UploadClient } from '@uploadcare/upload-client';
 import { listOfFiles, UploadcareSimpleAuthSchema } from '@uploadcare/rest-client';
+import { useSelector } from 'react-redux';
+import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
 const CreateProductButton = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploading, setUploading] = useState(false);
@@ -12,10 +14,10 @@ const CreateProductButton = () => {
     const [categoryfield, setCategoryfield] = useState('');
     const [stock, setstock] = useState('');
     const [imageuuid, setimageuuid] = useState("");
-    const [categories, setCategories] = useState([]);
     const [isHidden, setisHidden] = useState(true);
     const fileInputRef = useRef(null);
-
+    const categories = useSelector(selectCategories);
+    
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -62,23 +64,7 @@ const CreateProductButton = () => {
         }
     }, [imageuuid])
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await fetch('http://localhost:5000/api/categories');
-                if (response.ok) {
-                    const data = await response.json();
-                    setCategories(data);
-                } else {
-                    console.error('Failed to fetch categories');
-                }
-            } catch (error) {
-                console.error('An error occurred:', error);
-            }
-        };
-
-        fetchCategories();
-    }, []);
+  
 
 
     const handlemongo = async (event) => {

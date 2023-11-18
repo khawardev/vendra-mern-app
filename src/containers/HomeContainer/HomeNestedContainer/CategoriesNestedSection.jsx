@@ -6,9 +6,11 @@ const CategoriesNested = ({ category }) => {
 
   return (
     <>
+      
+
       <div className='carouselItem select-none  flex-col justify-center items-center   ' onClick={() => Navigate(`/viewcategoryproducts/${category?._id}`)}
 >
-        <div className='p-8  hover:bg-gray-200 flex  justify-center items-center  border rounded-2xl     '>
+        <div className='p-8  hover:bg-gray-200 transition-all ease-in flex  justify-center items-center  border rounded-2xl     '>
           <img
             src={`https://ucarecdn.com/${category?.image}/`}
             className="mix-blend-multiply  flex justify-center items-center h-[9rem]"
@@ -20,6 +22,8 @@ const CategoriesNested = ({ category }) => {
           <p className='flex text-sm justify-center text-center text-gray-400'>12 • Products</p>
         </div>
       </div>
+
+      
     </>
   );
 };

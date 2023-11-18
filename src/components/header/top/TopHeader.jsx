@@ -11,6 +11,7 @@ const TopHeader = () => {
 
                 {isLoggedIn == "true" && <li className=" flex gap-4 justify-center items-center ">
                     <ul className='  cursor-pointer px-5 py-2 font-bold rounded-full text-white bg-blue-700 hover:bg-blue-800 ' onClick={() => Navigate("/admin-account")}>Admin account</ul>
+                    <ul className='  cursor-pointer px-5 py-2 font-bold rounded-full text-white bg-blue-700 hover:bg-blue-800 ' onClick={() => Navigate("/background-remove")}>Remove BG</ul>
                     {/* <ul className=' px-3 py-1 bg-gray-200  hover:bg-gray-300 cursor-pointer rounded-full' onClick={() => Navigate("/add-category")}>Add Category</ul> */}
                     {/* <ul className=' px-3 py-1 bg-gray-200  hover:bg-gray-300 cursor-pointer rounded-full flex gap-1' onClick={() => Navigate("/add-categoryprodcuts")}> Add Products</ul> */}
                     <ul className='  cursor-pointer px-5 py-2 font-bold rounded-full text-white bg-blue-700 hover:bg-blue-800 ' onClick={() => Navigate("/uploadcare")}> Uploadcare</ul>

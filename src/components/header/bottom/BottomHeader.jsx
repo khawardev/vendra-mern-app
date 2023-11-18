@@ -18,12 +18,12 @@ const BottomHeader = () => {
           <HiOutlineChevronDown />
         </main>
         <main>
-          <li className=' flex  items-center gap-5'>
-            <ul className='flex justify-center items-center gap-2 cursor-pointer bg-gray-200 rounded-full px-4 py-1'>Home </ul>
-            <ul className='flex justify-center items-center gap-1 cursor-pointer'>Shop  <HiOutlineChevronDown size={12} /></ul>
-            <ul className='flex justify-center items-center gap-2 cursor-pointer'>About</ul>
-            <ul className='flex justify-center items-center gap-2 cursor-pointer'>Blog</ul>
-            <ul className='flex justify-center items-center gap-2 cursor-pointer' onClick={() => Navigate("/contact")}>Contact</ul>
+          <li className=' flex  items-center gap-1'>
+            <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in bg-gray-200 rounded-full px-4 py-1'>Home </ul>
+            <ul className='flex justify-center items-center gap-1 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1'>Shop  <HiOutlineChevronDown size={12} /></ul>
+            <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1'>About</ul>
+            <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1'>Blog</ul>
+            <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1' onClick={() => Navigate("/contact")}>Contact</ul>
           </li>
         </main>
         <main className='flex items-center justify-center gap-3 leading-4'>

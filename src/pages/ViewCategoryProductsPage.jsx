@@ -1,34 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
 import NewProducts from '../containers/HomeContainer/NewProducts';
+import { useSelector } from 'react-redux';
+import { selectProducts } from '../toolkit/Slices/ProductsSlice'
+import { selectCategories } from '../toolkit/Slices/CategoriesSlice'
 const ViewCategoryProductsPage = () => {
 
     const { categoryid } = useParams();
-    const [products, setProducts] = useState([]);
-    const [category, setcategory] = useState([]);
-    useEffect(() => {
-        // Fetch product data from your backend API when the component mounts
-        axios.get('http://localhost:5000/api/products') // Update the URL to match your backend route
-            .then((response) => {
-                setProducts(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-            });
-        axios.get('http://localhost:5000/api/categories') // Update the URL to match your backend route
-            .then((response) => {
-                setcategory(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-            });
-    }, []);
+    const products = useSelector(selectProducts);
+    const categories = useSelector(selectCategories);
     
 
     const filteredProducts = products.filter(product => product?.category === categoryid);
-    const filteredcategory = category.filter(category => category?._id === categoryid);
+    const filteredcategory = categories.filter(category => category?._id === categoryid);
 
     return (
         <>

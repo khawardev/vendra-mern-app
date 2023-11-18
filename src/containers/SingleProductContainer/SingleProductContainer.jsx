@@ -19,20 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
-    const [products, setProducts] = useState([]);
     const Navigate = useNavigate();
-
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/products') // Update the URL to match your backend route
-            .then((response) => {
-                setProducts(response?.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-            });
-
-    }, []);
-
 
 
 

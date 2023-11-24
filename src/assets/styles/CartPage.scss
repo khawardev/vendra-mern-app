@@ -1,0 +1,19 @@
+.cart-span {
+  transition: transform 0.2s ease-in-out; 
+  transform: translateX(0);
+}
+
+/* Style for the span on button hover */
+.cart-button:hover  .cart-span {
+  transform: translateX(4px); /* You can adjust the translation as per your requirement */
+}
+
+
+
+ 
+.Empty-cart {
+  svg {
+    font-size: 120px;
+    opacity: 0.1;
+  }
+}

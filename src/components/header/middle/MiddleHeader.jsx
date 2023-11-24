@@ -2,11 +2,15 @@ import { VscHeart } from 'react-icons/vsc';
 import { BsCart2, BsPerson } from 'react-icons/bs';
 import { FiSearch } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import {  selectWishlistItems } from '../../../toolkit/Slices/WishlistSlice';
 
 const MiddleHeader = () => {
   const Navigate = useNavigate();
   const isLoggedIn = window.localStorage.getItem("loggedIn");
-
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
+  const wishlistItems = useSelector(selectWishlistItems);
   return (
     <div>
 
@@ -26,29 +30,32 @@ const MiddleHeader = () => {
           <div className='md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full  gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate(isLoggedIn == "true" ? "/user-account" : "/account")}>
             <BsPerson size={28} />
             <div className='lg:block hidden'>
-              <span className='text-xs text-gray-500'>Sign in</span> <br />
+              <span className='text-xs text-gray-800'>Sign in</span> <br />
               Account
             </div>
           </div>
 
 
-          <div className='px-1 '>
-            <div className='relative md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
+          <div className='px-1 ' onClick={() => Navigate('/wishlist')}>
+            <div className='relative cursor-pointer md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
               <VscHeart size={26} />
-              <span className=" absolute cart-popup md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">5</span>
+              <span className=" absolute cart-popup md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{wishlistItems?.length}</span>
             </div>
           </div>
-          <div className='flex gap-2 justify-center items-center leading-3'>
+          
+          <div className='flex gap-2 justify-center items-center leading-3 cursor-pointer' onClick={()=> Navigate('/cart')}>
             <div className='relative md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
               <BsCart2 size={26} />
-              <span className=" absolute cart-popup  md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">5</span>
-
+              <span className=" absolute cart-popup  md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{cartItems?.length}</span>
             </div>
             <div className='md:block hidden'>
-              <span className='text-xs text-gray-500'>Total</span> <br />
-              $50.00
+              <span className='text-xs text-gray-800'>Total</span> <br />
+              <b>${totalSubtotal ? totalSubtotal.toFixed(2): '0'}</b>
             </div>
           </div>
+
+
+
         </section>
       </main>
 

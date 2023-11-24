@@ -18,9 +18,9 @@ const BottomHeader = () => {
           <HiOutlineChevronDown />
         </main>
         <main>
-          <li className=' flex  items-center gap-1'>
+          <li className=' flex  items-center gap-2'>
             <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in bg-gray-200 rounded-full px-4 py-1'>Home </ul>
-            <ul className='flex justify-center items-center gap-1 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1'>Shop  <HiOutlineChevronDown size={12} /></ul>
+            <ul className='flex justify-center items-center gap-1 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1'>Shop </ul>
             <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1'>About</ul>
             <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1'>Blog</ul>
             <ul className='flex justify-center items-center gap-2 cursor-pointer transition-all ease-in hover:bg-gray-200  rounded-full px-4 py-1' onClick={() => Navigate("/contact")}>Contact</ul>

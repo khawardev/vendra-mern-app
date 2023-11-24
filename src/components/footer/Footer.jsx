@@ -35,7 +35,7 @@ const Footer = () => {
                             <input type="text" className="py-3 outline-none border-none px-7  rounded-full w-full" placeholder='Your email address' />
                         </div>
                         <div>
-                            <button className="py-3 px-6 flex rounded-full  bg-yellow-500 whitespace-nowrap">Sign up</button>
+                            <button className="py-3 px-6 flex rounded-full  bg-yellow-500 whitespace-nowrap font-bold text-[#041E42] ">Sign up</button>
                         </div>
                     </section>
                 </div>

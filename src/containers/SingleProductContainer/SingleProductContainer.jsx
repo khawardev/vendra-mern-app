@@ -11,19 +11,19 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { LuGitCompare } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart2 } from 'react-icons/bs';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState} from 'react';
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../toolkit/Slices/CartSlice';
+import { addToWishlist } from '../../toolkit/Slices/WishlistSlice';
 
 
 
 const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
+    const dispatch = useDispatch();
+
+
     const Navigate = useNavigate();
-
-
-
-
     const [quantity, setQuantity] = useState(1);
 
     const handleDecrement = () => {
@@ -35,7 +35,13 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
     const handleIncrement = () => {
         setQuantity(quantity + 1);
     };
-
+    const handleAddToCart = () => {
+        dispatch(addToCart({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
+        setQuantity(1); // Reset quantity after adding to cart
+    };
+    const handleAddToWishList = () => {
+        dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
+    };
 
     const wordsArray = filteredProduct?.name.split(/\s+/);
     const Productname = wordsArray?.map(word => word.replace(/,/g, '')).slice(0, 3).join(' ');
@@ -55,8 +61,8 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
 
                         <p className=" text-2xl font-bold  mb-8 leading-8"> {filteredProduct?.name} </p>
                         <div className="my-8 flex items-center gap-3">
-                            <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price} </p>
-                            <p className=" text-xl  text-gray-300 line-through"> ${filteredProduct?.price} </p>
+                            <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>
+                            <p className=" text-xl  text-gray-300 line-through"> ${filteredProduct?.price}.00 </p>
                         </div>
                         <div className='my-8 flex justify-between items-center'>
 
@@ -77,7 +83,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
 
                                 <div className=" flex justify-between items-center gap-8 border rounded-full px-3">
                                     <div className='px-3 font-bold'>
-                                        {quantity}
+                                        <input type="text" size={1} value={quantity} name="" disabled id="" />
                                     </div>
                                     <div className="flex  items-center gap-1">
                                         <p
@@ -101,11 +107,13 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
                                 </div>
 
 
-                                <p className="px-5 py-2 border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2"> <BsCart2 size={18} /> <span> Add to cart </span> </p>
+                                <p className="px-5 py-2 border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
+                                    handleAddToCart();
+                                }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
                             </div>
                             <div className="flex justify-between gap-3 ">
                                 <p className="px-5 py-2   font-bold hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
-                                <p className="px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Add to Wishlist  <FaRegHeart /></p>
+                                <p onClick={() => { handleAddToWishList() }}  className="px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Add to Wishlist  <FaRegHeart /></p>
                             </div>
                         </section>
                     </main>
@@ -168,7 +176,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
 
             </main>
 
-           
+
 
 
         </>

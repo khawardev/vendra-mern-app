@@ -12,13 +12,13 @@ import UploadcarePage from './pages/UploadcarePage';
 import AppContext from './context/AppContext'
 import ViewCategoryProducts from './pages/ViewCategoryProductsPage';
 import ViewSingleProduct from './pages/ViewSingleProductPage';
-import CryptoNews from './components/WebScrapper/CryptoNews';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setProducts } from './toolkit/Slices/ProductsSlice';
 import { setCategories } from './toolkit/Slices/CategoriesSlice';
 import BackgroundRemoval from './pages/BackgroundRemoval';
-
+import CartPage from './pages/CartPage';
+import WishlistPage from './pages/WishlistPage';
 function App() {
 
 
@@ -27,7 +27,6 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const productsResponse = await fetch('http://localhost:5000/api/products');
-      console.log(productsResponse)
       const categoriesResponse = await fetch('http://localhost:5000/api/categories');
       const productsData = await productsResponse.json();
       const categoriesData = await categoriesResponse.json();
@@ -49,21 +48,23 @@ function App() {
     <>
       <BrowserRouter>
         <AppContext>
-            {/* <CryptoNews /> */}
-            <Header />
-            <Routes>
-              <Route exact path='/' element={<HomePage />} />
-              <Route exact path='/account' element={<AuthPage />} />
-              <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
-              <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
-              <Route exact path='/contact' element={<ContactPage />} />
-              <Route exact path='/uploadcare' element={<UploadcarePage />} />
-              <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
-              <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
-              <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />
-            </Routes>
+          {/* <CryptoNews /> */}
+          <Header />
+          <Routes>
+            <Route exact path='/' element={<HomePage />} />
+            <Route exact path='/account' element={<AuthPage />} />
+            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
+            <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
+            <Route exact path='/contact' element={<ContactPage />} />
+            <Route exact path='/uploadcare' element={<UploadcarePage />} />
+            <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
+            <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
+            <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />
+            <Route exact path={`/cart`} element={<CartPage />} />
+            <Route exact path={`/wishlist`} element={<WishlistPage />} />
+          </Routes>
           <Footer />
-      
+
         </AppContext>
       </BrowserRouter>
 

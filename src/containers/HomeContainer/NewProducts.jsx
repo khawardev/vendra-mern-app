@@ -6,6 +6,7 @@ import NewProductsNestedSection from './HomeNestedContainer/NewProductsNestedSec
 import CategoryProductsNestedSection from './HomeNestedContainer/CategoryProductsNestedSection';
 import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import { ArrowUpRight } from 'lucide-react';
 
 const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts, viewmore, Related }) => {
     const Navigate = useNavigate();
@@ -24,7 +25,7 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
                             }
                             <p className="text-2xl font-extrabold whitespace-nowrap ">  {title}</p>
                         </div>
-                        {viewmore && <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap"> View more < BsArrowRightShort size={20} /></p>}
+                        {viewmore && <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap"> View more <BsArrowRightShort size={20} /> </p>}
 
                     </section>
                     <hr />
@@ -46,14 +47,14 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
                 {NewProductBanner &&
                     <section className='relative '>
                         <div className='text-black absolute md:top-6 top-4 md:left-10  z-10  p-2'>
-                            <div className='flex'>
+                            {/* <div className='flex'>
                                 <p className='md:px-4 px-3 md:py-1 text-sm items-center bg-yellow-500 rounded-full md:block hidden'>Headphones </p>
-                            </div>
-                            <div className='mt-3 '>
+                            </div> */}
+                            <div className='mt-5'>
                                 <h1 className='md:text-2xl text-lg font-extralight leading-6 md:block hidden'>Immerse Yourself in Pure Sound</h1>
                                 <h1 className='md:text-4xl text-2xl font-extrabold leading-6'>Discover Premium Headphones</h1>
                             </div>
-                            <button className='px-4 py-1 text-white text-sm font-semibold rounded-full bg-blue-500 mt-2'>
+                            <button className='px-5 py-2  text-sm font-semibold rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 transition-all ease-in  mt-4'>
                                 <b>Shop now</b>
                             </button>
                         </div>

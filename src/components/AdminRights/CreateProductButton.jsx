@@ -5,6 +5,7 @@ import { UploadClient } from '@uploadcare/upload-client';
 import { listOfFiles, UploadcareSimpleAuthSchema } from '@uploadcare/rest-client';
 import { useSelector } from 'react-redux';
 import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
+import { ImagePlus } from 'lucide-react';
 const CreateProductButton = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploading, setUploading] = useState(false);
@@ -144,21 +145,9 @@ const CreateProductButton = () => {
                 id="createProductButton"
                 data-modal-toggle="createProductModal"
                 onClick={IsHiddenFunction}
-                className="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                className="flex items-center justify-center text-primary-700 bg-primary-100 hover:bg-primary-200 font-bold focus:ring-4 focus:ring-primary-300  transition-all ease-in rounded-md text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             >
-                <svg
-                    className="h-3.5 w-3.5 mr-1.5 -ml-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        clipRule="evenodd"
-                        fillRule="evenodd"
-                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                    />
-                </svg>
+                <ImagePlus siz/>
                 Add product
             </button>
 

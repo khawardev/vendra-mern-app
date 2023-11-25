@@ -3,14 +3,17 @@ import { BsCart2, BsPerson } from 'react-icons/bs';
 import { FiSearch } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import {  selectWishlistItems } from '../../../toolkit/Slices/WishlistSlice';
-
+import { selectWishlistItems } from '../../../toolkit/Slices/WishlistSlice';
+import Search from './Search/Search';
+import { useState } from 'react';
 const MiddleHeader = () => {
   const Navigate = useNavigate();
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
   const wishlistItems = useSelector(selectWishlistItems);
+  const [ShowSearch, setShowSearch] = useState(false);
+
   return (
     <div>
 
@@ -22,7 +25,14 @@ const MiddleHeader = () => {
           <div className='px-3'>
             <FiSearch size={17} />
           </div>
-          <input type="text" className='py-3 outline-none border-none ' size={65} placeholder='Search your favorite product ...' />
+          <input
+            type="text"
+            className="py-3 outline-none border-none"
+            size={65}
+            placeholder="Search your favorite product ..."
+            onClick={() => { setShowSearch(true); }}
+          />
+          {/* <input type="text" className='py-3 outline-none border-none ' size={65} placeholder='Search your favorite product ...' /> */}
           <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
         </section>
         <section className='flex lg:gap-6 gap-1 justify-center items-center'>
@@ -42,15 +52,15 @@ const MiddleHeader = () => {
               <span className=" absolute cart-popup md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{wishlistItems?.length}</span>
             </div>
           </div>
-          
-          <div className='flex gap-2 justify-center items-center leading-3 cursor-pointer' onClick={()=> Navigate('/cart')}>
+
+          <div className='flex gap-2 justify-center items-center leading-3 cursor-pointer' onClick={() => Navigate('/cart')}>
             <div className='relative md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
               <BsCart2 size={26} />
               <span className=" absolute cart-popup  md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{cartItems?.length}</span>
             </div>
             <div className='md:block hidden'>
               <span className='text-xs text-gray-800'>Total</span> <br />
-              <b>${totalSubtotal ? totalSubtotal.toFixed(2): '0'}</b>
+              <b>${totalSubtotal ? totalSubtotal.toFixed(2) : '0'}</b>
             </div>
           </div>
 
@@ -58,7 +68,7 @@ const MiddleHeader = () => {
 
         </section>
       </main>
-
+      {ShowSearch && <Search setShowSearch={setShowSearch}  />}
     </div>
   )
 }

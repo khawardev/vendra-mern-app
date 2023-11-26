@@ -6,6 +6,7 @@ import { listOfFiles, UploadcareSimpleAuthSchema } from '@uploadcare/rest-client
 import { useSelector } from 'react-redux';
 import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
 import { ImagePlus } from 'lucide-react';
+import Success from './Success';
 const CreateProductButton = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploading, setUploading] = useState(false);
@@ -18,7 +19,7 @@ const CreateProductButton = () => {
     const [isHidden, setisHidden] = useState(true);
     const fileInputRef = useRef(null);
     const categories = useSelector(selectCategories);
-    
+    const [Thankyou, setThankyou] = useState(false)
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -63,6 +64,7 @@ const CreateProductButton = () => {
         if (imageuuid) {
             handlemongo();
         }
+        
     }, [imageuuid])
 
   
@@ -96,9 +98,10 @@ const CreateProductButton = () => {
                 console.log('Product created successfully');
                 setDefaultFields();
                 setUploading(false);
-                setTimeout(() => {
-                    IsHiddenFunction();
-                }, 1000);
+                setThankyou(true)
+                // setTimeout(() => {
+                //     IsHiddenFunction();
+                // }, 1000);
             } else {
                 console.error('Failed to create product');
             }
@@ -145,9 +148,9 @@ const CreateProductButton = () => {
                 id="createProductButton"
                 data-modal-toggle="createProductModal"
                 onClick={IsHiddenFunction}
-                className="flex items-center justify-center text-primary-700 bg-primary-100 hover:bg-primary-200 font-bold focus:ring-4 focus:ring-primary-300  transition-all ease-in rounded-md text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                className="flex items-center justify-center gap-2 text-primary-700 bg-primary-100 hover:bg-primary-200 font-bold focus:ring-4 focus:ring-primary-300  transition-all ease-in rounded-md text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             >
-                <ImagePlus siz/>
+                <ImagePlus size={17} />
                 Add product
             </button>
 
@@ -191,6 +194,7 @@ const CreateProductButton = () => {
                             </button>
                         </div>
                         {/* Modal body */}
+                        {Thankyou ? <Success title={'product'} /> :
                         <form onSubmit={handleSubmit}>
                             <div className="grid gap-4 mb-4 sm:grid-cols-2">
                                 <div>
@@ -416,7 +420,8 @@ const CreateProductButton = () => {
                                     Discard
                                 </button>
                             </div>
-                        </form>
+                            </form>
+                        }
                     </div>
                 </div>
             </div>

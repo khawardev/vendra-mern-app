@@ -11,6 +11,8 @@ function Appcontext({ children }) {
     const [isHiddenEdit, setisHiddenEdit] = useState(false);
     const [isHiddenPreview, setisHiddenPreview] = useState(false);
     const [ContextCartTotal, setContextCartTotal] = useState(0);
+    const [categoryproductlength, setcategoryproductlength] = useState();
+    const [Thankyou, setThankyou] = useState(false)
     const location = useLocation();
 
     useEffect(() => {
@@ -24,6 +26,8 @@ function Appcontext({ children }) {
             isHiddenEdit, setisHiddenEdit,
             isHiddenPreview, setisHiddenPreview,
             ContextCartTotal, setContextCartTotal,
+            categoryproductlength, setcategoryproductlength,
+            Thankyou, setThankyou,
         }}
         >
             {children}

@@ -17,6 +17,9 @@ const HeaderTableProduct = () => {
                       </div>
                   </th>
                   <th scope="col" className="p-4">
+                      
+                  </th>
+                  <th scope="col" className="p-4">
                       Product
                   </th>
                   <th scope="col" className="p-4">

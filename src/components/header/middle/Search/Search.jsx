@@ -11,30 +11,11 @@ import { useSelector } from 'react-redux';
 
 
 
-
-
 const Search = ({ setShowSearch }) => {
     const products = useSelector(selectProducts);
-    console.log(products)
     const Navigate = useNavigate();
     const [records, setRecords] = useState([])
-    console.log(records)
-
-    // useEffect(() => {
-    //     fetch('https://khawarsultan.github.io/Jsdvstore-Api/api')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             let combinedData = [];
-    //             data.map(category => {
-    //                 const products = category.products;
-    //                 combinedData.push(...products);
-    //             });
-
-    //             setData(combinedData);
-    //             setRecords(combinedData);
-    //         })
-    //         .catch(err => console.log(err));
-    // }, []);
+  
 
     const Filter = (event) => {
         const searchText = event.target.value.toLowerCase();
@@ -44,20 +25,7 @@ const Search = ({ setShowSearch }) => {
             setRecords(products.filter(product => product.name.toLowerCase().includes(searchText)))
         }
     }
-    // const findCategoryIdByProductId = (producttitle) => {
-    //     console.log("product title: ", producttitle);
-    //     fetch('https://khawarsultan.github.io/Jsdvstore-Api/api')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             data.map((data) => {
-    //                 data.products.forEach(product => {
-    //                     if (product.title === producttitle) {
-    //                         Navigate("/category/" + data.id + "/Single-Product/" + product.id);
-    //                     }
-    //                 });
-    //             });
-    //         });
-    // };
+
 
     return (
 
@@ -68,7 +36,7 @@ const Search = ({ setShowSearch }) => {
                 />
                 <MdClose className=' cursor-pointer' onClick={() => { setShowSearch(false); }} />
             </div>
-            <div className='pointer scrollable-div-search w-11/12 m-auto my-10'>
+            <div className='pointer scrollable-div-search w-11/12 m-auto '>
 
                 {records.map((product) => (
                     <div key={product._id}    >

@@ -3,11 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const categoriesSlice = createSlice({
     name: 'categories',
     initialState: {
-        categoriesitems: [],
+        categoriesitems: JSON.parse(localStorage.getItem('categories')) || [],
     },
     reducers: {
         setCategories: (state, action) => {
             state.categoriesitems = action.payload;
+            localStorage.setItem('categories', JSON.stringify(state.categoriesitems));
         },
     },
 });

@@ -1,3 +1,6 @@
+// import ApiController from '../../components/ApiController/ApiController';
+// import WebScrapper from "../../components/WebScrapper/WebScrapper"
+/* eslint-disable no-unused-vars */
 import BannerSection from '../containers/HomeContainer/BannerSection';
 import CategoriesSection from '../containers/HomeContainer/CategoriesSection';
 import CompaniesSection from '../containers/HomeContainer/CompaniesSection';
@@ -6,10 +9,31 @@ import NewProducts from '../containers/HomeContainer/NewProducts';
 import ServicesSection from '../containers/HomeContainer/ServicesSection';
 import TrendingProducts from '../containers/HomeContainer/TrendingProducts';
 import HeroSection from '../containers/HomeContainer/HeroSection';
-// import ApiController from '../../components/ApiController/ApiController';
+import { useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setProducts } from '../toolkit/Slices/ProductsSlice';
+import { setCategories } from '../toolkit/Slices/CategoriesSlice';
+import { Context } from '../context/AppContext';
 
-// import WebScrapper from "../../components/WebScrapper/WebScrapper"
+
+
 export const HomePage = () => {
+    const {Thankyou} = useContext(Context)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const fetchData = async () => {
+            const productsResponse = await fetch('http://localhost:5000/api/products');
+            const categoriesResponse = await fetch('http://localhost:5000/api/categories');
+            const productsData = await productsResponse.json();
+            const categoriesData = await categoriesResponse.json();
+
+            // Dispatch actions to update the store
+            dispatch(setProducts(productsData));
+            dispatch(setCategories(categoriesData));
+        };
+
+        fetchData();
+    }, [dispatch, Thankyou]);
 
     return (
         <>

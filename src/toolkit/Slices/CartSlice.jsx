@@ -19,8 +19,8 @@ const cartSlice = createSlice({
                 existingItem.quantity += quantity;
             } else {
                 state.cartItems.push({ ...newItem, quantity: quantity });
+                localStorage.setItem('cart', JSON.stringify(state.cartItems));
             }
-            localStorage.setItem('cart', JSON.stringify(state.cartItems));
         },
         removeFromCart: (state, action) => {
             const itemIdToRemove = action.payload;

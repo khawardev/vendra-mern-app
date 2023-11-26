@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import { UploadClient } from '@uploadcare/upload-client';
 import { listOfFiles, UploadcareSimpleAuthSchema } from '@uploadcare/rest-client';
 import Success from './Success';
+import { TbCategory } from "react-icons/tb";
+import { Context } from '../../context/AppContext';
+// import { TbCategoryPlus } from "react-icons/tb";
 const CreateCategoryButton = () => {
     const fileInputRef = useRef(null);
     const [isHidden, setisHidden] = useState(true);
@@ -11,7 +14,7 @@ const CreateCategoryButton = () => {
     const [uploading, setUploading] = useState(false);
     const [imageuuid, setimageuuid] = useState("");
     const [Categoryname, setCategoryname] = useState("");
-    const [Thankyou, setThankyou] = useState(false)
+    const { Thankyou, setThankyou } = useContext(Context)
     const handleCategoryNameChange = (e) => {
         setCategoryname(e.target.value);
     };
@@ -36,6 +39,8 @@ const CreateCategoryButton = () => {
         if (imageuuid) {
             handlemongo();
         }
+        
+
     }, [imageuuid])
 
 
@@ -62,12 +67,11 @@ const CreateCategoryButton = () => {
                 }),
             });
             if (response.ok) {
-                // Handle success, e.g., show a success message or redirect to another page
                 console.log("Category created successfully");
-                // setCategoryname('');
-                // setSelectedFile(null);
                 setUploading(false);
                 setThankyou(true)
+                // setCategoryname('');
+                // setSelectedFile(null);
                 // setTimeout(() => {
                 //     IsHiddenFunction();
                 // }, 1000);
@@ -121,21 +125,10 @@ const CreateCategoryButton = () => {
                 id="createProductButton"
                 data-modal-toggle="createProductModal"
                 onClick={IsHiddenFunction}
-                className="flex items-center justify-center  bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-400 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                className="flex items-center justify-center gap-2  bg-gray-100 hover:bg-gray-200 font-bold focus:ring-4 focus:ring-gray-300  transition-all ease-in rounded-md text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             >
-                <svg
-                    className="h-3.5 w-3.5 mr-1.5 -ml-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        clipRule="evenodd"
-                        fillRule="evenodd"
-                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                    />
-                </svg>
+
+                <TbCategory size={17} />
                 Add Category
             </button>
             <div

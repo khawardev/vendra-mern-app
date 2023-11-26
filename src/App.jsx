@@ -9,37 +9,18 @@ import AdminPage from './pages/AdminPage';
 import ContactPage from './pages/ContactPage';
 import UserPage from './pages/UserPage';
 import UploadcarePage from './pages/UploadcarePage';
-import AppContext from './context/AppContext'
+import AppContext, { Context } from './context/AppContext'
 import ViewCategoryProducts from './pages/ViewCategoryProductsPage';
 import ViewSingleProduct from './pages/ViewSingleProductPage';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setProducts } from './toolkit/Slices/ProductsSlice';
-import { setCategories } from './toolkit/Slices/CategoriesSlice';
+
 import BackgroundRemoval from './pages/BackgroundRemoval';
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
 function App() {
+  // const { Thankyou, setThankyou } = useContext(Context)
 
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const productsResponse = await fetch('http://localhost:5000/api/products');
-      const categoriesResponse = await fetch('http://localhost:5000/api/categories');
-      const productsData = await productsResponse.json();
-      const categoriesData = await categoriesResponse.json();
-
-      // Dispatch actions to update the store
-      dispatch(setProducts(productsData));
-      dispatch(setCategories(categoriesData));
-    };
-
-    fetchData();
-  }, [dispatch]);
-
-
+ 
 
 
 
@@ -63,6 +44,7 @@ function App() {
             <Route exact path={`/cart`} element={<CartPage />} />
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
           </Routes>
+          
           <Footer />
 
         </AppContext>

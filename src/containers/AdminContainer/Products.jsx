@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-import jszip from "jszip";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import 'datatables.net-buttons-dt/css/buttons.dataTables.css';
@@ -26,25 +25,8 @@ export default function Rightbar({ productData }) {
     const tableRef = useRef(null);
     const [editProductId, setEditProductId] = useState(null); // Update the variable name
 
-    // Initialize data tables in the useEffect hook
-
-    //   //fetching all user
-    //   const getAllUser = () => {
-
-    //   };
     const handleEdit = (product) => {
         setEditProductId(product._id);
-    };
-
-    const getAllProduct = () => {
-        fetch("http://localhost:5000/api/products", {
-            method: "GET",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data, "productData");
-                setData(data.data);
-            });
     };
 
     useEffect(() => {
@@ -234,14 +216,14 @@ export default function Rightbar({ productData }) {
                                         </button>
                                     </td>
                                     {/* Conditional rendering of the EditProduct component */}
-                                    {editProductId === product._id && (
+                                    {/* {editProductId === product?._id && (
                                         <td colSpan="6">
                                             <EditProduct
                                                 product={product}
                                                 onClose={() => setEditProductId(null)} // Close edit form function
                                             />
                                         </td>
-                                    )}
+                                    )} */}
                                 </tr>
                             ))}
                         </tbody>

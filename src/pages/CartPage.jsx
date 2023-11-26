@@ -140,7 +140,7 @@ const CartPage = () => {
                                         <div className="flex items-center space-x-4">
                                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <div className="flex items-center font-bold text-gray-500">
-                                                    ${cartItems?.price * cartItems.quantity}
+                                                    ${(cartItems?.price * cartItems.quantity).toFixed(2)}
                                                 </div>
                                             </td>
                                         </div>

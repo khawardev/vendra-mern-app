@@ -54,7 +54,7 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
                                 <h1 className='md:text-2xl text-lg font-extralight leading-6 md:block hidden'>Immerse Yourself in Pure Sound</h1>
                                 <h1 className='md:text-4xl text-2xl font-extrabold leading-6'>Discover Premium Headphones</h1>
                             </div>
-                            <button className='px-5 py-2  text-sm font-semibold rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 transition-all ease-in  mt-4'>
+                            <button className='px-5 py-2  text-sm font-semibold rounded-md bg-blue-100 hover:bg-blue-200 text-blue-700 transition-all ease-in  mt-4'>
                                 <b>Shop now</b>
                             </button>
                         </div>

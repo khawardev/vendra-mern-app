@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 /* eslint-disable react/prop-types */
+import '../../../assets/styles/AdminCategoryProducts.scss';
 import { VscHeart } from 'react-icons/vsc';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
@@ -13,12 +14,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
-import { SlCheck } from "react-icons/sl";
-import '../../../assets/styles/AdminCategoryProducts.scss';
 import { HiOutlineCheck } from "react-icons/hi";
-import { FaHeart } from "react-icons/fa";
-import { BsFillCartCheckFill } from "react-icons/bs";
-import { BsCartCheckFill } from "react-icons/bs";
 import { BsCartCheck } from "react-icons/bs";
 
 const NewProductsNestedSection = ({ discount }) => {
@@ -37,7 +33,6 @@ const NewProductsNestedSection = ({ discount }) => {
     const handleAddToCart = (id, name, desc, price, imageurl, quantity) => {
         dispatch(addToCart({ id: id, name: name, desc: desc, price: price, imageurl: imageurl, quantity: quantity }));
         setcartloading(true);
-
     };
 
 

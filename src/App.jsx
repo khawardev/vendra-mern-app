@@ -16,6 +16,7 @@ import ViewSingleProduct from './pages/ViewSingleProductPage';
 import BackgroundRemoval from './pages/BackgroundRemoval';
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
+import FramerMotion from './components/WebScrapper/FramerMotion';
 function App() {
   // const { Thankyou, setThankyou } = useContext(Context)
 
@@ -27,10 +28,10 @@ function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
+          {/* <FramerMotion /> */}
       <BrowserRouter>
-        <AppContext>
-          {/* <CryptoNews /> */}
-          <Header />
+        <AppContext> 
+       <Header />
           <Routes>
             <Route exact path='/' element={<HomePage />} />
             <Route exact path='/account' element={<AuthPage />} />
@@ -45,9 +46,9 @@ function App() {
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
           </Routes>
           
-          <Footer />
+          <Footer /> 
 
-        </AppContext>
+       </AppContext>
       </BrowserRouter>
 
     </>

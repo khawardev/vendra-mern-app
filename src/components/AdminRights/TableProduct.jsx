@@ -51,7 +51,7 @@ const TableProduct = () => {
                         <div className="overflow-x-auto">
                             {isDropdownVisible ? <BodyTableCategory /> : <BodyTableProduct />}
                         </div>
-                        <FooterTableProduct />
+                        {/* <FooterTableProduct /> */}
                     </div>
                 </div>
             </section>

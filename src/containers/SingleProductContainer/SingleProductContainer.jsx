@@ -11,12 +11,12 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { LuGitCompare } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart2 } from 'react-icons/bs';
-import { useState} from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../toolkit/Slices/WishlistSlice';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
@@ -31,15 +31,17 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
             setQuantity(quantity - 1);
         }
     };
-
     const handleIncrement = () => {
         setQuantity(quantity + 1);
     };
     const handleAddToCart = () => {
+        toast.success('Added to cart!!');
+
         dispatch(addToCart({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
         setQuantity(1); // Reset quantity after adding to cart
     };
     const handleAddToWishList = () => {
+        toast.success('Added to wishlist!!');
         dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
     };
 
@@ -110,10 +112,12 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
                                 <p className="px-5 py-2 border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
                                     handleAddToCart();
                                 }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
+                                <Toaster />
                             </div>
+
                             <div className="flex justify-between gap-3 ">
                                 <p className="px-5 py-2   font-bold hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
-                                <p onClick={() => { handleAddToWishList() }}  className="px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Add to Wishlist  <FaRegHeart /></p>
+                                <p onClick={() => { handleAddToWishList() }} className="px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Add to Wishlist  <FaRegHeart /></p>
                             </div>
                         </section>
                     </main>

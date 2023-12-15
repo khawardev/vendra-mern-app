@@ -71,7 +71,7 @@ const AuthPage = () => {
                     localStorage.setItem("loggedIn", true);
                     // Add a console.log statement for debugging
                     console.log("Redirecting to admin-account page...");
-                    window.location.href = "./admin-account"; // Make sure the file path is correct
+                    window.location.href = "/"; // Make sure the file path is correct
                 } else if (isRegistering && data.status.includes("ok")) {
                     // Handle successful registration here
                     Swal.fire(

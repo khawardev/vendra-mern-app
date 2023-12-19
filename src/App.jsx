@@ -12,7 +12,6 @@ import UploadcarePage from './pages/UploadcarePage';
 import AppContext, { Context } from './context/AppContext'
 import ViewCategoryProducts from './pages/ViewCategoryProductsPage';
 import ViewSingleProduct from './pages/ViewSingleProductPage';
-
 import BackgroundRemoval from './pages/BackgroundRemoval';
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
@@ -20,15 +19,10 @@ import FramerMotion from './components/WebScrapper/FramerMotion';
 function App() {
   // const { Thankyou, setThankyou } = useContext(Context)
 
-
- 
-
-
-
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
-          {/* <FramerMotion /> */}
+      {/* <FramerMotion /> */}
       <BrowserRouter>
         <AppContext> 
        <Header />

@@ -42,21 +42,14 @@ export default function Rightbar({ userData }) {
                 setData(data.data);
             });
     };
-
-    // Fetch data
     useEffect(() => {
         fetch("http://localhost:5000/getAllUser", {
             method: "GET",
         })
             .then((res) => res.json())
             .then((response) => {
-                console.log(response, "userData");
-
-                // Assuming your API response contains an 'Objectdata' property
                 const userArray = response.data || [];
-                console.log("userArray:", userArray);
-
-                setData(userArray); // Set the data to the array of users
+                setData(userArray);
 
                 // Initialize DataTable when data is available
                 initializeDataTable();
@@ -65,29 +58,62 @@ export default function Rightbar({ userData }) {
                 console.error("Error fetching data:", error);
             });
     }, []);
+
+    // // Fetch data
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/getAllUser", {
+    //         method: "GET",
+    //     })
+    //         .then((res) => res.json())
+    //         .then((response) => {
+    //             console.log(response, "userData");
+
+    //             // Assuming your API response contains an 'Objectdata' property
+    //             const userArray = response.data || [];
+    //             console.log("userArray:", userArray);
+
+    //             setData(userArray); // Set the data to the array of users
+
+    //             // Initialize DataTable when data is available
+    //             initializeDataTable();
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching data:", error);
+    //         });
+    // }, []);
     useEffect(() => {
         if (!tableRef.current) return;
-
-        // Destroy DataTable if already initialized
-        if ($.fn.DataTable.isDataTable(tableRef.current)) {
-            $(tableRef.current).DataTable().destroy();
-        }
-
-        // Initialize DataTable
         $(tableRef.current).DataTable({
             paging: true,
             searching: true,
-            dom: "lBfrtip", // Add 'B' to enable buttons
-            buttons: [
-                "copy",
-                "excel",
-                "pdf",
-                "print", // Specify which buttons to display
-            ],
-
-            // Other DataTable options
+            dom: "lBfrtip",
+            buttons: ["copy", "excel", "pdf", "print"],
         });
     }, [data]);
+
+    // useEffect(() => {
+    //     if (!tableRef.current) return;
+
+    //     // Destroy DataTable if already initialized
+    //     if ($.fn.DataTable.isDataTable(tableRef.current)) {
+    //         $(tableRef.current).DataTable().destroy();
+    //     }
+
+    //     // Initialize DataTable
+    //     $(tableRef.current).DataTable({
+    //         paging: true,
+    //         searching: true,
+    //         dom: "lBfrtip", // Add 'B' to enable buttons
+    //         buttons: [
+    //             "copy",
+    //             "excel",
+    //             "pdf",
+    //             "print", // Specify which buttons to display
+    //         ],
+
+    //         // Other DataTable options
+    //     });
+    // }, [data]);
 
     // Initialize DataTable when data changes
 

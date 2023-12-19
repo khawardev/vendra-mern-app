@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const BottomHeader = () => {
   const Navigate = useNavigate();
-  
+
   return (
     <div>
-      
+
       <main className='  items-center justify-between list-none lg:flex hidden '>
         <main className='flex justify-center items-center gap-12 bg-gray-100 cursor-pointer py-4 px-6 rounded-tr-lg  rounded-tl-lg'>
           <section className='flex justify-center items-center gap-2'>

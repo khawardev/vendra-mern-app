@@ -90,11 +90,11 @@ const UserPage = () => {
       <main className="grid md:grid-cols-2 grid-cols-1 gap-6">
         <section className=" border border-yellow-500 md:px-10 md:py-10 px-5 py-10 w-full rounded-xl shadow">
           <p className="text-gray-500  ">PERSONAL</p>
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">EMAIL: </span> <span className='ml-3'>{userDetails.email}</span> </p>
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USERNAME: </span> <span className='ml-3'>{foundObject.username}</span>  </p>
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">EMAIL: </span> <span className='ml-3'>{userDetails?.email}</span> </p>
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USERNAME: </span> <span className='ml-3'>{foundObject?.username}</span>  </p>
           <div className=' flex items-center justify-between'>
             <p className="text-gray-500"> <span className=" text-black font-bold">PASSWORD: </span> <span className='ml-3'>
-              {passwordVisible ? foundObject.password : '*'.repeat(foundObject?.password.length)}
+              {passwordVisible ? foundObject?.password : '*'.repeat(foundObject?.password.length)}
             </span>
             </p>
             <button onClick={togglePasswordVisibility}>

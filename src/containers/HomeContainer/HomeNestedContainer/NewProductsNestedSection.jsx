@@ -56,7 +56,8 @@ const NewProductsNestedSection = ({ discount }) => {
         <>
             {products &&
                 <>
-                    {products?.slice(-8).reverse().map((product) => (
+                {(Array.isArray(products) ? products.slice(-8).reverse().map((product) => (
+                
                         <article key={product._id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                             <main>
                                 <div>
@@ -142,7 +143,7 @@ const NewProductsNestedSection = ({ discount }) => {
                                 </span>
                             </main>
                         </article>
-                    ))}
+                )) : [])}
                 </>
             }
 

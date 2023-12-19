@@ -1,12 +1,9 @@
 import { useState } from "react";
 import Swal from 'sweetalert2';
-import { useContext } from 'react'
-import { Context } from "../context/AppContext";
+
 const AuthPage = () => {
     
     const [isRegistering, setIsRegistering] = useState(true);
-    const { Token , setToken } = useContext(Context);
-    console.log("🚀 ~ file: AuthPage.jsx:9 ~ AuthPage ~ Token:", Token)
 
     const [formData, setFormData] = useState({
         username: "",
@@ -66,7 +63,6 @@ const AuthPage = () => {
             })
             .then((data) => {
                 console.log("Server Response Data:", data);
-                setToken(data.data);
                 if (data.status.includes("ok") && !isRegistering) {
                     Swal.fire(
                         'Successfully Login',
@@ -74,7 +70,6 @@ const AuthPage = () => {
                     )
                     // Use localStorage.setItem() to store the token
                     localStorage.setItem("token", data.data);
-                    
                     localStorage.setItem("loggedIn", true);
                     // Add a console.log statement for debugging
                     console.log("Redirecting to admin-account page...");

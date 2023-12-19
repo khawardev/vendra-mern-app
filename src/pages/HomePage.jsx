@@ -14,22 +14,25 @@ import { useDispatch } from 'react-redux';
 import { setProducts } from '../toolkit/Slices/ProductsSlice';
 import { setCategories } from '../toolkit/Slices/CategoriesSlice';
 import { Context } from '../context/AppContext';
-
+import { setUser } from '../toolkit/Slices/UserSlice';
 
 
 export const HomePage = () => {
-    const {Thankyou} = useContext(Context)
+    const { Thankyou } = useContext(Context)
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchData = async () => {
             const productsResponse = await fetch('http://localhost:5000/api/products');
             const categoriesResponse = await fetch('http://localhost:5000/api/categories');
+            const UserinfoResponse = await fetch('http://localhost:5000/getAllUser');
             const productsData = await productsResponse.json();
             const categoriesData = await categoriesResponse.json();
+            const UserinfoData = await UserinfoResponse.json();
 
             // Dispatch actions to update the store
             dispatch(setProducts(productsData));
             dispatch(setCategories(categoriesData));
+            dispatch(setUser(UserinfoData.data));
         };
 
         fetchData();
@@ -55,7 +58,7 @@ export const HomePage = () => {
                 </div>
             </section>
             {/* lg:grid-cols-4 md:grid-cols-3 grid-cols-2 */}
-            <TrendingProducts  />
+            <TrendingProducts />
             <BannerSection />
             <DiscountProducts />
 

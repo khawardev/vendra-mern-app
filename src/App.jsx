@@ -16,14 +16,15 @@ import BackgroundRemoval from './pages/BackgroundRemoval';
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
 import FramerMotion from './components/WebScrapper/FramerMotion';
+import { PlateEditor } from './components/WebScrapper/Editor';
 function App() {
-  // const { Thankyou, setThankyou } = useContext(Context)
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
       {/* <FramerMotion /> */}
-      <BrowserRouter>
+      <PlateEditor />
+       {/* <BrowserRouter>
         <AppContext> 
        <Header />
           <Routes>
@@ -43,7 +44,7 @@ function App() {
           <Footer /> 
 
        </AppContext>
-      </BrowserRouter>
+      </BrowserRouter>  */}
 
     </>
   )

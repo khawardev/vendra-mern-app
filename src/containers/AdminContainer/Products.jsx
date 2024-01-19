@@ -19,82 +19,120 @@ import 'datatables.net-buttons/js/buttons.colVis.min.js'; // For Excel button
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import EditProduct from './EditProduct'; // Update the path as per your folder structure
 
-export default function Rightbar({ productData }) {
+export default function Rightbar() {
     //setting state
     const [data, setData] = useState([]);
     const tableRef = useRef(null);
     const [editProductId, setEditProductId] = useState(null); // Update the variable name
-
+    const [productData, setProductData] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
     const handleEdit = (product) => {
         setEditProductId(product._id);
     };
 
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/api/products", {
+    //         method: "GET",
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             console.log(data, "productData");
+    
+    //             // Set the data directly to the product state variable
+    //             setProductData(data);
+    
+    //             // Initialize DataTable when data is available
+    //             initializeDataTable();
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching product data:", error);
+    //         });
+    // }, []);
+    
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/api/categories", {
+    //         method: "GET",
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             console.log(data, "categoriesData");
+    
+    //             // Set the data directly to the category state variable
+    //             setCategoryData(data);
+    //             // Initialize DataTable when data is available
+    //             initializeDataTable();
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching category data:", error);
+    //         });
+    // }, []);
     useEffect(() => {
-        fetch("http://localhost:5000/api/products", {
-            method: "GET",
+        Promise.all([
+            fetch("http://localhost:5000/api/products").then((res) => res.json()),
+            fetch("http://localhost:5000/api/categories").then((res) => res.json()),
+        ])
+        .then(([productData, categoryData]) => {
+            console.log(productData, "productData");
+            console.log(categoryData, "categoriesData");
+    
+            setProductData(productData);
+            setCategoryData(categoryData);
+    
+            // Initialize DataTable when data is available
+            initializeDataTable();
         })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data, "productData");
-
-                // Set the data directly to the state variable
-                setData(data);
-
-                // Initialize DataTable when data is available
-                initializeDataTable();
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
     }, []);
-    useEffect(() => {
-        fetch("http://localhost:5000/api/categories", {
-            method: "GET",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data, "categoriesData");
+    
+    // useEffect(() => {
+    //     if (!tableRef.current) return;
 
-                // Set the data directly to the state variable
-                setData(data);
+    //     // Destroy DataTable if already initialized
+    //     if ($.fn.DataTable.isDataTable(tableRef.current)) {
+    //         $(tableRef.current).DataTable().destroy();
+    //     }
 
-                // Initialize DataTable when data is available
-                initializeDataTable();
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
-    }, []);
+    //     // Initialize DataTable
+    //     $(tableRef.current).DataTable({
+    //         paging: true,
+    //         searching: true,
+    //         dom: "lBfrtip", // Add 'B' to enable buttons
+    //         buttons: [
+    //             "copy",
+    //             "excel",
+    //             "pdf",
+    //             "print", // Specify which buttons to display
+    //         ],
+
+    //         // Other DataTable options
+    //     });
+    // }, [data]);
+
+    // Initialize DataTable when data changes
     useEffect(() => {
         if (!tableRef.current) return;
-
+    
         // Destroy DataTable if already initialized
         if ($.fn.DataTable.isDataTable(tableRef.current)) {
             $(tableRef.current).DataTable().destroy();
         }
-
+    
         // Initialize DataTable
         $(tableRef.current).DataTable({
             paging: true,
             searching: true,
             dom: "lBfrtip", // Add 'B' to enable buttons
-            buttons: [
-                "copy",
-                "excel",
-                "pdf",
-                "print", // Specify which buttons to display
-            ],
-
-            // Other DataTable options
+            buttons: ["copy", "excel", "pdf", "print"],
         });
-    }, [data]);
-
-    // Initialize DataTable when data changes
-
+    }, [productData, categoryData]);
+    
     //deleting user
     const deleteProduct = (id, name) => {
+        console.log("id and name", id, name);
         console.log("Button Clicked");
-
+    
         if (window.confirm(`Are you sure you want to delete ${name}`)) {
             console.log("Entering");
             fetch("http://localhost:5000/api/deleteProducts", {
@@ -110,7 +148,7 @@ export default function Rightbar({ productData }) {
                 }),
             })
                 .then((res) => {
-                    if (res.status === 200) {
+                    if (res.ok) {
                         return res.json();
                     } else {
                         throw new Error(`Failed to delete product: ${res.status}`);
@@ -119,17 +157,18 @@ export default function Rightbar({ productData }) {
                 .then((data) => {
                     if (data.status === "Ok") {
                         Swal.fire("Successfully Deleted", "success");
-
+                        // Update productData state to remove the deleted product
+                        setProductData((prevData) => prevData.filter(product => product._id !== id));
                     } else {
                         Swal.fire("Deletion Failed", "error");
                     }
-                })
+                })                
                 .catch((error) => {
                     console.error("Error deleting product:", error);
                 });
         }
     };
-
+    
     const logOut = () => {
         window.localStorage.clear();
         window.location.href = "/account";
@@ -151,8 +190,9 @@ export default function Rightbar({ productData }) {
             <div className="auth-inner" style={{ width: "auto" }}>
                 <p className="my-4 text-2xl font-extrabold ml-1"> Product Details <span><button onClick={logOut} className="font-small bg-green-500 rounded py-1 px-2"  >Logout</button></span> </p>
                 <button></button>
-                {data.length === 0 ? (
+                {Array.isArray(productData) && productData.length === 0 ?  (
                     <p>Currently No Product add in database</p>
+                    
                 ) : (
                     <table ref={tableRef} className="w-full text-sm text-left">
                         <thead>
@@ -181,7 +221,7 @@ export default function Rightbar({ productData }) {
                             </tr>
                         </tfoot>
                         <tbody>
-                            {data.map((product, index) => (
+                            {productData.map((product, index) => (
                                 <tr
                                     key={product._id}
                                     className={index % 2 === 0 ? "bg-gray-200" : ""}
@@ -191,7 +231,7 @@ export default function Rightbar({ productData }) {
                                     </td>
                                     <td className="px-6 py-4">{product.name}</td>
                                     <td className="px-6 py-4">{product.description}</td>
-                                    <td className="px-6 py-4">{product.price}</td>
+                                    <td className="px-6 py-4">${product.price}</td>
                                     <td className="px-6 py-4">{product.category}</td>
                                     <td className="text-white flex px-6 py-3 gap-2">
                                         <button

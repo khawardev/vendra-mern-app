@@ -66,10 +66,16 @@ const AuthPage = () => {
           Swal.fire("Successfully Login", "success");
           // Use localStorage.setItem() to store the token
           localStorage.setItem("token", data.data);
+          localStorage.setItem("role", data.role);
           localStorage.setItem("loggedIn", true);
-          // Add a console.log statement for debugging
-          console.log("Redirecting to admin-account page...");
-          window.location.href = "/"; // Make sure the file path is correct
+          if (data.role === "admin") {
+            console.log("Redirecting to admin-account page...");
+            window.location.href = "/admin-account";
+          } else {
+            // Redirect to a different page for non-admin users
+            console.log("Redirecting to user-account page...");
+            window.location.href = "/";
+          }
         } else if (isRegistering && data.status.includes("ok")) {
           // Handle successful registration here
           Swal.fire("Successfully Registered", "success");
@@ -208,16 +214,17 @@ const AuthPage = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
+
             </div>
-            <div className="mb-7">
+         
+          </>
+        )}
+   <div className="mb-7">
               <HCaptcha
                 sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
                 onVerify={handleHCaptchaVerify}
               />
             </div>
-          </>
-        )}
-
         {/* Registration */}
         {isRegistering ? (
           <div>

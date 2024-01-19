@@ -29,43 +29,6 @@ export default function Rightbar() {
     const handleEdit = (product) => {
         setEditProductId(product._id);
     };
-
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/api/products", {
-    //         method: "GET",
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data, "productData");
-    
-    //             // Set the data directly to the product state variable
-    //             setProductData(data);
-    
-    //             // Initialize DataTable when data is available
-    //             initializeDataTable();
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error fetching product data:", error);
-    //         });
-    // }, []);
-    
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/api/categories", {
-    //         method: "GET",
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data, "categoriesData");
-    
-    //             // Set the data directly to the category state variable
-    //             setCategoryData(data);
-    //             // Initialize DataTable when data is available
-    //             initializeDataTable();
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error fetching category data:", error);
-    //         });
-    // }, []);
     useEffect(() => {
         Promise.all([
             fetch("http://localhost:5000/api/products").then((res) => res.json()),

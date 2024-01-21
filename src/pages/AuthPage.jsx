@@ -14,9 +14,49 @@ const AuthPage = () => {
     email: "",
     password: "",
   });
-
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const emailPattern = /^[A-Za-z]+@[A-Za-z]+\.[A-Za-z]+$/;
+
+    // Pattern for username validation
+    const usernamePattern = /^[A-Za-z]+$/;
+
+    // Pattern for password validation (at least 5 characters, letters, and numbers)
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+
+    // Validate the input based on the field name
+    switch (name) {
+      case "email":
+        setErrors({
+          ...errors,
+          email: emailPattern.test(value) ? "" : "Enter a valid email address",
+        });
+        break;
+      case "username":
+        setErrors({
+          ...errors,
+          username: usernamePattern.test(value)
+            ? ""
+            : "Username should contain only letters",
+        });
+        break;
+      case "password":
+        setErrors({
+          ...errors,
+          password: passwordPattern.test(value)
+            ? ""
+            : "Password should contain at least 5 characters, letters, and numbers",
+        });
+        break;
+      default:
+        break;
+    }
+
     setFormData({ ...formData, [name]: value });
   };
   const [submittedData, setSubmittedData] = useState(null);
@@ -107,6 +147,8 @@ const AuthPage = () => {
         onSubmit={handleSubmit}
         className="md:border border-yellow-500 rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5"
       >
+       
+
         <p className="text-center text-gray-500  text-sm mb-10 select-none ">
           <span className="font-extrabold  gap-1 bg-slate-100 md:border border-yellow-500 px-[6px] pt-[18px] pb-[16px] rounded-full ">
             <span>
@@ -138,6 +180,7 @@ const AuthPage = () => {
         {isRegistering ? (
           <>
             <div className="mb-5">
+            {errors.username && <p className="text-red-500 text-s">{errors.username}</p>}
               <label
                 className="block text-gray-700 text-sm mb-1"
                 htmlFor="username"
@@ -155,6 +198,7 @@ const AuthPage = () => {
               />
             </div>
             <div className="mb-5">
+            {errors.email && <p className="text-red-500 text-s">{errors.email}</p>}
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="email"
@@ -163,6 +207,7 @@ const AuthPage = () => {
               </label>
               <input
                 className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
+                
                 type="email"
                 id="email"
                 name="email"
@@ -172,6 +217,7 @@ const AuthPage = () => {
               />
             </div>
             <div className="mb-7">
+            {errors.password && <p className="text-red-500 text-s">{errors.password}</p>}
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="password"
@@ -191,7 +237,8 @@ const AuthPage = () => {
           </>
         ) : (
           <>
-            <div className="mb-5 ">
+                      <div className="mb-5 ">
+
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="login-username-email"
@@ -235,6 +282,7 @@ const AuthPage = () => {
                 size="normal"
               />
             </div>
+            
         {/* Registration */}
         {isRegistering ? (
           <div>
@@ -242,8 +290,7 @@ const AuthPage = () => {
               Your personal data will be used to support your experience
               throughout this website, to manage access to your account, and for
               other purposes described in our{" "}
-              <span className=" cursor-pointer underline">privacy policy</span>{" "}
-              .
+              <span className=" cursor-pointer underline">privacy policy</span>{" "}.
             </p>
 
             <button
@@ -260,6 +307,7 @@ const AuthPage = () => {
                 className="mr-2 leading-tight"
                 type="checkbox"
                 name="rememberMe"
+                required
                 onChange={handleChange}
               />
               <span className="text-sm">Remember me</span>

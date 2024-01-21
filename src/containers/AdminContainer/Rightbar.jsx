@@ -226,16 +226,6 @@ export default function Rightbar({ userData }) {
                                     <td className="text-white flex px-6 py-3 gap-2">
                                         <button
                                             href="#"
-                                            className="font-medium bg-blue-500 rounded py-1 px-3"
-                                            onClick={() => console.log(`Edit user with ID ${i._id}`)}
-                                        >
-                                            <span className="flex justify-between items-center gap-2">
-                                                {" "}
-                                                <BiEditAlt size={16} /> Edit
-                                            </span>
-                                        </button>
-                                        <button
-                                            href="#"
                                             className="font-medium bg-red-500 rounded py-1 px-3"
                                             onClick={() => deleteUser(i._id, i.username)}
                                         >

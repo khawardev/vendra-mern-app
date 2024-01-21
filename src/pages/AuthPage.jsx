@@ -81,7 +81,11 @@ const AuthPage = () => {
           Swal.fire("Successfully Registered", "success");
         } else {
           alert("Login or Registration Failed");
-
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'hCaptcha verification failed!',
+          });
           // Handle cases where login or registration fails
         }
       })
@@ -89,6 +93,11 @@ const AuthPage = () => {
       .catch((error) => {
         console.error(error);
         // Handle the error and display an error message to the user
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'hCaptcha verification failed!',
+        });
       });
   };
 

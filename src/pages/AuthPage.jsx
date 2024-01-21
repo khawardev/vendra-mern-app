@@ -6,7 +6,7 @@ const AuthPage = () => {
   const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
   const handleHCaptchaVerify = (token) => {
     // Callback function to handle the hCaptcha token
-    console.log('hCaptcha token:', token);
+    console.log('hCaptcha sadsdas token:', token);
     setHCaptchaToken(token);
   };
   const [formData, setFormData] = useState({
@@ -223,6 +223,7 @@ const AuthPage = () => {
               <HCaptcha
                 sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
                 onVerify={handleHCaptchaVerify}
+                size="normal"
               />
             </div>
         {/* Registration */}

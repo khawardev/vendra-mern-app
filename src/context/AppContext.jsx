@@ -15,8 +15,7 @@ function Appcontext({ children }) {
     const [Thankyou, setThankyou] = useState(false)
     const [Token, setToken] = useState()
     const location = useLocation();
-    console.log("🚀 ~ file: AppContext.jsx:17 ~ Appcontext ~ Token:", Token)
-
+    const [searchText, setSearchText] = useState('');
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [location])
@@ -31,6 +30,7 @@ function Appcontext({ children }) {
             categoryproductlength, setcategoryproductlength,
             Thankyou, setThankyou,
             Token, setToken,
+            searchText, setSearchText
         }}
         >
             {children}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 // import User from '../assets/images/user.png';
 // import { decode } from 'jwt-decode';
@@ -8,13 +9,23 @@ import { useContext } from 'react'
 import { Context } from "../context/AppContext";
 import { useSelector } from 'react-redux';
 import { selectUsers } from '../toolkit/Slices/UserSlice';
+import { selectSingleUsers } from '../toolkit/Slices/UserSlice';
 const UserPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [userDetails, setUserDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  const [password, setPassword] = useState('asas');
+  const [foundUserDetails, setfoundUserDetails] = useState({});
   const users = useSelector(selectUsers);
-  console.log("🚀 ~ file: UserPage.jsx:17 ~ UserPage ~ users:", users)
+  const Singleusers = useSelector(selectSingleUsers);
+  console.log(Singleusers?.slice(-1)[0])
+  console.log( foundUserDetails)
+
+  useEffect(() => {
+    const flattenedArray = users?.flat(1);
+    const foundUserDetails1 = flattenedArray?.find(item => item?.email === Singleusers?.slice(-1)[0]);
+    setfoundUserDetails(foundUserDetails1)
+  }, [Singleusers])
+
 
 
 
@@ -28,58 +39,62 @@ const UserPage = () => {
     window.location.href = "/account";
   };
 
+  // useEffect(() => {
+  //   const dataToSave = {
+  //     email: foundUserDetails?.email,
+  //     username: foundUserDetails?.username,
+  //     password: foundUserDetails?.password
+  //   };
+  //   localStorage.setItem('userDetails', JSON.stringify(dataToSave));
+  // }, [foundUserDetails?.email, foundUserDetails?.username, foundUserDetails?.password]);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const fetchUserData = async () => {
-      try {
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   const fetchUserData = async () => {
+  //     try {
 
-        const response = await fetch('http://localhost:5000/data', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  //       const response = await fetch('http://localhost:5000/data', {
+  //         method: 'GET',
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
 
 
-        if (response.ok) {
-          const userData = await response.json();
-          console.log("🚀 ~ file: UserPage.jsx:43 ~ fetchUserData ~ userData:", userData)
+  //       if (response?.ok) {
+  //         const userData = await response.json();
+  //         setUserDetails(userData);
+  //       } else {
+  //         console.error('Error fetching user data:', response?.status, response?.statusText);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching user data:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-          setUserDetails(userData);
-        } else {
-          console.error('Error fetching user data:', response.status, response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //   fetchUserData();
+  // }, []);
 
-    fetchUserData();
-  }, []);
+  // const [LocalSUserDetails, setLocalSFoundUserDetails] = useState({});
+  // useEffect(() => {
+  //   const storedData = localStorage.getItem('userDetails');
+  //   if (storedData) {
+  //     const parsedData = JSON.parse(storedData);
+  //     setLocalSFoundUserDetails(parsedData);
+  //   }
+  // }, []);
 
-  const flattenedArray = users.flat(1);
-  const foundObject = flattenedArray.find(item => item?.email === userDetails?.email);
-  console.log( foundObject)
-  // const filterByEmail = (email) => {
-  //   const filteredUsers = users.filter(user => user.email === email);
-  //   console.log(filteredUsers)
-  // };
-  // filterByEmail(userDetails.email);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  } return (
-    <div className=" w-11/12 m-auto md:py-16 md:px-12 py-6  md:border my-10 rounded-xl md:border-yellow-500">
+  return (
+    <div className=" w-11/12 m-auto md:py-16 md:px-12 py-6  md:border my-10 rounded-xl ">
       <section className='md:flex flex-row-reverse justify-between items-center'>
         <div className='rounded-full  md:mb-0 mb-6 flex justify-center'>
           {/* <img src={User} className='rounded-full p-1 border-2 md:w-[75px] w-[130px]' alt="" /> */}
         </div>
         <div>
-          <p className="text-lg text-gray-500">Manage Your account</p>
-          <p className="text-lg text-gray-500 my-3">Click <span className="text-black hover:cursor-pointer px-[10px] p-[3px] bg-gray-200 hover:bg-gray-100 rounded-full border mx-[2px] border-yellow-500">here</span> to edit your information</p>
+          <p className="text-lg text-gray-500  leading-3">Manage your account</p>
+          <p className="text-lg text-gray-500 my-3 leading-6">Click <span className="font-bold text-black hover:cursor-pointer hover:underline hover:text-blue-500">here</span> to edit your information</p>
         </div>
       </section>
 
@@ -87,16 +102,20 @@ const UserPage = () => {
 
       <p className=" text-2xl font-bold my-10 ">Your account details</p>
 
-      <main className="grid md:grid-cols-2 grid-cols-1 gap-6">
-        <section className=" border border-yellow-500 md:px-10 md:py-10 px-5 py-10 w-full rounded-xl shadow">
+      <main className=" gap-6">
+        <section className=" border  md:px-10 md:py-10 px-5 py-10 w-full rounded-xl ">
           <p className="text-gray-500  ">PERSONAL</p>
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">EMAIL: </span> <span className='ml-3'>{userDetails?.email}</span> </p>
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USERNAME: </span> <span className='ml-3'>{foundObject?.username}</span>  </p>
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">EMAIL: </span> <span className='ml-3'>{foundUserDetails?.email}</span> </p>
+
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USERNAME: </span> <span className='ml-3'>{foundUserDetails?.username}</span>  </p>
           <div className=' flex items-center justify-between'>
-            <p className="text-gray-500"> <span className=" text-black font-bold">PASSWORD: </span> <span className='ml-3'>
-              {passwordVisible ? foundObject?.password : '*'.repeat(foundObject?.password.length)}
-            </span>
-            </p>
+            <div className='flex'>
+              <p className=" text-black font-bold">PASSWORD: </p>
+              <div className='ml-3 text-gray-500'>
+                {passwordVisible ? foundUserDetails?.password : '*'.repeat(foundUserDetails?.password?.length)}
+              </div>
+            </div>
+
             <button onClick={togglePasswordVisibility}>
               {passwordVisible ? <AiOutlineEyeInvisible size={24} /> : <AiOutlineEye size={24} />}
             </button>

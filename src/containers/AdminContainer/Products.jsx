@@ -120,7 +120,6 @@ export default function Rightbar() {
                 .then((data) => {
                     if (data.status === "Ok") {
                         Swal.fire("Successfully Deleted", "success");
-                        // Update productData state to remove the deleted product
                         setProductData((prevData) => prevData.filter(product => product._id !== id));
                     } else {
                         Swal.fire("Deletion Failed", "error");

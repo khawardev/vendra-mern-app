@@ -18,6 +18,7 @@ import WishlistPage from './pages/WishlistPage';
 import FramerMotion from './components/WebScrapper/FramerMotion';
 import AboutPage from './pages/AboutPage';
 import ShopPage from './pages/ShopPage';
+import EditProduct from './components/AdminRights/EditProduct';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -41,6 +42,7 @@ function App() {
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
             <Route exact path={`/about`} element={<AboutPage />} />
             <Route exact path={`/shop`} element={<ShopPage />} />
+            <Route exact path={`/edit/:productid`} element={<EditProduct />} />
           </Routes>
           
           <Footer /> 

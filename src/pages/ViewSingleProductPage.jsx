@@ -20,12 +20,9 @@ const ViewSingleProductPage = () => {
         <div>
             <div className=' w-11/12 m-auto my-10'>
                 <SingleProductContainer filteredProduct={filteredProduct[0]} filteredcategory={filteredcategory[0]} />
-
                 <main className='my-16'>
                     <NewProducts title={'Related Products'} Related={true} viewmore={false} grid={'grid grid-cols-5 '} filteredProducts={filteredRelatedProducts} />
                 </main>
-
-
             </div>
         </div>
     )

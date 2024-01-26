@@ -51,16 +51,31 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
         <>
             <p className=" text-sm mb-8"><span className=" text-gray-400"> <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=' cursor-pointer' onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name} </span>  /</span> <b>{Productname}</b>  </p>
 
-            <main className=" grid grid-cols-2 gap-16 mb-18  ">
-                <section className='flex justify-start items-center'>
-                    <div className=' p-24  bg-gray-100 border rounded-2xl w-full h-[660px] flex justify-center items-center '>
-                        <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
-                    </div>
+            <main className=" grid grid-cols-4 gap-12 mb-18  ">
+                <section className=' grid grid-cols-5 gap-6 col-span-2'>
+                    <section className='flex flex-col  gap-3 col-span-1' >
+                        <div className=' p-4 border  flex justify-center items-center rounded-xl   cursor-pointer  '>
+                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                        </div>
+                        <div className=' p-4  border  flex justify-center items-center rounded-xl  cursor-pointer'>
+                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                        </div>
+                        <div className=' p-4  border flex justify-center items-center rounded-xl  cursor-pointer'>
+                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                        </div>
+                        <div className=' p-4 border  flex justify-center items-center rounded-xl  cursor-pointer'>
+                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                        </div>
+                    </section>
+                    <section className='flex justify-start col-span-4 '>
+                        <div className=' p-24  bg-gray-100 border rounded-2xl w-full  flex justify-center items-center '>
+                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                        </div>
+                    </section>
                 </section>
-                <section className=' flex flex-col justify-between'>
+                <section className=' flex flex-col justify-between col-span-2 '>
 
-                    <main>
-
+                    <main className='mb-8'>
                         <p className=" text-2xl font-bold  mb-8 leading-8"> {filteredProduct?.name} </p>
                         <div className="my-8 flex items-center gap-3">
                             <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>
@@ -81,9 +96,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
                             </div>
                         </div>
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">
-                            <div className="flex justify-between gap-3">
-
-                                <div className=" flex justify-between items-center gap-8 border rounded-full px-3">
+                                <div className=" flex justify-between items-center gap-8 border rounded-full px-4 py-2 ">
                                     <div className='px-3 font-bold'>
                                         <input type="text" size={1} value={quantity} name="" disabled id="" />
                                     </div>
@@ -107,60 +120,42 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
                                         </p>
                                     </div>
                                 </div>
-
-
-                                <p className="px-5 py-2 border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
-                                    handleAddToCart();
-                                }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
-                                <Toaster />
-                            </div>
-
-                            <div className="flex justify-between gap-3 ">
-                                <p className="px-5 py-2   font-bold hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
-                                <p onClick={() => { handleAddToWishList() }} className="px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Add to Wishlist  <FaRegHeart /></p>
-                            </div>
+                                <div className=' flex justify-between gap-3'>
+                                    <p className="px-5 py-2   font-bold hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
+                                    <p onClick={() => { handleAddToWishList() }} className=" px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
+                                </div>
                         </section>
+
+                        <div className="flex justify-between gap-3 mb-9 ">
+
+                            <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-md  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
+                                handleAddToCart();
+                            }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
+                            <Toaster />
+                        </div>
                     </main>
 
-                    <main >
-                        <main className='mb-8' >
-                            <p className="mb-3" ><b>Categories:</b><span className=" text-blue-500 cursor-pointer text-sm  " onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name}</span></p>
-                            <section className="flex justify-start items-center gap-3 ">
-                                <p><b>Socials: </b></p>
-                                <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
-                                    <SlSocialFacebook size={14} />
-                                </div>
-                                <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
-                                    <RiTwitterXFill size={14} />
-                                </div>
-                                <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
-                                    <FiLinkedin size={14} />
-                                </div>
-                                <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
-                                    <SlSocialPintarest size={14} />
-                                </div>
-                                <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
-                                    <BsInstagram size={14} />
-                                </div>
-                            </section>
-
-                        </main>
-
-
-                        <section className=' grid  grid-cols-4 gap-3 ' >
-                            <div className=' p-8 border h-[160px] flex justify-center items-center rounded-2xl w-full  cursor-pointer  '>
-                                <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                    <main  >
+                        <p className="mb-3" ><b>Categories:</b><span className=" text-blue-500 cursor-pointer text-sm  " onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name}</span></p>
+                        <section className="flex justify-start items-center gap-3 ">
+                            <p><b>Socials: </b></p>
+                            <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                <SlSocialFacebook size={14} />
                             </div>
-                            <div className=' p-8  border h-[160px] flex justify-center items-center rounded-2xl w-full   cursor-pointer'>
-                                <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                            <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                <RiTwitterXFill size={14} />
                             </div>
-                            <div className=' p-8  border h-[160px] flex justify-center items-center rounded-2xl w-full   cursor-pointer'>
-                                <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                            <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                <FiLinkedin size={14} />
                             </div>
-                            <div className=' p-8 border h-[160px] flex justify-center items-center rounded-2xl w-full   cursor-pointer'>
-                                <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                            <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                <SlSocialPintarest size={14} />
+                            </div>
+                            <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                <BsInstagram size={14} />
                             </div>
                         </section>
+
                     </main>
 
                 </section>

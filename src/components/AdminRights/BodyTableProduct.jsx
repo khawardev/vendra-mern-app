@@ -1,12 +1,23 @@
-import EditProduct from './EditProduct';
-import { useContext, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+// import EditProduct from './EditProduct';
+import { useContext, useEffect, useState } from 'react'
 import { Context } from "../../context/AppContext";
 import { useSelector } from 'react-redux';
 import { selectProducts } from '../../toolkit/Slices/ProductsSlice'
 import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
-    const { isHiddenEdit, setisHiddenEdit } = useContext(Context);
+    const Navigate = useNavigate();
+    const { setThankyou } = useContext(Context)
+    // const { isHiddenEdit, setisHiddenEdit } = useContext(Context);
+    const { searchText } = useContext(Context);
+    const [records, setRecords] = useState([])
+    // const [SingleProductId, setSingleProductId] = useState()
+    // console.log( SingleProductId)
+    
     const products = useSelector(selectProducts);
     const categories = useSelector(selectCategories);
     
@@ -19,11 +30,57 @@ const BodyTableProduct = () => {
     const currentItems = reversedProducts.slice(indexOfFirstItem, indexOfLastItem);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const isHiddenEditFunction = () => {
-        setisHiddenEdit(true);
+    useEffect(() => {
+        if (searchText.trim() == '') {
+            setRecords(currentItems);
+        } else {
+            setRecords(products.filter(product => product.name.toLowerCase().includes(searchText)))
+        }
+    }, [searchText || currentPage]);
+
+
+
+    const deleteProduct = (id, name) => {
+        console.log("id and name", id, name);
+        console.log("Button Clicked");
+
+        if (window.confirm(`Are you sure you want to delete ${name}`)) {
+            console.log("Entering");
+            fetch("http://localhost:5000/api/deleteProducts", {
+                method: "POST",
+                crossDomain: true,
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({
+                    productid: id,
+                }),
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    } else {
+                        throw new Error(`Failed to delete product: ${res.status}`);
+                    }
+                })
+                .then((data) => {
+                    if (data.status === "Ok") {
+                        const words = name.split(' ');
+                        const firstThreeWords = words.slice(0, 3).join(' ');
+                        Swal.fire(firstThreeWords, "Successfully deleted");
+                        setRecords((products) => products.filter(product => product._id !== id));
+                        setThankyou(true)
+                    } else {
+                        Swal.fire("Deletion Failed", "error");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error deleting product:", error);
+                });
+        }
     };
-
-
 
 
 
@@ -68,11 +125,13 @@ const BodyTableProduct = () => {
                         Actions
                     </th>
                 </tr>
+
             </thead>
+
             <tbody>
-                {currentItems?.map((product) => (
+                {records?.map((product) => (
                     <>
-                        <tr key={product._id} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <tr key={product?._id}  className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 ">
                             <td className="p-4 w-4">
                                 <div className="flex items-center">
                                     <input
@@ -129,11 +188,11 @@ const BodyTableProduct = () => {
 
                             <td className="px-4 py-3  "><div className=' line-clamp-1 '>{product.description}</div></td>
                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {isHiddenEdit && <EditProduct />}
+
 
                                 <div className="flex items-center space-x-4">
                                     <button
-                                        onClick={isHiddenEditFunction}
+                                        onClick={() => Navigate(`/edit/${product?._id}`)}
                                         type="button"
                                         data-drawer-target="drawer-update-product"
                                         data-drawer-show="drawer-update-product"
@@ -154,12 +213,12 @@ const BodyTableProduct = () => {
                                                 clipRule="evenodd"
                                             />
                                         </svg>
-                                        Edit
+                                        Update
 
                                     </button>
 
                                     <button
-
+                                        onClick={() => deleteProduct(product._id, product.name)}
                                         type="button"
                                         data-modal-target="delete-modal"
                                         data-modal-toggle="delete-modal"
@@ -187,7 +246,6 @@ const BodyTableProduct = () => {
 
                         </tr>
                     </>
-
                 ))}
 
                 {/* Pagination Controls */}

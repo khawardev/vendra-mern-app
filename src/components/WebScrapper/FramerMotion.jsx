@@ -35,7 +35,7 @@ const FramerMotion = () => {
 
 
             {products.map((product) => (
-                <AnimateWrapper transition={{ duration: 0.6, delay: product.id * .1 }} key={product.id}>
+                <AnimateWrapper transition={{ duration: 0.6, delay: product.id * .12 }} key={product.id}>
                     <p>{product.description}</p>
                 </AnimateWrapper>
             ))}

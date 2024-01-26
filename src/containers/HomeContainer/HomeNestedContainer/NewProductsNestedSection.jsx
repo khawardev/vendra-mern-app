@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import { BsCartCheck } from "react-icons/bs";
 
-const NewProductsNestedSection = ({ discount }) => {
+const NewProductsNestedSection = ({ discount, sliceProducts }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
@@ -52,12 +52,16 @@ const NewProductsNestedSection = ({ discount }) => {
         }
     }, [wishlistloading, cartloading]);
 
+
+    const displayedProducts = Array.isArray(products)
+        ? (sliceProducts ? [...products.slice(-8)] : [...products]).reverse()
+        : [];
+
     return (
         <>
             {products &&
                 <>
-                {(Array.isArray(products) ? products.slice(-8).reverse().map((product) => (
-                
+                {displayedProducts.map((product) => (
                         <article key={product._id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                             <main>
                                 <div>
@@ -90,12 +94,12 @@ const NewProductsNestedSection = ({ discount }) => {
                                 </div>
                                 <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}`)}>
                                     <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
-                                        <div className='Parent-product-Image-Hover   '>
+                                        <div className='Parent-product-Image-Hover flex justify-center items-center   '>
                                             {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
-                                            <img className='mix-blend-multiply   h-[10rem] ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
+                                            <img className='mix-blend-multiply   h-[10rem] w-full ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
                                         </div>
                                     </section>
-                                    <div className='upper'>
+                                    <div className='upper   '>
                                         <span className=' md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
                                         <p className=' md:leading-5 leading-4 mb-3  line-clamp-3  hover:cursor-pointer  '>{product.description}</p>
                                     </div>
@@ -143,7 +147,7 @@ const NewProductsNestedSection = ({ discount }) => {
                                 </span>
                             </main>
                         </article>
-                )) : [])}
+                ))}
                 </>
             }
 

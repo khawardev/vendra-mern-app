@@ -3,19 +3,20 @@ import { RiTwitterXFill } from 'react-icons/ri';
 import { FiLinkedin } from 'react-icons/fi';
 import { SlSocialPintarest } from 'react-icons/sl';
 import { BsInstagram } from 'react-icons/bs';
+import logo from '../../assets/images/logo.png';
 const Footer = () => {
     const items = Array.from({ length: 4 }, (_, index) => (
         <section key={index} >
             <p className=" mb-4 font-extrabold">Make Money with Us</p>
             <li className=" list-none ">
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell on Machic</span> <br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell Your Services on Machic</span><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell on Machic Business</span><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell Your Apps on Machic</span><br />
+                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell on Vendra</span> <br />
+                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell Your Services on Vendra</span><br />
+                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell on Vendra Business</span><br />
+                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell Your Apps on Vendra</span><br />
                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Become an Affilate</span><br />
                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Advertise Your Products</span ><br />
                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell - Publish with Us</span ><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Become an Machic Vendor</span ><br />
+                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Become an Vendra Vendor</span ><br />
             </li>
 
         </section>
@@ -55,8 +56,11 @@ const Footer = () => {
 
             <main className="w-11/12 m-auto md:my-16 my-10">
                 <main className="md:flex md:justify-between text-center items-center ">
-                    <section className='text-4xl font-extrabold   '>
-                        Vendra<sup className=' font-light text-sm'> &reg; </sup>
+
+                    <section className=' flex gap-1 items-center '>
+                        <img src={logo} width={35} />
+                        <p className='text-4xl font-extrabold  '>Vendra<sup className=' font-light text-sm'> &reg; </sup></p>
+                        
                     </section>
 
                     <section className="flex justify-center items-center gap-3 md:mt-0 mt-4">
@@ -79,8 +83,14 @@ const Footer = () => {
                 </main>
                 <hr className='my-6' />
                 <main className="flex justify-between items-center md:flex-row  flex-col-reverse ">
-                    <section className='text-sm md:mt-0 mt-4' >
-                        © Copyright 2023 All Right Reserved <span className=" text-yellow-600"><b>Vendra</b><sup className=' font-light text-sm'> &reg; </sup></span>
+                    <section className='text-sm md:mt-0 mt-4 flex items-center gap-2' >
+          
+                        © Copyright 2023 All Right Reserved
+                        <div className=' flex items-center gap-1'>
+                            <img src={logo} width={20} />
+                            <span className=" text-[#FFC21F]   "><b>Vendra</b><sup className=' font-light text-sm'> &reg; </sup></span>
+                        </div>
+                        
                     </section>
                     <section>
                         <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694950874/payment_mbisbh.png" alt="" />

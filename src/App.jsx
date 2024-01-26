@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from './components/header/Header';
 import { HomePage } from './pages/HomePage';
 import Footer from './components/footer/Footer';
-import AuthPage from './pages/AuthPage';
+import AuthPage from './pages/Authentication/AuthPage';
 import AdminPage from './pages/AdminPage';
 import OrderManage from './pages/OrderManage';
 import ContactPage from './pages/ContactPage';
@@ -17,13 +17,16 @@ import BackgroundRemoval from './pages/BackgroundRemoval';
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
 import FramerMotion from './components/WebScrapper/FramerMotion';
+import AboutPage from './pages/AboutPage';
+import ShopPage from './pages/ShopPage';
+import EditProduct from './components/AdminRights/EditProduct';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
       {/* <FramerMotion /> */}
-      <BrowserRouter>
+     <BrowserRouter>
         <AppContext> 
        <Header />
           <Routes>
@@ -39,12 +42,15 @@ function App() {
             <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />
             <Route exact path={`/cart`} element={<CartPage />} />
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
+            <Route exact path={`/about`} element={<AboutPage />} />
+            <Route exact path={`/shop`} element={<ShopPage />} />
+            <Route exact path={`/edit/:productid`} element={<EditProduct />} />
           </Routes>
           
           <Footer /> 
 
        </AppContext>
-      </BrowserRouter>  
+      </BrowserRouter>   
 
     </>
   )

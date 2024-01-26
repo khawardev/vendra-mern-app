@@ -14,17 +14,17 @@ const ContactPage = () => {
                </div>
             </section> */}
             <section className="my-10">
-                <p className=" text-2xl text-gray-600 mb-4">You can ask us questions !</p>
-                <p className=" md:text-5xl text-xl  font-bold leading-6  ">We are dedicated to providing exceptional support, assistance to our valued customer and partners  seeking information or assistance, our team is here to help.</p>
+                <p className=" text-2xl text-gray-400 mb-4 font-bold leading-6">You can ask us questions !</p>
+                <p className=" md:text-5xl text-xl mb-4 font-bold leading-6 ">We are dedicated to providing exceptional support, assistance to our valued customer and partners  seeking information or assistance, our team is here to help.</p>
             </section>
 
 
-            <section className='md:flex gap-32 items-center py-10 '>
-                <div className='w-full '>
+            <section className='md:flex gap-32 py-20 '>
+                <div className='w-full flex flex-col justify-between '>
                     <p className=' text-xl mb-10'>If you have any general inquiries or feedback for us, please dont hesitate to get in touch.insights help us enhance the Vendra Ecommerce experience for everyone.</p>
-                    <img src={contact} className='rounded-xl' alt="" />
+                    <img src={contact}  alt="" />
                 </div>
-                <div className='w-full  md:bg-gray-100 md:p-14  rounded-xl md:mt-0 mt-10'>
+                <div className='w-full  md:bg-gray-100 md:p-14   md:mt-0 mt-10'>
                     <p className='text-3xl  font-extrabold '>Get in Touch</p>
                     <p className='text-xl text-gray-600'>If you have any query feel free to Contact us</p>
                     <form action="">
@@ -58,7 +58,7 @@ const ContactPage = () => {
 
 
 
-                        <button type="submit" className='px-4   py-2 bg-yellow-500 rounded-tr-full  rounded-br-full rounded-bl-full text-white font-bold'>Send Messege</button>
+                        <button type="submit" className='px-4   py-2 bg-yellow-500 rounded-full   text-white font-bold'>Send Messege</button>
 
                     </form>
                 </div>

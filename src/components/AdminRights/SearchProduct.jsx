@@ -1,8 +1,11 @@
+import {  useContext } from 'react'; 
+import { Context } from "../../context/AppContext";
 
 const SearchProduct = () => {
-
-
-
+    const { searchText, setSearchText } = useContext(Context);
+    const handleInputChange = (event) => {
+        setSearchText(event.target.value.toLowerCase());
+    };
 
     
     return (
@@ -18,8 +21,7 @@ const SearchProduct = () => {
                             className="w-5 h-5 text-gray-500 dark:text-gray-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                                 fillRule="evenodd"
                                 clipRule="evenodd"
@@ -28,11 +30,13 @@ const SearchProduct = () => {
                         </svg>
                     </div>
                     <input
+                        value={searchText}
+                        onChange={handleInputChange}
                         type="text"
                         id="simple-search"
                         placeholder="Search for products"
                         required=""
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     />
                 </div>
             </form>

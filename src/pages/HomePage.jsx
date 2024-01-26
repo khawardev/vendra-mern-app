@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import ApiController from '../../components/ApiController/ApiController';
 // import WebScrapper from "../../components/WebScrapper/WebScrapper"
 /* eslint-disable no-unused-vars */
@@ -9,12 +10,13 @@ import NewProducts from '../containers/HomeContainer/NewProducts';
 import ServicesSection from '../containers/HomeContainer/ServicesSection';
 import TrendingProducts from '../containers/HomeContainer/TrendingProducts';
 import HeroSection from '../containers/HomeContainer/HeroSection';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setProducts } from '../toolkit/Slices/ProductsSlice';
 import { setCategories } from '../toolkit/Slices/CategoriesSlice';
 import { Context } from '../context/AppContext';
 import { setUser } from '../toolkit/Slices/UserSlice';
+import { setSingleUser } from '../toolkit/Slices/UserSlice';
 
 
 export const HomePage = () => {
@@ -25,18 +27,40 @@ export const HomePage = () => {
             const productsResponse = await fetch('http://localhost:5000/api/products');
             const categoriesResponse = await fetch('http://localhost:5000/api/categories');
             const UserinfoResponse = await fetch('http://localhost:5000/getAllUser');
+         
+
+
             const productsData = await productsResponse.json();
             const categoriesData = await categoriesResponse.json();
             const UserinfoData = await UserinfoResponse.json();
 
+
             // Dispatch actions to update the store
             dispatch(setProducts(productsData));
             dispatch(setCategories(categoriesData));
-            dispatch(setUser(UserinfoData.data));
+            dispatch(setUser(UserinfoData?.data));
         };
 
         fetchData();
-    }, [dispatch, Thankyou]);
+    }, [dispatch || Thankyou]);
+    
+    const token = localStorage.getItem('token');
+    console.log("🚀 ~ HomePage ~ token:", token)
+    useEffect(() => {
+        const fetchData = async () => {
+            const SingleUserinfoResponse = await fetch('http://localhost:5000/data', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            const userData = await SingleUserinfoResponse.json();
+            dispatch(setSingleUser(userData?.email));
+            console.log(userData.email)
+        };
+
+        fetchData();
+    }, [token]);
 
     return (
         <>

@@ -24,7 +24,8 @@ button.learn-more .circle {
  margin: 0;
  width: 2.5rem;
  height: 2.5rem;
- background: rgb(37 99 235);
+ background: rgba(191 219 254);
+ background-color: rgb(219 234 254);
  border-radius: 1.625rem;
 }
 
@@ -53,8 +54,8 @@ button.learn-more .circle .icon.arrow::before {
  right: 0.0625rem;
  width: 0.625rem;
  height: 0.625rem;
- border-top: 0.125rem solid #fff;
- border-right: 0.125rem solid #fff;
+ border-top: 0.125rem solid rgb(29 78 216);
+ border-right: 0.125rem solid rgb(29 78 216);
  transform: rotate(45deg);
 }
 
@@ -76,10 +77,10 @@ button:hover .circle {
 }
 
 button:hover .circle .icon.arrow {
- background: #fff;
+ background: rgb(29 78 216);
  transform: translate(1rem, 0);
 }
 
 button:hover .button-text {
- color: #fff;
+ color:rgb(29 78 216);
 }

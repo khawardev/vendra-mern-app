@@ -56,20 +56,20 @@ function HeroSection() {
                             </section>
                             <section className='text-black  absolute top-10 md:top-40 md:left-20  p-4 '>
                                 <div className='flex'>
-                                    <p className='md:px-4 px-3  md:py-1 text-sm items-center bg-yellow-500 rounded-full'>{slide.tag}</p>
+                                    <p className='md:px-4 px-3  md:py-1 text-sm items-center bg-yellow-500 rounded-full '>{slide.tag}</p>
                                 </div>
-                                <div className='md:mt-6 mt-3 md:leading-5 leading-3'>
-                                    <h1 className='md:text-4xl text-xl font-extralight '>{slide.tagline1}</h1>
-                                    <h1 className='md:text-6xl text-3xl font-extrabold leading-7'>{slide.tagline2}</h1>
+                                <div className='md:mt-6 mt-2 md:leading-5 leading-2'>
+                                    <h1 className='md:text-3xl text-xl   leading-2  '>{slide.tagline1}</h1>
+                                    <h1 className='md:text-5xl text-3xl my-2 font-extrabold leading-2'>{slide.tagline2}</h1>
+                                    <p className='md:block hidden  text-xl   leading-2  font-thin'>{slide.description}</p>
                                 </div>
-                                <p className='md:block hidden  text-xl my-3 font-thin'>{slide.description}</p>
 
 
-                                <button className="learn-more">
+                                <button className="learn-more my-5">
                                     <span className="circle" aria-hidden="true">
                                         <span className="icon arrow"></span>
                                     </span>
-                                    <button className="button-text ">
+                                    <button className="button-text   ">
                                         {slide.buttonLabel}
                                     </button>
                                 </button>

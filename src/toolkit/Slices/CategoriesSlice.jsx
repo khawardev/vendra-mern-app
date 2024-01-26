@@ -8,7 +8,7 @@ const categoriesSlice = createSlice({
     reducers: {
         setCategories: (state, action) => {
             state.categoriesitems = action.payload;
-            localStorage.setItem('categories', JSON.stringify(state.categoriesitems));
+            // localStorage.setItem('categories', JSON.stringify(state.categoriesitems));
         },
     },
 });

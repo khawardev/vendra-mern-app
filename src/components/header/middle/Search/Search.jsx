@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux';
 
 const Search = ({ setShowSearch }) => {
     const products = useSelector(selectProducts);
-    const Navigate = useNavigate();
     const [records, setRecords] = useState([])
+    const Navigate = useNavigate();
   
 
     const Filter = (event) => {

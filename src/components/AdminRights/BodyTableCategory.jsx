@@ -85,7 +85,7 @@ const BodyTableCategory = () => {
                                     {category.name}
                                 </span>
                             </td>
-                            <td scope="row" className="px-4 py-3   w-2/5  font-medium text-gray-900 dark:text-white ">
+                        <td scope="row" className="px-4 py-3  w-1/5  font-medium text-gray-900 dark:text-white ">
                                 <div className="flex items-center mr-3 line-clamp-1  ">
                                     <p className='flex text-sm justify-center text-center text-gray-400'>{products.filter(product => product?.category === category._id).length} • Products</p>
 

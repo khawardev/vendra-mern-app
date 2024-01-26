@@ -1,6 +1,25 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import HCaptcha from "react-hcaptcha";
+
+import React from "react";
+// import { GoogleLogin } from "react-google-login";
+
+//   export const GoogleSignIn = () => {
+//   const responseGoogle = (response) => {
+//     console.log(response);
+//   };
+
+//   return (
+//     <GoogleLogin
+//       clientId="1079714799710-3mu5vcjsujbhcvkfl61tpnrhs6gpirr2.apps.googleusercontent.com"
+//       buttonText="Sign in with Google"
+//       onSuccess={responseGoogle}
+//       onFailure={responseGoogle}
+//       cookiePolicy="single_host_origin"
+//     />
+//   );
+// };
 const AuthPage = () => {
   const [isRegistering, setIsRegistering] = useState(true);
   const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
@@ -275,14 +294,20 @@ const AuthPage = () => {
          
           </>
         )}
-   <div className="mb-7">
+   <div className="mb-1">
               <HCaptcha
                 sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
                 onVerify={handleHCaptchaVerify}
                 size="normal"
               />
             </div>
-            
+            <div className="mb-1">
+
+          
+    </div>
+    {/* <div className="mb-7">
+          <GoogleSignIn />
+        </div> */}
         {/* Registration */}
         {isRegistering ? (
           <div>

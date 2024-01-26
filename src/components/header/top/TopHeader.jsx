@@ -15,6 +15,8 @@ const TopHeader = () => {
                     {/* <ul className=' px-3 py-1 bg-gray-200  hover:bg-gray-300 cursor-pointer rounded-full' onClick={() => Navigate("/add-category")}>Add Category</ul> */}
                     {/* <ul className=' px-3 py-1 bg-gray-200  hover:bg-gray-300 cursor-pointer rounded-full flex gap-1' onClick={() => Navigate("/add-categoryprodcuts")}> Add Products</ul> */}
                     <ul className=' cursor-pointer text-indigo-700 font-bold bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-4 py-2 rounded-md ' onClick={() => Navigate("/uploadcare")}> Uploadcare</ul>
+                    <ul className=' cursor-pointer text-indigo-700 font-bold bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-4 py-2 rounded-md ' onClick={() => Navigate("/OrderManage")}> OrderManage</ul>
+
                 </li>}
 
 

@@ -150,8 +150,15 @@ export default function Rightbar() {
     return (
         <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
             <div className="auth-inner" style={{ width: "auto" }}>
-                <p className="my-4 text-2xl font-extrabold ml-1"> Product Details <span><button onClick={logOut} className="font-small bg-green-500 rounded py-1 px-2"  >Logout</button></span> </p>
-                <button></button>
+            <div className="flex justify-between items-center mb-4">
+                <p className="my-4 text-2xl font-extrabold ml-1">
+                    Product Details
+                    </p>
+
+                        <button onClick={logOut} className="font-small bg-red-500 rounded py-1 px-2">
+                            Logout
+                        </button>
+                        </div>
                 {Array.isArray(productData) && productData.length === 0 ?  (
                     <p>Currently No Product add in database</p>
                     

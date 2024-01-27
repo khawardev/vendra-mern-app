@@ -178,12 +178,15 @@ export default function Rightbar({ userData }) {
     return (
         <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-10 my-6">
             <div className="auth-inner" style={{ width: "auto" }}>
-                <section className="flex justify-between items-center">
-
-                    <p className="my-4 text-2xl font-extrabold ml-1"> Registered Users </p>
-                    <button onClick={logOut} id="bottone1" className='text-white p-5 font-bold'  >Logout</button>
-                </section>
-                <button></button>
+                <div className="flex justify-between items-center mb-4">
+                <p className="my-4 text-2xl font-extrabold ml-1">
+                <p className="my-4 text-2xl font-extrabold ml-1"> Registered Users </p>
+                    </p>
+                        <button onClick={logOut} className="font-small bg-red-500 rounded py-1 px-2">
+                            Logout
+                        </button>
+                        </div>
+         
                 {data.length === 0 ? (
                     <p>No data available in table</p>
                 ) : (

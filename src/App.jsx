@@ -7,6 +7,7 @@ import Footer from './components/footer/Footer';
 import AuthPage from './pages/Authentication/AuthPage';
 import AdminPage from './pages/AdminPage';
 import OrderManage from './pages/OrderManage';
+import ContactManage  from './pages/ContactManage';
 import ContactPage from './pages/ContactPage';
 import UserPage from './pages/UserPage';
 import UploadcarePage from './pages/UploadcarePage';
@@ -37,6 +38,7 @@ function App() {
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/uploadcare' element={<UploadcarePage />} />
             <Route path="/OrderManage" Component ={OrderManage} />
+            <Route path="/ContactManage" Component ={ContactManage} />
             <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
             <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
             <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />

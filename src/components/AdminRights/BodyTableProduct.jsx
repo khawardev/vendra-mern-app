@@ -7,14 +7,19 @@ import { selectProducts } from '../../toolkit/Slices/ProductsSlice'
 import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaFire } from "react-icons/fa";
+import { MdDiscount } from "react-icons/md";
+import { useDispatch } from 'react-redux';
+import { setbestSelling } from '../../toolkit/Slices/BestSellingSlice';
 
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
+    const dispatch = useDispatch();
     const Navigate = useNavigate();
     const { setThankyou } = useContext(Context)
-    // const { isHiddenEdit, setisHiddenEdit } = useContext(Context);
     const { searchText } = useContext(Context);
     const [records, setRecords] = useState([])
+    // const { isHiddenEdit, setisHiddenEdit } = useContext(Context);
     // const [SingleProductId, setSingleProductId] = useState()
     // console.log( SingleProductId)
     
@@ -38,11 +43,20 @@ const BodyTableProduct = () => {
         }
     }, [searchText || currentPage]);
 
-
+    const handleAddToWishList = (id, name, desc, price, imageurl, quantity) => {
+        const productData = {
+            id: id,
+            name: name,
+            desc: desc,
+            price: price,
+            imageurl: imageurl,
+            quantity: quantity,
+        };
+        dispatch(setbestSelling([productData]));
+        // setwishlistloading(true);
+    };
 
     const deleteProduct = (id, name) => {
-        console.log("id and name", id, name);
-        console.log("Button Clicked");
 
         if (window.confirm(`Are you sure you want to delete ${name}`)) {
             console.log("Entering");
@@ -191,6 +205,8 @@ const BodyTableProduct = () => {
 
 
                                 <div className="flex items-center space-x-4">
+                                    <div className=' space-y-2'>
+
                                     <button
                                         onClick={() => Navigate(`/edit/${product?._id}`)}
                                         type="button"
@@ -198,7 +214,7 @@ const BodyTableProduct = () => {
                                         data-drawer-show="drawer-update-product"
                                         aria-controls="drawer-update-product"
                                         className="py-2 px-3 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                    >
+                                        >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-4 w-4 mr-2 -ml-0.5"
@@ -223,22 +239,62 @@ const BodyTableProduct = () => {
                                         data-modal-target="delete-modal"
                                         data-modal-toggle="delete-modal"
                                         className="flex items-center transition-all ease-in text-red-700 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-                                    >
+                                        >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-4 w-4 mr-2 -ml-0.5"
                                             viewBox="0 0 20 20"
                                             fill="currentColor"
                                             aria-hidden="true"
-                                        >
+                                            >
                                             <path
                                                 fillRule="evenodd"
                                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                 clipRule="evenodd"
-                                            />
+                                                />
                                         </svg>
                                         Delete
                                     </button>
+                                                </div>
+                                    <div className=' space-y-2'>
+
+                                        <button
+                                            onClick={() => {
+                                                handleAddToWishList(
+                                                    product._id,
+                                                    product.name,
+                                                    product.description,
+                                                    product.price,
+                                                    product.image,
+                                                    1
+                                                );
+                                                // setwishlistTragetid(product._id);
+                                            }}
+                                            // onClick={() => deleteProduct(product._id, product.name)}
+                                            type="button"
+                                            data-modal-target="delete-modal"
+                                            data-modal-toggle="delete-modal"
+                                            className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+                                        >
+                                            <FaFire/>
+                                            
+                                             Best Sell
+                                        </button>
+                                        <button
+                                            onClick={() => Navigate(`/edit/${product?._id}`)}
+                                            type="button"
+                                            data-drawer-target="drawer-update-product"
+                                            data-drawer-show="drawer-update-product"
+                                            aria-controls="drawer-update-product"
+                                            className="flex items-center gap-2 transition-all ease-in text-green-700 hover:text-white border border-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+
+                                            // className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                        >
+                                            <MdDiscount />
+                                            Discount
+
+                                        </button>
+                                    </div>
 
                                 </div>
 

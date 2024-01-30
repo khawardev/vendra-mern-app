@@ -77,7 +77,7 @@ export const HomePage = () => {
                 <div className='grid md:grid-cols-4 grid-cols-1 md:gap-6'>
                     <ServicesSection />
                     <div className="col-span-3">
-                        <NewProducts viewmore={true} title='New Products' grid={'lg:grid-cols-4 md:grid-cols-3 grid-cols-2'} NewProductBanner={true} />
+                        <NewProducts  url='newProducts' viewmore={true} title='New Products' grid={'lg:grid-cols-4 md:grid-cols-3 grid-cols-2'} NewProductBanner={true} />
                     </div>
                 </div>
             </section>

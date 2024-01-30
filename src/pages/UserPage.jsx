@@ -104,7 +104,7 @@ const UserPage = () => {
 
       <main className=" gap-6">
         <section className=" border  md:px-10 md:py-10 px-5 py-10 w-full rounded-xl ">
-          <p className="text-gray-500  ">PERSONAL</p>
+          <p className="text-gray-500  ">PERSONAL DETAILS</p>
           <p className="text-gray-500  my-4"> <span className=" text-black font-bold">EMAIL: </span> <span className='ml-3'>{foundUserDetails?.email}</span> </p>
 
           <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USERNAME: </span> <span className='ml-3'>{foundUserDetails?.username}</span>  </p>

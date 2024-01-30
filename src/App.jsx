@@ -20,6 +20,8 @@ import FramerMotion from './components/WebScrapper/FramerMotion';
 import AboutPage from './pages/AboutPage';
 import ShopPage from './pages/ShopPage';
 import EditProduct from './components/AdminRights/EditProduct';
+import TrendingProductsPage from './pages/TrendingProductsPage';
+import DiscountedProductPage from './pages/DiscountedProductsPage';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -36,7 +38,7 @@ function App() {
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/uploadcare' element={<UploadcarePage />} />
-            <Route path="/OrderManage" Component ={OrderManage} />
+            <Route path="/OrderManage" Component={OrderManage} />
             <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
             <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
             <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />
@@ -45,6 +47,8 @@ function App() {
             <Route exact path={`/about`} element={<AboutPage />} />
             <Route exact path={`/shop`} element={<ShopPage />} />
             <Route exact path={`/edit/:productid`} element={<EditProduct />} />
+            <Route exact path={`/bestselling`} element={<TrendingProductsPage />} />
+            <Route exact path={`/discount`} element={<DiscountedProductPage />} />
           </Routes>
           
           <Footer /> 

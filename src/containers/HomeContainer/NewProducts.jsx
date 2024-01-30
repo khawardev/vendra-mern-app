@@ -7,10 +7,26 @@ import CategoryProductsNestedSection from './HomeNestedContainer/CategoryProduct
 import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from 'lucide-react';
-
-const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts, viewmore, Related, sliceProducts }) => {
+import BestSellingNestedSection from './HomeNestedContainer/BestSellingNestedSection';
+import DiscountedNestedSection from './HomeNestedContainer/DiscountedNestedSection';
+const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling }) => {
     const Navigate = useNavigate();
-
+    const URL = url === 'bestselling' ? '/bestselling' : url === 'discount' ? '/discount' : '/shop';
+    // const sectionToRender = viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
+    //     : viewmore === 'discount' ? <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />
+    //         : viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
+    //             : viewmore === 'discount' ? <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />  
+                    
+                    
+    // if (viewmore === 'newProducts') {
+    //     sectionToRender = <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />;
+    // } else if (viewmore === 'discount') {
+    //     sectionToRender = <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />;
+    // } else if (viewmore === 'bestselling') {
+    //     sectionToRender = <BestSellingNestedSection sliceProducts={sliceProducts === false ? false : true} />;
+    // } else {
+    //     sectionToRender = <CategoryProductsNestedSection filteredProducts={filteredProducts} />;
+    // }
 
     return (
         <>
@@ -25,25 +41,47 @@ const NewProducts = ({ title, NewProductBanner, grid, discount, filteredProducts
                                             {<ChevronLeft size={20} />}
                                         </div>
                                     }
-                                    <p className="text-2xl font-extrabold whitespace-nowrap ">  {title}</p>
+                                    <p className="text-2xl font-extrabold whitespace-nowrap ">{title}</p>
                                 </div>
-                                {viewmore && <p className="text-sm cursor-pointer  text-blue-500 flex gap-1 items-center whitespace-nowrap"> View more <BsArrowRightShort size={20} /> </p>}
+                            {viewmore && <p className="text-sm cursor-pointer  text-blue-600 flex gap-1 items-center whitespace-nowrap hover:bg-blue-100  transition-all ease-in px-2 py-1 rounded-full" onClick={() => Navigate(URL)}> View more <BsArrowRightShort size={20} /> </p>}
 
                             </section>
                             <hr />
                         </>
 
                     }
+                    
+{/* 
                     {viewmore ?
                         <section className={`my-7 grid  ${grid} gap-7 `}>
-                            <NewProductsNestedSection sliceProducts={sliceProducts===false ? false : true} discount={discount} />
+                            <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
                         </section>
                         :
                         <section className={`my-7 grid ${grid} gap-7`}>
                             <CategoryProductsNestedSection filteredProducts={filteredProducts} />
                         </section>
 
-                    }
+
+                        <section className={`my-7 grid  ${grid} gap-7 `}>
+                            <BestSellingNestedSection />
+                        </section> :
+                        <section className={`my-7 grid  ${grid} gap-7 `}>
+                            <DiscountedNestedSection />
+                        </section>
+                    } */}
+
+                    
+
+                    <section className={`my-7 grid ${grid} gap-7`}>
+                        {url === 'newProducts'
+                            ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
+                            : url === 'discount'
+                                ? <DiscountedNestedSection  />
+                                : url === 'bestselling'
+                                    ? <BestSellingNestedSection />
+                                    : <CategoryProductsNestedSection filteredProducts={filteredProducts} />
+                        }
+                    </section>
 
 
                 </main>

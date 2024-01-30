@@ -1,5 +1,4 @@
-
-input[type=file] {
+input[type="file"] {
   width: 70%;
   max-width: 100%;
   color: #444;
@@ -8,7 +7,7 @@ input[type=file] {
   border-radius: 40px;
   border: 1px solid #555;
 }
-input[type=file]::file-selector-button {
+input[type="file"]::file-selector-button {
   margin-right: 20px;
   border: none;
   background: rgb(234 179 8);
@@ -16,10 +15,10 @@ input[type=file]::file-selector-button {
   border-radius: 40px;
   color: #fff;
   cursor: pointer;
-  transition: background .2s ease-in-out;
+  transition: background 0.2s ease-in-out;
 }
 
-input[type=file]::file-selector-button:hover {
+input[type="file"]::file-selector-button:hover {
   background: rgb(234 179 8);
 }
 
@@ -36,7 +35,7 @@ input[type=file]::file-selector-button:hover {
   border: 2px dashed #555;
   color: #444;
   cursor: pointer;
-  transition: background .2s ease-in-out, border .2s ease-in-out;
+  transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
 }
 
 .drop-container:hover {
@@ -53,5 +52,22 @@ input[type=file]::file-selector-button:hover {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-  transition: color .2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.glassmorphism {
+  background: rgba(134, 239, 173, 0.685);
+  box-shadow: 0 8px 32px 0 rgba(134, 239, 172, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  
+
+//   background: rgba( 255, 255, 255, 0.25 );
+// box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+// backdrop-filter: blur( 4px );
+// -webkit-backdrop-filter: blur( 4px );
+// border-radius: 10px;
+  // border-4 border-gray-100    bg-green-300 
+  // border-radius: 10px;
 }

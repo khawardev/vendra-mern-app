@@ -28,8 +28,9 @@ const ShopPage = () => {
             </main>
             <hr className="my-3 " />
 
+            {/* <NewProducts url='shop' viewmore={true} title='New Products' grid={'lg:grid-cols-4 md:grid-cols-3 grid-cols-2'} NewProductBanner={true} /> */}
 
-            <NewProducts sliceProducts={false} viewmore={true}  grid={' grid-cols-5 '} NewProductBanner={false} />
+            <NewProducts url='shop' sliceProducts={false} viewmore={true}  grid={' grid-cols-5 '} NewProductBanner={false} />
         </main>
 
     )

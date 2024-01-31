@@ -5,6 +5,7 @@ import cartReducer from './Slices/CartSlice';
 import wishlistReducer from './Slices/WishlistSlice';
 import UserReducer from './Slices/UserSlice';
 import BestSellingReducer from './Slices/BestSellingSlice';
+import DicountReducer from './Slices/DicountSlice';
 
 const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
         wishlist: wishlistReducer,
         user: UserReducer,
         bestSelling: BestSellingReducer,
+        discount: DicountReducer,
     },
 });
 

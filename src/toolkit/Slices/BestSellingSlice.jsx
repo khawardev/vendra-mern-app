@@ -17,7 +17,7 @@ const BestSellingSlice = createSlice({
 });
 
 export const { setbestSelling } = BestSellingSlice.actions;
-export const selectsetbestSelling = (state) => state.bestSelling.bestSellingitems;
+export const selectbestSelling = (state) => state.bestSelling.bestSellingitems;
 export default BestSellingSlice.reducer;
 
 

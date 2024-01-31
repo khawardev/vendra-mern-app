@@ -56,18 +56,14 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .glassmorphism {
-  background: rgba(134, 239, 173, 0.685);
-  box-shadow: 0 8px 32px 0 rgba(134, 239, 172, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-
-  
-
-//   background: rgba( 255, 255, 255, 0.25 );
-// box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-// backdrop-filter: blur( 4px );
-// -webkit-backdrop-filter: blur( 4px );
-// border-radius: 10px;
-  // border-4 border-gray-100    bg-green-300 
-  // border-radius: 10px;
+  background-color: rgba(79, 239, 138, 0.50);
+  // background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.2px);
+  -webkit-backdrop-filter: blur(1.2px);
+  // border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+
+

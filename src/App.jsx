@@ -7,7 +7,7 @@ import Footer from './components/footer/Footer';
 import AuthPage from './pages/Authentication/AuthPage';
 import AdminPage from './pages/AdminPage';
 import OrderManage from './pages/OrderManage';
-import ContactManage  from './pages/ContactManage';
+import ContactManage from './pages/ContactManage';
 import ContactPage from './pages/ContactPage';
 import UserPage from './pages/UserPage';
 import UploadcarePage from './pages/UploadcarePage';
@@ -29,9 +29,9 @@ function App() {
   return (
     <>
       {/* <FramerMotion /> */}
-     <BrowserRouter>
-        <AppContext> 
-       <Header />
+      <BrowserRouter>
+        <AppContext>
+          <Header />
           <Routes>
             <Route exact path='/' element={<HomePage />} />
             <Route exact path='/account' element={<AuthPage />} />
@@ -39,15 +39,12 @@ function App() {
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/uploadcare' element={<UploadcarePage />} />
-<<<<<<< HEAD
             <Route path="/OrderManage" Component={OrderManage} />
-=======
-            <Route path="/OrderManage" Component ={OrderManage} />
-            <Route path="/ContactManage" Component ={ContactManage} />
->>>>>>> d0614adc64d49bd1395800400fce9cdedfa03578
+            <Route path="/OrderManage" Component={OrderManage} />
+            <Route path="/ContactManage" Component={ContactManage} />
             <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
             <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
-            <Route exact path={`/viewsingleproduct/:productid`} element={<ViewSingleProduct />} />
+            <Route exact path={`/viewsingleproduct/:productid/:BestSell/:Discount`} element={<ViewSingleProduct />} />
             <Route exact path={`/cart`} element={<CartPage />} />
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
             <Route exact path={`/about`} element={<AboutPage />} />
@@ -56,11 +53,11 @@ function App() {
             <Route exact path={`/bestselling`} element={<TrendingProductsPage />} />
             <Route exact path={`/discount`} element={<DiscountedProductPage />} />
           </Routes>
-          
-          <Footer /> 
 
-       </AppContext>
-      </BrowserRouter>   
+          <Footer />
+
+        </AppContext>
+      </BrowserRouter>
 
     </>
   )

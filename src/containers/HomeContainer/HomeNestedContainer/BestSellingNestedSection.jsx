@@ -8,7 +8,7 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { setbestSelling } from '../../../toolkit/Slices/BestSellingSlice'
+import { selectbestSelling } from '../../../toolkit/Slices/BestSellingSlice'
 import BackgroundRemoval from '../../../pages/BackgroundRemoval';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../toolkit/Slices/CartSlice';
@@ -16,12 +16,12 @@ import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import { BsCartCheck } from "react-icons/bs";
+import { FaFire } from "react-icons/fa";
 
 const BestSellingNestedSection = ({ sliceProducts }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
-    const bestSellingproduct = useSelector(setbestSelling);
-    const bestSelling = bestSellingproduct?.payload?.products?.productitems;
+    const bestSelling = useSelector(selectbestSelling);
     const [wishlistTragetid, setwishlistTragetid] = useState();
     const [cartTragetid, setcartTragetid] = useState();
     const [wishlistloading, setwishlistloading] = useState(false);
@@ -62,22 +62,24 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
         <>
             <>
                 {displayedProducts.map((product) => (
-                    <article key={product._id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
+                    <article key={product?.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                         <main>
                             <div>
-                               
+                                <div className='md:top-[1rem] top-[0.40rem] flex justify-center items-center gap-1   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100   font-bold text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
+                                    <FaFire size={14} />  Best Selling
+                                </div>
                                 <div onClick={() => {
                                     handleAddToWishList(
-                                        product._id,
+                                        product.id,
                                         product.name,
-                                        product.description,
+                                        product.desc,
                                         product.price,
-                                        product.image,
+                                        product.imageurl,
                                         1
                                     );
-                                    setwishlistTragetid(product._id);
+                                    setwishlistTragetid(product.id);
                                 }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border-4 border-gray-100  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
-                                    {wishlistloading && wishlistTragetid == product._id ? (
+                                    {wishlistloading && wishlistTragetid == product.id ? (
                                         <HiOutlineCheck size={20} />
                                     ) : (
                                         <VscHeart size={20} />
@@ -85,16 +87,16 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
                                 </div>
 
                             </div>
-                            <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}`)}>
+                            <section onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${true}/${false}`)}>
                                 <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
                                     <div className='Parent-product-Image-Hover flex justify-center items-center   '>
                                         {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
-                                        <img className='mix-blend-multiply   h-[10rem] w-full ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
+                                        <img className='mix-blend-multiply   h-[10rem] w-full ' src={`https://ucarecdn.com/${product?.imageurl}/`} alt="" />
                                     </div>
                                 </section>
                                 <div className='upper   '>
                                     <span className=' md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-5 leading-4 mb-3  line-clamp-3  hover:cursor-pointer  '>{product.description}</p>
+                                    <p className=' md:leading-5 leading-4 mb-3  line-clamp-3  hover:cursor-pointer  '>{product.desc}</p>
                                 </div>
                             </section>
 
@@ -109,9 +111,9 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
 
                                 <div onClick={() => {
                                     handleAddToCart(
-                                        product?._id,
+                                        product?.id,
                                         product?.name,
-                                        product?.description,
+                                        product?.desc,
                                         product?.price,
                                         product?.image,
                                         1
@@ -119,7 +121,7 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
                                     setcartTragetid(product._id);
                                 }} className='p-2 rounded-lg border hover:bg-gray-100 cursor-pointer'>
 
-                                    {cartloading && cartTragetid == product._id ? (
+                                    {cartloading && cartTragetid == product.id ? (
                                         <BsCartCheck size={20} />
                                     ) : (
                                         <BsCart2 size={20} />

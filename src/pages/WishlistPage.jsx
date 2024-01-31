@@ -138,7 +138,7 @@ const WishlistPage = () => {
                                                 type="button"
                                                 data-modal-target="delete-modal"
                                                 data-modal-toggle="delete-modal"
-                                                className="flex items-center text-red-600 hover:bg-red-100 transition-all ease-in  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-md text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                                className="flex items-center text-red-600 hover:bg-red-100 transition-all ease-in  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"

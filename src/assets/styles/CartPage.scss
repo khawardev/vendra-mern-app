@@ -1,5 +1,5 @@
 .cart-span {
-  transition: transform 0.2s ease-in-out; 
+  transition: transform 0.18s ease-in-out; 
   transform: translateX(0);
 }
 
@@ -8,8 +8,6 @@
   transform: translateX(2px); /* You can adjust the translation as per your requirement */
 }
 
-
-
  
 .Empty-cart {
   svg {
@@ -17,3 +15,16 @@
     opacity: 0.1;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

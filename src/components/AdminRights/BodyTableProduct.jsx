@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 // import EditProduct from './EditProduct';
 import { useContext, useEffect, useState } from 'react'
@@ -10,10 +11,28 @@ import Swal from "sweetalert2";
 import { FaFire } from "react-icons/fa";
 import { MdDiscount } from "react-icons/md";
 import { useDispatch } from 'react-redux';
+import { selectbestSelling } from '../../toolkit/Slices/BestSellingSlice';
+import { selectdiscount } from '../../toolkit/Slices/DicountSlice';
 import { setbestSelling } from '../../toolkit/Slices/BestSellingSlice';
+import { setdiscount } from '../../toolkit/Slices/DicountSlice';
+import toast, { Toaster } from 'react-hot-toast';
+import { IoClose } from "react-icons/io5";
+import { IoSaveOutline } from "react-icons/io5";
+import { CiSaveUp2 } from "react-icons/ci";
+import { MdSaveAlt } from "react-icons/md";
 
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
+
+
+    const bestSelling = useSelector(selectbestSelling);
+    const discount = useSelector(selectdiscount);
+
+
+
+
+
+
     const dispatch = useDispatch();
     const Navigate = useNavigate();
     const { setThankyou } = useContext(Context)
@@ -22,10 +41,10 @@ const BodyTableProduct = () => {
     // const { isHiddenEdit, setisHiddenEdit } = useContext(Context);
     // const [SingleProductId, setSingleProductId] = useState()
     // console.log( SingleProductId)
-    
+
     const products = useSelector(selectProducts);
     const categories = useSelector(selectCategories);
-    
+
 
     const [currentPage, setCurrentPage] = useState(1);
     const reversedProducts = [...products].reverse();
@@ -43,7 +62,28 @@ const BodyTableProduct = () => {
         }
     }, [searchText || currentPage]);
 
-    const handleAddToWishList = (id, name, desc, price, imageurl, quantity) => {
+    // const handleAddToBestSell = (id, name, desc, price, imageurl, quantity) => {
+    //     toast.success(<span style={{ fontWeight: 'bold' }}>Added to Best Selling Products</span>);
+
+    //     const productData = {
+    //         id: id,
+    //         name: name,
+    //         desc: desc,
+    //         price: price,
+    //         imageurl: imageurl,
+    //         quantity: quantity,
+    //     };
+
+
+
+
+    //     dispatch(setbestSelling([productData]));
+    //     // setwishlistloading(true);
+    // };
+
+
+    const handleAddToBestSell = (id, name, desc, price, imageurl, quantity) => {
+
         const productData = {
             id: id,
             name: name,
@@ -52,9 +92,23 @@ const BodyTableProduct = () => {
             imageurl: imageurl,
             quantity: quantity,
         };
-        dispatch(setbestSelling([productData]));
-        // setwishlistloading(true);
+        const isProductInBestSelling = bestSelling.some(item => item?.id === productData.id);
+        // const isProductInBestSelling = bestSelling;
+
+        if (isProductInBestSelling) {
+            toast.error(<span style={{ fontWeight: 'bold' }}>Product already in Best Selling Products</span>);
+        } else {
+            toast.success(<span style={{ fontWeight: 'bold' }}>Added to Best Selling Products</span>);
+            dispatch(setbestSelling([productData]));
+        }
     };
+
+
+
+
+
+
+
 
     const deleteProduct = (id, name) => {
 
@@ -95,12 +149,120 @@ const BodyTableProduct = () => {
                 });
         }
     };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [discountedProducts, setDiscountedProducts] = useState([]);
+
+    const handleAddToDiscount = (id, name, desc, price, imageurl, quantity) => {
+        const productData = {
+            id: id,
+            name: name,
+            desc: desc,
+            price: price,
+            imageurl: imageurl,
+            quantity: quantity,
+        };
+        setDiscountedProducts((prevDiscountedProducts) => [productData]);
+
+
+    };
+    const [discountedPriceInput, setDiscountedPriceInput] = useState('');
+    const isSaveButtonDisabled = discountedPriceInput.trim() === '';
+
+    const calculateDiscountPercentage = () => {
+        const originalPrice = discountedProducts[0]?.price || 0;
+        const discountedPrice = parseFloat(discountedPriceInput) || 0;
+        if (originalPrice === 0) {
+            return 'N/A';
+        }
+        const discountPercentage = ((originalPrice - discountedPrice) / originalPrice) * 100;
+        return discountPercentage.toFixed(0);
+    };
+
+    const handleModal = () => {
+        setIsModalOpen(!isModalOpen);
+        setDiscountedPriceInput('')
+    }
+    const handleSave = (id, name, desc, price, imageurl, quantity ) => {
+
+        const productData = {
+            id: id,
+            name: name,
+            desc: desc,
+            price: price,
+            imageurl: imageurl,
+            quantity: quantity,
+            inputDescount: discountedPriceInput,
+        };
+        const isProductInDiscount = discount.some(item => item?.id === productData.id);
+        if (isProductInDiscount) {
+            toast.error(<span style={{ fontWeight: 'bold' }}>Product already in Discounted Products</span>);
+        } else {
+            toast.success(<span style={{ fontWeight: 'bold' }}>Added to Discounted Products</span>);
+            dispatch(setdiscount([productData]));
+        }
+        setIsModalOpen(!isModalOpen);
+
+    };
 
 
 
     return (
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            {
+                isModalOpen && (
+                    <>
+                        <div className={`fixed inset-0 z-50 bg-black/50 ${isModalOpen ? 'fadeIn' : 'fadeOut'}`} >
+                            <div className="flex items-center justify-center h-2/3">
+                                <div className="bg-green-700 p-6 rounded-2xl shadow-lg sm:w-1/3 w-11/12 transition-opacity ease-in-out duration-1000">
 
+                                    <h2 className="text-xl font-semibold  text-slate-100">Enter Discount of Product</h2>
+                                    <h2 className="text-sm mb-4 text-slate-200">{discountedProducts[0]?.name}</h2>
+                                    <div className='flex gap-3 items-center'>
+                                        <input
+                                            type="number"
+                                            className='py-2 search-input-header outline-none px-2 rounded-full'
+                                            autoFocus
+                                            placeholder='Discounted price'
+                                            value={discountedPriceInput}
+                                            onChange={(event) => {
+                                                const inputValue = parseFloat(event.target.value);
+                                                if (!isNaN(inputValue) && inputValue <= discountedProducts[0]?.price) {
+                                                    setDiscountedPriceInput(inputValue.toString());
+                                                }
+                                            }
+                                            }
+
+                                        />
+
+                                        <p className='text-white text-lg  font-bold'>Price: ${discountedProducts[0]?.price}</p>
+                                        <p className='text-white text-lg  font-bold'>
+                                            Discount Percentage: {calculateDiscountPercentage()}%
+                                        </p>
+                                    </div>
+                                    <div className="flex justify-end gap-2 items-center">
+                                        <button className=' shadow-xl p-2 flex items-center justify-center gap-1  rounded-full  bg-green-600  text-white hover:bg-green-500' onClick={handleModal}>
+                                            <IoClose size={18} />
+                                        </button>
+                                        <button onClick={() => {
+                                            handleSave(
+                                                discountedProducts[0]?.id,
+                                                discountedProducts[0]?.name,
+                                                discountedProducts[0]?.desc,
+                                                discountedProducts[0]?.price,
+                                                discountedProducts[0]?.imageurl,
+                                                discountedPriceInput,
+                                            );
+                                        }} disabled={isSaveButtonDisabled} className='shadow-xl  px-5 py-2 flex items-center justify-center gap-1    rounded-full bg-green-500 text-white hover:bg-green-600'>
+                                            <MdSaveAlt /> save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+
+                )
+            }
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" className="p-4">
@@ -145,7 +307,7 @@ const BodyTableProduct = () => {
             <tbody>
                 {records?.map((product) => (
                     <>
-                        <tr key={product?._id}  className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 ">
+                        <tr key={product?._id} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 ">
                             <td className="p-4 w-4">
                                 <div className="flex items-center">
                                     <input
@@ -207,65 +369,65 @@ const BodyTableProduct = () => {
                                 <div className="flex items-center space-x-4">
                                     <div className=' space-y-2'>
 
-                                    <button
-                                        onClick={() => Navigate(`/edit/${product?._id}`)}
-                                        type="button"
-                                        data-drawer-target="drawer-update-product"
-                                        data-drawer-show="drawer-update-product"
-                                        aria-controls="drawer-update-product"
-                                        className="py-2 px-3 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                        <button
+                                            onClick={() => Navigate(`/edit/${product?._id}`)}
+                                            type="button"
+                                            data-drawer-target="drawer-update-product"
+                                            data-drawer-show="drawer-update-product"
+                                            aria-controls="drawer-update-product"
+                                            className="py-2 px-3 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                         >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-4 w-4 mr-2 -ml-0.5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                        >
-                                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                clipRule="evenodd"
-                                            />
-                                        </svg>
-                                        Update
-
-                                    </button>
-
-                                    <button
-                                        onClick={() => deleteProduct(product._id, product.name)}
-                                        type="button"
-                                        data-modal-target="delete-modal"
-                                        data-modal-toggle="delete-modal"
-                                        className="flex items-center transition-all ease-in text-red-700 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-                                        >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-4 w-4 mr-2 -ml-0.5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="h-4 w-4 mr-2 -ml-0.5"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
                                             >
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clipRule="evenodd"
+                                                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                    clipRule="evenodd"
                                                 />
-                                        </svg>
-                                        Delete
-                                    </button>
-                                                </div>
+                                            </svg>
+                                            Update
+
+                                        </button>
+
+                                        <button
+                                            onClick={() => deleteProduct(product._id, product.name)}
+                                            type="button"
+                                            data-modal-target="delete-modal"
+                                            data-modal-toggle="delete-modal"
+                                            className="flex items-center transition-all ease-in text-red-700 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="h-4 w-4 mr-2 -ml-0.5"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                            Delete
+                                        </button>
+                                    </div>
                                     <div className=' space-y-2'>
 
                                         <button
                                             onClick={() => {
-                                                handleAddToWishList(
-                                                    product._id,
-                                                    product.name,
-                                                    product.description,
-                                                    product.price,
-                                                    product.image,
+                                                handleAddToBestSell(
+                                                    product?._id,
+                                                    product?.name,
+                                                    product?.description,
+                                                    product?.price,
+                                                    product?.image,
                                                     1
                                                 );
                                                 // setwishlistTragetid(product._id);
@@ -276,24 +438,42 @@ const BodyTableProduct = () => {
                                             data-modal-toggle="delete-modal"
                                             className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
                                         >
-                                            <FaFire/>
-                                            
-                                             Best Sell
+                                            <FaFire />
+
+                                            Best Sell
                                         </button>
+                                        <Toaster />
+
                                         <button
-                                            onClick={() => Navigate(`/edit/${product?._id}`)}
+                                            onClick={() => {
+                                                handleAddToDiscount(
+                                                    product?._id,
+                                                    product?.name,
+                                                    product?.description,
+                                                    product?.price,
+                                                    product?.image,
+                                                    1
+                                                );
+                                                handleModal();
+                                            }}
+                                           
                                             type="button"
                                             data-drawer-target="drawer-update-product"
                                             data-drawer-show="drawer-update-product"
                                             aria-controls="drawer-update-product"
-                                            className="flex items-center gap-2 transition-all ease-in text-green-700 hover:text-white border border-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                            className="flex items-center gap-2 transition-all text-white ease-in  border border-green-600 bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
 
-                                            // className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                        // className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                                         >
-                                            <MdDiscount />
-                                            Discount
 
+                                            <MdDiscount /> Discount
+                                            {/* {isModalOpen ? <>
+                                                <IoClose className=' text-white' onClick={() => Navigate(() => handleModal(false))} /> <input  type="number" name="" id="" />
+                                            </> : <div className='flex justify-center items-center gap-2  text-white' onClick={() => Navigate(handleModal())}>
+                                                    
+                                            </div>} */}
                                         </button>
+
                                     </div>
 
                                 </div>
@@ -379,6 +559,7 @@ const BodyTableProduct = () => {
                     </td>
                 </tr>
             </tbody>
+
         </table>
 
 
@@ -386,3 +567,4 @@ const BodyTableProduct = () => {
 }
 
 export default BodyTableProduct
+

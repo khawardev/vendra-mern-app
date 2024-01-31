@@ -17,9 +17,16 @@ import { setCategories } from '../toolkit/Slices/CategoriesSlice';
 import { Context } from '../context/AppContext';
 import { setUser } from '../toolkit/Slices/UserSlice';
 import { setSingleUser } from '../toolkit/Slices/UserSlice';
-
+import { useSelector } from 'react-redux';
+import { selectbestSelling } from '../toolkit/Slices/BestSellingSlice'
+import { selectdiscount } from '../toolkit/Slices/DicountSlice'
+import  { Toaster } from 'react-hot-toast';
 
 export const HomePage = () => {
+    const bestSelling = useSelector(selectbestSelling);
+    const discount = useSelector(selectdiscount);
+   
+
     const { Thankyou } = useContext(Context)
     const dispatch = useDispatch();
     useEffect(() => {
@@ -64,7 +71,7 @@ export const HomePage = () => {
 
     return (
         <>
-
+            <Toaster/>
 
             {/* <ApiController /> */}
 
@@ -74,17 +81,18 @@ export const HomePage = () => {
             <CategoriesSection />
 
             <section className='w-11/12 mx-auto mt-14 mb-10  '>
-                <div className='grid md:grid-cols-4 grid-cols-1 md:gap-6'>
+                <div className='grid md:grid-cols-4 grid-cols-1 md:gap-6  '>
                     <ServicesSection />
-                    <div className="col-span-3">
+                    <div className="col-span-3 flex">
                         <NewProducts  url='newProducts' viewmore={true} title='New Products' grid={'lg:grid-cols-4 md:grid-cols-3 grid-cols-2'} NewProductBanner={true} />
                     </div>
                 </div>
             </section>
             {/* lg:grid-cols-4 md:grid-cols-3 grid-cols-2 */}
-            <TrendingProducts />
+            {bestSelling[0]?.id && <TrendingProducts /> }
             <BannerSection />
-            <DiscountProducts />
+            {discount[0]?.id && <DiscountProducts />}
+            
 
         </>
     )

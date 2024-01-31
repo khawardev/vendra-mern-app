@@ -17,9 +17,11 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../toolkit/Slices/WishlistSlice';
 import toast, { Toaster } from 'react-hot-toast';
+import { FaFire } from "react-icons/fa";
 
 
-const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
+const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount }) => {
+
     const dispatch = useDispatch();
 
 
@@ -35,13 +37,20 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
         setQuantity(quantity + 1);
     };
     const handleAddToCart = () => {
-        toast.success('Added to cart!!');
-
+        // toast.success('Added to cart!!');
+        // toast.success(<span style={{ fontWeight: 'bold' }}>Added to cart!!</span>);
+        toast.success(
+            <div style={{ display: 'flex' }}>
+                {/* <BsCart2 size={18} style={{ marginRight: '8px'}} /> */}
+                <span style={{ fontWeight: 'bold' }}>Added to cart </span>
+            </div>
+        );
         dispatch(addToCart({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
         setQuantity(1); // Reset quantity after adding to cart
     };
     const handleAddToWishList = () => {
-        toast.success('Added to wishlist!!');
+        toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
+        // toast.success('Added to wishlist!!');
         dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
     };
 
@@ -68,8 +77,8 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
                         </div>
                     </section>
                     <section className='flex justify-start col-span-4 '>
-                        <div className=' p-24  bg-gray-100 border rounded-2xl w-full  flex justify-center items-center '>
-                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                        <div className=' px-24  bg-gray-100 border rounded-2xl  flex justify-center items-center  w-full'>
+                            <img className='  w-full mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
                         </div>
                     </section>
                 </section>
@@ -77,9 +86,32 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
 
                     <main className='mb-8'>
                         <p className=" text-2xl font-bold  mb-8 leading-8"> {filteredProduct?.name} </p>
-                        <div className="my-8 flex items-center gap-3">
-                            <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>
-                            <p className=" text-xl  text-gray-300 line-through"> ${filteredProduct?.price}.00 </p>
+                        <div className="my-8 flex items-center justify-between ">
+                            <div className='flex items-center gap-3'>
+                                {Discount === 'true' &&
+                                    <>
+                                        <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>
+                                        <p className=" text-xl  text-gray-300 line-through"> ${filteredProduct?.price}.00 </p>
+                                    </>
+                                }
+                                <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>
+
+
+                            </div>
+
+                            <section className='flex items-center gap-2'>
+                                {Discount === 'true' && <div className='rounded-full  border-4 border-green-100  text-green-800 font-bold  bg-green-300 md:px-3 px-2 '>
+                                    53% Discount
+                                </div>
+                                }
+                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full  border-4 border-red-100    font-bold text-red-800 bg-red-300 md:px-3 px-2 '>
+                                    <FaFire size={14} />  Best Selling
+                                </div>
+                                }
+
+                            </section>
+
+
                         </div>
                         <div className='my-8 flex justify-between items-center'>
 
@@ -96,39 +128,39 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory }) => {
                             </div>
                         </div>
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">
-                                <div className=" flex justify-between items-center gap-8 border rounded-full px-4 py-2 ">
-                                    <div className='px-3 font-bold'>
-                                        <input type="text" size={1} value={quantity} name="" disabled id="" />
-                                    </div>
-                                    <div className="flex  items-center gap-1">
-                                        <p
-                                            type="button"
-                                            className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
-                                            data-hs-input-number-decrement
-                                            onClick={handleDecrement}
-                                        >
-                                            <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /></svg>
+                            <div className=" flex justify-between items-center gap-8 border rounded-full px-4 py-2 ">
+                                <div className='px-3 font-bold'>
+                                    <input type="text" size={1} value={quantity} name="" disabled id="" />
+                                </div>
+                                <div className="flex  items-center gap-1">
+                                    <p
+                                        type="button"
+                                        className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
+                                        data-hs-input-number-decrement
+                                        onClick={handleDecrement}
+                                    >
+                                        <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /></svg>
 
-                                        </p>
-                                        <p
-                                            type="button"
-                                            className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
-                                            data-hs-input-number-increment
-                                            onClick={handleIncrement}
-                                        >
-                                            <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
-                                        </p>
-                                    </div>
+                                    </p>
+                                    <p
+                                        type="button"
+                                        className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
+                                        data-hs-input-number-increment
+                                        onClick={handleIncrement}
+                                    >
+                                        <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                                    </p>
                                 </div>
-                                <div className=' flex justify-between gap-3'>
-                                    <p className="px-5 py-2   font-bold hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
-                                    <p onClick={() => { handleAddToWishList() }} className=" px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
-                                </div>
+                            </div>
+                            <div className=' flex justify-between gap-3'>
+                                <p className="px-5 py-2   font-bold hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
+                                <p onClick={() => { handleAddToWishList() }} className=" px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
+                            </div>
                         </section>
 
                         <div className="flex justify-between gap-3 mb-9 ">
 
-                            <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-md  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
+                            <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
                                 handleAddToCart();
                             }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
                             <Toaster />

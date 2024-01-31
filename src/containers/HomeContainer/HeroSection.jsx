@@ -59,7 +59,7 @@ function HeroSection() {
                                     <p className='md:px-4 px-3  md:py-1 text-sm items-center bg-yellow-500 rounded-full '>{slide.tag}</p>
                                 </div>
                                 <div className='md:mt-6 mt-2 md:leading-5 leading-2'>
-                                    <h1 className='md:text-3xl text-xl   leading-2  '>{slide.tagline1}</h1>
+                                    <h1 className='md:text-3xl text-xl   leading-2   tracking-tight'>{slide.tagline1}</h1>
                                     <h1 className='md:text-5xl text-3xl my-2 font-extrabold leading-2'>{slide.tagline2}</h1>
                                     <p className='md:block hidden  text-xl   leading-2  font-thin'>{slide.description}</p>
                                 </div>

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { selectProducts } from '../toolkit/Slices/ProductsSlice'
 import { selectCategories } from '../toolkit/Slices/CategoriesSlice'
 const ViewSingleProductPage = () => {
-    const {productid} = useParams();
+    const { productid, BestSell, Discount } = useParams();
     const products = useSelector(selectProducts);
     const categories = useSelector(selectCategories);
     
@@ -19,7 +19,7 @@ const ViewSingleProductPage = () => {
     return (
         <div>
             <div className=' w-11/12 m-auto my-10'>
-                <SingleProductContainer filteredProduct={filteredProduct[0]} filteredcategory={filteredcategory[0]} />
+                <SingleProductContainer BestSell={BestSell} Discount={Discount} filteredProduct={filteredProduct[0]} filteredcategory={filteredcategory[0]} />
                 <main className='my-16'>
                     <NewProducts title={'Related Products'} Related={true} viewmore={false} grid={'grid grid-cols-5 '} filteredProducts={filteredRelatedProducts} />
                 </main>

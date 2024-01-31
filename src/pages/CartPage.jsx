@@ -9,9 +9,9 @@ import { BsCartX } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/CartPage.scss';
 
-import { FaCreditCard } from "react-icons/fa";
-
-import { FaTruck } from "react-icons/fa";
+import { BsCreditCard2Front } from "react-icons/bs";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { IoMdArrowForward } from "react-icons/io";
 
 
 const CartPage = () => {
@@ -24,10 +24,10 @@ const CartPage = () => {
 
 
     const [selectedOption, setSelectedOption] = useState(null);
-    console.log(selectedOption)
 
     const handleRadioChange = (option) => {
         setSelectedOption(option);
+
     };
 
 
@@ -65,9 +65,9 @@ const CartPage = () => {
                 <>
                     <p className=' font-bold text-6xl text-yellow-500  text-center my-12'>Cart</p>
 
-                    <main className=' flex items-start gap-3  '>
+                    <main className=' flex items-end gap-3  '>
 
-                        <table className="w-[40%] col-span-1 text-sm text-left text-gray-500 dark:text-gray-400  ">
+                        <table className="w-full  col-span-1 text-sm text-left text-gray-500 dark:text-gray-400  ">
                             <thead className="   text-gray-700 font-bold uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
                                 <tr >
                                     <th scope="col" className="p-4">
@@ -106,12 +106,12 @@ const CartPage = () => {
                                         </td>
                                         <td className=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
-                                            <div className='  font-bold  w-[449px] line-clamp-1 '>
+                                            <div className='  font-bold  w-[469px] line-clamp-1 '>
                                                 <p >{cartItems.name}</p>
                                                 <p >{cartItems.name}</p>
 
                                             </div>
-                                            <div className='   text-gray-500  w-[249px] line-clamp-1 '>
+                                            <div className='   text-gray-500  w-[349px] line-clamp-1 '>
                                                 <p >{cartItems.desc}</p>
                                                 <p >{cartItems.desc}</p>
 
@@ -206,73 +206,65 @@ const CartPage = () => {
                         </table>
 
                         {cartItems?.length != 0 && <>
-                            <div className='w-full px-8 py-3  '>
+                            <div className=' px-8 py-4 border bg-gray-100   '>
                                 <p className=' text-2xl font-bold mb-6'>Cart Total</p>
-                                <main className=' px-3'>
+                                <main className=' '>
 
                                     <main className='my-3 flex justify-between items-center'>
-                                        <p className='font-bold '>Subtotal</p>
+                                        <p className='font-bold text-lg'>Subtotal</p>
                                         <p>${totalSubtotal.toFixed(2)}</p>
                                     </main>
                                     <hr className=' my-3' />
                                     <main >
-                                        <p className='font-bold mb-2'>Shipping</p>
-                                        {/* <section className=' justify-between items-center'>
-                                            <div className='flex gap-3 items-center'>
-
-                                                <input type="radio" name="" id="" /><label htmlFor="radio">Hello</label>
-                                            </div>
-                                            <div className='flex gap-3 items-center'>
-                                                <input type="radio" name="" id="" /><p>Cash on Delivery</p>
-                                            </div>
-                                        </section> */}
+                                        <p className='font-bold mb-2 text-lg'>Shipping</p>
                                         <div className="flex flex-col space-y-2 ">
-                                            <label className="cursor-pointer  flex justify-between items-center  px-3 rounded-full">
-
+                                            <label className={`cursor-pointer flex justify-between border py-2 transition-all ease-in 
+                                                                ${selectedOption === 'COD' ? 'bg-gray-200' : 'hover:bg-gray-200'} items-center px-3 rounded-md`}>
                                                 <div className='flex justify-between items-center '>
                                                     <input
-                                                        type="radio"
+                                                        type="checkbox"
                                                         value="COD"
                                                         checked={selectedOption === 'COD'}
                                                         onChange={() => handleRadioChange('COD')}
                                                         className="mr-2 cursor-pointer p-3"
                                                     />
-                                                    Cash on delivery
+                                                    <b >Cash on delivery</b>
                                                 </div>
 
-                                                <FaTruck />
+                                                <CiDeliveryTruck size={20} />
 
                                             </label>
-                                            <label className="cursor-pointer  flex justify-between items-center  px-3 rounded-full">
+                                            <label className={`  cursor-pointer flex justify-between border py-2 transition-all ease-in 
+                                                                ${selectedOption === 'Card' ? 'bg-gray-200' : 'hover:bg-gray-200'} items-center px-3 rounded-md`}>
                                                 <div className='flex justify-between items-center '>
                                                     <input
-                                                        type="radio"
+                                                        type="checkbox"
                                                         value="Card"
                                                         checked={selectedOption === 'Card'}
                                                         onChange={() => handleRadioChange('Card')}
-                                                        className="mr-2 cursor-pointer"
+                                                        className="mr-2  cursor-pointer"
                                                     />
-                                                    Card payment
+                                                    <span className=""></span>
+                                                    <b> Card payment</b>
                                                 </div>
-                                                
-                                                <FaCreditCard />
+
+                                                <BsCreditCard2Front size={18} />
                                             </label>
 
-                                            
                                         </div>
                                     </main>
                                     <hr className=' mt-3 mb-4' />
                                     <main className=' flex justify-between items-center '>
 
-                                        <p className='font-bold'>Total</p>
+                                        <p className='font-bold text-lg'>Total</p>
                                         <p className=' font-bold text-xl'>${totalSubtotal.toFixed(2)}</p>
                                     </main>
                                     <hr className=' mt-3 mb-4' />
 
-                                    <p className='cart-button rounded-lg cursor-pointer px-32 py-[11px]  bg-black  text-white font-bold flex items-center gap-3 transition-all ease-in-out'>
+                                    <p className='cart-button rounded-lg cursor-pointer px-32 py-[11px]  bg-black  text-white  flex items-center gap-2 transition-all ease-in-out'>
                                         Checkout
                                         <span className=' cart-span transition-all ease-in-out transform'>
-                                            <FaArrowRightLong />
+                                            <IoMdArrowForward />
                                         </span>
                                     </p>
                                 </main>

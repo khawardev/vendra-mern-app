@@ -8,7 +8,7 @@ const DiscountedProductsPage = () => {
 
 
             <p className=" text-sm mb-4"><span className=" text-gray-400">
-                <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=" text-black font-bold">Best Selling</span></span>
+                <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=" text-black font-bold">Discounted Products</span></span>
             </p>
 
             <main className=" flex items-center justify-between ">
@@ -26,7 +26,9 @@ const DiscountedProductsPage = () => {
                 </section>
             </main>
             <hr className="my-3 " />
-            <NewProducts bestselling={true} viewmore={true} special='bestselling' title='Best Selling ' Banner={false} grid={'lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2'} />
+            <NewProducts url='discount'grid={'lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2'} discount={true} />
+
+            {/* <NewProducts bestselling={true} viewmore={true} special='bestselling' title='Best Selling ' Banner={false} grid={'lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2'} /> */}
 
         </main>
 

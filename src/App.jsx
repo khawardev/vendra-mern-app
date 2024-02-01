@@ -44,7 +44,7 @@ function App() {
             <Route path="/ContactManage" Component={ContactManage} />
             <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
             <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
-            <Route exact path={`/viewsingleproduct/:productid/:BestSell/:Discount`} element={<ViewSingleProduct />} />
+            <Route exact path={`/viewsingleproduct/:productid/:BestSell/:Discount/:DiscountedPrice`} element={<ViewSingleProduct />} />
             <Route exact path={`/cart`} element={<CartPage />} />
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
             <Route exact path={`/about`} element={<AboutPage />} />

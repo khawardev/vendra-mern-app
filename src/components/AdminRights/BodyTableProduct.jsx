@@ -13,7 +13,7 @@ import { MdDiscount } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { selectbestSelling } from '../../toolkit/Slices/BestSellingSlice';
 import { selectdiscount } from '../../toolkit/Slices/DicountSlice';
-import { setbestSelling } from '../../toolkit/Slices/BestSellingSlice';
+import { setbestSelling, removeBestSelling } from '../../toolkit/Slices/BestSellingSlice';
 import { setdiscount } from '../../toolkit/Slices/DicountSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { IoClose } from "react-icons/io5";
@@ -28,19 +28,12 @@ const BodyTableProduct = () => {
     const bestSelling = useSelector(selectbestSelling);
     const discount = useSelector(selectdiscount);
 
-
-
-
-
-
     const dispatch = useDispatch();
     const Navigate = useNavigate();
     const { setThankyou } = useContext(Context)
     const { searchText } = useContext(Context);
     const [records, setRecords] = useState([])
-    // const { isHiddenEdit, setisHiddenEdit } = useContext(Context);
-    // const [SingleProductId, setSingleProductId] = useState()
-    // console.log( SingleProductId)
+
 
     const products = useSelector(selectProducts);
     const categories = useSelector(selectCategories);
@@ -61,49 +54,6 @@ const BodyTableProduct = () => {
             setRecords(products.filter(product => product.name.toLowerCase().includes(searchText)))
         }
     }, [searchText || currentPage]);
-
-    // const handleAddToBestSell = (id, name, desc, price, imageurl, quantity) => {
-    //     toast.success(<span style={{ fontWeight: 'bold' }}>Added to Best Selling Products</span>);
-
-    //     const productData = {
-    //         id: id,
-    //         name: name,
-    //         desc: desc,
-    //         price: price,
-    //         imageurl: imageurl,
-    //         quantity: quantity,
-    //     };
-
-
-
-
-    //     dispatch(setbestSelling([productData]));
-    //     // setwishlistloading(true);
-    // };
-
-
-    const handleAddToBestSell = (id, name, desc, price, imageurl, quantity) => {
-
-        const productData = {
-            id: id,
-            name: name,
-            desc: desc,
-            price: price,
-            imageurl: imageurl,
-            quantity: quantity,
-        };
-        const isProductInBestSelling = bestSelling.some(item => item?.id === productData.id);
-        // const isProductInBestSelling = bestSelling;
-
-        if (isProductInBestSelling) {
-            toast.error(<span style={{ fontWeight: 'bold' }}>Product already in Best Selling Products</span>);
-        } else {
-            toast.success(<span style={{ fontWeight: 'bold' }}>Added to Best Selling Products</span>);
-            dispatch(setbestSelling([productData]));
-        }
-    };
-
-
 
 
 
@@ -182,8 +132,32 @@ const BodyTableProduct = () => {
         setIsModalOpen(!isModalOpen);
         setDiscountedPriceInput('')
     }
-    const handleSave = (id, name, desc, price, imageurl, quantity ) => {
 
+
+
+    const handleAddToBestSell = (id, name, desc, price, imageurl, quantity) => {
+        const productData = {
+            id: id,
+            name: name,
+            desc: desc,
+            price: price,
+            imageurl: imageurl,
+            quantity: quantity,
+        };
+
+        const isProductinDiscount = discount.some(item => item?.id === productData?.id);
+        { isProductinDiscount && dispatch(removeBestSelling(productData?.id)); }
+
+
+        const isProductInBestSelling = bestSelling.some(item => item?.id === productData.id);
+        if (isProductInBestSelling) {
+            toast.error(<span style={{ fontWeight: 'bold' }}>Product already in Best Selling Products</span>);
+        } else {
+            toast.success(<span style={{ fontWeight: 'bold' }}>Added to Best Selling Products</span>);
+            {!isProductinDiscount && dispatch(setbestSelling([productData]))}
+        }
+    };
+    const handleSave = (id, name, desc, price, imageurl, quantity) => {
         const productData = {
             id: id,
             name: name,
@@ -193,7 +167,12 @@ const BodyTableProduct = () => {
             quantity: quantity,
             inputDescount: discountedPriceInput,
         };
-        const isProductInDiscount = discount.some(item => item?.id === productData.id);
+        // const updatedBestSelling = bestSelling.filter(item => item?.id !== productData.id);
+        const isProductInBestSelling = bestSelling.some(item => item?.id === productData?.id);
+        {isProductInBestSelling && dispatch(removeBestSelling(productData?.id));}
+
+
+        const isProductInDiscount = discount.some(item => item?.id === productData?.id);
         if (isProductInDiscount) {
             toast.error(<span style={{ fontWeight: 'bold' }}>Product already in Discounted Products</span>);
         } else {
@@ -208,6 +187,8 @@ const BodyTableProduct = () => {
 
     return (
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+
+
             {
                 isModalOpen && (
                     <>
@@ -419,7 +400,7 @@ const BodyTableProduct = () => {
                                         </button>
                                     </div>
                                     <div className=' space-y-2'>
-
+                                        <div><Toaster /></div>
                                         <button
                                             onClick={() => {
                                                 handleAddToBestSell(
@@ -436,13 +417,12 @@ const BodyTableProduct = () => {
                                             type="button"
                                             data-modal-target="delete-modal"
                                             data-modal-toggle="delete-modal"
-                                            className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+                                            className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-orange-700 rounded-full hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
                                         >
                                             <FaFire />
 
                                             Best Sell
                                         </button>
-                                        <Toaster />
 
                                         <button
                                             onClick={() => {
@@ -456,14 +436,14 @@ const BodyTableProduct = () => {
                                                 );
                                                 handleModal();
                                             }}
-                                           
+
                                             type="button"
                                             data-drawer-target="drawer-update-product"
                                             data-drawer-show="drawer-update-product"
                                             aria-controls="drawer-update-product"
-                                            className="flex items-center gap-2 transition-all text-white ease-in  border border-green-600 bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                            className="flex items-center gap-2 transition-all text-white ease-in  border border-green-600 bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
 
-                                        // className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                        // className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-green-700 rounded-full hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                                         >
 
                                             <MdDiscount /> Discount

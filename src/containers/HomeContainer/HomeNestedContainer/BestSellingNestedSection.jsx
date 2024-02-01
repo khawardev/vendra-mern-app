@@ -87,7 +87,7 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
                                 </div>
 
                             </div>
-                            <section onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${true}/${false}`)}>
+                            <section onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${true}/${false}/bestSell`)}>
                                 <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
                                     <div className='Parent-product-Image-Hover flex justify-center items-center   '>
                                         {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}

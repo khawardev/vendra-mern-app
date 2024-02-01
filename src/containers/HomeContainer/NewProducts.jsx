@@ -12,7 +12,6 @@ import DiscountedNestedSection from './HomeNestedContainer/DiscountedNestedSecti
 const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling }) => {
     const Navigate = useNavigate();
     const URL = url === 'bestselling' ? '/bestselling' : url === 'discount' ? '/discount' : '/shop';
-    console.log( url)
     // const sectionToRender = viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
     //     : viewmore === 'discount' ? <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />
     //         : viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
@@ -56,9 +55,9 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
                         {url === 'newProducts' 
                             ? <NewProductsNestedSection   sliceProducts={sliceProducts === false ? false : true} />
                             : url === 'discount'
-                                ? <DiscountedNestedSection />
+                                ? <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />
                                 : url === 'bestselling'
-                                    ? <BestSellingNestedSection />
+                                    ? <BestSellingNestedSection sliceProducts={sliceProducts === false ? false : true} />
                                     : <CategoryProductsNestedSection filteredProducts={filteredProducts} />
                         }
                     </section>

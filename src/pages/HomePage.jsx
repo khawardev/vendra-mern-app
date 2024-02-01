@@ -20,12 +20,10 @@ import { setSingleUser } from '../toolkit/Slices/UserSlice';
 import { useSelector } from 'react-redux';
 import { selectbestSelling } from '../toolkit/Slices/BestSellingSlice'
 import { selectdiscount } from '../toolkit/Slices/DicountSlice'
-import  { Toaster } from 'react-hot-toast';
 
 export const HomePage = () => {
     const bestSelling = useSelector(selectbestSelling);
     const discount = useSelector(selectdiscount);
-   
 
     const { Thankyou } = useContext(Context)
     const dispatch = useDispatch();
@@ -34,13 +32,10 @@ export const HomePage = () => {
             const productsResponse = await fetch('http://localhost:5000/api/products');
             const categoriesResponse = await fetch('http://localhost:5000/api/categories');
             const UserinfoResponse = await fetch('http://localhost:5000/getAllUser');
-         
-
 
             const productsData = await productsResponse.json();
             const categoriesData = await categoriesResponse.json();
             const UserinfoData = await UserinfoResponse.json();
-
 
             // Dispatch actions to update the store
             dispatch(setProducts(productsData));
@@ -52,7 +47,6 @@ export const HomePage = () => {
     }, [dispatch || Thankyou]);
     
     const token = localStorage.getItem('token');
-    console.log("🚀 ~ HomePage ~ token:", token)
     useEffect(() => {
         const fetchData = async () => {
             const SingleUserinfoResponse = await fetch('http://localhost:5000/data', {
@@ -63,7 +57,6 @@ export const HomePage = () => {
             });
             const userData = await SingleUserinfoResponse.json();
             dispatch(setSingleUser(userData?.email));
-            console.log(userData.email)
         };
 
         fetchData();
@@ -71,10 +64,8 @@ export const HomePage = () => {
 
     return (
         <>
-            <Toaster/>
 
             {/* <ApiController /> */}
-
             {/* <WebScrapper /> */}
             <HeroSection />
             <CompaniesSection />

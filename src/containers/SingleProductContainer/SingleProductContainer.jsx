@@ -20,7 +20,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FaFire } from "react-icons/fa";
 
 
-const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount }) => {
+const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
     const dispatch = useDispatch();
 
@@ -56,8 +56,22 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
 
     const wordsArray = filteredProduct?.name.split(/\s+/);
     const Productname = wordsArray?.map(word => word.replace(/,/g, '')).slice(0, 3).join(' ');
+
+
+    const calculateDiscountPercentage = (discountedProductsprice, discountedPriceInput) => {
+        const originalPrice = discountedProductsprice || 0;
+        const discountedPrice = parseFloat(discountedPriceInput) || 0;
+        if (originalPrice === 0) {
+            return 'N/A';
+        }
+        const discountPercentage = ((originalPrice - discountedPrice) / originalPrice) * 100;
+        return discountPercentage.toFixed(0);
+    };
+
     return (
         <>
+                           
+            
             <p className=" text-sm mb-8"><span className=" text-gray-400"> <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=' cursor-pointer' onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name} </span>  /</span> <b>{Productname}</b>  </p>
 
             <main className=" grid grid-cols-4 gap-12 mb-18  ">
@@ -88,20 +102,20 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                         <p className=" text-2xl font-bold  mb-8 leading-8"> {filteredProduct?.name} </p>
                         <div className="my-8 flex items-center justify-between ">
                             <div className='flex items-center gap-3'>
-                                {Discount === 'true' &&
+                                {Discount === 'true' ?
                                     <>
-                                        <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>
+                                        <p className=" text-3xl font-bold text-red-500"> ${DiscountedPrice}.00 </p>
                                         <p className=" text-xl  text-gray-300 line-through"> ${filteredProduct?.price}.00 </p>
                                     </>
-                                }
-                                <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>
+                                    : <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>}
+                                
 
 
                             </div>
-
+                            <div><Toaster /></div>
                             <section className='flex items-center gap-2'>
                                 {Discount === 'true' && <div className='rounded-full  border-4 border-green-100  text-green-800 font-bold  bg-green-300 md:px-3 px-2 '>
-                                    53% Discount
+                                    {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}% Discount
                                 </div>
                                 }
                                 {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full  border-4 border-red-100    font-bold text-red-800 bg-red-300 md:px-3 px-2 '>
@@ -163,7 +177,6 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                             <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
                                 handleAddToCart();
                             }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
-                            <Toaster />
                         </div>
                     </main>
 

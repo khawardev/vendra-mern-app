@@ -24,7 +24,7 @@ const TrendingProductsPage = () => {
                 </section>
             </main>
             <hr className="my-3 " />
-            <NewProducts sliceProducts={false} viewmore={true} grid={' grid-cols-5 '} NewProductBanner={false} />
+            <NewProducts sliceProducts={false} url='bestselling' grid={'lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2'} NewProductBanner={false} />
 
 
         </main>

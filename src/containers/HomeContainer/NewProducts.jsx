@@ -41,13 +41,7 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
                                         </div>
 
                                     }
-
-
                                     <p className="text-2xl   font-extrabold whitespace-nowrap ">{title}</p>
-
-
-
-
 
                                 </div>
                                 {viewmore && <p className="text-sm cursor-pointer  text-blue-600 flex gap-1 items-center whitespace-nowrap hover:bg-blue-100  transition-all ease-in px-2 py-1 rounded-full" onClick={() => Navigate(URL)}> View more <BsArrowRightShort size={20} /> </p>}
@@ -58,19 +52,20 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
 
                     }
 
-                    <section >
-                        {url === 'newProducts'
-                            ? <NewProductsNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
-                            : url === 'discount'
-                                ? <DiscountedNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
-                                : url === 'bestselling'
-                                    ? <BestSellingNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
-                                    : <CategoryProductsNestedSection grid={grid} filteredProducts={filteredProducts} />
-                        }
-                    </section>
-                    {url === 'shop' && <section className={`my-7 grid ${grid} gap-7`}>
-                        <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
-                    </section>}
+                    {url === 'newProducts' || url === 'shop'
+                        ? <NewProductsNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                        : url === 'discount'
+                            ? <DiscountedNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                            : url === 'bestselling'
+                                ? <BestSellingNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                                : <CategoryProductsNestedSection grid={grid} filteredProducts={filteredProducts} />
+                    }
+
+                    {/* {url === 'shop' &&
+                        <section >
+                            <NewProductsNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                        </section>
+                    } */}
 
                 </main>
 

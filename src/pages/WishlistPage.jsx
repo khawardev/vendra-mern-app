@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaHeartBroken } from "react-icons/fa";
 import '../assets/styles/CartPage.scss';
 import { BsCart2 } from 'react-icons/bs';
+import { IoMdArrowForward } from "react-icons/io";
 
 // import { addToWishlist, removeFromWishlist, clearWishlist, selectWishlistItems } from './wishlistSlice';
 
@@ -172,13 +173,12 @@ const WishlistPage = () => {
                     <hr />
                 </>
                 :
-                <div className="Empty-cart ">
-                    <div className='  pb-28 pt-14 justify-center items-center flex flex-col gap-3'>
-                        <FaHeartBroken className=' mb-6' />
-                        <span className=' font-bold  ' >No product in the Wishlist</span>
-                        <p className=" cursor-pointer text-indigo-700   font-bold   bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-5 py-2 rounded-full"
-                            onClick={() => Navigate('/')}  >Continue shopping →</p>
-                    </div>
+                
+                 <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
+                    <FaHeartBroken size={130} className=' mb-3  opacity-10' />
+                    <span className=' font-bold  ' >No Product In Wishlist  </span>
+                    <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full"
+                        onClick={() => Navigate('/shop')}  >Continue shopping  <IoMdArrowForward className=' opacity-100' size={16} /></p>
                 </div>
             }
 

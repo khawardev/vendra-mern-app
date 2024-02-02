@@ -19,9 +19,9 @@ const MiddleHeader = () => {
     <div>
 
       <main className='flex justify-between items-center bg-red- lg:pt-0 pt-5  pb-5'>
-        <section className='text-4xl font-extrabold cursor-pointer flex items-center gap-3' onClick={() => Navigate("/")}>
+        <section className='text-4xl font-extrabold cursor-pointer flex items-center gap-1' onClick={() => Navigate("/")}>
           <img src={logo} width={35} />
-          Vendra<sup className=' font-light text-sm'> &reg; </sup>
+          Vendra<sup className=' font-bold text-xl'> &reg; </sup>
         </section>
         <section className='lg:flex hidden justify-center items-center border rounded-full'>
           <div className='px-3'>

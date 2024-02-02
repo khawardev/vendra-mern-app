@@ -2,6 +2,8 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../../context/AppContext';
+import { IoMdArrowForward } from "react-icons/io";
+
 const Success = ({ title }) => {
     const { setThankyou } = useContext(Context)
     const Navigate = useNavigate();
@@ -68,7 +70,7 @@ const Success = ({ title }) => {
                                 setThankyou(false);
                             }}
                         >
-                            Continue shopping →
+                            Continue shopping <IoMdArrowForward/>
                         </span>
 
                     </div>

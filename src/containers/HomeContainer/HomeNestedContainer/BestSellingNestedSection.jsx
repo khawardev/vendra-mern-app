@@ -15,7 +15,6 @@ import { addToCart } from '../../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
-import { BsCartCheck } from "react-icons/bs";
 import { FaFire } from "react-icons/fa";
 
 const BestSellingNestedSection = ({ sliceProducts, grid }) => {
@@ -122,7 +121,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                 }} className='p-2 rounded-lg border hover:bg-gray-100 cursor-pointer'>
 
                                     {cartloading && cartTragetid == product.id ? (
-                                        <BsCartCheck size={20} />
+                                        < HiOutlineCheck size={20} />
                                     ) : (
                                         <BsCart2 size={20} />
                                     )}

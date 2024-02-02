@@ -12,7 +12,6 @@ import { addToCart } from '../../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
-import { BsCartCheck } from "react-icons/bs";
 import { IoMdArrowForward } from "react-icons/io";
 
 import { MdOutlineErrorOutline } from "react-icons/md";
@@ -56,7 +55,7 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid }) => {
 
             {filteredProducts?.length !== 0 ? (
                 <div className={`my-7 grid  gap-7 ${grid}`}>
-                    {filteredProducts.map((product) => (
+                    {filteredProducts?.map((product) => (
                         <article key={product._id} className="cursor-pointer  flex flex-col justify-between  Parent-Col-Hover relative" >
                             <main>
                                 <div>
@@ -78,7 +77,7 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid }) => {
                                         )}
                                     </div>
                                 </div>
-                                <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}`)}>
+                                <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
                                         <div className='Parent-product-Image-Hover   '>
                                             <img className='mix-blend-multiply   h-[11rem] ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
@@ -108,7 +107,7 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid }) => {
                                     }} className='p-2 rounded-lg border hover:bg-gray-100 cursor-pointer'>
 
                                         {cartloading && cartTragetid == product._id ? (
-                                            <BsCartCheck size={20} />
+                                            < HiOutlineCheck size={20} />
                                         ) : (
                                             <BsCart2 size={20} />
                                         )}

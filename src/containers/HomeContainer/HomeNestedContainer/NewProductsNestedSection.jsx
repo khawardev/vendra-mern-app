@@ -15,7 +15,6 @@ import { addToCart } from '../../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
-import { BsCartCheck } from "react-icons/bs";
 import toast, { Toaster } from 'react-hot-toast';
 
 const NewProductsNestedSection = ({ sliceProducts, grid }) => {
@@ -65,8 +64,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
         <>
             {products &&
                 <div className={`my-7 grid  gap-7 ${grid}`}>
-
-                    {displayedProducts.map((product) => (
+                    {displayedProducts?.map((product) => (
                         <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
                                 <div>
@@ -127,7 +125,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                     }} className='p-2 rounded-lg border hover:bg-gray-100 cursor-pointer'>
 
                                         {cartloading && cartTragetid == product._id ? (
-                                            <BsCartCheck size={20} />
+                                            < HiOutlineCheck size={20} />
                                         ) : (
                                             <BsCart2 size={20} />
                                         )}

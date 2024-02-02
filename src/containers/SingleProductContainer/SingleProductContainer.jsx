@@ -96,10 +96,10 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                         </div>
                     </section>
                 </section>
-                <section className=' flex flex-col justify-between col-span-2 '>
+                <section className=' flex flex-col justify-between col-span-2 py-6'>
 
                     <main className='mb-8'>
-                        <p className=" text-2xl   font-bold    mb-8 leading-8 "> {filteredProduct?.name} </p>
+                        <p className=" text-3xl   font-bold    mb-8 leading-8 "> {filteredProduct?.name} </p>
                         <div className="my-8 flex items-center justify-between ">
                             <div className='flex items-center gap-3'>
                                 {Discount === 'true' ?
@@ -181,7 +181,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                     </main>
 
                     <main  >
-                        <p className="mb-3" ><b>Categories:</b><span className=" text-blue-500 cursor-pointer text-sm  " onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name}</span></p>
+                        <p className="mb-3" ><b>Categories:</b><span className=" text-blue-500 cursor-pointer text-sm   " onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name}</span></p>
                         <section className="flex justify-start items-center gap-3 ">
                             <p><b>Socials: </b></p>
                             <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>

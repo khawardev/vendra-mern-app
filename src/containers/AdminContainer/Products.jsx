@@ -34,21 +34,21 @@ export default function Rightbar() {
             fetch("http://localhost:5000/api/products").then((res) => res.json()),
             fetch("http://localhost:5000/api/categories").then((res) => res.json()),
         ])
-        .then(([productData, categoryData]) => {
-            console.log(productData, "productData");
-            console.log(categoryData, "categoriesData");
-    
-            setProductData(productData);
-            setCategoryData(categoryData);
-    
-            // Initialize DataTable when data is available
-            initializeDataTable();
-        })
-        .catch((error) => {
-            console.error("Error fetching data:", error);
-        });
+            .then(([productData, categoryData]) => {
+                console.log(productData, "productData");
+                console.log(categoryData, "categoriesData");
+
+                setProductData(productData);
+                setCategoryData(categoryData);
+
+                // Initialize DataTable when data is available
+                initializeDataTable();
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
     }, []);
-    
+
     // useEffect(() => {
     //     if (!tableRef.current) return;
 
@@ -76,12 +76,12 @@ export default function Rightbar() {
     // Initialize DataTable when data changes
     useEffect(() => {
         if (!tableRef.current) return;
-    
+
         // Destroy DataTable if already initialized
         if ($.fn.DataTable.isDataTable(tableRef.current)) {
             $(tableRef.current).DataTable().destroy();
         }
-    
+
         // Initialize DataTable
         $(tableRef.current).DataTable({
             paging: true,
@@ -90,12 +90,12 @@ export default function Rightbar() {
             buttons: ["copy", "excel", "pdf", "print"],
         });
     }, [productData, categoryData]);
-    
+
     //deleting user
     const deleteProduct = (id, name) => {
         console.log("id and name", id, name);
         console.log("Button Clicked");
-    
+
         if (window.confirm(`Are you sure you want to delete ${name}`)) {
             console.log("Entering");
             fetch("http://localhost:5000/api/deleteProducts", {
@@ -124,13 +124,13 @@ export default function Rightbar() {
                     } else {
                         Swal.fire("Deletion Failed", "error");
                     }
-                })                
+                })
                 .catch((error) => {
                     console.error("Error deleting product:", error);
                 });
         }
     };
-    
+
     const logOut = () => {
         window.localStorage.clear();
         window.location.href = "/account";
@@ -150,18 +150,18 @@ export default function Rightbar() {
     return (
         <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
             <div className="auth-inner" style={{ width: "auto" }}>
-            <div className="flex justify-between items-center mb-4">
-                <p className="my-4 text-2xl font-extrabold ml-1">
-                    Product Details
+                <div className="flex justify-between items-center mb-4">
+                    <p className="my-4 text-2xl   font-extrabold ml-1">
+                        Product Details
                     </p>
 
-                        <button onClick={logOut} className="font-small bg-red-500 rounded py-1 px-2">
-                            Logout
-                        </button>
-                        </div>
-                {Array.isArray(productData) && productData.length === 0 ?  (
+                    <button onClick={logOut} className="font-small bg-red-500 rounded py-1 px-2">
+                        Logout
+                    </button>
+                </div>
+                {Array.isArray(productData) && productData.length === 0 ? (
                     <p>Currently No Product add in database</p>
-                    
+
                 ) : (
                     <table ref={tableRef} className="w-full text-sm text-left">
                         <thead>

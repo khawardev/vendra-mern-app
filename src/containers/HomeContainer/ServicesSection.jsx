@@ -48,7 +48,7 @@ const ServicesSection = () => {
                                 {service.icon}
                             </section>
                             <section className='leading-5'>
-                                <h1 className='font-bold text-gray-800 mb-1'>{service.title}</h1>
+                                <h1 className='font-bold   text-gray-800 mb-1'>{service.title}</h1>
                                 <p className='text-gray-400 text-sm'>{service.description}</p>
                             </section>
                         </div>
@@ -59,7 +59,7 @@ const ServicesSection = () => {
                         <div className='flex'>
                             <p className='px-3 mb-3  text-sm items-center bg-yellow-500 rounded-full'>IPhone</p>
                         </div>
-                        <p className=' font-extrabold text-2xl tracking-tight'>New IPhone</p>
+                        <p className=' font-extrabold text-2xl   tracking-tight'>New IPhone</p>
                         <p className='mb-4 tracking-tight'>Don&rsquo;t miss out latest oppurtunity</p>
                         <button className='px-4 py-1 text-white text-sm tracking-tight font-semibold rounded-full bg-blue-500'>Shop now</button>
                     </section>

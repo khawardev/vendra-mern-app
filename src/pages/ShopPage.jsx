@@ -9,12 +9,12 @@ const ShopPage = () => {
 
 
             <p className=" text-sm mb-4"><span className=" text-gray-400">
-                <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=" text-black font-bold">Shop</span></span>
+                <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=" text-black font-bold  ">Shop</span></span>
             </p>
 
             <main className=" flex items-center justify-between ">
                 <section >
-                    <p className=" font-bold"> Showing 1-16 of 66 results</p>
+                    <p className=" font-bold  "> Showing 1-16 of 66 results</p>
                 </section>
                 <section className=" flex items-center gap-5">
                     <p>Sort by Latest</p>
@@ -30,7 +30,7 @@ const ShopPage = () => {
 
             {/* <NewProducts url='shop' viewmore={true} title='New Products' grid={'lg:grid-cols-4 md:grid-cols-3 grid-cols-2'} NewProductBanner={true} /> */}
 
-            <NewProducts url='shop' sliceProducts={false} viewmore={true}  grid={' grid-cols-5 '} NewProductBanner={false} />
+            <NewProducts url='shop' sliceProducts={false} viewmore={true} grid={' grid-cols-5 '} NewProductBanner={false} />
         </main>
 
     )

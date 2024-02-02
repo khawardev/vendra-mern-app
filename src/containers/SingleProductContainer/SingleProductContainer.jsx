@@ -70,8 +70,8 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
 
     return (
         <>
-                           
-            
+
+
             <p className=" text-sm mb-8"><span className=" text-gray-400"> <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=' cursor-pointer' onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name} </span>  /</span> <b>{Productname}</b>  </p>
 
             <main className=" grid grid-cols-4 gap-12 mb-18  ">
@@ -99,26 +99,26 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                 <section className=' flex flex-col justify-between col-span-2 '>
 
                     <main className='mb-8'>
-                        <p className=" text-2xl font-bold  mb-8 leading-8"> {filteredProduct?.name} </p>
+                        <p className=" text-2xl   font-bold    mb-8 leading-8 "> {filteredProduct?.name} </p>
                         <div className="my-8 flex items-center justify-between ">
                             <div className='flex items-center gap-3'>
                                 {Discount === 'true' ?
                                     <>
-                                        <p className=" text-3xl font-bold text-red-500"> ${DiscountedPrice}.00 </p>
-                                        <p className=" text-xl  text-gray-300 line-through"> ${filteredProduct?.price}.00 </p>
+                                        <p className=" text-3xl font-bold   text-red-500"> ${DiscountedPrice}.00 </p>
+                                        <p className=" text-xl    text-gray-300 line-through"> ${filteredProduct?.price}.00 </p>
                                     </>
-                                    : <p className=" text-3xl font-bold text-red-500"> ${filteredProduct?.price}.00 </p>}
-                                
+                                    : <p className=" text-3xl font-bold   text-red-500"> ${filteredProduct?.price}.00 </p>}
+
 
 
                             </div>
                             <div><Toaster /></div>
                             <section className='flex items-center gap-2'>
-                                {Discount === 'true' && <div className='rounded-full  border-4 border-green-100  text-green-800 font-bold  bg-green-300 md:px-3 px-2 '>
+                                {Discount === 'true' && <div className='rounded-full  border-4 border-green-100  text-green-800 font-bold    bg-green-300 md:px-3 px-2 '>
                                     {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}% Discount
                                 </div>
                                 }
-                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full  border-4 border-red-100    font-bold text-red-800 bg-red-300 md:px-3 px-2 '>
+                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full  border-4 border-red-100    font-bold   text-red-800 bg-red-300 md:px-3 px-2 '>
                                     <FaFire size={14} />  Best Selling
                                 </div>
                                 }
@@ -129,7 +129,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                         </div>
                         <div className='my-8 flex justify-between items-center'>
 
-                            <span className=" select-none px-5 py-1 font-bold bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
+                            <span className=" select-none px-5 py-1 font-bold   bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
                             <div className='flex justify-between items-center gap-3'>
                                 <span className='flex items-center gap-1'>
                                     <AiFillStar className=' text-yellow-400 ' size={18} />
@@ -138,12 +138,12 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                                     <AiFillStar className=' text-yellow-400' size={18} />
                                     <AiOutlineStar className=' text-gray-300' size={18} />
                                 </span>
-                                <p className='font-bold  border px-5 py-1  rounded-full bg-gray-100 cursor-pointer'>1 • Review</p>
+                                <p className='font-bold    border px-5 py-1  rounded-full bg-gray-100 cursor-pointer'>1 • Review</p>
                             </div>
                         </div>
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">
                             <div className=" flex justify-between items-center gap-8 border rounded-full px-4 py-2 ">
-                                <div className='px-3 font-bold'>
+                                <div className='px-3 font-bold  '>
                                     <input type="text" size={1} value={quantity} name="" disabled id="" />
                                 </div>
                                 <div className="flex  items-center gap-1">
@@ -167,14 +167,14 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                                 </div>
                             </div>
                             <div className=' flex justify-between gap-3'>
-                                <p className="px-5 py-2   font-bold hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
-                                <p onClick={() => { handleAddToWishList() }} className=" px-5 py-2 border bg-blue-100  text-blue-600 font-bold hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
+                                <p className="px-5 py-2   font-bold   hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
+                                <p onClick={() => { handleAddToWishList() }} className=" px-5 py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
                             </div>
                         </section>
 
                         <div className="flex justify-between gap-3 mb-9 ">
 
-                            <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
+                            <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold    rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
                                 handleAddToCart();
                             }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
                         </div>
@@ -209,13 +209,13 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
             <main className='my-16'>
 
                 <section className='flex items-center gap-4 '>
-                    <p className=' text-xl cursor-pointer font-bold text-black transition-all ease-in hover:duration-100 '>Description</p>
-                    <p className=' text-xl cursor-pointer font-bold text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Specification</p>
-                    <p className=' text-xl cursor-pointer font-bold text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Aditional Information</p>
-                    <p className=' text-xl cursor-pointer font-bold text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Review</p>
+                    <p className=' text-xl   cursor-pointer font-bold   text-black transition-all ease-in hover:duration-100 '>Description</p>
+                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Specification</p>
+                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Aditional Information</p>
+                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Review</p>
                 </section>
                 <hr className='my-3' />
-                <p className=' leading-7  text-lg text-justify '> {filteredProduct?.description} </p>
+                <p className=' leading-7  text-lg text-justify  '> {filteredProduct?.description} </p>
 
 
             </main>

@@ -19,12 +19,12 @@ import { BsCartCheck } from "react-icons/bs";
 import { FaFire } from "react-icons/fa";
 import { selectRemovedProductIds } from '../../../toolkit/Slices/BestSellingSlice';
 
-const DiscountedNestedSection = ({ sliceProducts }) => {
+const DiscountedNestedSection = ({ sliceProducts, grid }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const discount = useSelector(selectdiscount);
     const RemovedProductIds = useSelector(selectRemovedProductIds);
- 
+
 
     const [wishlistTragetid, setwishlistTragetid] = useState();
     const [cartTragetid, setcartTragetid] = useState();
@@ -75,17 +75,17 @@ const DiscountedNestedSection = ({ sliceProducts }) => {
 
     return (
         <>
-            <>
+            <div className={`my-7 grid  gap-7 ${grid}`}>
                 {displayedProducts.map((product) => (
                     <article key={product.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                         <main>
                             <div>
                                 {RemovedProductIds.includes(product.id) && (
-                                    <div className='md:top-[1rem] top-[0.40rem] md:right-[15px] right-[10px]  flex justify-center items-center gap-1     rounded-full  rounded-tr-full border-4 border-gray-100   font-bold text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
+                                    <div className='md:top-[1rem] top-[0.40rem] md:right-[15px] right-[10px]  flex justify-center items-center gap-1     rounded-full  rounded-tr-full border-4 border-gray-100   font-bold   text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
                                         <FaFire size={14} />  Best Selling
                                     </div>
                                 )}
-                                <div className='md:top-[1rem] top-[0.40rem]   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100  text-green-800 font-bold  bg-green-300 md:px-3 px-2 absolute z-10'>
+                                <div className='md:top-[1rem] top-[0.40rem]   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100  text-green-800 font-bold    bg-green-300 md:px-3 px-2 absolute z-10'>
                                     {calculateDiscountPercentage(product?.price, product?.inputDescount)}%
                                 </div>
                                 <div onClick={() => {
@@ -93,7 +93,7 @@ const DiscountedNestedSection = ({ sliceProducts }) => {
                                         product.id,
                                         product.name,
                                         product.desc,
-                                        product.price,
+                                        product.inputDescount,
                                         product.imageurl,
                                         1
                                     );
@@ -118,8 +118,8 @@ const DiscountedNestedSection = ({ sliceProducts }) => {
                                     </div>
                                 </section>
                                 <div className='upper   '>
-                                    <span className=' md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-5 leading-4 mb-3  line-clamp-3  hover:cursor-pointer  '>{product.desc}</p>
+                                    <span className=' md:leading-5 mb-3 italic text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className=' md:leading-[18px] italic leading-4 mb-3  line-clamp-3  hover:cursor-pointer text-gray-400 '>{product.desc}</p>
                                 </div>
                             </section>
 
@@ -130,7 +130,7 @@ const DiscountedNestedSection = ({ sliceProducts }) => {
                             <div className='flex justify-between items-center '>
                                 <div className='md:flex justify-center items-center gap-2 '>
                                     <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product?.inputDescount}</p>
-                                    <p className='  text-sm  line-through font-bold text-red-500 '>${product?.price}</p>
+                                    <p className='  text-sm  line-through font-bold   text-red-500 '>${product?.price}</p>
                                 </div>
 
                                 <div onClick={() => {
@@ -138,7 +138,7 @@ const DiscountedNestedSection = ({ sliceProducts }) => {
                                         product?.id,
                                         product?.name,
                                         product?.desc,
-                                        product?.price,
+                                        product?.inputDescount,
                                         product?.imageurl,
                                         1
                                     );
@@ -163,9 +163,8 @@ const DiscountedNestedSection = ({ sliceProducts }) => {
                     </article>
                 ))}
 
+            </div>
 
-
-            </>
 
 
         </>

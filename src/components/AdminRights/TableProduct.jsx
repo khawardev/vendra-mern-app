@@ -19,9 +19,9 @@ const TableProduct = () => {
 
     return (
         <div>
-            
+
             <section className=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
-                <p className=' font-bold text-6xl  text-center my-12'>Vendor Panel</p>
+                <p className=' font-bold   text-6xl  text-center my-12'>Vendor Panel</p>
                 <div className="mx-auto max-w-screen-2xl px-4 lg:px-12">
 
                     <div className="  relative   overflow-hidden">
@@ -33,7 +33,7 @@ const TableProduct = () => {
                                     type="button"
                                     id="createProductButton"
                                     data-modal-toggle="createProductModal"
-                                    className="flex items-center justify-center gap-2   bg-blue-500 text-white font-bold focus:ring-2 focus:ring-primary-300  transition-all ease-in rounded-full text-sm px-4 py-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-primary-800"
+                                    className="flex items-center justify-center gap-2   bg-blue-500 text-white font-bold   focus:ring-2 focus:ring-primary-300  transition-all ease-in rounded-full text-sm px-4 py-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-primary-800"
                                 >
                                     <FaCircle size={12} />
                                     {isDropdownVisible ? 'View Products' : 'View Category'}

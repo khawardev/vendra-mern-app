@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../../context/AppContext';
 const Success = ({ title }) => {
-    const {  setThankyou } = useContext(Context)
+    const { setThankyou } = useContext(Context)
     const Navigate = useNavigate();
     return (
         <>
@@ -59,10 +59,10 @@ const Success = ({ title }) => {
                     <div>
                         <h1 className="text-4xl leading-tight font-semibold mb-1">Thank you!</h1>
                         <p className="text-gray-500 mb-5 leading-snug ">
-                            Your <span className="text-indigo-700 font-bold"> {title}  </span> has been uploaded
+                            Your <span className="text-indigo-700 font-bold  "> {title}  </span> has been uploaded
                         </p>
                         <span
-                            className="cursor-pointer text-indigo-700 font-bold bg-indigo-100 hover:bg-indigo-200 transition-all ease-in px-3 py-2 rounded-full"
+                            className="cursor-pointer text-indigo-700 font-bold   bg-indigo-100 hover:bg-indigo-200 transition-all ease-in px-3 py-2 rounded-full"
                             onClick={() => {
                                 Navigate('/');
                                 setThankyou(false);

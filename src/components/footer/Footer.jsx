@@ -26,7 +26,7 @@ const Footer = () => {
             <main className=" bg-[#041E42] ">
                 <div className="w-11/12 m-auto md:flex  justify-between items-center md:px-28 md:pb-5 md:pt-28 py-8 ">
                     <section className=' md:text-start text-center md:mb-0 mb-4'>
-                        <p className=" font-extrabold text-white text-2xl">
+                        <p className=" font-extrabold text-white text-2xl  ">
                             Sign Up For Newsletters
                         </p>
                         <p className=" text-slate-300">Get E-mail updates about our latest shops  <span className=" text-yellow-300"> special offers. </span> </p>
@@ -36,7 +36,7 @@ const Footer = () => {
                             <input type="text" className="py-3 outline-none border-none px-7  rounded-full w-full" placeholder='Your email address' />
                         </div>
                         <div>
-                            <button className="py-3 px-6 flex rounded-full  bg-yellow-500 whitespace-nowrap font-bold text-[#041E42] ">Sign up</button>
+                            <button className="py-3 px-6 flex rounded-full  bg-yellow-500 whitespace-nowrap font-bold   text-[#041E42] ">Sign up</button>
                         </div>
                     </section>
                 </div>
@@ -60,7 +60,7 @@ const Footer = () => {
                     <section className=' flex gap-1 items-center '>
                         <img src={logo} width={35} />
                         <p className='text-4xl font-extrabold  '>Vendra<sup className=' font-light text-sm'> &reg; </sup></p>
-                        
+
                     </section>
 
                     <section className="flex justify-center items-center gap-3 md:mt-0 mt-4">
@@ -84,13 +84,10 @@ const Footer = () => {
                 <hr className='my-6' />
                 <main className="flex justify-between items-center md:flex-row  flex-col-reverse ">
                     <section className='text-sm md:mt-0 mt-4 flex items-center gap-2' >
-          
+
                         © Copyright 2023 All Right Reserved
-                        <div className=' flex items-center gap-1'>
-                            <img src={logo} width={20} />
                             <span className=" text-[#FFC21F]   "><b>Vendra</b><sup className=' font-light text-sm'> &reg; </sup></span>
-                        </div>
-                        
+
                     </section>
                     <section>
                         <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694950874/payment_mbisbh.png" alt="" />

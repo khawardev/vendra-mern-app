@@ -67,7 +67,7 @@ const AuthPage = () => {
           localStorage.setItem("loggedIn", true);
 
 
-          
+
           if (data.role === "admin") {
             window.location.href = "/admin-account";
           } else {
@@ -229,7 +229,7 @@ const AuthPage = () => {
             </p>
 
             <button
-              className="  w-full bg-yellow-500  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="  w-full bg-yellow-500  font-bold   py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Register
@@ -237,7 +237,7 @@ const AuthPage = () => {
           </div>
         ) : (
           <div className="mb-3">
-            <label className="block text-gray-500 font-bold mb-2">
+            <label className="block text-gray-500 font-bold   mb-2">
               <input
                 className="mr-2 leading-tight"
                 type="checkbox"
@@ -247,7 +247,7 @@ const AuthPage = () => {
               <span className="text-sm">Remember me</span>
             </label>
             <button
-              className=" mb-3 w-full bg-yellow-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className=" mb-3 w-full bg-yellow-500 font-bold   py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Login

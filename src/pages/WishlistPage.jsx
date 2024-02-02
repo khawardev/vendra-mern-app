@@ -39,10 +39,10 @@ const WishlistPage = () => {
 
             {wishlistItems?.length != 0 ?
                 <>
-                    <p className=' font-bold text-6xl text-yellow-500  text-center my-12'>Wishlist</p>
+                    <p className=' font-bold   text-6xl text-yellow-500  text-center my-12'>Wishlist</p>
                     <table className="w-full text-sm text-left text-gray-500  ">
 
-                        <thead className=" bg-gray-50   text-gray-700 font-bold uppercase  ">
+                        <thead className=" bg-gray-50   text-gray-700 font-bold   uppercase  ">
                             <tr >
                                 <th scope="col" className="p-4">
                                     Product
@@ -80,7 +80,7 @@ const WishlistPage = () => {
                                     </td>
                                     <td className=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
-                                        <div className='  font-bold  w-[749px] line-clamp-1 '>
+                                        <div className='  font-bold    w-[749px] line-clamp-1 '>
                                             <p >{WishlistItems.name}</p>
                                             <p >{WishlistItems.name}</p>
 
@@ -93,7 +93,7 @@ const WishlistPage = () => {
                                     </td>
 
                                     <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <div className="flex items-center font-bold text-gray-500">
+                                        <div className="flex items-center font-bold   text-gray-500">
                                             ${WishlistItems?.price}
                                         </div>
                                     </td>
@@ -103,8 +103,8 @@ const WishlistPage = () => {
                                     <td className=" py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div className="flex items-center space-x-4">
                                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <div className="flex items-center font-bold text-gray-500">
-                                                    <span className=" select-none px-5 py-1 font-bold bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
+                                                <div className="flex items-center font-bold   text-gray-500">
+                                                    <span className=" select-none px-5 py-1 font-bold   bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
 
                                                 </div>
                                             </td>
@@ -113,8 +113,8 @@ const WishlistPage = () => {
                                     <td className=" py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div className="flex items-center space-x-4">
                                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <div className="flex items-center font-bold text-gray-500">
-                                                    <p className="px-5 py-2 border hover:bg-yellow-100 transition-all ease-in  hover:border-yellow-300 hover:text-yellow-600 font-bold  rounded-full  cursor-pointer flex justify-center items-center gap-2"
+                                                <div className="flex items-center font-bold   text-gray-500">
+                                                    <p className="px-5 py-2 border hover:bg-yellow-100 transition-all ease-in  hover:border-yellow-300 hover:text-yellow-600 font-bold    rounded-full  cursor-pointer flex justify-center items-center gap-2"
                                                         onClick={() => {
 
                                                             handleAddToCart(
@@ -175,8 +175,8 @@ const WishlistPage = () => {
                 <div className="Empty-cart ">
                     <div className='  pb-28 pt-14 justify-center items-center flex flex-col gap-3'>
                         <FaHeartBroken className=' mb-6' />
-                        <span className=' font-bold' >No product in the Wishlist</span>
-                        <p className=" cursor-pointer text-indigo-700   font-bold bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-5 py-2 rounded-full"
+                        <span className=' font-bold  ' >No product in the Wishlist</span>
+                        <p className=" cursor-pointer text-indigo-700   font-bold   bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-5 py-2 rounded-full"
                             onClick={() => Navigate('/')}  >Continue shopping →</p>
                     </div>
                 </div>

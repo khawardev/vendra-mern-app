@@ -166,17 +166,16 @@ const AuthPage = () => {
         onSubmit={handleSubmit}
         className="md:border border-yellow-500 rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5"
       >
-       
+
 
         <p className="text-center text-gray-500  text-sm mb-10 select-none ">
           <span className="font-extrabold  gap-1 bg-slate-100 md:border border-yellow-500 px-[6px] pt-[18px] pb-[16px] rounded-full ">
             <span>
               <span
-                className={`text-lg cursor-pointer  px-4 py-2 ${
-                  isRegistering
-                    ? "text-gray-900 bg-slate-200 md:border rounded-full px-3 py-1"
-                    : "text-gray-500"
-                }`}
+                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering
+                  ? "text-gray-900 bg-slate-200 md:border rounded-full px-3 py-1"
+                  : "text-gray-500"
+                  }`}
                 onClick={() => setIsRegistering(true)}
               >
                 Register
@@ -184,11 +183,10 @@ const AuthPage = () => {
             </span>
             <span>
               <span
-                className={`text-lg cursor-pointer  px-4 py-2 ${
-                  isRegistering
-                    ? "text-gray-500"
-                    : "text-gray-900 bg-slate-200 md:border rounded-full px-3 py-1"
-                }`}
+                className={`text-lg cursor-pointer  px-4 py-2 ${isRegistering
+                  ? "text-gray-500"
+                  : "text-gray-900 bg-slate-200 md:border rounded-full px-3 py-1"
+                  }`}
                 onClick={() => setIsRegistering(false)}
               >
                 Sign in
@@ -199,7 +197,7 @@ const AuthPage = () => {
         {isRegistering ? (
           <>
             <div className="mb-5">
-            {errors.username && <p className="text-red-500 text-s">{errors.username}</p>}
+              {errors.username && <p className="text-red-500 text-s">{errors.username}</p>}
               <label
                 className="block text-gray-700 text-sm mb-1"
                 htmlFor="username"
@@ -217,7 +215,7 @@ const AuthPage = () => {
               />
             </div>
             <div className="mb-5">
-            {errors.email && <p className="text-red-500 text-s">{errors.email}</p>}
+              {errors.email && <p className="text-red-500 text-s">{errors.email}</p>}
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="email"
@@ -226,7 +224,7 @@ const AuthPage = () => {
               </label>
               <input
                 className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
-                
+
                 type="email"
                 id="email"
                 name="email"
@@ -236,7 +234,7 @@ const AuthPage = () => {
               />
             </div>
             <div className="mb-7">
-            {errors.password && <p className="text-red-500 text-s">{errors.password}</p>}
+              {errors.password && <p className="text-red-500 text-s">{errors.password}</p>}
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="password"
@@ -251,12 +249,12 @@ const AuthPage = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
-              
+
             </div>
           </>
         ) : (
           <>
-                      <div className="mb-5 ">
+            <div className="mb-5 ">
 
               <label
                 className="block text-gray-700 text-sm  mb-1"
@@ -291,21 +289,21 @@ const AuthPage = () => {
               />
 
             </div>
-         
+
           </>
         )}
-   <div className="mb-1">
-              <HCaptcha
-                sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
-                onVerify={handleHCaptchaVerify}
-                size="normal"
-              />
-            </div>
-            <div className="mb-1">
+        <div className="mb-1">
+          <HCaptcha
+            sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
+            onVerify={handleHCaptchaVerify}
+            size="normal"
+          />
+        </div>
+        <div className="mb-1">
 
-          
-    </div>
-    {/* <div className="mb-7">
+
+        </div>
+        {/* <div className="mb-7">
           <GoogleSignIn />
         </div> */}
         {/* Registration */}
@@ -319,7 +317,7 @@ const AuthPage = () => {
             </p>
 
             <button
-              className="  w-full bg-yellow-500  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="  w-full bg-yellow-500  font-bold   py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Register
@@ -327,7 +325,7 @@ const AuthPage = () => {
           </div>
         ) : (
           <div className="mb-3">
-            <label className="block text-gray-500 font-bold mb-2">
+            <label className="block text-gray-500 font-bold   mb-2">
               <input
                 className="mr-2 leading-tight"
                 type="checkbox"
@@ -338,7 +336,7 @@ const AuthPage = () => {
               <span className="text-sm">Remember me</span>
             </label>
             <button
-              className=" mb-3 w-full bg-yellow-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className=" mb-3 w-full bg-yellow-500 font-bold   py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Login

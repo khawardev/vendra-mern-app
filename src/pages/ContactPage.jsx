@@ -30,10 +30,10 @@ const ContactPage = () => {
         // Handle success, e.g., show a success message
         console.log("Form submitted successfully");
         Swal.fire({
-            icon: 'success',
-            title: 'Submitted',
-            text: 'Our Team will contact you soon!',
-          });
+          icon: 'success',
+          title: 'Submitted',
+          text: 'Our Team will contact you soon!',
+        });
       } else {
         // Handle errors, e.g., show an error message
         console.error("Form submission failed");
@@ -47,20 +47,20 @@ const ContactPage = () => {
     <main className=" w-11/12 m-auto md:py-20 py-3">
       {/* <section className='my-10'>
                 <div className='flex'>
-                    <p className=' text-2xl text-gray-700 bg-green-200 mb-2 px-5 rounded-full font-bold'>Pakistan</p>
+                    <p className=' text-2xl   text-gray-700 bg-green-200 mb-2 px-5 rounded-full font-bold  '>Pakistan</p>
                 </div>
                 <div className='px-1'>
-                    <p className='text-4xl font-bold'>Comsats Software house</p>
+                    <p className='text-4xl font-bold  '>Comsats Software house</p>
                     <p className=' text-sm text-gray-600 mb-2'>Comsats University Rd, off GT road،, Sahiwal, Sahiwal District, Punjab 57000</p>
                     <p> (040) 4305005</p>
                     <a href="" className='text-blue-500'>contact@cuisahiwal.com</a>
                </div>
             </section> */}
       <section className="my-10">
-        <p className=" text-2xl text-gray-400 mb-4 font-bold leading-6">
+        <p className=" text-2xl   text-gray-400 mb-4 font-bold   leading-6">
           You can ask us questions !
         </p>
-        <p className=" md:text-5xl text-xl mb-4 font-bold leading-6 ">
+        <p className=" md:text-5xl text-xl   mb-4 font-bold   leading-6 ">
           We are dedicated to providing exceptional support, assistance to our
           valued customer and partners seeking information or assistance, our
           team is here to help.
@@ -69,7 +69,7 @@ const ContactPage = () => {
 
       <section className="md:flex gap-32 py-20 ">
         <div className="w-full flex flex-col justify-between ">
-          <p className=" text-xl mb-10">
+          <p className=" text-xl   mb-10">
             If you have any general inquiries or feedback for us, please dont
             hesitate to get in touch.insights help us enhance the Vendra
             Ecommerce experience for everyone.
@@ -78,7 +78,7 @@ const ContactPage = () => {
         </div>
         <div className="w-full  md:bg-gray-100 md:p-14   md:mt-0 mt-10">
           <p className="text-3xl  font-extrabold ">Get in Touch</p>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl   text-gray-600">
             If you have any query feel free to Contact us
           </p>
           <form onSubmit={handleSubmit}>
@@ -123,7 +123,7 @@ const ContactPage = () => {
                 className="w-full  py-2 rounded-tr-full border rounded-br-full rounded-bl-full  px-4  focus:border-yellow-500 focus:border  outline-none"
                 name="subject"
                 value={formData.subject} // Ensure the value is controlled by formData
-                  onChange={handleChange} // Attach handleChange to handle input changes
+                onChange={handleChange} // Attach handleChange to handle input changes
               />
             </section>
             <section className="my-6">
@@ -137,7 +137,7 @@ const ContactPage = () => {
                 className="w-full py-2   px-4 border  focus:border-yellow-500 focus:border  outline-none"
                 name="message"
                 value={formData.message} // Ensure the value is controlled by formData
-                  onChange={handleChange} // Attach handleChange to handle input changes
+                onChange={handleChange} // Attach handleChange to handle input changes
                 id=""
                 cols="30"
                 rows="10"
@@ -146,7 +146,7 @@ const ContactPage = () => {
 
             <button
               type="submit"
-              className="px-4   py-2 bg-yellow-500 rounded-full   text-white font-bold"
+              className="px-4   py-2 bg-yellow-500 rounded-full   text-white font-bold  "
             >
               Send Messege
             </button>

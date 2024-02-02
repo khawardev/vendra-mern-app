@@ -18,7 +18,7 @@ import { HiOutlineCheck } from "react-icons/hi";
 import { BsCartCheck } from "react-icons/bs";
 import toast, { Toaster } from 'react-hot-toast';
 
-const NewProductsNestedSection = ({ sliceProducts }) => {
+const NewProductsNestedSection = ({ sliceProducts, grid }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
@@ -64,14 +64,13 @@ const NewProductsNestedSection = ({ sliceProducts }) => {
     return (
         <>
             {products &&
-                <>
-               
+                <div className={`my-7 grid  gap-7 ${grid}`}>
 
-                {displayedProducts.map((product) => (
-                        <article key={product._id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
+                    {displayedProducts.map((product) => (
+                        <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
                                 <div>
-                                   
+
                                     <div onClick={() => {
                                         handleAddToWishList(
                                             product._id,
@@ -94,7 +93,7 @@ const NewProductsNestedSection = ({ sliceProducts }) => {
 
 
                                 </div>
-                            <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
                                         <div className='Parent-product-Image-Hover flex justify-center items-center   '>
                                             {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
@@ -102,18 +101,18 @@ const NewProductsNestedSection = ({ sliceProducts }) => {
                                         </div>
                                     </section>
                                     <div className='upper   '>
-                                        <span className=' md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                        <p className=' md:leading-5 leading-4 mb-3  line-clamp-3  hover:cursor-pointer  '>{product.description}</p>
+                                        <span className=' md:leading-5 mb-3 italic text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                        <p className=' md:leading-5 italic leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
                                     </div>
                                 </section>
 
                             </main>
-                        <div></div>
+                            <div></div>
                             <main  >
 
                                 <div className='flex justify-between items-center '>
-                                      
-                                        <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
+
+                                    <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
 
                                     <div onClick={() => {
                                         handleAddToCart(
@@ -130,9 +129,9 @@ const NewProductsNestedSection = ({ sliceProducts }) => {
                                         {cartloading && cartTragetid == product._id ? (
                                             <BsCartCheck size={20} />
                                         ) : (
-                                                <BsCart2 size={20} />
+                                            <BsCart2 size={20} />
                                         )}
-                                </div>
+                                    </div>
 
                                 </div>
                                 <span className='flex items-center gap-1  mb-2'>
@@ -143,9 +142,9 @@ const NewProductsNestedSection = ({ sliceProducts }) => {
                                     <AiOutlineStar className=' text-gray-300' size={18} />
                                 </span>
                             </main>
-                        </article>
-                ))}
-                </>
+                        </div>
+                    ))}
+                </div>
             }
 
 

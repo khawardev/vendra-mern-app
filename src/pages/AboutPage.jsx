@@ -6,8 +6,8 @@ const AboutPage = () => {
         <main className=" w-11/12  m-auto md:py-20 py-3">
 
             <main className="my-10">
-                <p className=" text-2xl text-gray-400 mb-4 font-bold leading-6">Our Mission, About Machic</p>
-                <p className=" md:text-6xl text-xl mb-4 font-bold leading-6  ">We belive the best experience always wins</p>
+                <p className=" text-2xl   text-gray-400 mb-4 font-bold   leading-6">Our Mission, About Machic</p>
+                <p className=" md:text-6xl text-xl   mb-4 font-bold   leading-6  ">We belive the best experience always wins</p>
                 <p className=" text-lg  mb-4 w-3/5 leading-6  text-justify">Quisque lacinia commodo euismod. Nullam tempus nec mi id blandit. In lacinia nibh vitae ante laoreet rhoncus. Quisque in dapibus lorem, luctus gravida velit. Nulla gravida eros ac pharetra porta.</p>
             </main>
 
@@ -18,7 +18,7 @@ const AboutPage = () => {
                         <IoRemoveOutline size={29} />
                     </div>
                     <div>
-                        <p className=' text-xl font-bold leading-8 '>Class aptent taciti sociosqu</p>
+                        <p className=' text-xl   font-bold   leading-8 '>Class aptent taciti sociosqu</p>
                         <p className='leading-5 text-gray-400'>Quisque luctus leo sit amet ante finibus lobortis. Class aptent taciti sociosqu.</p>
                     </div>
                 </section>
@@ -27,7 +27,7 @@ const AboutPage = () => {
                         <IoRemoveOutline size={29} />
                     </div>
                     <div>
-                        <p className=' text-xl font-bold leading-8 '>Class aptent taciti sociosqu</p>
+                        <p className=' text-xl   font-bold   leading-8 '>Class aptent taciti sociosqu</p>
                         <p className='leading-5 text-gray-400'>Quisque luctus leo sit amet ante finibus lobortis. Class aptent taciti sociosqu.</p>
                     </div>
                 </section>
@@ -36,7 +36,7 @@ const AboutPage = () => {
                         <IoRemoveOutline size={29} />
                     </div>
                     <div>
-                        <p className=' text-xl font-bold leading-8 '>Class aptent taciti sociosqu</p>
+                        <p className=' text-xl   font-bold   leading-8 '>Class aptent taciti sociosqu</p>
                         <p className='leading-5 text-gray-400'>Quisque luctus leo sit amet ante finibus lobortis. Class aptent taciti sociosqu.</p>
                     </div>
                 </section>
@@ -59,8 +59,8 @@ const AboutPage = () => {
                 </section>
             </main>
             <main className="mb-10">
-                <p className=" text-2xl text-gray-400 mb-4 font-bold leading-6">Our Vision, About Machic</p>
-                <p className=" md:text-5xl text-xl mb-4 font-bold leading-6  ">Nulla at facilisis leo. Aenean vel molestie risus. Morbi in vehicula metus, ut malesuada mauris.</p>
+                <p className=" text-2xl   text-gray-400 mb-4 font-bold   leading-6">Our Vision, About Machic</p>
+                <p className=" md:text-5xl text-xl   mb-4 font-bold   leading-6  ">Nulla at facilisis leo. Aenean vel molestie risus. Morbi in vehicula metus, ut malesuada mauris.</p>
             </main>
 
             <main className=" grid grid-cols-3 gap-16 my-20">
@@ -96,7 +96,7 @@ const AboutPage = () => {
                         <IoRemoveOutline size={29} />
                     </div>
                     <div>
-                        <p className=' text-xl font-bold leading-8 '>Class aptent taciti sociosqu</p>
+                        <p className=' text-xl   font-bold   leading-8 '>Class aptent taciti sociosqu</p>
                         <p className='leading-5 text-gray-400'>Quisque luctus leo sit amet ante finibus lobortis. Class aptent taciti sociosqu.</p>
                     </div>
                 </section>
@@ -105,7 +105,7 @@ const AboutPage = () => {
                         <IoRemoveOutline size={29} />
                     </div>
                     <div>
-                        <p className=' text-xl font-bold leading-8 '>Class aptent taciti sociosqu</p>
+                        <p className=' text-xl   font-bold   leading-8 '>Class aptent taciti sociosqu</p>
                         <p className='leading-5 text-gray-400'>Quisque luctus leo sit amet ante finibus lobortis. Class aptent taciti sociosqu.</p>
                     </div>
                 </section>
@@ -114,7 +114,7 @@ const AboutPage = () => {
                         <IoRemoveOutline size={29} />
                     </div>
                     <div>
-                        <p className=' text-xl font-bold leading-8 '>Class aptent taciti sociosqu</p>
+                        <p className=' text-xl   font-bold   leading-8 '>Class aptent taciti sociosqu</p>
                         <p className='leading-5 text-gray-400'>Quisque luctus leo sit amet ante finibus lobortis. Class aptent taciti sociosqu.</p>
                     </div>
                 </section>

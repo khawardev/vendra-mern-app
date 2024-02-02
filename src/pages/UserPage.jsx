@@ -18,7 +18,7 @@ const UserPage = () => {
   const users = useSelector(selectUsers);
   const Singleusers = useSelector(selectSingleUsers);
   console.log(Singleusers?.slice(-1)[0])
-  console.log( foundUserDetails)
+  console.log(foundUserDetails)
 
   useEffect(() => {
     const flattenedArray = users?.flat(1);
@@ -94,23 +94,23 @@ const UserPage = () => {
         </div>
         <div>
           <p className="text-lg text-gray-500  leading-3">Manage your account</p>
-          <p className="text-lg text-gray-500 my-3 leading-6">Click <span className="font-bold text-black hover:cursor-pointer hover:underline hover:text-blue-500">here</span> to edit your information</p>
+          <p className="text-lg text-gray-500 my-3 leading-6">Click <span className="font-bold   text-black hover:cursor-pointer hover:underline hover:text-blue-500">here</span> to edit your information</p>
         </div>
       </section>
 
 
 
-      <p className=" text-2xl font-bold my-10 ">Your account details</p>
+      <p className=" text-2xl   font-bold   my-10 ">Your account details</p>
 
       <main className=" gap-6">
         <section className=" border  md:px-10 md:py-10 px-5 py-10 w-full rounded-xl ">
           <p className="text-gray-500  ">PERSONAL DETAILS</p>
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">EMAIL: </span> <span className='ml-3'>{foundUserDetails?.email}</span> </p>
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold  ">EMAIL: </span> <span className='ml-3'>{foundUserDetails?.email}</span> </p>
 
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USERNAME: </span> <span className='ml-3'>{foundUserDetails?.username}</span>  </p>
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold  ">USERNAME: </span> <span className='ml-3'>{foundUserDetails?.username}</span>  </p>
           <div className=' flex items-center justify-between'>
             <div className='flex'>
-              <p className=" text-black font-bold">PASSWORD: </p>
+              <p className=" text-black font-bold  ">PASSWORD: </p>
               <div className='ml-3 text-gray-500'>
                 {passwordVisible ? foundUserDetails?.password : '*'.repeat(foundUserDetails?.password?.length)}
               </div>
@@ -123,9 +123,9 @@ const UserPage = () => {
         </section>
         {/* <section className=" border border-yellow-500 md:px-10 md:py-10 px-5 py-10 w-full rounded-xl shadow">
           <p className="text-gray-500 ">USER HISTORY</p>
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USER SINCE: </span> <span className='ml-3'>Oct 2023</span> </p>
-          <p className="text-gray-500  my-4"> <span className=" text-black font-bold">USER PURCHASES: </span><span className='ml-3'>  54</span></p>
-          <p className="text-gray-500"> <span className=" text-black font-bold">COST OF PURCHASES: </span><span className='ml-3'> 240 $</span></p>
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold  ">USER SINCE: </span> <span className='ml-3'>Oct 2023</span> </p>
+          <p className="text-gray-500  my-4"> <span className=" text-black font-bold  ">USER PURCHASES: </span><span className='ml-3'>  54</span></p>
+          <p className="text-gray-500"> <span className=" text-black font-bold  ">COST OF PURCHASES: </span><span className='ml-3'> 240 $</span></p>
         </section> */}
 
       </main>

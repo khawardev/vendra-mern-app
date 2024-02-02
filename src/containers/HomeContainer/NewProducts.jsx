@@ -27,12 +27,11 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
     // } else {
     //     sectionToRender = <CategoryProductsNestedSection filteredProducts={filteredProducts} />;
     // }
-
     return (
         <>
             <main className=' md:mt-0 mt-6 flex flex-col justify-between  '>
                 <main >
-                    {title &&
+                    {filteredProducts?.length !== 0 && title &&
                         <>
                             <section className="flex justify-between items-center mb-3">
                                 <div className='flex  justify-center items-center gap-4'>
@@ -40,8 +39,16 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
                                         <div onClick={() => Navigate(`/`)} className=' p-2  rounded-full bg-gray-200 hover:bg-gray-300 cursor-pointer transition-all ease-in flex justify-center items-center '>
                                             {<ChevronLeft size={20} />}
                                         </div>
+
                                     }
-                                    <p className="text-2xl font-extrabold whitespace-nowrap ">{title}</p>
+
+
+                                    <p className="text-2xl   font-extrabold whitespace-nowrap ">{title}</p>
+
+
+
+
+
                                 </div>
                                 {viewmore && <p className="text-sm cursor-pointer  text-blue-600 flex gap-1 items-center whitespace-nowrap hover:bg-blue-100  transition-all ease-in px-2 py-1 rounded-full" onClick={() => Navigate(URL)}> View more <BsArrowRightShort size={20} /> </p>}
 
@@ -51,20 +58,20 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
 
                     }
 
-                    <section className={`my-7 grid ${grid} gap-7`}>
-                        {url === 'newProducts' 
-                            ? <NewProductsNestedSection   sliceProducts={sliceProducts === false ? false : true} />
+                    <section >
+                        {url === 'newProducts'
+                            ? <NewProductsNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
                             : url === 'discount'
-                                ? <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />
+                                ? <DiscountedNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
                                 : url === 'bestselling'
-                                    ? <BestSellingNestedSection sliceProducts={sliceProducts === false ? false : true} />
-                                    : <CategoryProductsNestedSection filteredProducts={filteredProducts} />
+                                    ? <BestSellingNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                                    : <CategoryProductsNestedSection grid={grid} filteredProducts={filteredProducts} />
                         }
                     </section>
                     {url === 'shop' && <section className={`my-7 grid ${grid} gap-7`}>
-                         <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
-                    </section> }
-                    
+                        <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
+                    </section>}
+
                 </main>
 
                 <main>
@@ -73,8 +80,8 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
                             <div className='text-black absolute md:top-6 top-4 md:left-10  z-10  p-2'>
 
                                 <div className='mt-5'>
-                                    <h1 className='md:text-2xl text-lg leading-6 md:block hidden tracking-tight'>Immerse yourself in pure sound</h1>
-                                    <h1 className='md:text-4xl text-2xl font-extrabold leading-6 tracking-tight'>Discover Premium Headphones</h1>
+                                    <h1 className='md:text-2xl   text-lg leading-6 md:block hidden tracking-tight'>Immerse yourself in pure sound</h1>
+                                    <h1 className='md:text-4xl text-2xl   font-extrabold leading-6 tracking-tight'>Discover Premium Headphones</h1>
                                 </div>
                                 <button className='px-5 py-2  text-sm font-semibold   bg-blue-500 rounded-full text-white  transition-all ease-in  mt-4'>
                                     <b>Shop now</b>

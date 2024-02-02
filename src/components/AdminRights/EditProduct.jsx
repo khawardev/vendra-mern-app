@@ -66,7 +66,7 @@ const EditProduct = () => {
                 <div className="relative p-4 bg-white rounded-lg  dark:bg-gray-800 sm:p-5">
                     <h5
                         id="drawer-label"
-                        className="items-center mb-16 font-bold   text-4xl   text-center dark:text-gray-400"
+                        className="items-center mb-16 font-bold     text-4xl   text-center dark:text-gray-400"
                     >
                         Update Product
                     </h5>
@@ -76,7 +76,7 @@ const EditProduct = () => {
                             <div>
                                 <label
                                     htmlFor="name"
-                                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                                    className="block mb-2 text-sm font-bold   text-gray-900 dark:text-white"
                                 >
                                     Product Name
                                 </label>
@@ -94,7 +94,7 @@ const EditProduct = () => {
                             <div>
                                 <label
                                     htmlFor="description"
-                                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                                    className="block mb-2 text-sm font-bold   text-gray-900 dark:text-white"
                                 >
                                     Description
                                 </label>
@@ -112,7 +112,7 @@ const EditProduct = () => {
                                         <div
                                             id="tooltip-fullscreen"
                                             role="tooltip"
-                                            className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-bold text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                            className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-bold   text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
                                             data-popper-reference-hidden=""
                                             data-popper-escaped=""
                                             data-popper-placement="bottom"
@@ -142,7 +142,7 @@ const EditProduct = () => {
                                 </div>
                             </div>
                             <div className="mb-4  ">
-                                <span className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                                <span className="block mb-2 text-sm font-bold   text-gray-900 dark:text-white">
                                     Product Images
                                 </span>
                                 <div className="grid grid-cols-4 gap-4  ">
@@ -265,7 +265,7 @@ const EditProduct = () => {
                                 <div>
                                     <label
                                         htmlFor="stock"
-                                        className="block mb-2 text-sm font-bold text-gray-900 dark:text-white  text-start"
+                                        className="block mb-2 text-sm font-bold   text-gray-900 dark:text-white  text-start"
                                     >
                                         Stock
                                     </label>
@@ -284,7 +284,7 @@ const EditProduct = () => {
                                 <div>
                                     <label
                                         htmlFor="price"
-                                        className="block mb-2 text-sm font-bold text-gray-900 dark:text-white  text-start"
+                                        className="block mb-2 text-sm font-bold   text-gray-900 dark:text-white  text-start"
                                     >
                                         Price
                                     </label>
@@ -303,7 +303,7 @@ const EditProduct = () => {
                                 <div>
                                     <label
                                         htmlFor="category"
-                                        className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                                        className="block mb-2 text-sm font-bold   text-gray-900 dark:text-white"
                                     >
                                         Category
                                     </label>
@@ -358,7 +358,7 @@ const EditProduct = () => {
                             <div className="w-full  flex items-center justify-between gap-3  mt-5 ">
                                 <button
                                     type="submit"
-                                    className="text-white w-full bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                    className="text-white w-full bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold   rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                 >
                                     Update product
                                 </button>

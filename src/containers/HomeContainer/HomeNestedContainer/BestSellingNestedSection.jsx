@@ -18,7 +18,7 @@ import { HiOutlineCheck } from "react-icons/hi";
 import { BsCartCheck } from "react-icons/bs";
 import { FaFire } from "react-icons/fa";
 
-const BestSellingNestedSection = ({ sliceProducts }) => {
+const BestSellingNestedSection = ({ sliceProducts, grid }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const bestSelling = useSelector(selectbestSelling);
@@ -60,12 +60,12 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
 
     return (
         <>
-            <>
+            <div className={`my-7 grid  gap-7 ${grid}`}>
                 {displayedProducts.map((product) => (
                     <article key={product?.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                         <main>
                             <div>
-                                <div className='md:top-[1rem] top-[0.40rem] flex justify-center items-center gap-1   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100   font-bold text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
+                                <div className='md:top-[1rem]  top-[0.40rem] flex justify-center items-center gap-1   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100   font-bold   text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
                                     <FaFire size={14} />  Best Selling
                                 </div>
                                 <div onClick={() => {
@@ -95,8 +95,8 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
                                     </div>
                                 </section>
                                 <div className='upper   '>
-                                    <span className=' md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-5 leading-4 mb-3  line-clamp-3  hover:cursor-pointer  '>{product.desc}</p>
+                                    <span className=' md:leading-5 mb-3 italic text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className='  md:leading-[18px] italic leading-4 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400'>{product.desc}</p>
                                 </div>
                             </section>
 
@@ -138,7 +138,7 @@ const BestSellingNestedSection = ({ sliceProducts }) => {
                         </main>
                     </article>
                 ))}
-            </>
+            </div>
 
 
         </>

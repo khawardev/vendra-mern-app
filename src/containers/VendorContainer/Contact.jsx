@@ -22,8 +22,8 @@ export default function Contact() {
   const tableRef = useRef(null);
   const fetchContact = async () => {
     try {
-        const response = await fetch(`http://localhost:5000/api/contact/all`);
-        const contact = await response.json();
+      const response = await fetch(`http://localhost:5000/api/contact/all`);
+      const contact = await response.json();
       setContactData(contact);
     } catch (error) {
       console.error("Error fetching Contact data:", error);
@@ -74,7 +74,7 @@ export default function Contact() {
     <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
       <div className="auth-inner" style={{ width: "auto" }}>
         <div className="flex justify-between items-center mb-4">
-          <p className="my-4 text-2xl font-extrabold ml-1">Contact Details</p>
+          <p className="my-4 text-2xl   font-extrabold ml-1">Contact Details</p>
 
           <button
             onClick={logOut}
@@ -100,9 +100,8 @@ export default function Contact() {
               {contactData.map((contact, index) => (
                 <tr
                   key={contact._id}
-                  className={`${
-                    index % 2 === 0 ? "bg-gray-200" : ""
-                  } border-b border-gray-300`}
+                  className={`${index % 2 === 0 ? "bg-gray-200" : ""
+                    } border-b border-gray-300`}
                 >
                   <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     {contact._id}

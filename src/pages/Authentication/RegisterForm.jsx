@@ -6,7 +6,7 @@ import HCaptcha from "react-hcaptcha";
 
 const RegisterForm = ({ formData, handleChange, handleHCaptchaVerify, handleSubmit }) => (
     <>
-        <p className=" text-2xl mb-10 font-bold text-center  ">Register</p>
+        <p className=" text-2xl   mb-10 font-bold   text-center  ">Register</p>
         <div className="mb-5">
             <label
                 className="block text-gray-700 text-sm mb-1"
@@ -59,10 +59,10 @@ const RegisterForm = ({ formData, handleChange, handleHCaptchaVerify, handleSubm
 
         </div>
 
-       <HCaptcha
+        <HCaptcha
             sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
             onVerify={handleHCaptchaVerify}
-        /> 
+        />
 
         <div>
             <p className="leading-5 mb-7 text-xs text-gray-600">
@@ -74,7 +74,7 @@ const RegisterForm = ({ formData, handleChange, handleHCaptchaVerify, handleSubm
             </p>
 
             <button
-                className="  w-full bg-yellow-500  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="  w-full bg-yellow-500  font-bold   py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
                 onClick={handleSubmit}
             >

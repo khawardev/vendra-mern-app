@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Context } from "../../context/AppContext";
 const PreviewProduct = () => {
-    const {setisHiddenPreview } = useContext(Context);
+    const { setisHiddenPreview } = useContext(Context);
 
     const isHiddenPreviewFunction = () => {
         setisHiddenPreview(false);
@@ -19,11 +19,11 @@ const PreviewProduct = () => {
                     <div>
                         <h4
                             id="read-drawer-label"
-                            className="mb-1.5 leading-none text-xl font-semibold text-gray-900 dark:text-white"
+                            className="mb-1.5 leading-none text-xl   font-semibold text-gray-900 dark:text-white"
                         >
                             Apple iMac 25
                         </h4>
-                        <h5 className="mb-5 text-xl font-bold text-gray-900 dark:text-white">
+                        <h5 className="mb-5 text-xl   font-bold   text-gray-900 dark:text-white">
                             $2999
                         </h5>
                     </div>

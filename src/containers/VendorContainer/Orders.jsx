@@ -61,8 +61,8 @@ export default function Order() {
 
   const fetchOrders = async () => {
     try {
-        const response = await fetch(`http://localhost:5000/api/orders`);
-        const orders = await response.json();
+      const response = await fetch(`http://localhost:5000/api/orders`);
+      const orders = await response.json();
       setOrderData(orders);
     } catch (error) {
       console.error("Error fetching order data:", error);
@@ -93,18 +93,18 @@ export default function Order() {
   const handleViewClick = (orderId) => {
     console.log("View button clicked for order ID:", orderId);
     fetchOrderDetails(orderId)
-    .then((orderDetails) => {
-      console.log('Order Details:', orderDetails);
-      if (orderDetails) {
-        setSelectedOrder(orderDetails);
-      }  else {
-        console.error("Order details not available");
-        // Handle as needed, e.g., show an error message
-      }
-       })
-    .catch((error) => {
-      console.error('Error fetching order details:', error);
-    });
+      .then((orderDetails) => {
+        console.log('Order Details:', orderDetails);
+        if (orderDetails) {
+          setSelectedOrder(orderDetails);
+        } else {
+          console.error("Order details not available");
+          // Handle as needed, e.g., show an error message
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching order details:', error);
+      });
   };
   const handleCloseOrderDetails = () => {
     setSelectedOrder(null);
@@ -127,7 +127,7 @@ export default function Order() {
     <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
       <div className="auth-inner" style={{ width: "auto" }}>
         <div className="flex justify-between items-center mb-4">
-          <p className="my-4 text-2xl font-extrabold ml-1">Order Details</p>
+          <p className="my-4 text-2xl   font-extrabold ml-1">Order Details</p>
 
           <button
             onClick={logOut}
@@ -156,9 +156,8 @@ export default function Order() {
               {orderData.map((order, index) => (
                 <tr
                   key={order._id}
-                  className={`${
-                    index % 2 === 0 ? "bg-gray-200" : ""
-                  } border-b border-gray-300`}
+                  className={`${index % 2 === 0 ? "bg-gray-200" : ""
+                    } border-b border-gray-300`}
                 >
                   <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     {order._id}
@@ -178,7 +177,7 @@ export default function Order() {
                     >
                       <span className="flex justify-between items-center gap-2">
                         {/* {" "} */}
-                        <BiEditAlt size={16}  /> View
+                        <BiEditAlt size={16} /> View
                       </span>
                     </button>
                     <button

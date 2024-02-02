@@ -63,12 +63,12 @@ const CartPage = () => {
 
             {cartItems?.length != 0 ?
                 <>
-                    <p className=' font-bold text-6xl text-yellow-500  text-center my-12'>Cart</p>
+                    <p className=' font-bold   text-6xl text-yellow-500  text-center my-12'>Cart</p>
 
                     <main className=' flex items-end gap-3  '>
 
                         <table className="w-full  col-span-1 text-sm text-left text-gray-500 dark:text-gray-400  ">
-                            <thead className="   text-gray-700 font-bold uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+                            <thead className="   text-gray-700 font-bold   uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
                                 <tr >
                                     <th scope="col" className="p-4">
                                         Product
@@ -106,7 +106,7 @@ const CartPage = () => {
                                         </td>
                                         <td className=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
-                                            <div className='  font-bold  w-[469px] line-clamp-1 '>
+                                            <div className='  font-bold    w-[469px] line-clamp-1 '>
                                                 <p >{cartItems.name}</p>
                                                 <p >{cartItems.name}</p>
 
@@ -119,7 +119,7 @@ const CartPage = () => {
                                         </td>
 
                                         <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            <div className="flex items-center font-bold text-gray-500">
+                                            <div className="flex items-center font-bold   text-gray-500">
                                                 ${cartItems?.price}
                                             </div>
                                         </td>
@@ -128,7 +128,7 @@ const CartPage = () => {
 
                                         <td scope="row" className="px-4  py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             <div className=" flex justify-between items-center gap-8 border rounded-full py-2 px-3">
-                                                <div className='px-3 font-bold'>
+                                                <div className='px-3 font-bold  '>
                                                     {/* {quantity} */}
                                                     <input type="text" size={1} value={cartItems?.quantity || quantity} name="" disabled id="" />
                                                 </div>
@@ -159,7 +159,7 @@ const CartPage = () => {
                                         <td className=" py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             <div className="flex items-center space-x-4">
                                                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    <div className="flex items-center font-bold text-gray-500">
+                                                    <div className="flex items-center font-bold   text-gray-500">
                                                         ${(cartItems?.price * cartItems.quantity).toFixed(2)}
                                                     </div>
                                                 </td>
@@ -207,16 +207,16 @@ const CartPage = () => {
 
                         {cartItems?.length != 0 && <>
                             <div className=' px-8 py-4 border bg-gray-100   '>
-                                <p className=' text-2xl font-bold mb-6'>Cart Total</p>
+                                <p className=' text-2xl   font-bold   mb-6'>Cart Total</p>
                                 <main className=' '>
 
                                     <main className='my-3 flex justify-between items-center'>
-                                        <p className='font-bold text-lg'>Subtotal</p>
+                                        <p className='font-bold   text-lg'>Subtotal</p>
                                         <p>${totalSubtotal.toFixed(2)}</p>
                                     </main>
                                     <hr className=' my-3' />
                                     <main >
-                                        <p className='font-bold mb-2 text-lg'>Shipping</p>
+                                        <p className='font-bold   mb-2 text-lg'>Shipping</p>
                                         <div className="flex flex-col space-y-2 ">
                                             <label className={`cursor-pointer flex justify-between border py-2 transition-all ease-in 
                                                                 ${selectedOption === 'COD' ? 'bg-gray-200' : 'hover:bg-gray-200'} items-center px-3 rounded-md`}>
@@ -256,8 +256,8 @@ const CartPage = () => {
                                     <hr className=' mt-3 mb-4' />
                                     <main className=' flex justify-between items-center '>
 
-                                        <p className='font-bold text-lg'>Total</p>
-                                        <p className=' font-bold text-xl'>${totalSubtotal.toFixed(2)}</p>
+                                        <p className='font-bold   text-lg'>Total</p>
+                                        <p className=' font-bold   text-xl  '>${totalSubtotal.toFixed(2)}</p>
                                     </main>
                                     <hr className=' mt-3 mb-4' />
 
@@ -283,8 +283,8 @@ const CartPage = () => {
                 <div className="Empty-cart ">
                     <div className='  pb-28 pt-14  justify-center items-center flex flex-col gap-3'>
                         <BsCartX className=' mb-6' />
-                        <span className=' font-bold' >No product in the Cart</span>
-                        <p className=" cursor-pointer text-indigo-700   font-bold bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-5 py-2 rounded-full"
+                        <span className=' font-bold  ' >No product in the Cart</span>
+                        <p className=" cursor-pointer text-indigo-700   font-bold   bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-5 py-2 rounded-full"
                             onClick={() => Navigate('/')}  >Continue shopping →</p>
                     </div>
                 </div>

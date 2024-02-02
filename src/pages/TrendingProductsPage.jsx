@@ -6,12 +6,12 @@ const TrendingProductsPage = () => {
     return (
         <main className=" w-11/12 m-auto md:py-20 py-3">
             <p className=" text-sm mb-4"><span className=" text-gray-400">
-                <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=" text-black font-bold">Best Selling</span></span>
+                <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=" text-black font-bold  ">Best Selling</span></span>
             </p>
 
             <main className=" flex items-center justify-between ">
                 <section >
-                    <p className=" font-bold"> Showing 1-16 of 66 results</p>
+                    <p className=" font-bold  "> Showing 1-16 of 66 results</p>
                 </section>
                 <section className=" flex items-center gap-5">
                     <p>Sort by Latest</p>

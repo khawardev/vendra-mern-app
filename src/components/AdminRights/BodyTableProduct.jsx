@@ -154,7 +154,7 @@ const BodyTableProduct = () => {
             toast.error(<span style={{ fontWeight: 'bold' }}>Product already in Best Selling Products</span>);
         } else {
             toast.success(<span style={{ fontWeight: 'bold' }}>Added to Best Selling Products</span>);
-            {!isProductinDiscount && dispatch(setbestSelling([productData]))}
+            { !isProductinDiscount && dispatch(setbestSelling([productData])) }
         }
     };
     const handleSave = (id, name, desc, price, imageurl, quantity) => {
@@ -169,7 +169,7 @@ const BodyTableProduct = () => {
         };
         // const updatedBestSelling = bestSelling.filter(item => item?.id !== productData.id);
         const isProductInBestSelling = bestSelling.some(item => item?.id === productData?.id);
-        {isProductInBestSelling && dispatch(removeBestSelling(productData?.id));}
+        { isProductInBestSelling && dispatch(removeBestSelling(productData?.id)); }
 
 
         const isProductInDiscount = discount.some(item => item?.id === productData?.id);
@@ -196,7 +196,7 @@ const BodyTableProduct = () => {
                             <div className="flex items-center justify-center h-2/3">
                                 <div className="bg-green-700 p-6 rounded-2xl shadow-lg sm:w-1/3 w-11/12 transition-opacity ease-in-out duration-1000">
 
-                                    <h2 className="text-xl font-semibold  text-slate-100">Enter Discount of Product</h2>
+                                    <h2 className="text-xl   font-semibold  text-slate-100">Enter Discount of Product</h2>
                                     <h2 className="text-sm mb-4 text-slate-200">{discountedProducts[0]?.name}</h2>
                                     <div className='flex gap-3 items-center'>
                                         <input
@@ -215,8 +215,8 @@ const BodyTableProduct = () => {
 
                                         />
 
-                                        <p className='text-white text-lg  font-bold'>Price: ${discountedProducts[0]?.price}</p>
-                                        <p className='text-white text-lg  font-bold'>
+                                        <p className='text-white text-lg  font-bold  '>Price: ${discountedProducts[0]?.price}</p>
+                                        <p className='text-white text-lg  font-bold  '>
                                             Discount Percentage: {calculateDiscountPercentage()}%
                                         </p>
                                     </div>
@@ -321,7 +321,7 @@ const BodyTableProduct = () => {
                                 </div>
                             </td>
                             <td className="px-4 py-3  ">
-                                <span className="bg-primary-100   text-primary-800 text-md  px-2 py-1  whitespace-nowrap font-bold rounded-full dark:bg-primary-900 dark:text-primary-300">
+                                <span className="bg-primary-100   text-primary-800 text-md  px-2 py-1  whitespace-nowrap font-bold   rounded-full dark:bg-primary-900 dark:text-primary-300">
                                     {categories?.find(category => category?._id === product?.category)?.name}
                                 </span>
                             </td>
@@ -343,7 +343,7 @@ const BodyTableProduct = () => {
 
 
 
-                            <td className="px-4 py-3  "><div className=' line-clamp-1 '>{product.description}</div></td>
+                            <td className="px-4 py-3  "><div className=' line-clamp-1  text-gray-400'>{product.description}</div></td>
                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
 

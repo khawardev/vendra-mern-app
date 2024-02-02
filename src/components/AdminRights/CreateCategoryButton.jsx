@@ -39,7 +39,7 @@ const CreateCategoryButton = () => {
         if (imageuuid) {
             handlemongo();
         }
-        
+
 
     }, [imageuuid])
 
@@ -125,7 +125,7 @@ const CreateCategoryButton = () => {
                 id="createProductButton"
                 data-modal-toggle="createProductModal"
                 onClick={IsHiddenFunction}
-                className="flex items-center justify-center gap-2  bg-gray-100 hover:bg-gray-200 font-bold focus:ring-4 focus:ring-gray-300  transition-all ease-in rounded-md text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                className="flex items-center justify-center gap-2  bg-gray-100 hover:bg-gray-200 font-bold   focus:ring-4 focus:ring-gray-300  transition-all ease-in rounded-md text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             >
 
                 <TbCategory size={17} />

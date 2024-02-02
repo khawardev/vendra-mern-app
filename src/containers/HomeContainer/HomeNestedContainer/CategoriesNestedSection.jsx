@@ -6,8 +6,9 @@ import { selectProducts } from '../../../toolkit/Slices/ProductsSlice'
 const CategoriesNested = ({ category }) => {
   const Navigate = useNavigate();
   const products = useSelector(selectProducts);
-  const filteredProducts = products.filter(product => product?.category === category._id);
+  // const filteredProducts = products ? products.filter(product => product?.category === category._id);
 
+  const filteredProducts = products ? products.filter(product => product?.category === category._id) : [];
 
   return (
     <>

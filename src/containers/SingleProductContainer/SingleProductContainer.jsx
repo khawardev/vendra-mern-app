@@ -91,12 +91,12 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                         </div>
                     </section>
                     <section className='flex justify-start col-span-4 '>
-                        <div className=' px-24  bg-gray-100 border rounded-2xl  flex justify-center items-center  w-full'>
+                        <div className=' px-20  bg-gray-100 border rounded-2xl  flex justify-center items-center  w-full'>
                             <img className='  w-full mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
                         </div>
                     </section>
                 </section>
-                <section className=' flex flex-col justify-between col-span-2 py-6'>
+                <section className=' flex flex-col justify-between col-span-2 py-2'>
 
                     <main className='mb-8'>
                         <p className=" text-3xl   font-bold    mb-8 leading-8 "> {filteredProduct?.name} </p>
@@ -129,7 +129,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                         </div>
                         <div className='my-8 flex justify-between items-center'>
 
-                            <span className=" select-none px-5 py-1 font-bold   bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
+                            <span className=" select-none px-3  font-bold   bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
                             <div className='flex justify-between items-center gap-3'>
                                 <span className='flex items-center gap-1'>
                                     <AiFillStar className=' text-yellow-400 ' size={18} />

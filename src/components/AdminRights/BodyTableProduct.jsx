@@ -217,7 +217,7 @@ const BodyTableProduct = () => {
 
                                         <p className='text-white text-lg  font-bold  '>Price: ${discountedProducts[0]?.price}</p>
                                         <p className='text-white text-lg  font-bold  '>
-                                            Discount Percentage: {calculateDiscountPercentage()}%
+                                            Discount : {calculateDiscountPercentage()}%
                                         </p>
                                     </div>
                                     <div className="flex justify-end gap-2 items-center">

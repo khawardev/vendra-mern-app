@@ -1,0 +1,25 @@
+// CheckoutForm.scss
+.checkout-form {
+
+  form {
+    display: grid;
+    grid-gap: 20px;
+
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .react-select-container {
+      width: 100%;
+    }
+  }
+}

@@ -117,8 +117,8 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                     </div>
                                 </section>
                                 <div className='upper   '>
-                                    <span className=' md:leading-5 mb-3 italic text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-[18px] italic leading-4 mb-3  line-clamp-3  hover:cursor-pointer text-gray-400 '>{product.desc}</p>
+                                    <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className=' md:leading-[18px]  leading-4 mb-3  line-clamp-3  hover:cursor-pointer text-gray-400 '>{product.desc}</p>
                                 </div>
                             </section>
 

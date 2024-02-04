@@ -57,10 +57,10 @@ const ServicesSection = () => {
                 <main className=' mt-10 relative    '>
                     <section className='absolute  top-12 left-9 '>
                         <div className='flex'>
-                            <p className='px-3 mb-3  text-sm items-center bg-yellow-500 rounded-full'>IPhone</p>
+                            <p className='px-3 mb-3  text-sm  items-center bg-yellow-400 rounded-full'>IPhone</p>
                         </div>
                         <p className=' font-extrabold text-2xl   tracking-tight'>New IPhone</p>
-                        <p className='mb-4 tracking-tight'>Don&rsquo;t miss out latest oppurtunity</p>
+                        <p className='mb-4  text-gray-500'>Don&rsquo;t miss out latest oppurtunity</p>
                         <button className='px-4 py-1 text-white text-sm tracking-tight font-semibold rounded-full bg-blue-500'>Shop now</button>
                     </section>
                     <img src={'https://res.cloudinary.com/denajbnh4/image/upload/v1694878173/banner-3_arubwp.jpg'} className='w-full ' alt="" />

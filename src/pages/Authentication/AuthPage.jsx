@@ -60,7 +60,8 @@ const AuthPage = () => {
         }
       })
       .then((data) => {
-        if (!isRegistering) {
+        if (data.status.includes("ok") && !isRegistering) {
+
           Swal.fire("Successfully Login", "success");
           localStorage.setItem("token", data.data);
           localStorage.setItem("role", data.role);

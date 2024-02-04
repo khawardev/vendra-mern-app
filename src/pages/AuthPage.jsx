@@ -2,7 +2,6 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import HCaptcha from "react-hcaptcha";
 
-import React from "react";
 // import { GoogleLogin } from "react-google-login";
 
 //   export const GoogleSignIn = () => {
@@ -41,14 +40,8 @@ const AuthPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     const emailPattern = /^[A-Za-z]+@[A-Za-z]+\.[A-Za-z]+$/;
-
-    // Pattern for username validation
     const usernamePattern = /^[A-Za-z]+$/;
-
-    // Pattern for password validation (at least 5 characters, letters, and numbers)
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
-
-    // Validate the input based on the field name
     switch (name) {
       case "email":
         setErrors({
@@ -160,11 +153,19 @@ const AuthPage = () => {
       });
   };
 
+
+  
+
+
+
+
+
+  
   return (
     <div className="flex justify-center items-center  md:py-24 py-10 md:w-[35%] w-11/12 m-auto">
       <form
         onSubmit={handleSubmit}
-        className="md:border border-yellow-500 rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5"
+        className="md:border border-yellow-500 rounded-lg  w-full  md:py-16 py-10    md:px-12 px-5"
       >
 
 
@@ -292,17 +293,14 @@ const AuthPage = () => {
 
           </>
         )}
-        <div className="mb-1">
+        <div className="mb-4 w-full">
           <HCaptcha
-            sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
+            sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880"
             onVerify={handleHCaptchaVerify}
             size="normal"
           />
         </div>
-        <div className="mb-1">
-
-
-        </div>
+        
         {/* <div className="mb-7">
           <GoogleSignIn />
         </div> */}

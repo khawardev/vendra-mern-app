@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from './components/header/Header';
 import { HomePage } from './pages/HomePage';
 import Footer from './components/footer/Footer';
-import AuthPage from './pages/Authentication/AuthPage';
+import AuthPage from './pages/AuthPage';
 import AdminPage from './pages/AdminPage';
 import OrderManage from './pages/OrderManage';
 import ContactManage from './pages/ContactManage';
@@ -23,6 +23,7 @@ import ShopPage from './pages/ShopPage';
 import EditProduct from './components/AdminRights/EditProduct';
 import TrendingProductsPage from './pages/TrendingProductsPage';
 import DiscountedProductPage from './pages/DiscountedProductsPage';
+import CheckoutPage from './pages/CheckoutPage';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -52,6 +53,7 @@ function App() {
             <Route exact path={`/edit/:productid`} element={<EditProduct />} />
             <Route exact path={`/bestselling`} element={<TrendingProductsPage />} />
             <Route exact path={`/discount`} element={<DiscountedProductPage />} />
+            <Route exact path={`/checkout`} element={<CheckoutPage />} />
           </Routes>
 
           <Footer />

@@ -75,7 +75,7 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
                             <div className='text-black absolute md:top-6 top-4 md:left-10  z-10  p-2'>
 
                                 <div className='mt-5'>
-                                    <h1 className='md:text-2xl   text-lg leading-6 md:block hidden tracking-tight'>Immerse yourself in pure sound</h1>
+                                    <h1 className='md:text-2xl   text-lg leading-6 md:block hidden tracking-tight text-gray-500'>Immerse yourself in pure sound</h1>
                                     <h1 className='md:text-4xl text-2xl   font-extrabold leading-6 tracking-tight'>Discover Premium Headphones</h1>
                                 </div>
                                 <button className='px-5 py-2  text-sm font-semibold   bg-blue-500 rounded-full text-white  transition-all ease-in  mt-4'>

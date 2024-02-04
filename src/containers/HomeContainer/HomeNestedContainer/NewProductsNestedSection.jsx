@@ -99,8 +99,8 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                         </div>
                                     </section>
                                     <div className='upper   '>
-                                        <span className=' md:leading-5 mb-3 italic text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                        <p className=' md:leading-5 italic leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
+                                        <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                        <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
                                     </div>
                                 </section>
 

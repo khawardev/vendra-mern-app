@@ -56,12 +56,12 @@ function HeroSection() {
                             </section>
                             <section className='text-black  absolute top-10 md:top-40 md:left-20  p-4 '>
                                 <div className='flex'>
-                                    <p className='md:px-4 px-3  md:py-1 text-sm items-center bg-yellow-500 rounded-full  '>{slide.tag}</p>
+                                    <p className='md:px-4 px-3  md:py-1 text-sm items-center text-white bg-yellow-500 rounded-full  '>{slide.tag}</p>
                                 </div>
                                 <div className='md:mt-6 mt-2 md:leading-5 leading-2'>
                                     <h1 className='md:text-3xl text-xl     leading-2   tracking-tight  Alegreya font-bold ' >{slide.tagline1}</h1>
                                     <h1 className='md:text-4xl text-3xl my-2 font-extrabold leading-2 tracking-tight  text-yellow-500 '>{slide.tagline2}</h1>
-                                    <p className='md:block hidden  text-xl     leading-2   '>{slide.description}</p>
+                                    <p className='md:block hidden  text-xl     leading-2 text-gray-500   '>{slide.description}</p>
                                 </div>
 
 

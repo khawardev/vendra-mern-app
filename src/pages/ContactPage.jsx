@@ -1,7 +1,8 @@
 import contact from "../assets/images/contact-1.jpg";
 import Swal from "sweetalert2";
+import toast, { Toaster } from 'react-hot-toast';
 
-import React, { useState } from "react";
+import { useState } from "react";
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -29,10 +30,23 @@ const ContactPage = () => {
       if (response.ok) {
         // Handle success, e.g., show a success message
         console.log("Form submitted successfully");
-        Swal.fire({
-          icon: 'success',
-          title: 'Submitted',
-          text: 'Our Team will contact you soon!',
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Submitted',
+        //   text: 'Our Team will contact you soon!',
+        // });
+
+
+        toast.success(() => (
+          <div className=" text-center">
+            <p >Submitted, Our Team will contact you soon!</p>
+          </div>
+        ))
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
         });
       } else {
         // Handle errors, e.g., show an error message
@@ -45,6 +59,7 @@ const ContactPage = () => {
 
   return (
     <main className=" w-11/12 m-auto md:py-20 py-3">
+      <Toaster />
       {/* <section className='my-10'>
                 <div className='flex'>
                     <p className=' text-2xl   text-gray-700 bg-green-200 mb-2 px-5 rounded-full font-bold  '>Pakistan</p>

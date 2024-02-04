@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 // CheckoutForm.js
-import { useState } from 'react';
-import Select from 'react-select';
-import '../assets/styles/Checkout.scss';
+import { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { BsCreditCard2Front } from "react-icons/bs";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { selectCartItems, selectProductQuantities } from '../toolkit/Slices/CartSlice';
 import { useSelector } from 'react-redux';
+import Select from 'react-select';
+import '../assets/styles/Checkout.scss';
 
 
 const CheckoutPage = () => {
@@ -14,8 +15,6 @@ const CheckoutPage = () => {
     const cartItems = useSelector(selectCartItems);
     const productQuantity = useSelector(selectProductQuantities);
     const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
-
-
 
 
     const [formData, setFormData] = useState({
@@ -32,13 +31,52 @@ const CheckoutPage = () => {
         username: '',
         orderNotes: '',
     });
-
-    const handleSubmit = (e) => {
+    const [selectedOption, setSelectedOption] = useState(null);
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
+
+        try {
+            const orderData = {
+                products: cartItems.map(item => item.id),
+                totalCost: totalSubtotal,
+                paymentMethod: selectedOption,
+                customerInfo: formData,
+                // Add other form fields as needed
+            };
+    
+            const response = await fetch('http://localhost:5000/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData),
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+    
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Order Placed Successfully!',
+                    text: 'Thank you for your order. Your order has been placed successfully.',
+                }).then(() => {
+                    window.location.href = '/'; // Redirect to the home page
+                });
+    
+                console.log('Order placed successfully:', data);
+            } else {
+                throw new Error('Order placement failed');
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error placing your order. Please try again.',
+            });
+        }
     };
-
-
     // Sample options for country and state select
     const countryOptions = [
         { value: 'us', label: 'United States' },
@@ -75,7 +113,6 @@ const CheckoutPage = () => {
     };
 
 
-    const [selectedOption, setSelectedOption] = useState(null);
     const [showPaymentCOD, setShowPaymentCOD] = useState(false);
     const [showPaymentCARD, setShowPaymentCARD] = useState(false);
 

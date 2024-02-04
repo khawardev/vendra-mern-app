@@ -17,7 +17,7 @@
     "@uploadcare/rest-client": "^6.8.0",
     "@uploadcare/signed-uploads": "^6.8.0",
     "@uploadcare/upload-client": "^6.8.0",
-    "axios": "^1.5.1",
+    "axios": "^1.6.7",
     "build": "^0.1.4",
     "cloudinary": "^1.41.0",
     "color-convert": "^2.0.1",
@@ -55,6 +55,9 @@
     "sweetalert2": "^11.7.32"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
@@ -64,6 +67,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.29",
+    "react-refresh": "^0.14.0",
     "sass": "^1.67.0",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.5"

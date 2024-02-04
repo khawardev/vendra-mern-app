@@ -1,5 +1,5 @@
 import contact from "../assets/images/contact-1.jpg";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import toast, { Toaster } from 'react-hot-toast';
 
 import { useState } from "react";

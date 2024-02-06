@@ -24,26 +24,30 @@ import EditProduct from './components/AdminRights/EditProduct';
 import TrendingProductsPage from './pages/TrendingProductsPage';
 import DiscountedProductPage from './pages/DiscountedProductsPage';
 import CheckoutPage from './pages/CheckoutPage';
+import VendorAuthPage from "./pages/VendorAuthPage";
+
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
+
       {/* <FramerMotion /> */}
+
       <BrowserRouter>
         <AppContext>
           <Header />
           <Routes>
             <Route exact path='/' element={<HomePage />} />
-            <Route exact path='/account' element={<AuthPage />} />
-            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
+             <Route exact path='/account' element={<AuthPage />} />
+            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} /> 
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/uploadcare' element={<UploadcarePage />} />
             <Route path="/OrderManage" Component={OrderManage} />
             <Route path="/OrderManage" Component={OrderManage} />
             <Route path="/ContactManage" Component={ContactManage} />
-            <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < AuthPage />} />
+            <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < VendorAuthPage />} />
             <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
             <Route exact path={`/viewsingleproduct/:productid/:BestSell/:Discount/:DiscountedPrice`} element={<ViewSingleProduct />} />
             <Route exact path={`/cart`} element={<CartPage />} />
@@ -54,6 +58,8 @@ function App() {
             <Route exact path={`/bestselling`} element={<TrendingProductsPage />} />
             <Route exact path={`/discount`} element={<DiscountedProductPage />} />
             <Route exact path={`/checkout`} element={<CheckoutPage />} />
+            <Route exact path='/vendoraccount' element={<VendorAuthPage />} />
+            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < VendorAuthPage />} />
           </Routes>
 
           <Footer />
@@ -63,6 +69,7 @@ function App() {
 
     </>
   )
+  
 }
 
 export default App

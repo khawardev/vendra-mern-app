@@ -2,7 +2,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import HCaptcha from "react-hcaptcha";
 
-const AuthPage = () => {
+const VendorAuthPage = () => {
   const [isRegistering, setIsRegistering] = useState(true);
   const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
   const handleHCaptchaVerify = (token) => {
@@ -33,8 +33,8 @@ const AuthPage = () => {
     });
     const { username, email, password } = formData;
     const url = isRegistering
-      ? "http://localhost:5000/register"
-      : "http://localhost:5000/login-user";
+      ? "http://localhost:5000/api/vendor/register"
+      : "http://localhost:5000/api/vendor/login";
 
     // Create the request body based on the action
     console.log(hCaptchaToken);
@@ -266,4 +266,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default VendorAuthPage;

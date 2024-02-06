@@ -2,11 +2,29 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import HCaptcha from "react-hcaptcha";
 
-const AuthPage = () => {
+// import { GoogleLogin } from "react-google-login";
+
+//   export const GoogleSignIn = () => {
+//   const responseGoogle = (response) => {
+//     console.log(response);
+//   };
+
+//   return (
+//     <GoogleLogin
+//       clientId="1079714799710-3mu5vcjsujbhcvkfl61tpnrhs6gpirr2.apps.googleusercontent.com"
+//       buttonText="Sign in with Google"
+//       onSuccess={responseGoogle}
+//       onFailure={responseGoogle}
+//       cookiePolicy="single_host_origin"
+//     />
+//   );
+// };
+const VendorAuthPage = () => {
   const [isRegistering, setIsRegistering] = useState(true);
   const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
   const handleHCaptchaVerify = (token) => {
-    console.log('hCaptcha token:', token);
+    // Callback function to handle the hCaptcha token
+    console.log('hCaptcha sadsdas token:', token);
     setHCaptchaToken(token);
   };
   const [formData, setFormData] = useState({
@@ -14,9 +32,43 @@ const AuthPage = () => {
     email: "",
     password: "",
   });
-
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const emailPattern = /^[A-Za-z]+@[A-Za-z]+\.[A-Za-z]+$/;
+    const usernamePattern = /^[A-Za-z]+$/;
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+    switch (name) {
+      case "email":
+        setErrors({
+          ...errors,
+          email: emailPattern.test(value) ? "" : "Enter a valid email address",
+        });
+        break;
+      case "username":
+        setErrors({
+          ...errors,
+          username: usernamePattern.test(value)
+            ? ""
+            : "Username should contain only letters",
+        });
+        break;
+      case "password":
+        setErrors({
+          ...errors,
+          password: passwordPattern.test(value)
+            ? ""
+            : "Password should contain at least 5 characters, letters, and numbers",
+        });
+        break;
+      default:
+        break;
+    }
+
     setFormData({ ...formData, [name]: value });
   };
   const [submittedData, setSubmittedData] = useState(null);
@@ -33,25 +85,26 @@ const AuthPage = () => {
     });
     const { username, email, password } = formData;
     const url = isRegistering
-      ? "http://localhost:5000/register"
-      : "http://localhost:5000/login-user";
+    ? "http://localhost:5000/api/vendor/register"
+    : "http://localhost:5000/api/vendor/login";
 
     // Create the request body based on the action
-    console.log(hCaptchaToken);
     const requestBody = isRegistering
       ? JSON.stringify({ username, email, password, hCaptchaToken }) // Update field names here
       : JSON.stringify({ username, password: password, hCaptchaToken: hCaptchaToken }); // Update field names here
+    console.log("isRegistering before fetch:", isRegistering);
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        // Add other headers as needed
       },
 
       body: requestBody,
     })
       .then((res) => {
-        if (res?.ok) {
+        if (res.ok) {
           return res.json();
         } else {
           throw new Error(
@@ -60,40 +113,62 @@ const AuthPage = () => {
         }
       })
       .then((data) => {
+        console.log("Server Response Data:", data);
         if (data.status.includes("ok") && !isRegistering) {
-
           Swal.fire("Successfully Login", "success");
+          // Use localStorage.setItem() to store the token
           localStorage.setItem("token", data.data);
           localStorage.setItem("role", data.role);
           localStorage.setItem("loggedIn", true);
-
-
-
           if (data.role === "admin") {
+            console.log("Redirecting to admin-account page...");
             window.location.href = "/admin-account";
           } else {
+            // Redirect to a different page for non-admin users
+            console.log("Redirecting to user-account page...");
             window.location.href = "/";
-            localStorage.setItem("loggedIn", false);
           }
-        } else if (isRegistering) {
+        } else if (isRegistering && data.status.includes("ok")) {
+          // Handle successful registration here
           Swal.fire("Successfully Registered", "success");
         } else {
           alert("Login or Registration Failed");
-
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'hCaptcha verification failed!',
+          });
+          // Handle cases where login or registration fails
         }
       })
 
       .catch((error) => {
         console.error(error);
+        // Handle the error and display an error message to the user
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'hCaptcha verification failed!',
+        });
       });
   };
 
+
+  
+
+
+
+
+
+  
   return (
     <div className="flex justify-center items-center  md:py-24 py-10 md:w-[35%] w-11/12 m-auto">
       <form
         onSubmit={handleSubmit}
-        className="md:border border-yellow-500 rounded-lg  w-full  md:py-16 py-10  h-[600px]   md:px-12 px-5"
+        className="md:border border-yellow-500 rounded-lg  w-full  md:py-16 py-10    md:px-12 px-5"
       >
+
+
         <p className="text-center text-gray-500  text-sm mb-10 select-none ">
           <span className="font-extrabold  gap-1 bg-slate-100 md:border border-yellow-500 px-[6px] pt-[18px] pb-[16px] rounded-full ">
             <span>
@@ -123,11 +198,12 @@ const AuthPage = () => {
         {isRegistering ? (
           <>
             <div className="mb-5">
+              {errors.username && <p className="text-red-500 text-s">{errors.username}</p>}
               <label
                 className="block text-gray-700 text-sm mb-1"
                 htmlFor="username"
               >
-                Username
+                Vendor Username
               </label>
               <input
                 className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
@@ -140,14 +216,16 @@ const AuthPage = () => {
               />
             </div>
             <div className="mb-5">
+              {errors.email && <p className="text-red-500 text-s">{errors.email}</p>}
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="email"
               >
-                Email Address
+               Vendor Email Address
               </label>
               <input
                 className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
+
                 type="email"
                 id="email"
                 name="email"
@@ -157,6 +235,7 @@ const AuthPage = () => {
               />
             </div>
             <div className="mb-7">
+              {errors.password && <p className="text-red-500 text-s">{errors.password}</p>}
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="password"
@@ -177,11 +256,12 @@ const AuthPage = () => {
         ) : (
           <>
             <div className="mb-5 ">
+
               <label
                 className="block text-gray-700 text-sm  mb-1"
                 htmlFor="login-username-email"
               >
-                Username or Email Address
+               Vendor Username or Email Address
               </label>
               <input
                 className=" appearance-none border rounded w-full py-2 px-3  focus:border-yellow-500 focus:border  outline-none"
@@ -213,12 +293,17 @@ const AuthPage = () => {
 
           </>
         )}
-        <div className="mb-7">
+        <div className="mb-4 w-full">
           <HCaptcha
-            sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
+            sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880"
             onVerify={handleHCaptchaVerify}
+            size="normal"
           />
         </div>
+        
+        {/* <div className="mb-7">
+          <GoogleSignIn />
+        </div> */}
         {/* Registration */}
         {isRegistering ? (
           <div>
@@ -226,8 +311,7 @@ const AuthPage = () => {
               Your personal data will be used to support your experience
               throughout this website, to manage access to your account, and for
               other purposes described in our{" "}
-              <span className=" cursor-pointer underline">privacy policy</span>{" "}
-              .
+              <span className=" cursor-pointer underline">privacy policy</span>{" "}.
             </p>
 
             <button
@@ -244,6 +328,7 @@ const AuthPage = () => {
                 className="mr-2 leading-tight"
                 type="checkbox"
                 name="rememberMe"
+                required
                 onChange={handleChange}
               />
               <span className="text-sm">Remember me</span>
@@ -266,4 +351,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default VendorAuthPage;

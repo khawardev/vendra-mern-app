@@ -47,6 +47,14 @@ const MiddleHeader = () => {
             </div>
           </div>
 
+          <div className='md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full  gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate("/vendoraccount")}>
+            <BsPerson size={28} />
+            <div className='lg:block hidden'>
+              <span className='text-xs text-gray-800'>Vendor Sign in</span> <br />
+            Vendor  Account
+            </div>
+          </div>
+
 
           <div className='px-1 ' onClick={() => Navigate('/wishlist')}>
             <div className='relative cursor-pointer md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>

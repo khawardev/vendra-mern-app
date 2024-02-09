@@ -147,8 +147,8 @@ const VendorAuthPage = () => {
         // Handle the error and display an error message to the user
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'hCaptcha verification failed!',
+          title: '  ...',
+          text: 'You are Not Approved By Admin Yet!',
         });
       });
   };

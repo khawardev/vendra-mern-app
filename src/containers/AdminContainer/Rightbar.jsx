@@ -17,7 +17,7 @@ import 'datatables.net-buttons/js/buttons.html5.min.js';
 import 'datatables.net-buttons/js/buttons.print.min.js';
 import 'datatables.net-buttons/js/buttons.colVis.min.js'; // For Excel button
 // For PDF butto
-
+import VendorList from './VendorList';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function Rightbar({ userData }) {
@@ -243,7 +243,11 @@ export default function Rightbar({ userData }) {
                         </tbody>
                     </table>
                 )}
+              
             </div>
+            <VendorList />        
         </div>
+        
     );
+    
 }

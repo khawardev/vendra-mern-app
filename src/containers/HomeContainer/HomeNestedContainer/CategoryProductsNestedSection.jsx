@@ -16,7 +16,7 @@ import { IoMdArrowForward } from "react-icons/io";
 
 import { MdOutlineErrorOutline } from "react-icons/md";
 
-const CategoryProductsNestedSection = ({ filteredProducts, grid }) => {
+const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
@@ -129,7 +129,7 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid }) => {
                 <div >
                     <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
                         <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
-                        <span className=' font-bold  ' >No Product In Category  </span>
+                            <span className=' font-bold  ' >No Product In {name}  </span>
                         <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full"
                             onClick={() => Navigate('/')}  >go back <IoMdArrowForward className=' opacity-100' size={16} /></p>
                     </div>

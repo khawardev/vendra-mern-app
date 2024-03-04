@@ -16,7 +16,9 @@ import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import { FaFire } from "react-icons/fa";
+import { IoMdArrowForward } from "react-icons/io";
 
+import { MdOutlineErrorOutline } from "react-icons/md";
 const BestSellingNestedSection = ({ sliceProducts, grid }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
@@ -59,13 +61,15 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
 
     return (
         <>
+
+            {displayedProducts?.length !== 0 ? (
             <div className={`my-7 grid  gap-7 ${grid}`}>
                 {displayedProducts.map((product) => (
                     <article key={product?.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                         <main>
                             <div>
-                                <div className='md:top-[1rem]  top-[0.40rem] flex justify-center items-center gap-1   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100   font-bold   text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
-                                    <FaFire size={14} />  Best Selling
+                                <div className='md:top-[1rem]  top-[0.40rem] flex justify-center items-center gap-1   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full    font-bold   text-red-800 bg-red-300   border border-4 border-gray-100  md:px-3 px-2 absolute z-10'>
+                                   Best Selling
                                 </div>
                                 <div onClick={() => {
                                     handleAddToWishList(
@@ -93,7 +97,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                         <img className='mix-blend-multiply   h-[10rem] w-full ' src={`https://ucarecdn.com/${product?.imageurl}/`} alt="" />
                                     </div>
                                 </section>
-                                <div className='upper   '>
+                                <div className='upper'>
                                     <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
                                     <p className='  md:leading-[18px]  leading-4 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400'>{product.desc}</p>
                                 </div>
@@ -138,8 +142,19 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                     </article>
                 ))}
             </div>
+            ) : (
 
+            <div >
+                <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
+                    <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
+                    <span className=' font-bold  ' >No Product In Bestselling  </span>
+                    <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full"
+                        onClick={() => Navigate('/shop')}  >go back <IoMdArrowForward className=' opacity-100' size={16} /></p>
+                </div>
+            </div>
+            )
 
+            }
         </>
     );
 };

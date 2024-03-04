@@ -10,12 +10,9 @@ const Header = () => {
             <div className='w-11/12  m-auto'>
                 <TopHeader />
             </div>
-
             <hr className='lg:hidden block' />
-
-
             <main className='w-11/12  m-auto select-none'>
-                <MiddleHeader />
+                <MiddleHeader  />
                 <section className='lg:hidden flex justify-between items-center border rounded-full mb-4'>
                     <div className='flex justify-center items-center'>
                         <div className='px-3'>

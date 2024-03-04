@@ -17,10 +17,9 @@ import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import toast, { Toaster } from 'react-hot-toast';
 
-const NewProductsNestedSection = ({ sliceProducts, grid }) => {
+const ShopNestedSection = ({  grid, filteredProducts }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
-    const products = useSelector(selectProducts);
     const [wishlistTragetid, setwishlistTragetid] = useState();
     const [cartTragetid, setcartTragetid] = useState();
     const [wishlistloading, setwishlistloading] = useState(false);
@@ -56,19 +55,18 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
     }, [wishlistloading, cartloading]);
 
 
-    const displayedProducts = Array.isArray(products)
-        ? (sliceProducts ? [...products.slice(-8)] : [...products]).reverse()
-        : [];
+    // const displayedProducts = Array.isArray(products)
+    //     ? (sliceProducts ? [...products.slice(-8)] : [...products]).reverse()
+    //     : [];
 
     return (
         <>
-            {products &&
+            {filteredProducts &&
                 <div className={`my-7 grid  gap-7 ${grid}`}>
-                    {products.slice(-8).reverse()?.map((product) => (
+                    {filteredProducts?.map((product) => (
                         <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
                                 <div>
-
                                     <div onClick={() => {
                                         handleAddToWishList(
                                             product._id,
@@ -150,36 +148,4 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
     );
 };
 
-export default NewProductsNestedSection
-
-
-{/* <div onClick={() => {
-                    handleAddToWishList(
-                        product?._id,
-                        product?.name,
-                        product?.description,
-                        product?.price,
-                        product?.image,
-                        1
-                    );
-                
-
-
-                }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border-4 border-gray-100  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
-
-                    {showCheckmark ? (
-                        <HiOutlineCheck className='text-blue-500' size={20} />
-                    ) :
-                        loading ? (
-                            <>
-                                <div className="animate-spin w-[20px] h-[20px] p-2 border-[2px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
-                                    role="status"
-                                    aria-label="loading">
-                                </div>
-
-                            </>
-                        ) : (
-                            <VscHeart size={20} />
-                        )}
-
-                </div> */}
+export default ShopNestedSection

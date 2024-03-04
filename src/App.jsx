@@ -25,16 +25,16 @@ import TrendingProductsPage from './pages/TrendingProductsPage';
 import DiscountedProductPage from './pages/DiscountedProductsPage';
 import CheckoutPage from './pages/CheckoutPage';
 import VendorAuthPage from "./pages/VendorAuthPage";
-
+import ComparePage from './pages/ComparePage';
+import CurencyConverter from './components/WebScrapper/CurencyCOnverter';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
-
       {/* <FramerMotion /> */}
 
-      <BrowserRouter>
+     <BrowserRouter>
         <AppContext>
           <Header />
           <Routes>
@@ -60,12 +60,13 @@ function App() {
             <Route exact path={`/checkout`} element={<CheckoutPage />} />
             <Route exact path='/vendoraccount' element={<VendorAuthPage />} />
             <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < VendorAuthPage />} />
+            <Route exact path='/compare' element={<ComparePage />} />
           </Routes>
 
           <Footer />
 
         </AppContext>
-      </BrowserRouter>
+      </BrowserRouter> 
 
     </>
   )

@@ -80,8 +80,8 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                         <main>
                             <div>
                                 {RemovedProductIds.includes(product.id) && (
-                                    <div className='md:top-[1rem] top-[0.40rem] md:right-[15px] right-[10px]  flex justify-center items-center gap-1     rounded-full  rounded-tr-full border-4 border-gray-100   font-bold   text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
-                                        <FaFire size={14} />  Best Selling
+                                    <div className='md:top-[1rem] top-[0.40rem] md:right-[15px] right-[10px]  flex justify-center items-center gap-1     rounded-full  border-[3px] border-gray-100   font-bold   text-red-800 bg-red-300 md:px-3 px-2 absolute z-10'>
+                                        Best Selling
                                     </div>
                                 )}
                                 <div className='md:top-[1rem] top-[0.40rem]   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full border-4 border-gray-100  text-green-800 font-bold    bg-green-300 md:px-3 px-2 absolute z-10'>
@@ -129,7 +129,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                             <div className='flex justify-between items-center '>
                                 <div className='md:flex justify-center items-center gap-2 '>
                                     <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product?.inputDescount}</p>
-                                    <p className='  text-sm  line-through font-bold   text-red-500 '>${product?.price}</p>
+                                    <p className='  text-sm  font-bold  line-through  text-red-500 ' >${product?.price}</p>
                                 </div>
 
                                 <div onClick={() => {

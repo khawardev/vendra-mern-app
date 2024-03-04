@@ -52,7 +52,7 @@ function HeroSection() {
                     {currentIndex === slideIndex && (
                         <>
                             <section className="relative">
-                                <img className="w-full md:rounded-2xl object-cover  md:h-[600px] h-[240px]" src={slide.url} />
+                                <img className="w-full  object-cover  md:h-[600px] h-[240px]" src={slide.url} />
                             </section>
                             <section className='text-black  absolute top-10 md:top-40 md:left-20  p-4 '>
                                 <div className='flex'>

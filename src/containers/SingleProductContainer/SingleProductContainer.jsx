@@ -11,22 +11,24 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { LuGitCompare } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart2 } from 'react-icons/bs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
 import { addToCart } from '../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../toolkit/Slices/WishlistSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaFire } from "react-icons/fa";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCompare, removeCompareProduct, selectCompare } from '../../toolkit/Slices/CompareSlice';
+import { MdClose } from 'react-icons/md';
 
 const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
     const dispatch = useDispatch();
-
+    const comparedProducts = useSelector(selectCompare);
 
     const Navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
+    const [isProductCompared, setisProductCompared] = useState(false);
 
     const handleDecrement = () => {
         if (quantity > 1) {
@@ -54,6 +56,62 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
         dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
     };
 
+
+    // useEffect(() => {
+    //     const compareObject = comparedProducts.some(product => product.id === filteredProduct._id);
+    //     setisProductCompared(compareObject)
+    // }, [isProductCompared]);
+    useEffect(() => {
+        const isCompared = comparedProducts.some(product => product.id === filteredProduct._id);
+        setisProductCompared(isCompared)
+    }, [filteredProduct?._id]);
+    const handleAddToCompare = () => {
+        setisProductCompared(!isProductCompared)
+        const isCompared = comparedProducts.some(product => product.id === filteredProduct._id);
+        const action = isCompared ? removeCompareProduct(filteredProduct._id) : addToCompare({
+            id: filteredProduct._id,
+            name: filteredProduct.name,
+            desc: filteredProduct.description,
+            price: filteredProduct.price,
+            stock: filteredProduct.stock,
+            imageurl: filteredProduct.image,
+        });
+        const toastMessage = isCompared ? 'Removed from Compare' : 'Added to Compare';
+        toast.success(<span style={{ fontWeight: 'bold' }}>{toastMessage}</span>);
+
+        dispatch(action);
+
+
+        // dispatch(
+        //     addToCompare({
+        //         id: filteredProduct._id,
+        //         name: filteredProduct.name,
+        //         desc: filteredProduct.description,
+        //         price: filteredProduct.price,
+        //         imageurl: filteredProduct.image,
+        //     })
+        // );
+
+        // const isProductCompared = comparedProducts.some(product => product.id === filteredProduct._id);
+        // if (isProductCompared) {
+        //     toast.success(<span style={{ fontWeight: 'bold' }}>Removed from Compare</span>);
+        //     dispatch(removeCompareProduct(id: filteredProduct._id,
+        //         name: filteredProduct.name,
+        //         desc: filteredProduct.description,
+        //         price: filteredProduct.price,
+        //         imageurl: filteredProduct.image,));
+        // } else {
+        //     toast.success(<span style={{ fontWeight: 'bold' }}>Added to Compare</span>);
+        //     dispatch(addToCompare({
+        //         id: filteredProduct._id,
+        //         name: filteredProduct.name,
+        //         desc: filteredProduct.description,
+        //         price: filteredProduct.price,
+        //         imageurl: filteredProduct.image,
+        //     }));
+        // }
+    };
+
     const wordsArray = filteredProduct?.name.split(/\s+/);
     const Productname = wordsArray?.map(word => word.replace(/,/g, '')).slice(0, 3).join(' ');
 
@@ -67,6 +125,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
         const discountPercentage = ((originalPrice - discountedPrice) / originalPrice) * 100;
         return discountPercentage.toFixed(0);
     };
+
 
     return (
         <>
@@ -114,11 +173,11 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                             </div>
                             <div><Toaster /></div>
                             <section className='flex items-center gap-2'>
-                                {Discount === 'true' && <div className='rounded-full  border-4 border-green-100  text-green-800 font-bold    bg-green-300 md:px-3 px-2 '>
+                                {Discount === 'true' && <div className='rounded-full   text-green-800 bg-green-100  font-bold py-1  md:px-3 px-2 '>
                                     {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}% Discount
                                 </div>
                                 }
-                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full  border-4 border-red-100    font-bold   text-red-800 bg-red-300 md:px-3 px-2 '>
+                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full   bg-red-100    font-bold   text-red-800 py-1 md:px-3 px-2 '>
                                     <FaFire size={14} />  Best Selling
                                 </div>
                                 }
@@ -167,7 +226,17 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                                 </div>
                             </div>
                             <div className=' flex justify-between gap-3'>
-                                <p className="px-5 py-2   font-bold   hover:border-gray-300  border rounded-full  cursor-pointer flex  justify-center items-center gap-2 ">Compare <LuGitCompare /> </p>
+                                <p className={`px-5 py-2   font-bold   hover:border-gray-300  ${isProductCompared && `bg-gray-100`}  border rounded-full  cursor-pointer flex  justify-center items-center gap-2` }
+                                    onClick={() => { handleAddToCompare() }}>
+                                    {isProductCompared ? (
+                                        <>
+                                            Compared <MdClose />
+                                        </>
+                                    ) : (
+                                        <>
+                                            Compare <LuGitCompare />
+                                        </>
+                                    )}  </p>
                                 <p onClick={() => { handleAddToWishList() }} className=" px-5 py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
                             </div>
                         </section>
@@ -176,7 +245,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
 
                             <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold    rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
                                 handleAddToCart();
-                            }}  > <BsCart2 size={18} /> <span> Add to cart </span> </p>
+                            }}  >  <span> Add to cart </span> <BsCart2 stroke-width='0.5' size={18} /> </p>
                         </div>
                     </main>
 

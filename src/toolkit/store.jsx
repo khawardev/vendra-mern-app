@@ -6,7 +6,8 @@ import wishlistReducer from './Slices/WishlistSlice';
 import UserReducer from './Slices/UserSlice';
 import BestSellingReducer from './Slices/BestSellingSlice';
 import DicountReducer from './Slices/DicountSlice';
-
+import CompareReducer from './Slices/CompareSlice';
+import currencyReducer from '../components/WebScrapper/currencySlice';
 const store = configureStore({
     reducer: {
         products: productsReducer,
@@ -16,6 +17,8 @@ const store = configureStore({
         user: UserReducer,
         bestSelling: BestSellingReducer,
         discount: DicountReducer,
+        compare: CompareReducer,
+        currency: currencyReducer,
     },
 });
 

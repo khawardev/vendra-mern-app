@@ -17,14 +17,12 @@ const UserPage = () => {
   const [foundUserDetails, setfoundUserDetails] = useState({});
   const users = useSelector(selectUsers);
   const Singleusers = useSelector(selectSingleUsers);
-  console.log(Singleusers?.slice(-1)[0])
-  console.log(foundUserDetails)
 
   useEffect(() => {
     const flattenedArray = users?.flat(1);
     const foundUserDetails1 = flattenedArray?.find(item => item?.email === Singleusers?.slice(-1)[0]);
     setfoundUserDetails(foundUserDetails1)
-  }, [Singleusers])
+  }, [])
 
 
 
@@ -130,7 +128,7 @@ const UserPage = () => {
 
       </main>
       <div className='mt-10 flex justify-end items-center'>
-        <button id="bottone1" className='text-white' onClick={logOut} ><strong>Logout</strong></button>
+        <button className='py-3 px-8 rounded-lg hover:bg-red-700  cursor-pointer transition-all ease-in bg-red-600 text-white' onClick={logOut} ><strong>Logout</strong></button>
       </div>
     </div>
   )

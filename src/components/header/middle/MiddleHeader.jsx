@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectWishlistItems } from '../../../toolkit/Slices/WishlistSlice';
 import Search from './Search/Search';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import logo from '../../../assets/images/logo.png';
+
+import { selectUsers } from '../../../toolkit/Slices/UserSlice';
+import { selectSingleUsers } from '../../../toolkit/Slices/UserSlice';
 const MiddleHeader = () => {
   const Navigate = useNavigate();
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -14,11 +17,26 @@ const MiddleHeader = () => {
   const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
   const wishlistItems = useSelector(selectWishlistItems);
   const [ShowSearch, setShowSearch] = useState(false);
+  const users = useSelector(selectUsers);
+  const Singleusers = useSelector(selectSingleUsers);
+  const [foundUserDetails, setfoundUserDetails] = useState({});
+
+
+
+
+  useEffect(() => {
+    const flattenedArray = users?.flat(1);
+    const foundUserDetails1 = flattenedArray?.find(item => item?.email === Singleusers?.slice(-1)[0]);
+    setfoundUserDetails(foundUserDetails1)
+  }, [])
+
+
+
+
 
   return (
     <div>
-
-      <main className='flex justify-between items-center bg-red- lg:pt-0 pt-5  pb-5'>
+      <main className='flex justify-between items-center   mt-3 mb-8 '>
         <section className='text-4xl font-extrabold cursor-pointer flex items-center gap-1' onClick={() => Navigate("/")}>
           <img src={logo} width={35} />
           Vendra<sup className=' font-bold text-xl'> &reg; </sup>
@@ -42,16 +60,16 @@ const MiddleHeader = () => {
           <div className='md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full  gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate(isLoggedIn == "true" ? "/user-account" : "/account")}>
             <BsPerson size={28} />
             <div className='lg:block hidden'>
-              <span className='text-xs text-gray-800'>Sign in</span> <br />
-              Account
+              <span className='text-xs text-gray-800'>{foundUserDetails?.username ? foundUserDetails?.username : 'Sign in'}</span> <br />
+              User
             </div>
           </div>
 
           <div className='md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full  gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate("/vendoraccount")}>
             <BsPerson size={28} />
             <div className='lg:block hidden'>
-              <span className='text-xs text-gray-800'>Vendor Sign in</span> <br />
-            Vendor  Account
+              <span className='text-xs text-gray-800'>Sign in</span> <br />
+              Vendor  
             </div>
           </div>
 

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from 'lucide-react';
 import BestSellingNestedSection from './HomeNestedContainer/BestSellingNestedSection';
 import DiscountedNestedSection from './HomeNestedContainer/DiscountedNestedSection';
+import ShopNestedSection from './HomeNestedContainer/ShopProductsNestedSection';
 const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling }) => {
     const Navigate = useNavigate();
     const URL = url === 'bestselling' ? '/bestselling' : url === 'discount' ? '/discount' : '/shop';
@@ -52,13 +53,15 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
 
                     }
 
-                    {url === 'newProducts' || url === 'shop'
-                        ? <NewProductsNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                    {url === 'newProducts' 
+                        ? <NewProductsNestedSection   grid={grid} sliceProducts={sliceProducts === false ? false : true} />
                         : url === 'discount'
                             ? <DiscountedNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                            : url === 'shop'
+                                ? <ShopNestedSection filteredProducts={filteredProducts} grid={grid}  />
                             : url === 'bestselling'
-                                ? <BestSellingNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
-                                : <CategoryProductsNestedSection grid={grid} filteredProducts={filteredProducts} />
+                                ? <BestSellingNestedSection grid={grid}  sliceProducts={sliceProducts === false ? false : true} />
+                                : <CategoryProductsNestedSection grid={grid} name={'category'} filteredProducts={filteredProducts} />
                     }
 
                     {/* {url === 'shop' &&

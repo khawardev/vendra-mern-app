@@ -79,7 +79,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                             1
                                         );
                                         setwishlistTragetid(product._id);
-                                    }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border-4 border-gray-100  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
+                                    }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px]   bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
                                         {wishlistloading && wishlistTragetid == product._id ? (
                                             <HiOutlineCheck size={20} />
                                         ) : (
@@ -91,23 +91,19 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
 
 
                                 </div>
-                                <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
-                                    <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
-                                        <div className='Parent-product-Image-Hover flex justify-center items-center   '>
-                                            {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
-                                            <img className='mix-blend-multiply   h-[10rem] w-full ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
-                                        </div>
-                                    </section>
-                                    <div className='upper   '>
-                                        <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                        <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
-                                    </div>
+                                <section className={` rounded-2xl  relative    Parent-product-Image-Hover `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                    {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
+                                    <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
                                 </section>
+                               
 
                             </main>
                             <div></div>
                             <main  >
-
+                                <div className='upper  mt-4 '>
+                                    <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
+                                </div>
                                 <div className='flex justify-between items-center '>
 
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>

@@ -63,15 +63,17 @@ const Success = ({ title }) => {
                         <p className="text-gray-500 mb-5 leading-snug ">
                             Your <span className="text-indigo-700 font-bold  "> {title}  </span> has been uploaded
                         </p>
-                        <span
-                            className="cursor-pointer text-indigo-700 font-bold   bg-indigo-100 hover:bg-indigo-200 transition-all ease-in px-3 py-2 rounded-full"
-                            onClick={() => {
-                                Navigate('/');
-                                setThankyou(false);
-                            }}
-                        >
-                            Continue shopping <IoMdArrowForward/>
-                        </span>
+                        <div className='flex justify-center'>
+                            <p
+                                className="cursor-pointer text-indigo-700 font-bold  flex items-center justify-center gap-3  bg-indigo-100 hover:bg-indigo-200 transition-all ease-in px-3 py-2 rounded-full"
+                                onClick={() => {
+                                    Navigate('/');
+                                    setThankyou(false);
+                                }}
+                            >
+                                Continue shopping <IoMdArrowForward />
+                            </p>
+                        </div>
 
                     </div>
                 </div>

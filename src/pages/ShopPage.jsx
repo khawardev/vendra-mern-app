@@ -33,6 +33,7 @@ const ShopPage = () => {
     };
 
     const [selectedOption, setSelectedOption] = useState(''); // State to keep track of selected option
+    const [selectedRadio, setSelectedRadio] = useState(false); // State to keep track of selected option
 
     // Function to handle dropdown change
     const handleDropdownChange = (event) => {
@@ -71,13 +72,14 @@ const ShopPage = () => {
                 </section>
                 <section className="flex items-center gap-5 ">
                     <form className=" flex gap-3 ">
-                        <select
+                        {/* <select
                             className="  text-sm  rounded-full py-2 px-1   border   hover:cursor-pointer "
                         >
-                            <option selected="">Sort By Latest</option>
-                            <option selected="">Sort By  Rating</option>
+                            <option selected="">Sort  Product</option>
+                            <option selected="">By Latest</option>
+                            <option selected="">By  Rating</option>
 
-                        </select>
+                        </select> */}
 
 
                         <select
@@ -97,17 +99,18 @@ const ShopPage = () => {
                             className="  text-sm  rounded-full py-2 px-1   border   hover:cursor-pointer "
                         >
                             <option value="">Product Status</option>
-                            <option value="In stock">In stock</option>
                             <option value="Best Selling">Best Selling</option>
                             <option value="On Discount">On Discount</option>
                         </select>
                     </form>
                     <GoDotFill />
                     <div className="flex items-center justify-center gap-1">
-                        <p className="hover:cursor-pointer p-2 rounded-full bg-gray-100">
+                        <p className={`hover:cursor-pointer p-2 rounded-full ${selectedRadio === false && 'bg-gray-100'} hover:bg-gray-100`} onClick={() => { setSelectedRadio(false) }} >
                             <TbCategory />
                         </p>
-                        <p className="hover:cursor-pointer p-2 rounded-full hover:bg-gray-100">
+                        <p className={`hover:cursor-pointer p-2 rounded-full ${selectedRadio === true && 'bg-gray-100'} hover:bg-gray-100`}
+                            onClick={() => { setSelectedRadio(true) }}
+                        >
                             <RxHamburgerMenu />
                         </p>
                     </div>
@@ -121,8 +124,11 @@ const ShopPage = () => {
                 url="shop"
                 sliceProducts={false}
                 viewmore={true}
-                grid={' grid-cols-5 '}
                 NewProductBanner={false}
+                grid={` ${selectedRadio === false ? 'grid-cols-5' :'grid-cols-1'} `}
+                sectionClasses={` ${selectedRadio === true && 'grid grid-cols-11 gap-4'}`}
+                imageClasses={` ${selectedRadio === true && 'col-span-2'}`}
+                TextClasses={` ${selectedRadio === true && 'col-span-9   flex flex-col  justify-end'}`}
                 filteredProducts={filteredProducts()} // Pass filtered products to NewProducts component
             />
             }

@@ -15,7 +15,7 @@ const CategoriesNested = ({ category }) => {
 
 
       <div className='carouselItem select-none  flex-col justify-center items-center   ' onClick={() => Navigate(`/viewcategoryproducts/${category?._id}`)}>
-        <div className='p-8   hover:bg-gray-100 flex  justify-center items-center  border rounded-2xl     '>
+        <div className='p-8   hover:bg-gray-100 flex  justify-center items-center  transition-all ease-in   rounded-2xl     '>
           <img
             src={`https://ucarecdn.com/${category?.image}/`}
             className="mix-blend-multiply  flex justify-center items-center h-[9rem]"

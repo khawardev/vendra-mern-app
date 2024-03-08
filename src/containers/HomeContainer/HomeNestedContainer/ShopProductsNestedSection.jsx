@@ -16,8 +16,7 @@ import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import toast, { Toaster } from 'react-hot-toast';
-
-const ShopNestedSection = ({  grid, filteredProducts }) => {
+const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasses, TextClasses }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const [wishlistTragetid, setwishlistTragetid] = useState();
@@ -55,14 +54,11 @@ const ShopNestedSection = ({  grid, filteredProducts }) => {
     }, [wishlistloading, cartloading]);
 
 
-    // const displayedProducts = Array.isArray(products)
-    //     ? (sliceProducts ? [...products.slice(-8)] : [...products]).reverse()
-    //     : [];
 
     return (
         <>
             {filteredProducts &&
-                <div className={`my-7 grid  gap-7 ${grid}`}>
+                <div className={`my-7 grid  gap-8 ${grid}`}>
                     {filteredProducts?.map((product) => (
                         <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
@@ -77,7 +73,7 @@ const ShopNestedSection = ({  grid, filteredProducts }) => {
                                             1
                                         );
                                         setwishlistTragetid(product._id);
-                                    }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border-4 border-gray-100  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
+                                    }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px]  bg-gray-200 hover:bg-gray-100 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
                                         {wishlistloading && wishlistTragetid == product._id ? (
                                             <HiOutlineCheck size={20} />
                                         ) : (
@@ -89,23 +85,23 @@ const ShopNestedSection = ({  grid, filteredProducts }) => {
 
 
                                 </div>
-                                <section onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
-                                    <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
-                                        <div className='Parent-product-Image-Hover flex justify-center items-center   '>
-                                            {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
-                                            <img className='mix-blend-multiply   h-[10rem] w-full ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
-                                        </div>
-                                    </section>
-                                    <div className='upper   '>
-                                        <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                        <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
-                                    </div>
+
+
+                                <section className={`${sectionClasses}   rounded-2xl ${imageClasses}  relative    Parent-product-Image-Hover  `}  onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                    {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
+
+                                    <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
                                 </section>
 
-                            </main>
-                            <div></div>
-                            <main  >
 
+
+
+                            </main>
+                            <main  >
+                                <div className={`upper ${TextClasses} mt-4`} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                    <span className='md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold hover:cursor-pointer hover:underline Parent-product-text-Hover capitalize'>{product.name}</span>
+                                    <p className='md:leading-5 leading-5 mb-3 line-clamp-3 hover:cursor-pointer text-gray-400'>{product.description}</p>
+                                </div>
                                 <div className='flex justify-between items-center '>
 
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>

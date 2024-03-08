@@ -10,7 +10,7 @@ import { ArrowUpRight } from 'lucide-react';
 import BestSellingNestedSection from './HomeNestedContainer/BestSellingNestedSection';
 import DiscountedNestedSection from './HomeNestedContainer/DiscountedNestedSection';
 import ShopNestedSection from './HomeNestedContainer/ShopProductsNestedSection';
-const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling }) => {
+const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling, sectionClasses, imageClasses, TextClasses }) => {
     const Navigate = useNavigate();
     const URL = url === 'bestselling' ? '/bestselling' : url === 'discount' ? '/discount' : '/shop';
     // const sectionToRender = viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
@@ -58,7 +58,7 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
                         : url === 'discount'
                             ? <DiscountedNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
                             : url === 'shop'
-                                ? <ShopNestedSection filteredProducts={filteredProducts} grid={grid}  />
+                                ? <ShopNestedSection filteredProducts={filteredProducts} grid={grid} sectionClasses={sectionClasses} imageClasses={imageClasses} TextClasses={TextClasses}  />
                             : url === 'bestselling'
                                 ? <BestSellingNestedSection grid={grid}  sliceProducts={sliceProducts === false ? false : true} />
                                 : <CategoryProductsNestedSection grid={grid} name={'category'} filteredProducts={filteredProducts} />

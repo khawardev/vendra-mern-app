@@ -20,7 +20,9 @@ import { FaFire } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCompare, removeCompareProduct, selectCompare } from '../../toolkit/Slices/CompareSlice';
 import { MdClose } from 'react-icons/md';
-
+import InnerImageZoom from 'react-inner-image-zoom'
+import '../../assets/styles/ZoomImage.scss'
+import ReactImageMagnify from 'react-image-magnify';
 const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
     const dispatch = useDispatch();
@@ -125,7 +127,11 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
         const discountPercentage = ((originalPrice - discountedPrice) / originalPrice) * 100;
         return discountPercentage.toFixed(0);
     };
+    const [zoomedImageSrc, setZoomedImageSrc] = useState(filteredProduct?.image);
 
+    const handleImageClick = (newSrc) => {
+        setZoomedImageSrc(newSrc);
+    };
 
     return (
         <>
@@ -134,24 +140,42 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
             <p className=" text-sm mb-8"><span className=" text-gray-400"> <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=' cursor-pointer' onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name} </span>  /</span> <b>{Productname}</b>  </p>
 
             <main className=" grid grid-cols-4 gap-12 mb-18  ">
-                <section className=' grid grid-cols-5 gap-6 col-span-2'>
-                    <section className='flex flex-col  gap-3 col-span-1' >
-                        <div className=' p-4 border  flex justify-center items-center rounded-xl   cursor-pointer  '>
-                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
-                        </div>
-                        <div className=' p-4  border  flex justify-center items-center rounded-xl  cursor-pointer'>
-                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
-                        </div>
-                        <div className=' p-4  border flex justify-center items-center rounded-xl  cursor-pointer'>
-                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
-                        </div>
-                        <div className=' p-4 border  flex justify-center items-center rounded-xl  cursor-pointer'>
-                            <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
-                        </div>
+                <section className='grid grid-cols-5 gap-6 col-span-2'>
+                    <section className='flex flex-col gap-5 col-span-1'>
+
+                        <img
+                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
+                            src={`https://ucarecdn.com/${filteredProduct?.image}/`}
+                            alt=""
+                            onClick={() => handleImageClick(filteredProduct?.image)}
+                        />
+                        <img
+                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
+                            src={`https://ucarecdn.com/1ae0efb9-a611-4e91-a0d0-198496315028/`}
+                            alt=""
+                            onClick={() => handleImageClick('1ae0efb9-a611-4e91-a0d0-198496315028')}
+                        />
+                        <img
+                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
+                            src={`https://ucarecdn.com/2108c71d-2624-4bf9-bb56-d85946fef18e/`}
+                            alt=""
+                            onClick={() => handleImageClick('2108c71d-2624-4bf9-bb56-d85946fef18e')}
+                        />
+                        <img
+                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
+                            src={`https://ucarecdn.com/21f193b7-86ff-4012-82b5-7689b17737cc/`}
+                            alt=""
+                            onClick={() => handleImageClick('21f193b7-86ff-4012-82b5-7689b17737cc')}
+                        />
+
                     </section>
-                    <section className='flex justify-start col-span-4 '>
-                        <div className=' px-20  bg-gray-100 border rounded-2xl  flex justify-center items-center  w-full'>
-                            <img className='  w-full mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
+                    <section className='flex justify-start col-span-4'>
+                        <div className='px-5'>
+                          
+                            <InnerImageZoom
+                                className='w-full mix-blend-multiply rounded-2xl'
+                                src={`https://ucarecdn.com/${zoomedImageSrc}/`}
+                            />
                         </div>
                     </section>
                 </section>
@@ -226,7 +250,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                                 </div>
                             </div>
                             <div className=' flex justify-between gap-3'>
-                                <p className={`px-5 py-2   font-bold   hover:border-gray-300  ${isProductCompared && `bg-gray-100`}  border rounded-full  cursor-pointer flex  justify-center items-center gap-2` }
+                                <p className={`px-5 py-2   font-bold   hover:border-gray-300  ${isProductCompared && `bg-gray-100`}  border rounded-full  cursor-pointer flex  justify-center items-center gap-2`}
                                     onClick={() => { handleAddToCompare() }}>
                                     {isProductCompared ? (
                                         <>

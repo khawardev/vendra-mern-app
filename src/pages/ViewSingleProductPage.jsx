@@ -6,6 +6,7 @@ import NewProducts from '../containers/HomeContainer/NewProducts';
 import { useSelector } from 'react-redux';
 import { selectProducts } from '../toolkit/Slices/ProductsSlice'
 import { selectCategories } from '../toolkit/Slices/CategoriesSlice'
+
 const ViewSingleProductPage = () => {
     const { productid, BestSell, Discount, DiscountedPrice } = useParams();
     const products = useSelector(selectProducts);

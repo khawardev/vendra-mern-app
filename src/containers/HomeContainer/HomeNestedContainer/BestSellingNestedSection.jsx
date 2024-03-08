@@ -143,7 +143,6 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                 ))}
             </div>
             ) : (
-
             <div >
                 <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
                     <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
@@ -152,9 +151,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                         onClick={() => Navigate('/shop')}  >go back <IoMdArrowForward className=' opacity-100' size={16} /></p>
                 </div>
             </div>
-            )
-
-            }
+            )}
         </>
     );
 };

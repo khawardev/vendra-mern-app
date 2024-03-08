@@ -17,7 +17,8 @@ import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import { FaFire } from "react-icons/fa";
 import { selectRemovedProductIds } from '../../../toolkit/Slices/BestSellingSlice';
-
+import { IoMdArrowForward } from "react-icons/io";
+import { MdOutlineErrorOutline } from "react-icons/md";
 const DiscountedNestedSection = ({ sliceProducts, grid }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
 
     return (
         <>
+            {displayedProducts?.length !== 0 ? (
             <div className={`my-7 grid  gap-7 ${grid}`}>
                 {displayedProducts.map((product) => (
                     <article key={product.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
@@ -163,6 +165,16 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                 ))}
 
             </div>
+            ) : (
+            <div >
+                <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
+                    <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
+                    <span className=' font-bold  ' >No Product In Discount  </span>
+                    <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full"
+                        onClick={() => Navigate('/shop')}  >go back <IoMdArrowForward className=' opacity-100' size={16} /></p>
+                </div>
+            </div>
+            )}
 
 
 

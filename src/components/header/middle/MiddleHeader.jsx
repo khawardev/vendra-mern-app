@@ -55,7 +55,7 @@ const MiddleHeader = () => {
           {/* <input type="text" className='py-3 outline-none border-none ' size={65} placeholder='Search your favorite product ...' /> */}
           <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
         </section>
-        <section className='flex lg:gap-6 gap-1  justify-center items-center'>
+        <section className='flex lg:gap-4 gap-1  justify-center items-center'>
 
           <div className='md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full  gap-2 justify-center items-center cursor-pointer leading-3' onClick={() => Navigate(isLoggedIn == "true" ? "/user-account" : "/account")}>
             <BsPerson size={28} />
@@ -69,28 +69,34 @@ const MiddleHeader = () => {
             <BsPerson size={28} />
             <div className='lg:block hidden'>
               <span className='text-xs text-gray-800'>Sign in</span> <br />
-              Vendor  
+              Vendor
             </div>
           </div>
+          <div className=' bg-gray-100 rounded-full py-2 px-3 flex gap-2'>
 
 
-          <div className='px-1 ' onClick={() => Navigate('/wishlist')}>
-            <div className='relative cursor-pointer md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
-              <VscHeart size={26} />
-              <span className=" absolute cart-popup md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{wishlistItems?.length}</span>
-            </div>
-          </div>
 
-          <div className='flex gap-2 justify-center items-center leading-3 cursor-pointer' onClick={() => Navigate('/cart')}>
-            <div className='relative md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
-              <BsCart2 size={26} />
-              <span className=" absolute cart-popup  md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{cartItems?.length}</span>
-            </div>
-            <div className='md:block hidden'>
-              <span className='text-xs text-gray-800'>Total</span> <br />
-              <b>${totalSubtotal ? totalSubtotal.toFixed(2) : 0}</b>
+            <div className='px-1  ' onClick={() => Navigate('/wishlist')}>
+              <div className='relative cursor-pointer md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
+                <VscHeart stroke-width={0.2} size={26} />
+                <span className=" absolute cart-popup md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{wishlistItems?.length}</span>
+              </div>
             </div>
 
+            <div className='flex gap-2 justify-center items-center leading-3 cursor-pointer' onClick={() => Navigate('/cart')}>
+              <div className='relative md:bg-transparent bg-slate-100 md:border-none border md:p-0 p-2 rounded-full'>
+                <BsCart2 stroke-width={0.2} size={26} />
+                <span className=" absolute cart-popup  md:top-0 md:left-4 top-2 left-6 bg-yellow-500 ">{cartItems?.length}</span>
+              </div>
+              <div className='md:block hidden'>
+                {totalSubtotal !== 0 && <>
+                  <span className='text-xs text-gray-800'>Total</span> <br />
+                  <b>${totalSubtotal && totalSubtotal.toFixed(2)}</b>
+                </>
+                }
+              </div>
+
+            </div>
           </div>
 
 

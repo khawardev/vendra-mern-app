@@ -7,20 +7,24 @@ import { useSelector } from 'react-redux';
 import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
 import { ImagePlus } from 'lucide-react';
 import Success from './Success';
+import { LuUploadCloud } from "react-icons/lu";
+
 const CreateProductButton = () => {
     const [selectedFile, setSelectedFile] = useState(null);
+    console.log( selectedFile)
     const [uploading, setUploading] = useState(false);
+    const [uploadingProduct, setUploadingProduct] = useState(false);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [categoryfield, setCategoryfield] = useState('');
     const [stock, setstock] = useState('');
-    const [imageuuid, setimageuuid] = useState("");
+    const [imageuuid, setimageuuid] = useState([]);
     const [isHidden, setisHidden] = useState(true);
     const fileInputRef = useRef(null);
     const categories = useSelector(selectCategories);
     const [Thankyou, setThankyou] = useState(false)
-
+    console.log(imageuuid);
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -60,24 +64,61 @@ const CreateProductButton = () => {
     const handleStockChange = (event) => {
         setstock(event.target.value);
     };
-    useEffect(() => {
-        if (imageuuid) {
-            handlemongo();
+    // useEffect(() => {
+    //     if (imageuuid) {
+    //         handlemongo();
+    //     }
+    // }, [imageuuid])
+
+
+
+
+    const handleupload = async () => {
+        try {
+            setUploading(true);
+            if (selectedFile) {
+                console.log(selectedFile)
+                const client = new UploadClient({ publicKey: '58cf3618f4fe8e8e6376' });
+                const file = await client.uploadFile(selectedFile);
+                if (file.uuid) {
+                    setimageuuid(prevImageUuid => [...prevImageUuid, file.uuid]);
+                    setUploading(false);
+                    setSelectedFile(null);
+                }
+
+            }
+            const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
+                publicKey: '58cf3618f4fe8e8e6376',
+                secretKey: '4f5ef1795de6edd7fd0e',
+            });
+
+            const result = await listOfFiles({}, { authSchema: uploadcareSimpleAuthSchema });
+
+            if (fileInputRef.current) {
+                fileInputRef.current.value = ''
+            }
+
+        } catch (error) {
+            console.log(error)
         }
+    };
+    const handleSubmit = async (event) => {
 
-    }, [imageuuid])
+        event.preventDefault();
+        setUploadingProduct(true)
 
-
-
-
-    const handlemongo = async (event) => {
         const formData = new FormData();
         formData.append("name", name);
         formData.append("description", description);
         formData.append("price", price);
         formData.append('category', categoryfield);
-        formData.append('image', imageuuid);
+        // formData.append('image', imageuuid);
         formData.append('stock', stock);
+
+        imageuuid.forEach((uuid, index) => {
+            formData.append(`image${index}`, uuid);
+        });
+
         try {
             const response = await fetch('http://localhost:5000/api/products', {
                 method: 'POST',
@@ -97,7 +138,7 @@ const CreateProductButton = () => {
             if (response.ok) {
                 console.log('Product created successfully');
                 setDefaultFields();
-                setUploading(false);
+                setUploadingProduct(false)
                 setThankyou(true)
                 // setTimeout(() => {
                 //     IsHiddenFunction();
@@ -108,36 +149,8 @@ const CreateProductButton = () => {
         } catch (error) {
             console.error('An error occurred:', error);
         }
-    };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
 
-        try {
-            setUploading(true);
-            if (selectedFile) {
-                console.log(selectedFile)
-                const client = new UploadClient({ publicKey: '58cf3618f4fe8e8e6376' });
-                const file = await client.uploadFile(selectedFile);
-                if (file.uuid) {
-                    setimageuuid(file.uuid);
-                }
-
-            }
-            const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
-                publicKey: '58cf3618f4fe8e8e6376',
-                secretKey: '4f5ef1795de6edd7fd0e',
-            });
-
-            const result = await listOfFiles({}, { authSchema: uploadcareSimpleAuthSchema });
-
-            if (fileInputRef.current) {
-                fileInputRef.current.value = ''
-            }
-
-        } catch (error) {
-            console.log(error)
-        }
     };
 
 
@@ -283,7 +296,7 @@ const CreateProductButton = () => {
 
                                 </div>
 
-                                <div className="mb-4 grid grid-cols-2 gap-5">
+                                <div className="mb-4 grid grid-cols-3 gap-5">
                                     <section className='w-full  mt-4'>
                                         <div className="">
                                             <label
@@ -293,6 +306,7 @@ const CreateProductButton = () => {
                                                 Description
                                             </label>
                                             <textarea
+                                                required
                                                 id="productName"
                                                 name="productName"
                                                 value={description}
@@ -304,15 +318,43 @@ const CreateProductButton = () => {
                                             />
                                         </div>
                                     </section>
+
                                     <section className='w-full mt-4'>
-                                        <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">
-                                            Product Image
-                                        </span>
+
+                                        <div className=' flex justify-between items-center'>
+
+                                            
+                                            <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">
+                                                Product Image
+                                            </span>
+
+                                            
+                                            <button disabled={uploading || !selectedFile || imageuuid?.length === 4} onClick={() => { handleupload() }} className=" mb-2 text-sm   hover:bg-blue-800 transition-all ease-in flex justify-center items-center gap-2 font-medium bg-blue-600 rounded-full px-3 py-1  text-white dark:text-white text-start">
+
+                                                {uploading ?
+                                                    <div>
+                                                        <svg
+                                                            aria-hidden="true"
+                                                            role="status"
+                                                            className="inline w-4 h-4 mr-3 text-white animate-spin"
+                                                            viewBox="0 0 100 101"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                        >
+                                                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB" />
+                                                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor" />
+                                                        </svg>
+                                                        uploading ...
+                                                    </div> : <> <LuUploadCloud stroke-width='3px' />Upload </>}
+
+
+
+                                            </button>
+                                        </div>
                                         <div className="flex flex-col justify-center items-center w-full ">
                                             <label
                                                 htmlFor="imageUpload"
                                                 className="flex flex-col  justify-center items-center w-full h-[260px] bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-
                                             >
                                                 {selectedFile ? (
                                                     <div className='flex flex-col justify-center items-center'>
@@ -377,18 +419,35 @@ const CreateProductButton = () => {
                                                 onChange={handleFileChange}
                                                 ref={fileInputRef}
                                                 className="hidden"
+                                                disabled={imageuuid?.length === 4}
                                             />
-
                                         </div>
                                     </section>
+
+                                    <div className=' grid grid-cols-2 gap-3 w-full   '>
+
+                                        {Array.isArray(imageuuid) && imageuuid.map((uuid, index) => (
+                                            <img
+                                                key={index}
+
+                                                className='w-[80%] mix-blend-multiply rounded-2xl border'
+                                                src={`https://ucarecdn.com/${uuid}/`}
+                                                alt={`Image ${index}`}
+                                            />
+                                        ))}
+
+                                    </div>
+
+
                                 </div>
-                                <div className="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                                <div className="items-center justify-between   flex gap-8  w-full  ">
+
                                     <button
-                                        disabled={uploading || !selectedFile}
+                                        disabled={selectedFile}
                                         type="submit"
                                         className="w-full sm:w-auto justify-center text-white inline-flex bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                     >
-                                        {uploading ?
+                                        {uploadingProduct ?
                                             <div>
                                                 <svg
                                                     aria-hidden="true"
@@ -425,7 +484,13 @@ const CreateProductButton = () => {
                                         </svg>
                                         Discard
                                     </button>
+
                                 </div>
+
+
+
+
+
                             </form>
                         }
                     </div>

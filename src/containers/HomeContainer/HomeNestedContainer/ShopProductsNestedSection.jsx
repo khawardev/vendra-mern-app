@@ -15,7 +15,7 @@ import { addToCart } from '../../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasses, TextClasses }) => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
@@ -25,8 +25,7 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
     const [cartloading, setcartloading] = useState(false);
 
     const handleAddToWishList = (id, name, desc, price, imageurl, quantity) => {
-        toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist <Toaster /></span>);
-
+        toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
         dispatch(addToWishlist({ id: id, name: name, desc: desc, price: price, imageurl: imageurl, quantity: quantity }));
         setwishlistloading(true);
     };
@@ -36,6 +35,14 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
         setcartloading(true);
     };
 
+
+
+    // const handleAddToWishList = (id, name, desc, price, imageurl, quantity) => {
+    //     dispatch(addToWishlist({ id, name, desc, price, imageurl, quantity }));
+    //     setwishlistloading(true);
+    // };
+
+   
 
     useEffect(() => {
 
@@ -51,6 +58,7 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
             }, 1000);
             return () => clearTimeout(timeoutId);
         }
+        
     }, [wishlistloading, cartloading]);
 
 
@@ -69,7 +77,7 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                             product.name,
                                             product.description,
                                             product.price,
-                                            product.image,
+                                            product.image[0],
                                             1
                                         );
                                         setwishlistTragetid(product._id);
@@ -87,10 +95,10 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                 </div>
 
 
-                                <section className={`${sectionClasses}   rounded-2xl ${imageClasses}  relative    Parent-product-Image-Hover  `}  onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                <section className={`${sectionClasses}   rounded-xl ${imageClasses}  relative    Parent-product-Image-Hover  `}  onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
 
-                                    <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image}/`} alt="" />
+                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/`} alt="" />
                                 </section>
 
 
@@ -112,7 +120,7 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                             product?.name,
                                             product?.description,
                                             product?.price,
-                                            product?.image,
+                                            product?.image[0],
                                             1
                                         );
                                         setcartTragetid(product._id);

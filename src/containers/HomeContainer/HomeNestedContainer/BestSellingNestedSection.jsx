@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import { FaFire } from "react-icons/fa";
 import { IoMdArrowForward } from "react-icons/io";
+import toast from 'react-hot-toast';
 
 import { MdOutlineErrorOutline } from "react-icons/md";
 const BestSellingNestedSection = ({ sliceProducts, grid }) => {
@@ -29,10 +30,14 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
     const [cartloading, setcartloading] = useState(false);
 
     const handleAddToWishList = (id, name, desc, price, imageurl, quantity) => {
+        toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
+
         dispatch(addToWishlist({ id: id, name: name, desc: desc, price: price, imageurl: imageurl, quantity: quantity }));
         setwishlistloading(true);
     };
     const handleAddToCart = (id, name, desc, price, imageurl, quantity) => {
+        toast.success(<span style={{ fontWeight: 'bold' }}>Added to cart</span>);
+
         dispatch(addToCart({ id: id, name: name, desc: desc, price: price, imageurl: imageurl, quantity: quantity }));
         setcartloading(true);
     };
@@ -68,8 +73,8 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                     <article key={product?.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                         <main>
                             <div>
-                                <div className='md:top-[1rem]  top-[0.40rem] flex justify-center items-center gap-1   md:left-[15px] left-[10px]  rounded-full   rounded-tr-full    font-bold   text-red-800 bg-red-300   border border-4 border-gray-100  md:px-3 px-2 absolute z-10'>
-                                   Best Selling
+                                <div className='md:bottom-[11rem]   flex justify-center items-center gap-1   md:left-[10px] left-[10px]  rounded-full   rounded-tr-full    font-bold   text-orange-700 bg-orange-300 p-2 absolute z-10'>
+                                    <FaFire/>
                                 </div>
                                 <div onClick={() => {
                                     handleAddToWishList(
@@ -77,11 +82,11 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                         product.name,
                                         product.desc,
                                         product.price,
-                                        product.imageurl,
+                                        product.imageurl[0],
                                         1
                                     );
                                     setwishlistTragetid(product.id);
-                                }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px] border-4 border-gray-100  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
+                                }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px]   bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
                                     {wishlistloading && wishlistTragetid == product.id ? (
                                         <HiOutlineCheck size={20} />
                                     ) : (
@@ -90,22 +95,26 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                 </div>
 
                             </div>
-                            <section onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${true}/${false}/bestSell`)}>
-                                <section className='    mb-3 rounded-xl p-8 relative bg-gray-100   flex justify-center items-center  border'>
-                                    <div className='Parent-product-Image-Hover flex justify-center items-center   '>
-                                        {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
-                                        <img className='mix-blend-multiply   h-[10rem] w-full ' src={`https://ucarecdn.com/${product?.imageurl}/`} alt="" />
-                                    </div>
-                                </section>
-                                <div className='upper'>
-                                    <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className='  md:leading-[18px]  leading-4 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400'>{product.desc}</p>
-                                </div>
+
+
+
+
+
+
+
+                            <section className={` rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${true}/${false}/bestSell`)}>
+                                <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.imageurl[0]}/`} alt="" />
                             </section>
 
-                        </main>
 
+                        </main>
                         <main  >
+                            <div className='upper  mt-4  ' onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${true}/${false}/bestSell`)}>
+                                <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.desc}</p>
+                            </div>
+
+
 
                             <div className='flex justify-between items-center '>
                                 <div className='md:flex justify-center items-center gap-2 '>
@@ -118,7 +127,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                         product?.name,
                                         product?.desc,
                                         product?.price,
-                                        product?.image,
+                                        product?.imageurl[0],
                                         1
                                     );
                                     setcartTragetid(product._id);

@@ -13,13 +13,10 @@ const ShopPage = () => {
     const Navigate = useNavigate();
     const products = useSelector(selectProducts);
     const [priceFilter, setPriceFilter] = useState(''); // State to hold the selected price filter option
+    const [selectedOption, setSelectedOption] = useState(''); // State to keep track of selected option
+    const [selectedRadio, setSelectedRadio] = useState(false); // State to keep track of selected option
+  
 
-    // Function to handle price filter change
-    const handlePriceFilterChange = (event) => {
-        setPriceFilter(event.target.value);
-    };
-
-    // Function to filter products based on the selected price filter option
     const filteredProducts = () => {
         let filtered = [...products];
         if (priceFilter === 'lowToHigh') {
@@ -32,9 +29,11 @@ const ShopPage = () => {
         return (filtered.reverse())
     };
 
-    const [selectedOption, setSelectedOption] = useState(''); // State to keep track of selected option
-    const [selectedRadio, setSelectedRadio] = useState(false); // State to keep track of selected option
 
+    // Function to handle price filter change
+    const handlePriceFilterChange = (event) => {
+        setPriceFilter(event.target.value);
+    };
     // Function to handle dropdown change
     const handleDropdownChange = (event) => {
         setSelectedOption(event.target.value);
@@ -53,6 +52,7 @@ const ShopPage = () => {
                 return null; // Render nothing if no option is selected or if the selected option doesn't match any case
         }
     };
+
     return (
         <main className="w-11/12 m-auto md:py-20 py-3">
             <p className="text-sm mb-4">

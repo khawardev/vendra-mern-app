@@ -71,11 +71,11 @@ const WishlistPage = () => {
                             {wishlistItems?.map((WishlistItems) => (
                                 <tr key={WishlistItems.id} className=" select-none">
                                     <td className="flex py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <div className=' p-2 border bg-gray-100 rounded-md flex items-center justify-center'>
+                                        <div className='   flex items-center justify-center'>
                                             <img
                                                 src={`https://ucarecdn.com/${WishlistItems?.imageurl}/`}
                                                 alt="iMac Front Image"
-                                                className=" w-14 mix-blend-multiply"
+                                                className=" w-14 mix-blend-multiply rounded-md "
                                             />
                                         </div>
                                     </td>

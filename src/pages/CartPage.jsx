@@ -17,7 +17,7 @@ import { IoMdArrowForward } from "react-icons/io";
 const CartPage = () => {
     const dispatch = useDispatch();
     const Navigate = useNavigate();
-    const [total, setTotal] = useState(0);
+    // const [total, setTotal] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const cartItems = useSelector(selectCartItems);
     const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
@@ -32,8 +32,7 @@ const CartPage = () => {
 
 
 
-
-
+    
     const handleDecrement = (productId) => {
         const currentQuantity = cartItems.find(item => item.id === productId).quantity;
         const updatedQuantity = Math.max(1, currentQuantity - 1);
@@ -98,12 +97,13 @@ const CartPage = () => {
                                     {cartItems?.map((cartItems) => (
 
                                         <tr key={cartItems.id} className=" select-none">
-                                            <td className="py-4 flex   items-center justify-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <div className=' p-2 mx-2 border bg-gray-100 rounded-md flex items-center justify-center'>
+                                           
+                                            <td className="flex py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <div className='   flex items-center justify-center'>
                                                     <img
                                                         src={`https://ucarecdn.com/${cartItems?.imageurl}/`}
                                                         alt="iMac Front Image"
-                                                        className=" w-14 mix-blend-multiply"
+                                                        className=" w-14 mix-blend-multiply rounded-md "
                                                     />
                                                 </div>
                                             </td>

@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { addToCart } from '../../toolkit/Slices/CartSlice';
 import { addToWishlist } from '../../toolkit/Slices/WishlistSlice';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { FaFire } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCompare, removeCompareProduct, selectCompare } from '../../toolkit/Slices/CompareSlice';
@@ -23,6 +23,8 @@ import { MdClose } from 'react-icons/md';
 import InnerImageZoom from 'react-inner-image-zoom'
 import '../../assets/styles/ZoomImage.scss'
 import ReactImageMagnify from 'react-image-magnify';
+import { FiPlus } from "react-icons/fi";
+
 const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
     const dispatch = useDispatch();
@@ -67,6 +69,8 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
         const isCompared = comparedProducts.some(product => product.id === filteredProduct._id);
         setisProductCompared(isCompared)
     }, [filteredProduct?._id]);
+
+
     const handleAddToCompare = () => {
         setisProductCompared(!isProductCompared)
         const isCompared = comparedProducts.some(product => product.id === filteredProduct._id);
@@ -78,7 +82,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
             stock: filteredProduct.stock,
             imageurl: filteredProduct.image,
         });
-        const toastMessage = isCompared ? 'Removed from Compare' : 'Added to Compare';
+        const toastMessage = isCompared ? 'Removed from Compare' : 'Removed to Compare';
         toast.success(<span style={{ fontWeight: 'bold' }}>{toastMessage}</span>);
 
         dispatch(action);
@@ -127,11 +131,15 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
         const discountPercentage = ((originalPrice - discountedPrice) / originalPrice) * 100;
         return discountPercentage.toFixed(0);
     };
-    const [zoomedImageSrc, setZoomedImageSrc] = useState(filteredProduct?.image);
-
+    const [zoomedImageSrc, setZoomedImageSrc] = useState();
     const handleImageClick = (newSrc) => {
         setZoomedImageSrc(newSrc);
     };
+    useEffect(() => {
+        setZoomedImageSrc(filteredProduct?.image[0])
+    }, [filteredProduct?.image]);
+
+
 
     return (
         <>
@@ -142,8 +150,16 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
             <main className=" grid grid-cols-4 gap-12 mb-18  ">
                 <section className='grid grid-cols-5 gap-6 col-span-2'>
                     <section className='flex flex-col gap-5 col-span-1'>
-
-                        <img
+                        {filteredProduct?.image.map((imageUUID, index) => (
+                            <img
+                                key={index} // Make sure to use a unique key for each image
+                                className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
+                                src={`https://ucarecdn.com/${imageUUID}/`} // Assuming imageUUID is the actual UUID of the image
+                                alt={`Image ${index + 1}`} // Add alt text to improve accessibility
+                                onClick={() => handleImageClick(imageUUID)} // Pass the imageUUID to the click handler
+                            />
+                        ))}
+                        {/* <img
                             className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
                             src={`https://ucarecdn.com/${filteredProduct?.image}/`}
                             alt=""
@@ -166,12 +182,11 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                             src={`https://ucarecdn.com/21f193b7-86ff-4012-82b5-7689b17737cc/`}
                             alt=""
                             onClick={() => handleImageClick('21f193b7-86ff-4012-82b5-7689b17737cc')}
-                        />
+                        /> */}
 
                     </section>
                     <section className='flex justify-start col-span-4'>
-                        <div className='px-5'>
-                          
+                        <div className=' rounded-2xl px-3'>
                             <InnerImageZoom
                                 className='w-full mix-blend-multiply rounded-2xl'
                                 src={`https://ucarecdn.com/${zoomedImageSrc}/`}
@@ -195,14 +210,14 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
 
 
                             </div>
-                            <div><Toaster /></div>
+
                             <section className='flex items-center gap-2'>
-                                {Discount === 'true' && <div className='rounded-full   text-green-800 bg-green-100  font-bold py-1  md:px-3 px-2 '>
-                                    {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}% Discount
+                                {Discount === 'true' && <div className='rounded-full   text-green-800 bg-green-200  font-bold py-1  md:px-3 px-2 '>
+                                    {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}%
                                 </div>
                                 }
-                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full   bg-red-100    font-bold   text-red-800 py-1 md:px-3 px-2 '>
-                                    <FaFire size={14} />  Best Selling
+                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full   bg-orange-200    font-bold   text-orange-700 p-[10px]  '>
+                                    <FaFire size={14} />
                                 </div>
                                 }
 
@@ -221,7 +236,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                                     <AiFillStar className=' text-yellow-400' size={18} />
                                     <AiOutlineStar className=' text-gray-300' size={18} />
                                 </span>
-                                <p className='font-bold    border px-5 py-1  rounded-full bg-gray-100 cursor-pointer'>1 • Review</p>
+                                <p className='font-bold    border px-1 py-1 pr-3  rounded-full bg-gray-100 cursor-pointer flex gap-2 justify-center items-center '> <span className=' bg-gray-200 rounded-full p-1'><FiPlus stroke-width={3} /></span> Review</p>
                             </div>
                         </div>
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">
@@ -303,9 +318,9 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
 
                 <section className='flex items-center gap-4 '>
                     <p className=' text-xl   cursor-pointer font-bold   text-black transition-all ease-in hover:duration-100 '>Description</p>
-                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Specification</p>
-                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Aditional Information</p>
-                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Review</p>
+                    {/* <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Specification</p> */}
+                    {/* <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Aditional Information</p> */}
+                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Reviews</p>
                 </section>
                 <hr className='my-3' />
                 <p className=' leading-7  text-lg text-justify  '> {filteredProduct?.description} </p>

@@ -44,6 +44,8 @@
   display: block;
 }
 
+
+
 .iiz__zoom-img--visible {
   visibility: visible;
   opacity: 1;
@@ -52,7 +54,6 @@
   cursor: zoom-out;
   -ms-touch-action: none;
   touch-action: none;
-  
 }
 
 .iiz__zoom-portal {
@@ -63,7 +64,6 @@
   left: 0;
   z-index: 10000;
 }
-
 
 .iiz__hint {
   bottom: 10px;

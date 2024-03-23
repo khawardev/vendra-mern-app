@@ -15,11 +15,12 @@ import { selectbestSelling } from '../../toolkit/Slices/BestSellingSlice';
 import { selectdiscount } from '../../toolkit/Slices/DicountSlice';
 import { setbestSelling, removeBestSelling } from '../../toolkit/Slices/BestSellingSlice';
 import { setdiscount } from '../../toolkit/Slices/DicountSlice';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { IoClose } from "react-icons/io5";
 import { IoSaveOutline } from "react-icons/io5";
 import { CiSaveUp2 } from "react-icons/ci";
 import { MdSaveAlt } from "react-icons/md";
+import { IoImagesOutline } from "react-icons/io5";
 
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
@@ -400,7 +401,6 @@ const BodyTableProduct = () => {
                                         </button>
                                     </div>
                                     <div className=' space-y-2'>
-                                        <div><Toaster /></div>
                                         <button
                                             onClick={() => {
                                                 handleAddToBestSell(
@@ -447,6 +447,35 @@ const BodyTableProduct = () => {
                                         >
 
                                             <MdDiscount /> Discount
+                                            {/* {isModalOpen ? <>
+                                                <IoClose className=' text-white' onClick={() => Navigate(() => handleModal(false))} /> <input  type="number" name="" id="" />
+                                            </> : <div className='flex justify-center items-center gap-2  text-white' onClick={() => Navigate(handleModal())}>
+                                                    
+                                            </div>} */}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                handleAddToDiscount(
+                                                    product?._id,
+                                                    product?.name,
+                                                    product?.description,
+                                                    product?.price,
+                                                    product?.image,
+                                                    1
+                                                );
+                                                handleModal();
+                                            }}
+
+                                            type="button"
+                                            data-drawer-target="drawer-update-product"
+                                            data-drawer-show="drawer-update-product"
+                                            aria-controls="drawer-update-product"
+                                            className="flex items-center gap-2 transition-all text-white ease-in  border border-blue-600 bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+
+                                        // className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-green-700 rounded-full hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                        >
+
+                                            <IoImagesOutline stroke-width='0.5' /> Multiple Image
                                             {/* {isModalOpen ? <>
                                                 <IoClose className=' text-white' onClick={() => Navigate(() => handleModal(false))} /> <input  type="number" name="" id="" />
                                             </> : <div className='flex justify-center items-center gap-2  text-white' onClick={() => Navigate(handleModal())}>

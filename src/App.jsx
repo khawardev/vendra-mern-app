@@ -27,14 +27,17 @@ import CheckoutPage from './pages/CheckoutPage';
 import VendorAuthPage from "./pages/VendorAuthPage";
 import ComparePage from './pages/ComparePage';
 import CurencyConverter from './components/WebScrapper/CurencyCOnverter';
+import ModalComponent from './components/WebScrapper/ModalComponent';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
+      
+      {/* <ModalComponent /> */}
       {/* <FramerMotion /> */}
-
-     <BrowserRouter>
+  
+    <BrowserRouter>
         <AppContext>
           <Header />
           <Routes>
@@ -66,7 +69,7 @@ function App() {
           <Footer />
 
         </AppContext>
-      </BrowserRouter> 
+      </BrowserRouter>  
 
     </>
   )

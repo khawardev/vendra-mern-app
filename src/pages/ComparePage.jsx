@@ -27,7 +27,7 @@ const ComparePage = () => {
                             <tr>
                                 <th className="border font-bold text-start  px-4 py-2 uppercase">Image</th>
                                 {comparedProducts.map((product, index) => (
-                                    <th key={index} className="border text-center  justify-center px-4 py-6   "><img className='mix-blend-multiply  w-1/5  ' src={`https://ucarecdn.com/${product?.imageurl}/`} alt="" /></th>
+                                    <th key={index} className="border text-center  justify-center px-4 py-6 w-[22%]    "><img className='mix-blend-multiply rounded-2xl   ' src={`https://ucarecdn.com/${product?.imageurl[0]}/`} alt="" /></th>
 
 
                                 ))}

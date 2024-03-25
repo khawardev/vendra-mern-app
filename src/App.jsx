@@ -26,15 +26,15 @@ import DiscountedProductPage from './pages/DiscountedProductsPage';
 import CheckoutPage from './pages/CheckoutPage';
 import VendorAuthPage from "./pages/VendorAuthPage";
 import ComparePage from './pages/ComparePage';
-import CurencyConverter from './components/WebScrapper/CurencyCOnverter';
-import ModalComponent from './components/WebScrapper/ModalComponent';
+import CurencyConverter from './components/WebScrapper/CurencyConverter';
+import ReviewsModal from './containers/SingleProductContainer/ReviewsModal';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
       
-      {/* <ModalComponent /> */}
+      {/* <ReviewsModal /> */}
       {/* <FramerMotion /> */}
   
     <BrowserRouter>

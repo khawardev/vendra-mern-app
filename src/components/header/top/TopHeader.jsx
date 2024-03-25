@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { TbShoppingCartQuestion } from "react-icons/tb";
-import CurencyConverter from '../../WebScrapper/CurencyCOnverter';
+import CurencyConverter from '../../WebScrapper/CurencyConverter';
 
 const TopHeader = () => {
     const Navigate = useNavigate();

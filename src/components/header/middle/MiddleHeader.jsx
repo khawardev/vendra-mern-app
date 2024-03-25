@@ -72,7 +72,6 @@ const MiddleHeader = () => {
               Vendor
             </div>
           </div>
-          <div className=' bg-gray-100 rounded-full py-2 px-3 flex gap-2'>
 
 
 
@@ -96,7 +95,6 @@ const MiddleHeader = () => {
                 }
               </div>
 
-            </div>
           </div>
 
 

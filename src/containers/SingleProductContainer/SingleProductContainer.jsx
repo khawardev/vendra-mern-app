@@ -24,6 +24,7 @@ import InnerImageZoom from 'react-inner-image-zoom'
 import '../../assets/styles/ZoomImage.scss'
 import ReactImageMagnify from 'react-image-magnify';
 import { FiPlus } from "react-icons/fi";
+import ReviewsModal from '../SingleProductContainer/ReviewsModal';
 
 const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
@@ -140,7 +141,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
     }, [filteredProduct?.image]);
 
 
-
+const [Showmodal, setShowmodal] = useState(false);
     return (
         <>
 
@@ -236,7 +237,12 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                                     <AiFillStar className=' text-yellow-400' size={18} />
                                     <AiOutlineStar className=' text-gray-300' size={18} />
                                 </span>
-                                <p className='font-bold    border px-1 py-1 pr-3  rounded-full bg-gray-100 cursor-pointer flex gap-2 justify-center items-center '> <span className=' bg-gray-200 rounded-full p-1'><FiPlus stroke-width={3} /></span> Review</p>
+                                {/* <p onClick={<ModalComponent />} className='font-bold    border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center '> <FiPlus stroke-width={3} /> Add Review</p> */}
+                            
+                                {/* <p onClick={() => setShowmodal(!Showmodal)} className='font-bold border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center'>
+                                    <FiPlus strokeWidth={3} /> Add Review
+                                </p> */}
+                                <ReviewsModal />
                             </div>
                         </div>
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">

@@ -92,7 +92,7 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
                             <main  >
                                 <div className='upper  mt-4 ' onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
+                                    <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  tracking-tight  Klarna_Text'>{product.description}</p>
                                 </div>
 
                                 <div className='flex justify-between items-center '>
@@ -127,13 +127,13 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
                             </main>
                         </article>
                     ))}
-                </div>
+                </div >
             ) : (
 
                 <div >
                     <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
                         <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
-                            <span className=' font-bold  ' >No Product In {name}  </span>
+                        <span className=' font-bold  ' >No Product In {name}  </span>
                         <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full"
                             onClick={() => Navigate('/')}  >go back <IoMdArrowForward className=' opacity-100' size={16} /></p>
                     </div>

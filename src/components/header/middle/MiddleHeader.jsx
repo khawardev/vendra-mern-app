@@ -47,13 +47,13 @@ const MiddleHeader = () => {
           </div>
           <input
             type="text"
-            className="py-3 outline-none border-none"
+            className="py-3 outline-none border-none "
             size={65}
             placeholder="Search your favorite product ..."
             onClick={() => { setShowSearch(true); }}
           />
           {/* <input type="text" className='py-3 outline-none border-none ' size={65} placeholder='Search your favorite product ...' /> */}
-          <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500'>Search</button>
+          <button className='py-2 px-4 mr-1 rounded-full  bg-yellow-500    font-bold'>Search</button>
         </section>
         <section className='flex lg:gap-4 gap-1  justify-center items-center'>
 

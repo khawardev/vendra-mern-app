@@ -28,22 +28,29 @@ import VendorAuthPage from "./pages/VendorAuthPage";
 import ComparePage from './pages/ComparePage';
 import CurencyConverter from './components/WebScrapper/CurencyConverter';
 import ReviewsModal from './containers/SingleProductContainer/ReviewsModal';
+import LightBox from './components/WebScrapper/Lightbox';
+import MasonryGallery from './components/WebScrapper/MasonryGallery';
+import Resizecall from './components/WebScrapper/Resizecall';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <>
-      
+      {/* <LightBox/> */}
       {/* <ReviewsModal /> */}
       {/* <FramerMotion /> */}
-  
-    <BrowserRouter>
+      {/* <div className="container mx-auto mt-4">
+        <MasonryGallery />
+      </div> */}
+      {/* <Resizecall/> */}
+
+      <BrowserRouter>
         <AppContext>
           <Header />
           <Routes>
             <Route exact path='/' element={<HomePage />} />
-             <Route exact path='/account' element={<AuthPage />} />
-            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} /> 
+            <Route exact path='/account' element={<AuthPage />} />
+            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/uploadcare' element={<UploadcarePage />} />
@@ -69,11 +76,11 @@ function App() {
           <Footer />
 
         </AppContext>
-      </BrowserRouter>  
+      </BrowserRouter>
 
     </>
   )
-  
+
 }
 
 export default App

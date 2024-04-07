@@ -16,6 +16,7 @@ import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import toast from 'react-hot-toast';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 const NewProductsNestedSection = ({ sliceProducts, grid }) => {
     const Navigate = useNavigate();
@@ -64,6 +65,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
         <>
             {products &&
                 <div className={`my-7 grid  gap-7 ${grid}`}>
+
                     {products?.slice(-8).reverse()?.map((product) => (
                         <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
@@ -87,21 +89,29 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                         )}
                                     </div>
                                 </div>
-                                <section className={` rounded-xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
-                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/`} alt="" />
-                                </section>
 
+                                <section className={` rounded-xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                        {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
+
+                                        <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
+
+                                        <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg italic   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                        <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5 italic  tracking-tight   Klarna_Text'>{product.description}</p>
+                                    </section>
 
                             </main>
                             <main  >
-                                <div className='upper  mt-4 ' onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
-                                    <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.description}</p>
-                                </div>
+
                                 <div className='flex justify-between items-center '>
 
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
-
+                                    <span className='flex items-center gap-1  '>
+                                        <AiFillStar className=' text-yellow-400 ' size={18} />
+                                        <AiFillStar className=' text-yellow-400' size={18} />
+                                        <AiFillStar className=' text-yellow-400' size={18} />
+                                        <AiFillStar className=' text-yellow-400' size={18} />
+                                        <AiOutlineStar className=' text-gray-300' size={18} />
+                                    </span>
                                     <div onClick={() => {
                                         handleAddToCart(
                                             product?._id,
@@ -122,17 +132,12 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                     </div>
 
                                 </div>
-                                <span className='flex items-center gap-1  mb-2'>
-                                    <AiFillStar className=' text-yellow-400 ' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiOutlineStar className=' text-gray-300' size={18} />
-                                </span>
+
                             </main>
                         </div>
                     ))}
                 </div>
+
             }
 
 

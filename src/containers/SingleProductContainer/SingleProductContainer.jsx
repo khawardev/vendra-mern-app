@@ -25,6 +25,7 @@ import '../../assets/styles/ZoomImage.scss'
 import ReactImageMagnify from 'react-image-magnify';
 import { FiPlus } from "react-icons/fi";
 import ReviewsModal from '../SingleProductContainer/ReviewsModal';
+import LightBox from '../../components/WebScrapper/Lightbox';
 
 const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
@@ -44,11 +45,8 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
         setQuantity(quantity + 1);
     };
     const handleAddToCart = () => {
-        // toast.success('Added to cart!!');
-        // toast.success(<span style={{ fontWeight: 'bold' }}>Added to cart!!</span>);
         toast.success(
             <div style={{ display: 'flex' }}>
-                {/* <BsCart2 size={18} style={{ marginRight: '8px'}} /> */}
                 <span style={{ fontWeight: 'bold' }}>Added to cart </span>
             </div>
         );
@@ -57,15 +55,10 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
     };
     const handleAddToWishList = () => {
         toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
-        // toast.success('Added to wishlist!!');
         dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
     };
 
 
-    // useEffect(() => {
-    //     const compareObject = comparedProducts.some(product => product.id === filteredProduct._id);
-    //     setisProductCompared(compareObject)
-    // }, [isProductCompared]);
     useEffect(() => {
         const isCompared = comparedProducts.some(product => product.id === filteredProduct._id);
         setisProductCompared(isCompared)
@@ -83,40 +76,10 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
             stock: filteredProduct.stock,
             imageurl: filteredProduct.image,
         });
-        const toastMessage = isCompared ? 'Removed from Compare' : 'Removed to Compare';
+        const toastMessage = isCompared ? 'Removed from Compare' : 'Added to Compare';
         toast.success(<span style={{ fontWeight: 'bold' }}>{toastMessage}</span>);
 
         dispatch(action);
-
-
-        // dispatch(
-        //     addToCompare({
-        //         id: filteredProduct._id,
-        //         name: filteredProduct.name,
-        //         desc: filteredProduct.description,
-        //         price: filteredProduct.price,
-        //         imageurl: filteredProduct.image,
-        //     })
-        // );
-
-        // const isProductCompared = comparedProducts.some(product => product.id === filteredProduct._id);
-        // if (isProductCompared) {
-        //     toast.success(<span style={{ fontWeight: 'bold' }}>Removed from Compare</span>);
-        //     dispatch(removeCompareProduct(id: filteredProduct._id,
-        //         name: filteredProduct.name,
-        //         desc: filteredProduct.description,
-        //         price: filteredProduct.price,
-        //         imageurl: filteredProduct.image,));
-        // } else {
-        //     toast.success(<span style={{ fontWeight: 'bold' }}>Added to Compare</span>);
-        //     dispatch(addToCompare({
-        //         id: filteredProduct._id,
-        //         name: filteredProduct.name,
-        //         desc: filteredProduct.description,
-        //         price: filteredProduct.price,
-        //         imageurl: filteredProduct.image,
-        //     }));
-        // }
     };
 
     const wordsArray = filteredProduct?.name.split(/\s+/);
@@ -141,7 +104,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
     }, [filteredProduct?.image]);
 
 
-const [Showmodal, setShowmodal] = useState(false);
+    const [Showmodal, setShowmodal] = useState(false);
     return (
         <>
 
@@ -151,6 +114,7 @@ const [Showmodal, setShowmodal] = useState(false);
             <main className=" grid grid-cols-4 gap-12 mb-18  ">
                 <section className='grid grid-cols-5 gap-6 col-span-2'>
                     <section className='flex flex-col gap-5 col-span-1'>
+
                         {filteredProduct?.image.map((imageUUID, index) => (
                             <img
                                 key={index} // Make sure to use a unique key for each image
@@ -160,38 +124,13 @@ const [Showmodal, setShowmodal] = useState(false);
                                 onClick={() => handleImageClick(imageUUID)} // Pass the imageUUID to the click handler
                             />
                         ))}
-                        {/* <img
-                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
-                            src={`https://ucarecdn.com/${filteredProduct?.image}/`}
-                            alt=""
-                            onClick={() => handleImageClick(filteredProduct?.image)}
-                        />
-                        <img
-                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
-                            src={`https://ucarecdn.com/1ae0efb9-a611-4e91-a0d0-198496315028/`}
-                            alt=""
-                            onClick={() => handleImageClick('1ae0efb9-a611-4e91-a0d0-198496315028')}
-                        />
-                        <img
-                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
-                            src={`https://ucarecdn.com/2108c71d-2624-4bf9-bb56-d85946fef18e/`}
-                            alt=""
-                            onClick={() => handleImageClick('2108c71d-2624-4bf9-bb56-d85946fef18e')}
-                        />
-                        <img
-                            className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
-                            src={`https://ucarecdn.com/21f193b7-86ff-4012-82b5-7689b17737cc/`}
-                            alt=""
-                            onClick={() => handleImageClick('21f193b7-86ff-4012-82b5-7689b17737cc')}
-                        /> */}
+
 
                     </section>
                     <section className='flex justify-start col-span-4'>
                         <div className=' rounded-2xl px-3'>
-                            <InnerImageZoom
-                                className='w-full mix-blend-multiply rounded-2xl'
-                                src={`https://ucarecdn.com/${zoomedImageSrc}/`}
-                            />
+                            <LightBox zoomedImageSrc={zoomedImageSrc}  filteredProduct={filteredProduct} />
+
                         </div>
                     </section>
                 </section>
@@ -238,7 +177,7 @@ const [Showmodal, setShowmodal] = useState(false);
                                     <AiOutlineStar className=' text-gray-300' size={18} />
                                 </span>
                                 {/* <p onClick={<ModalComponent />} className='font-bold    border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center '> <FiPlus stroke-width={3} /> Add Review</p> */}
-                            
+
                                 {/* <p onClick={() => setShowmodal(!Showmodal)} className='font-bold border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center'>
                                     <FiPlus strokeWidth={3} /> Add Review
                                 </p> */}
@@ -329,7 +268,7 @@ const [Showmodal, setShowmodal] = useState(false);
                     <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Reviews</p>
                 </section>
                 <hr className='my-3' />
-                <p className=' leading-7  text-lg text-justify  '> {filteredProduct?.description} </p>
+                <p className=' leading-7  text-lg text-justify Klarna_Text tracking-tight    leading-2 '> {filteredProduct?.description} </p>
 
 
             </main>

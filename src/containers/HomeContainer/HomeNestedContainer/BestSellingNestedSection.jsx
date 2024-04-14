@@ -45,7 +45,6 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
     };
     const handleAddToCart = (id, name, desc, price, imageurl, quantity) => {
         toast.success(<span style={{ fontWeight: 'bold' }}>Added to cart</span>);
-
         dispatch(addToCart({ id: id, name: name, desc: desc, price: price, imageurl: imageurl, quantity: quantity }));
         setcartloading(true);
     };
@@ -81,10 +80,11 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                         <article key={product?.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                             <main>
                                 <div>
-                                    <div className='md:bottom-[10.1rem]     md:right-[3px]   rounded-full    font-bold   text-orange-700  py-1 px-2  absolute z-10'>
-                                        <img src={fire} className=' w-8' alt="" /> 
-                                        
+                                    <div className='md:top-[0.80rem]  top-[0.40rem]    md:right-[10px]   absolute z-10'>
+                                        <img src={fire} className=' w-[26px]' alt="" /> 
                                     </div>
+                                  
+                                    
                                     <div onClick={() => {
                                         handleAddToWishList(
                                             product.id,
@@ -95,7 +95,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                             1
                                         );
                                         setwishlistTragetid(product.id);
-                                    }} className='md:top-[0.80rem] top-[0.30rem] md:right-[15px] right-[10px]   bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
+                                    }} className='md:top-[13rem] top-[10.80rem] md:right-[10px] right-[10px]    bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
                                         {wishlistloading && wishlistTragetid == product.id ? (
                                             <HiOutlineCheck size={20} />
                                         ) : (

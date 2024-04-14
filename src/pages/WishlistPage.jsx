@@ -10,6 +10,7 @@ import { FaHeartBroken } from "react-icons/fa";
 import '../assets/styles/CartPage.scss';
 import { BsCart2 } from 'react-icons/bs';
 import { IoMdArrowForward } from "react-icons/io";
+import toast from 'react-hot-toast';
 
 // import { addToWishlist, removeFromWishlist, clearWishlist, selectWishlistItems } from './wishlistSlice';
 
@@ -25,6 +26,7 @@ const WishlistPage = () => {
     //     dispatch(addToCart({ id: wishlistItems.id, name: wishlistItems.name, desc: wishlistItems.desc, price: wishlistItems.price, imageurl: wishlistItems.imageurl, quantity: 1 }));
     // };
     const handleAddToCart = (id, name, desc, price, imageurl, quantity) => {
+        toast.success(<span style={{ fontWeight: 'bold' }}>Added to cart</span>);
         dispatch(addToCart({ id: id, name: name, desc: desc, price: price, imageurl: imageurl, quantity: quantity }));
     };
     //   const handleRemoveFromWishlist = (itemId) => {

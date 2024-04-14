@@ -22,6 +22,6 @@ const CompareSlice = createSlice({
 
 export const { addToCompare, removeCompareProduct, addToExchange } = CompareSlice.actions;
 export const selectCompare = (state) => state.compare.comparedProducts;
-export const selectExchangeRate = (state) => state.compare.exchangeRate; // Selector to access ExchangeRate
+export const selectExchangeRate = (state) => state.compare.exchangeRate; 
 
 export default CompareSlice.reducer;

@@ -81,8 +81,8 @@ export const HomePage = () => {
             </section>
             {/* lg:grid-cols-4 md:grid-cols-3 grid-cols-2 */}
             {bestSelling[0]?.id && <TrendingProducts /> }
-            <BannerSection />
             {discount[0]?.id && <DiscountProducts />}
+            <BannerSection />
             
 
         </>

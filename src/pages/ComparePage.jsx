@@ -41,7 +41,7 @@ const ComparePage = () => {
                                 <th className="border font-bold text-start  px-4 py-2 uppercase">Description</th>
 
                                 {comparedProducts.map((product, index) => (
-                                    <th key={index} className="border text-start px-4 py-6 text-gray-500   "><span className=' line-clamp-5'>{product.desc}</span></th>
+                                    <th key={index} className="border text-start px-4 py-6 text-gray-500 font-normal  leading-5  "><span className=' line-clamp-5'>{product.desc}</span></th>
                                 ))}
                             </tr>
                             <tr>

@@ -43,11 +43,11 @@ const BottomHeader = () => {
 
         <main>
           <li className=' flex items-center gap-2'>
-            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/' ? 'bg-gray-200' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/")}> <GoHome /> Home </ul>
-            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/shop' ? 'bg-gray-200' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/shop")}> <LuShoppingBag /> Shop </ul>
-            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/about' ? 'bg-gray-200' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/about")}> <FaRegCircleQuestion /> About</ul>
+            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all  ease-in ${currentRoute === '/' ? 'bg-gray-200 font-bold' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/")}> <GoHome /> Home </ul>
+            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/shop' ? 'bg-gray-200 font-bold' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/shop")}> <LuShoppingBag /> Shop </ul>
+            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/about' ? 'bg-gray-200 font-bold' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/about")}> <FaRegCircleQuestion /> About</ul>
             {/* <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/blog' ? 'bg-gray-200' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/blog")}> <TbBrandBlogger /> Blog</ul> */}
-            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/contact' ? 'bg-gray-200' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/contact")}> <MdOutlineEmail /> Contact</ul>
+            <ul className={`flex justify-center items-center gap-2 cursor-pointer transition-all ease-in ${currentRoute === '/contact' ? 'bg-gray-200 font-bold' : 'hover:bg-gray-200'} rounded-full px-4 py-2`} onClick={() => Navigate("/contact")}> <MdOutlineEmail /> Contact</ul>
           </li>
         </main>
 

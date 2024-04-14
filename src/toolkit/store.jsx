@@ -8,6 +8,7 @@ import BestSellingReducer from './Slices/BestSellingSlice';
 import DicountReducer from './Slices/DicountSlice';
 import CompareReducer from './Slices/CompareSlice';
 import currencyReducer from '../components/WebScrapper/currencySlice';
+import ReviewReducer from './Slices/ReviewSlice'
 const store = configureStore({
     reducer: {
         products: productsReducer,
@@ -19,6 +20,8 @@ const store = configureStore({
         discount: DicountReducer,
         compare: CompareReducer,
         currency: currencyReducer,
+        review: ReviewReducer,
+
     },
 });
 

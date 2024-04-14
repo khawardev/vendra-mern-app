@@ -343,7 +343,7 @@ const BodyTableProduct = () => {
 
 
 
-                            <td className="px-4 py-3  "><div className=' line-clamp-1  text-gray-400 tracking-tight  Klarna_Text'>{product.description}</div></td>
+                            <td className="px-4 py-3  "><div className=' line-clamp-1  text-gray-400 tracking-tight  '>{product.description}</div></td>
                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
 

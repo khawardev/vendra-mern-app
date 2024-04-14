@@ -16,8 +16,12 @@ import { IoMdArrowForward } from "react-icons/io";
 import toast from 'react-hot-toast';
 
 import { MdOutlineErrorOutline } from "react-icons/md";
+import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
+import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 
 const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
+    const reviews = useSelector(selectReviews);
+
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
@@ -92,9 +96,11 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
                             <main  >
                                 <div className='upper  mt-4 ' onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  tracking-tight  Klarna_Text'>{product.description}</p>
+                                    <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  tracking-tight  '>{product.description}</p>
                                 </div>
-
+                                <span className='flex items-center gap-1  mt-2  '>
+                                    <StarRatingAvg reviews={reviews.filter(review => review.productid === product?._id)} />
+                                </span>
                                 <div className='flex justify-between items-center '>
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
 
@@ -117,13 +123,7 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
                                         )}
                                     </div>
                                 </div>
-                                <span className='flex items-center gap-1  mb-2'>
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiOutlineStar className=' text-gray-300' size={18} />
-                                </span>
+
                             </main>
                         </article>
                     ))}

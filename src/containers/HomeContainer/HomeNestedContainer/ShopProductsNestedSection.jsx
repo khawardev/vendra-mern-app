@@ -16,8 +16,14 @@ import { addToWishlist } from '../../../toolkit/Slices/WishlistSlice';
 import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import toast from 'react-hot-toast';
+import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
+import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 
 const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasses, TextClasses }) => {
+
+    const reviews = useSelector(selectReviews);
+
+
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const [wishlistTragetid, setwishlistTragetid] = useState();
@@ -101,8 +107,8 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
 
                                     <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
 
-                                    <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg italic   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5 italic  tracking-tight   Klarna_Text'>{product.description}</p>
+                                    <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg    hover:cursor-pointer hover:underline font-bold  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5   tracking-tight  '>{product.description}</p>
                                 </section>
 
 
@@ -112,20 +118,17 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                             <main  >
                                 {/* <div className={`upper ${TextClasses} mt-4`} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     <span className='md:leading-5 mb-3 text-lg leading-5 line-clamp-2 font-bold hover:cursor-pointer hover:underline Parent-product-text-Hover capitalize'>{product.name}</span>
-                                    <p className='md:leading-5 leading-5 mb-3 line-clamp-3 hover:cursor-pointer text-gray-400 tracking-tight  Klarna_Text'>{product.description}</p>
+                                    <p className='md:leading-5 leading-5 mb-3 line-clamp-3 hover:cursor-pointer text-gray-400 tracking-tight  '>{product.description}</p>
                                 </div> */}
+                                <div className='flex justify-between items-center mt-2'>
+                                    <span className='flex items-center gap-1  '>
+                                        <StarRatingAvg reviews={reviews.filter(review => review.productid === product?._id)} />
+                                    </span>
+                                </div>
                                 <div className='flex justify-between items-center  '>
 
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
-                                    <div className='flex justify-between items-center'>
-                                        <span className='flex items-center gap-1  '>
-                                            <AiFillStar className=' text-yellow-400 ' size={18} />
-                                            <AiFillStar className=' text-yellow-400' size={18} />
-                                            <AiFillStar className=' text-yellow-400' size={18} />
-                                            <AiFillStar className=' text-yellow-400' size={18} />
-                                            <AiOutlineStar className=' text-gray-300' size={18} />
-                                        </span>
-                                    </div>
+                                    
                                     <div onClick={() => {
                                         handleAddToCart(
                                             product?._id,

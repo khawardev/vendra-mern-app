@@ -49,7 +49,7 @@ const ServicesSection = () => {
                             </section>
                             <section className='leading-5'>
                                 <h1 className='font-bold   text-gray-800 mb-1'>{service.title}</h1>
-                                <p className='text-gray-400 text-sm Klarna_Text  leading-2leading-2'>{service.description}</p>
+                                <p className='text-gray-400 text-sm   leading-2leading-2'>{service.description}</p>
                             </section>
                         </div>
                     );

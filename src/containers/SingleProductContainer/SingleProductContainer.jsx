@@ -26,9 +26,16 @@ import ReactImageMagnify from 'react-image-magnify';
 import { FiPlus } from "react-icons/fi";
 import ReviewsModal from '../SingleProductContainer/ReviewsModal';
 import LightBox from '../../components/WebScrapper/Lightbox';
-
+import { selectReviews } from '../../toolkit/Slices/ReviewSlice';
+import StarRatingProduct from './StarRatingProduct'
+import { IoMdArrowForward } from "react-icons/io";
+import { MdOutlineErrorOutline } from "react-icons/md";
+import StarRatingAvg from './StarRatingAvg'
+import { CiDiscount1 } from 'react-icons/ci';
+import fire from '../../assets/images/fire.svg'
 const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
+    const reviews = useSelector(selectReviews);
     const dispatch = useDispatch();
     const comparedProducts = useSelector(selectCompare);
 
@@ -103,8 +110,10 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
         setZoomedImageSrc(filteredProduct?.image[0])
     }, [filteredProduct?.image]);
 
-
+    const [selectedOption, setSelectedOption] = useState('Description');
     const [Showmodal, setShowmodal] = useState(false);
+
+    const filteredReviews = reviews.filter(review => review.productid === filteredProduct?._id);
     return (
         <>
 
@@ -129,7 +138,7 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                     </section>
                     <section className='flex justify-start col-span-4'>
                         <div className=' rounded-2xl px-3'>
-                            <LightBox zoomedImageSrc={zoomedImageSrc}  filteredProduct={filteredProduct} />
+                            <LightBox zoomedImageSrc={zoomedImageSrc} filteredProduct={filteredProduct} />
 
                         </div>
                     </section>
@@ -150,14 +159,19 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
 
 
                             </div>
+                          
+                           
 
                             <section className='flex items-center gap-2'>
-                                {Discount === 'true' && <div className='rounded-full   text-green-800 bg-green-200  font-bold py-1  md:px-3 px-2 '>
-                                    {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}%
+                                {Discount === 'true' && <div className='rounded-full flex items-center gap-1  text-green-800 bg-green-200  font-bold py-1  md:px-3 px-2 '>
+                                  {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}%
                                 </div>
                                 }
-                                {BestSell === 'true' && <div className=' flex justify-center items-center gap-1   rounded-full   bg-orange-200    font-bold   text-orange-700 p-[10px]  '>
-                                    <FaFire size={14} />
+                                {BestSell === 'true' && <div className='  flex  '>
+                                    <img src={fire} className=' w-6' alt="" /> 
+                                    <img src={fire} className=' w-6' alt="" /> 
+                                    <img src={fire} className=' w-6' alt="" /> 
+
                                 </div>
                                 }
 
@@ -170,18 +184,14 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                             <span className=" select-none px-3  font-bold   bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
                             <div className='flex justify-between items-center gap-3'>
                                 <span className='flex items-center gap-1'>
-                                    <AiFillStar className=' text-yellow-400 ' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiOutlineStar className=' text-gray-300' size={18} />
+                                    <StarRatingAvg reviews={filteredReviews} />
                                 </span>
                                 {/* <p onClick={<ModalComponent />} className='font-bold    border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center '> <FiPlus stroke-width={3} /> Add Review</p> */}
 
                                 {/* <p onClick={() => setShowmodal(!Showmodal)} className='font-bold border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center'>
                                     <FiPlus strokeWidth={3} /> Add Review
                                 </p> */}
-                                <ReviewsModal />
+                                <ReviewsModal productid={filteredProduct._id} />
                             </div>
                         </div>
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">
@@ -221,11 +231,11 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                                             Compare <LuGitCompare />
                                         </>
                                     )}  </p>
-                                <p onClick={() => { handleAddToWishList() }} className=" px-5 py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
                             </div>
                         </section>
 
-                        <div className="flex justify-between gap-3 mb-9 ">
+                        <div className=" space-y-3 ">
+                            <p onClick={() => { handleAddToWishList() }} className=" px-5 w-full py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
 
                             <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold    rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
                                 handleAddToCart();
@@ -260,17 +270,67 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
             </main >
 
             <main className='my-16'>
-
-                <section className='flex items-center gap-4 '>
-                    <p className=' text-xl   cursor-pointer font-bold   text-black transition-all ease-in hover:duration-100 '>Description</p>
-                    {/* <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Specification</p> */}
-                    {/* <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Aditional Information</p> */}
-                    <p className=' text-xl   cursor-pointer font-bold   text-gray-400 hover:text-black transition-all ease-in hover:delay-50 delay-70 '>Reviews</p>
+                <section className='flex items-center gap-4'>
+                    <p
+                        className={`text-xl cursor-pointer font-bold ${selectedOption === 'Description' ? 'text-black' : 'text-gray-400'} transition-all ease-in hover:duration-100`}
+                        onClick={() => setSelectedOption('Description')}
+                    >
+                        Description
+                    </p>
+                    <p
+                        className={`text-xl cursor-pointer font-bold ${selectedOption === 'Reviews' ? 'text-black' : 'text-gray-400'} transition-all ease-in hover:duration-100`}
+                        onClick={() => setSelectedOption('Reviews')}
+                    >
+                        Reviews
+                    </p>
                 </section>
+
                 <hr className='my-3' />
-                <p className=' leading-7  text-lg text-justify Klarna_Text tracking-tight    leading-2 '> {filteredProduct?.description} </p>
+
+                {selectedOption === 'Description' ? (
+                    <p className='leading-7 text-lg text-justify  tracking-tight leading-2'>
+                        {filteredProduct?.description}
+                    </p>
+                ) : (
+                    <ul>
+                        {filteredReviews?.length !== 0 ? (
+                            <main className=' grid grid-cols-2 gap-4'>
+                                {filteredReviews.slice().reverse().map(review => (
+                                    <main key={review.id} className='flex gap-4  py-4 px-3 border-b   '>
+                                        <section>
+                                            <img className=' rounded-full' src="https://secure.gravatar.com/avatar/dd28514c9a8cfba334e05f21703be28e?s=60&d=mm&r=g" alt="" />
+                                        </section>
+                                        <div className=' w-full'>
+                                            <div className='flex items-center justify-between'>
+                                                <div className='flex gap-4 font-bold'>
+                                                    <StarRatingProduct rating={review?.rating} />
+                                                </div>
+                                                <span className='  text-sm'>{review.currentDate}</span>
+                                            </div>
+
+                                            <span className=' font-bold  '>{review.name} </span>
+
+                                            {/* <p className=' font-bold'>{review.title}</p> */}
+                                            <p>{review.review}</p>
+                                        </div>
+                                    </main>
+
+                                ))}
+                            </main>
+                        ) : (
+                            <div >
+                                <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
+                                    <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
+                                    <span className=' font-bold  ' >No Review  </span>
+                                    <ReviewsModal productid={filteredProduct._id} />
+
+                                </div>
+                            </div>
+                        )}
 
 
+                    </ul>
+                )}
             </main>
 
 

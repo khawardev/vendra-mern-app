@@ -21,7 +21,16 @@ import { IoMdArrowForward } from "react-icons/io";
 import { MdOutlineErrorOutline } from "react-icons/md";
 import toast from 'react-hot-toast';
 
+
+import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
+import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
+
+
+
 const DiscountedNestedSection = ({ sliceProducts, grid }) => {
+
+    const reviews = useSelector(selectReviews);
+
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const discount = useSelector(selectdiscount);
@@ -88,8 +97,8 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                             <main>
                                 <div>
 
-                                    <div className='md:top-[-0.40rem] top-[0.40rem] py-1   md:right-[-10px]   rounded-full    text-green-800 font-bold    bg-green-300 md:px-4 px-2 absolute z-10'>
-                                        {calculateDiscountPercentage(product?.price, product?.inputDescount)}%
+                                    <div className='md:top-[-0.40rem]  top-[0.40rem] py-1   md:right-[-10px]   rounded-full    text-green-800 font-bold    bg-green-300 md:px-4 px-2 absolute z-10'>
+                                            {calculateDiscountPercentage(product?.price, product?.inputDescount)}%
                                     </div>
                                     <div onClick={() => {
                                         handleAddToWishList(
@@ -130,7 +139,10 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                     <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
                                     <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.desc}</p>
                                 </div>
+                                <span className='flex items-center gap-1  mt-2'>
+                                    <StarRatingAvg reviews={reviews.filter(review => review.productid === product?.id)} />
 
+                                </span>
                                 <div className='flex justify-between items-center '>
                                     <div className='md:flex justify-center items-center gap-2 '>
                                         <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product?.inputDescount}</p>
@@ -156,13 +168,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                         )}
                                     </div>
                                 </div>
-                                <span className='flex items-center gap-1  mb-2'>
-                                    <AiFillStar className=' text-yellow-400 ' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiFillStar className=' text-yellow-400' size={18} />
-                                    <AiOutlineStar className=' text-gray-300' size={18} />
-                                </span>
+                               
                             </main>
                         </article>
                     ))}

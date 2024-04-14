@@ -17,8 +17,15 @@ import { useState, useEffect } from 'react';
 import { HiOutlineCheck } from "react-icons/hi";
 import toast from 'react-hot-toast';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
+import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
+
+
 
 const NewProductsNestedSection = ({ sliceProducts, grid }) => {
+
+    const reviews = useSelector(selectReviews);
+
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
@@ -60,6 +67,8 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
     const displayedProducts = Array.isArray(products)
         ? (sliceProducts ? [...products.slice(-8)] : [...products]).reverse()
         : [];
+    
+    
 
     return (
         <>
@@ -91,27 +100,23 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                 </div>
 
                                 <section className={` rounded-xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
-                                        {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
+                                    {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
 
-                                        <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
+                                    <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
 
-                                        <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg italic   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                        <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5 italic  tracking-tight   Klarna_Text'>{product.description}</p>
-                                    </section>
+                                    <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5   tracking-tight   '>{product.description}</p>
+                                </section>
 
                             </main>
                             <main  >
-
+                                <span className='flex items-center gap-1 mt-2 '>
+                                    <StarRatingAvg reviews={reviews.filter(review => review.productid === product?._id)} />
+                                </span>
                                 <div className='flex justify-between items-center '>
 
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
-                                    <span className='flex items-center gap-1  '>
-                                        <AiFillStar className=' text-yellow-400 ' size={18} />
-                                        <AiFillStar className=' text-yellow-400' size={18} />
-                                        <AiFillStar className=' text-yellow-400' size={18} />
-                                        <AiFillStar className=' text-yellow-400' size={18} />
-                                        <AiOutlineStar className=' text-gray-300' size={18} />
-                                    </span>
+                                    
                                     <div onClick={() => {
                                         handleAddToCart(
                                             product?._id,

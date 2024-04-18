@@ -42,10 +42,11 @@ const Search = ({ setShowSearch }) => {
                     <div className='hover:bg-gray-100' key={product._id} >
                         <div className='w-11/12  m-auto' >
                             <div className="flex items-center gap-5 py-3   transition-all ease-in-out cursor-pointer"
-                                onClick={() => {
-                                    Navigate(`/viewsingleproduct/${product?._id}`);
-                                    setShowSearch(false);
-                                }}
+                              onClick={() => {
+                                console.log("Product ID:", product._id);
+                                Navigate(`/viewsingleproduct/${product?._id}`);
+                                setShowSearch(false);
+                            }}
                             >
                                 <div className="">
                                     <img src={`https://ucarecdn.com/${product?.image}/`} className=' mix-blend-multiply p-4  ' width={100} alt="" />

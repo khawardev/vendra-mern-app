@@ -48,7 +48,7 @@ function App() {
         <AppContext>
           <Header />
           <Routes>
-            <Route exact path='/' element={<HomePage />} />
+          <Route exact path='/' element={<HomePage />} />
             <Route exact path='/account' element={<AuthPage />} />
             <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
@@ -58,8 +58,8 @@ function App() {
             <Route path="/OrderManage" Component={OrderManage} />
             <Route path="/ContactManage" Component={ContactManage} />
             <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < VendorAuthPage />} />
-            <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
-            <Route exact path={`/viewsingleproduct/:productid/:BestSell/:Discount/:DiscountedPrice`} element={<ViewSingleProduct />} />
+         <Route exact path={`/viewcategoryproducts/:categoryid`} element={<ViewCategoryProducts />} />
+           <Route exact path={`/viewsingleproduct/:productid/:BestSell/:Discount/:DiscountedPrice`} element={<ViewSingleProduct />} />
             <Route exact path={`/cart`} element={<CartPage />} />
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
             <Route exact path={`/about`} element={<AboutPage />} />

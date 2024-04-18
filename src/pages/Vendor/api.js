@@ -46,10 +46,10 @@ export const handleLoginSuccess = (data) => {
 
     if (data.role === "admin") {
         console.log("Redirecting to admin-account page...");
-        window.location.href = "/uploadcare";
+        window.location.href = "/";
     } else {
         console.log("Redirecting to user-account page...");
-        window.location.href = "/";
+        window.location.href = "/uploadcare";
     }
 };
 

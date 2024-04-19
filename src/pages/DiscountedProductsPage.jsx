@@ -1,7 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import NewProducts from '../containers/HomeContainer/NewProducts'
+
+import { useSelector } from 'react-redux';
+import { selectdiscount } from '../toolkit/Slices/DicountSlice'
+
+
+
+
 const DiscountedProductsPage = () => {
     const Navigate = useNavigate();
+    const discount = useSelector(selectdiscount);
 
     return (
         <main className=" w-11/12 m-auto md:py-20 py-3">
@@ -12,10 +20,11 @@ const DiscountedProductsPage = () => {
             </p>
 
             <main className=" flex items-center justify-between ">
-                <section >
-                    <p className=" font-bold  "> Showing 1-16 of 66 results</p>
-                </section>
-                <section className=" flex items-center gap-5">
+                {discount.length!==0 && <section >
+                    <p className=" font-bold  "> Showing 1-{discount.length} of {discount.length} results</p>
+                </section> }
+                
+                {/* <section className=" flex items-center gap-5">
                     <p>Sort by Latest</p>
                     <p>Filter by price</p>
                     <p>Product Status</p>
@@ -23,7 +32,7 @@ const DiscountedProductsPage = () => {
                         <p>icon 1</p>
                         <p>icon 2</p>
                     </div>
-                </section>
+                </section> */}
             </main>
             <hr className="my-3 " />
             <NewProducts url='discount' grid={'lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2'} discount={true} />

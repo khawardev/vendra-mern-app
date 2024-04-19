@@ -8,6 +8,8 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 import { GoDotFill } from 'react-icons/go';
 import BestSellingNestedSection from '../containers/HomeContainer/HomeNestedContainer/BestSellingNestedSection';
 import DiscountedNestedSection from '../containers/HomeContainer/HomeNestedContainer/DiscountedNestedSection';
+import { selectdiscount } from '../toolkit/Slices/DicountSlice'
+import { selectbestSelling } from '../toolkit/Slices/BestSellingSlice'
 
 const ShopPage = () => {
     const Navigate = useNavigate();
@@ -15,7 +17,10 @@ const ShopPage = () => {
     const [priceFilter, setPriceFilter] = useState(''); // State to hold the selected price filter option
     const [selectedOption, setSelectedOption] = useState(''); // State to keep track of selected option
     const [selectedRadio, setSelectedRadio] = useState(false); // State to keep track of selected option
-  
+    const discount = useSelector(selectdiscount);
+    const bestSelling = useSelector(selectbestSelling);
+    console.log( bestSelling)
+
 
     const filteredProducts = () => {
         let filtered = [...products];
@@ -66,10 +71,25 @@ const ShopPage = () => {
 
             <main className="flex items-center justify-between">
                 <section>
-                    <p className="font-bold">
-                        Showing 1-{products.length} of {products.length} results
-                    </p>
+                    {selectedOption === 'On Discount' ? (
+                        <>
+                            <section>
+                                <p className="font-bold">Showing {discount.length}-{discount.length} of {discount.length} results</p>
+                            </section>
+                        </>
+                    ) : selectedOption === 'Best Selling' ? (
+                        <>
+                            <section>
+                                    <p className="font-bold">Showing {bestSelling.length}-{bestSelling.length} of {bestSelling.length} results</p>
+                            </section>
+                        </>
+                    ) : (
+                        <p className="font-bold">
+                            Showing 1-{products.length} of {products.length} results
+                        </p>
+                    )}
                 </section>
+
                 <section className="flex items-center gap-5 ">
                     <form className=" flex gap-3 ">
                         {/* <select
@@ -125,7 +145,7 @@ const ShopPage = () => {
                 sliceProducts={false}
                 viewmore={true}
                 NewProductBanner={false}
-                grid={` ${selectedRadio === false ? 'grid-cols-5' :'grid-cols-1'} `}
+                grid={` ${selectedRadio === false ? 'grid-cols-5' : 'grid-cols-1'} `}
                 sectionClasses={` ${selectedRadio === true && 'grid grid-cols-11 gap-4'}`}
                 imageClasses={` ${selectedRadio === true && 'col-span-2'}`}
                 TextClasses={` ${selectedRadio === true && 'col-span-9   flex flex-col  justify-end'}`}

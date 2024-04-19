@@ -8,6 +8,7 @@ import { selectCartItems, selectProductQuantities } from '../toolkit/Slices/Cart
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import '../assets/styles/Checkout.scss';
+import { useParams } from 'react-router-dom';
 
 
 const CheckoutPage = () => {
@@ -15,7 +16,8 @@ const CheckoutPage = () => {
     const cartItems = useSelector(selectCartItems);
     const productQuantity = useSelector(selectProductQuantities);
     const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
-
+    const { discountApplied } = useParams();
+    console.log(discountApplied)
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -302,10 +304,18 @@ const CheckoutPage = () => {
                             </div>
                         ))}
                         <hr className=' my-3' />
+                        {discountApplied ==='true' && (
+                            <main className='my-3 t flex justify-between items-center'>
+                                <p className='font-bold '>10% Coupon Discount </p>
+                                <div className='flex justify-between items-center gap-2'>
+                                    <p>-${(totalSubtotal * 0.1).toFixed(2)}</p>
 
+                                </div>
+                            </main>
+                        )}
                         <main className='my-3 flex justify-between items-center'>
                             <p className='font-bold   text-lg'>Subtotal</p>
-                            <p>${totalSubtotal}</p>
+                            <p>${discountApplied === 'true' ? `${(totalSubtotal - (totalSubtotal * 0.1)).toFixed(2)}` : `${totalSubtotal}`}</p>
                         </main>
                         <hr className=' my-3' />
                         <main >
@@ -323,7 +333,7 @@ const CheckoutPage = () => {
                                                 onChange={() => handleRadioChange('COD')}
                                                 className="mr-2 cursor-pointer p-3"
                                             />
-                                            <b>Cash on delivery</b>
+                                            <b>Card payment</b>
                                         </div>
 
                                         <CiDeliveryTruck size={20} />
@@ -348,7 +358,7 @@ const CheckoutPage = () => {
                                             className="mr-2  cursor-pointer"
                                         />
                                         <span className=""></span>
-                                        <b> Card payment</b>
+                                        <b>Cash on delivery</b>
                                     </div>
 
                                     <BsCreditCard2Front size={18} />
@@ -365,7 +375,7 @@ const CheckoutPage = () => {
                         <main className=' flex justify-between items-center  '>
 
                             <p className='font-bold   text-lg'>Total</p>
-                            <p className=' font-bold   text-xl  '>${totalSubtotal}</p>
+                            <p className=' font-bold   text-xl  '>${discountApplied === 'true' ? `${(totalSubtotal - (totalSubtotal * 0.1)).toFixed(2)}` : `${totalSubtotal}`}</p>
                         </main>
                         <p className=' leading-4 text-sm text-gray-500 my-4'>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <span className=' text-red-500 underline hover:cursor-pointer'>privacy policy.</span></p>
 

@@ -67,7 +67,7 @@ function App() {
             <Route exact path={`/edit/:productid`} element={<EditProduct />} />
             <Route exact path={`/bestselling`} element={<TrendingProductsPage />} />
             <Route exact path={`/discount`} element={<DiscountedProductPage />} />
-            <Route exact path={`/checkout`} element={<CheckoutPage />} />
+            <Route exact path={`/checkout/:discountApplied`} element={<CheckoutPage />} />
             <Route exact path='/vendoraccount' element={<VendorAuthPage />} />
             <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < VendorAuthPage />} />
             <Route exact path='/compare' element={<ComparePage />} />

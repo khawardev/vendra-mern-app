@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import NewProducts from '../containers/HomeContainer/NewProducts'
+import { selectbestSelling } from '../toolkit/Slices/BestSellingSlice'
+import { useSelector } from 'react-redux';
+
 const TrendingProductsPage = () => {
     const Navigate = useNavigate();
+    const bestSelling = useSelector(selectbestSelling);
 
     return (
         <main className=" w-11/12 m-auto md:py-20 py-3">
@@ -10,10 +14,11 @@ const TrendingProductsPage = () => {
             </p>
 
             <main className=" flex items-center justify-between ">
+                {bestSelling.length !== 0 &&
                 <section >
-                    <p className=" font-bold  "> Showing 1-16 of 66 results</p>
-                </section>
-                <section className=" flex items-center gap-5">
+                    <p className="font-bold">Showing {bestSelling.length}-{bestSelling.length} of {bestSelling.length} results</p>
+                    </section>}
+                {/* <section className=" flex items-center gap-5">
                     <p>Sort by Latest</p>
                     <p>Filter by price</p>
                     <p>Product Status</p>
@@ -21,7 +26,7 @@ const TrendingProductsPage = () => {
                         <p>icon 1</p>
                         <p>icon 2</p>
                     </div>
-                </section>
+                </section> */}
             </main>
             <hr className="my-3 " />
             <NewProducts sliceProducts={false} url='bestselling' grid={'lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2'} NewProductBanner={false} />

@@ -164,7 +164,7 @@ const CheckoutPage = () => {
                             </div>
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label>Company Name (Optional)</label>
                             <input
                                 type="text"
@@ -172,7 +172,7 @@ const CheckoutPage = () => {
                                 value={formData.companyName}
                                 onChange={handleInputChange}
                             />
-                        </div>
+                        </div> */}
 
                         <div className="form-group">
                             <label>Country</label>
@@ -199,7 +199,7 @@ const CheckoutPage = () => {
                             />
                         </div>
 
-                        <div className="form-row space-y-4">
+                        {/* <div className="form-row space-y-4">
                             <div className="form-group">
                                 <label>Town/City</label>
                                 <input
@@ -222,7 +222,7 @@ const CheckoutPage = () => {
                                     required
                                 />
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="form-row space-y-4">
                             <div className="form-group">
@@ -258,7 +258,7 @@ const CheckoutPage = () => {
                             />
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label>Account Username</label>
                             <input
                                 type="text"
@@ -269,7 +269,7 @@ const CheckoutPage = () => {
                                 placeholder='Username'
 
                             />
-                        </div>
+                        </div> */}
 
                         <div className="form-group">
                             <label>Order Notes (Optional)</label>

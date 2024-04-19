@@ -31,6 +31,9 @@ import ReviewsModal from './containers/SingleProductContainer/ReviewsModal';
 import LightBox from './components/WebScrapper/Lightbox';
 import MasonryGallery from './components/WebScrapper/MasonryGallery';
 import Resizecall from './components/WebScrapper/Resizecall';
+import { Dashboard } from './components/WebScrapper/Dashboard';
+
+
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -43,8 +46,8 @@ function App() {
         <MasonryGallery />
       </div> */}
       {/* <Resizecall/> */}
-
-      <BrowserRouter>
+      {/* <Dashboard/> */}
+   <BrowserRouter>
         <AppContext>
           <Header />
           <Routes>
@@ -54,7 +57,6 @@ function App() {
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/uploadcare' element={<UploadcarePage />} />
-            <Route path="/OrderManage" Component={OrderManage} />
             <Route path="/OrderManage" Component={OrderManage} />
             <Route path="/ContactManage" Component={ContactManage} />
             <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < VendorAuthPage />} />
@@ -76,7 +78,7 @@ function App() {
           <Footer />
 
         </AppContext>
-      </BrowserRouter>
+      </BrowserRouter> 
 
     </>
   )

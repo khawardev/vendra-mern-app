@@ -33,9 +33,31 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import StarRatingAvg from './StarRatingAvg'
 import { CiDiscount1 } from 'react-icons/ci';
 import fire from '../../assets/images/fire.svg'
-const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
+const SingleProductContainer = ({ productid ,filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
+    console.log(filteredProduct._id);
 
-    const reviews = useSelector(selectReviews);
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+    const fetchReviews = async () => {
+        try {
+   
+        //    const response = await fetch(`http://localhost:5000/api/reviews/${filteredProduct.id}`);
+           const response = await fetch(`http://localhost:5000/api/reviews/`);
+                        if (!response.ok) {
+                throw new Error('Failed to fetch reviews');
+            }
+            const data = await response.json();
+            setReviews(data); // Set the fetched reviews in state
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            // Handle error, maybe show an error message to the user
+        }
+    };
+    console.log(filteredProduct);
+        fetchReviews();
+// Call fetchReviews when component mounts to fetch initial reviews
+}, []);
+   // const reviews = useSelector(selectReviews);
     const dispatch = useDispatch();
     const comparedProducts = useSelector(selectCompare);
 
@@ -292,44 +314,76 @@ const SingleProductContainer = ({ filteredProduct, filteredcategory, BestSell, D
                         {filteredProduct?.description}
                     </p>
                 ) : (
+                    // <ul>
+                    //     {filteredReviews?.length !== 0 ? (
+                    //         <main className=' grid grid-cols-2 gap-4'>
+                    //             {filteredReviews.slice().reverse().map(review => (
+                    //                 <main key={review.id} className='flex gap-4  py-4 px-3 border-b   '>
+                    //                     <section>
+                    //                         <img className=' rounded-full' src="https://secure.gravatar.com/avatar/dd28514c9a8cfba334e05f21703be28e?s=60&d=mm&r=g" alt="" />
+                    //                     </section>
+                    //                     <div className=' w-full'>
+                    //                         <div className='flex items-center justify-between'>
+                    //                             <div className='flex gap-4 font-bold'>
+                    //                                 <StarRatingProduct rating={review?.rating} />
+                    //                             </div>
+                    //                             <span className='  text-sm'>{review.currentDate}</span>
+                    //                         </div>
+
+                    //                         <span className=' font-bold  '>{review.name} </span>
+
+                    //                         {/* <p className=' font-bold'>{review.title}</p> */}
+                    //                         <p>{review.review}</p>
+                    //                     </div>
+                    //                 </main>
+
+                    //             ))}
+                    //         </main>
+                    //     ) : (
+                    //         <div >
+                    //             <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
+                    //                 <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
+                    //                 <span className=' font-bold  ' >No Review  </span>
+                    //                 <ReviewsModal productid={filteredProduct._id} />
+
+                    //             </div>
+                    //         </div>
+                    //     )}
+
+
+                    // </ul>
                     <ul>
-                        {filteredReviews?.length !== 0 ? (
-                            <main className=' grid grid-cols-2 gap-4'>
-                                {filteredReviews.slice().reverse().map(review => (
-                                    <main key={review.id} className='flex gap-4  py-4 px-3 border-b   '>
-                                        <section>
-                                            <img className=' rounded-full' src="https://secure.gravatar.com/avatar/dd28514c9a8cfba334e05f21703be28e?s=60&d=mm&r=g" alt="" />
-                                        </section>
-                                        <div className=' w-full'>
+            {reviews.length !== 0 ? (
+                reviews.map(review => (
+                    <ul key={review._id}>
+                        <div className=' w-full'>
                                             <div className='flex items-center justify-between'>
                                                 <div className='flex gap-4 font-bold'>
                                                     <StarRatingProduct rating={review?.rating} />
                                                 </div>
-                                                <span className='  text-sm'>{review.currentDate}</span>
+                                           <span className='  text-sm'>{review.currentDate}</span>
                                             </div>
 
                                             <span className=' font-bold  '>{review.name} </span>
 
                                             {/* <p className=' font-bold'>{review.title}</p> */}
-                                            <p>{review.review}</p>
-                                        </div>
-                                    </main>
-
-                                ))}
-                            </main>
-                        ) : (
-                            <div >
-                                <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
-                                    <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
-                                    <span className=' font-bold  ' >No Review  </span>
-                                    <ReviewsModal productid={filteredProduct._id} />
-
-                                </div>
-                            </div>
-                        )}
-
-
+                                             <p>{review.review}</p>
+                                         </div>
+                     
+                        {/* Add more review details as needed */}
                     </ul>
+                    
+                ))
+            ) : (
+                <div >
+                    <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
+                        <MdOutlineErrorOutline size={130} className=' mb-3  opacity-10' />
+                        <span className=' font-bold  ' >No Review  </span>
+                        <ReviewsModal productid={filteredProduct._id} />
+                    </div>
+                </div>
+            )}
+        </ul>
                 )}
             </main>
 

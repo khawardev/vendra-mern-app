@@ -1,25 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import StarsRating from './StarsRating'
-import { FiPlus } from "react-icons/fi";
-import { IoClose } from "react-icons/io5";
-import { useDispatch } from 'react-redux';
-import { addReview } from '../../toolkit/Slices/ReviewSlice'
-import { CiCirclePlus } from "react-icons/ci";
+import StarsRating from './StarsRating';
+import { IoClose } from 'react-icons/io5';
+import { CiCirclePlus } from 'react-icons/ci';
 
 const Modal = ({ isOpen, onClose, productid }) => {
-
-    const dispatch = useDispatch();
     const [name, setName] = useState('');
-    const [title, setTitle] = useState('');
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0);
-
-    const handleRatingChange = (newRating) => {
-        setRating(newRating);
-    };
-    const [currentDate, setCurrentDate] = useState('');
+    const [currentDate, setCurrentDate] = useState('')
 
     useEffect(() => {
         const formatDate = () => {
@@ -31,34 +19,39 @@ const Modal = ({ isOpen, onClose, productid }) => {
 
         formatDate();
     }, []);
-    
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = {
             productid: productid,
             name: name,
-            // title: title,
             review: review,
             rating: rating,
-            currentDate: currentDate
-            
+            currentDate: currentDate,
         };
-        dispatch(addReview(formData));
-        setName('');
-        // setTitle('');
-        setReview('');
-        setRating(0);
-        onClose(); // Close the form
+        console.log(productid);
 
+        try {
+            const response = await fetch('http://localhost:5000/api/reviews', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit review');
+            }
+
+            setName('');
+            setReview('');
+            setRating(0);
+            onClose(); // Close the form
+        } catch (error) {
+            console.error('Error submitting review:', error);
+        }
     };
-
-   
-
-
-
-
-
-
 
     return (
         <div className={`fixed inset-0  z-50 flex items-center  justify-center ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
@@ -70,10 +63,11 @@ const Modal = ({ isOpen, onClose, productid }) => {
                 <p className='text-center text-3xl font-bold'>Add a Review</p>
                 <div className='flex gap-10 my-3 justify-center items-center'>
                     <p>Assessment</p>
-                    <StarsRating onChange={handleRatingChange} />
+                    <StarsRating onChange={(newRating) => setRating(newRating)} />
                     <p>{rating} out of 5 stars</p>
                 </div>
                 <form onSubmit={handleSubmit}>
+                <input type="hidden" value={productid} name="productId" /> {/* Include a hidden input field for productId */}
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name*</label>
                         <input
@@ -84,21 +78,8 @@ const Modal = ({ isOpen, onClose, productid }) => {
                             value={name}
                             required
                             onChange={(e) => setName(e.target.value)}
-                            
                         />
                     </div>
-                    {/* <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">Title</label>
-                        <input
-                            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="title"
-                            type="text"
-                            placeholder="Title"
-                            value={title}
-
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                    </div> */}
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="review">Review*</label>
                         <textarea
@@ -112,11 +93,9 @@ const Modal = ({ isOpen, onClose, productid }) => {
                             onChange={(e) => setReview(e.target.value)}
                         ></textarea>
                     </div>
-                    
                     <button type='submit' className="px-4 py-2 bg-blue-800 hover:bg-blue-900 font-bold  transition-all ease-in text-white rounded-md">Submit</button>
                 </form>
             </div>
-
         </div>
     );
 };
@@ -134,17 +113,15 @@ const ReviewsModal = ({ productid }) => {
     };
 
     return (
-        <div >
-            {/* <p onClick={handleOpenModal} className='font-bold border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center'>
-                <FiPlus strokeWidth={3} /> Add Review
-            </p> */}
-            <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full"
-                onClick={handleOpenModal}  >
+        <div>
+            <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full" onClick={handleOpenModal}>
                 Add Review <CiCirclePlus strokeWidth={1.5} className=' opacity-100' size={16} />
             </p>
+            
+            <input type="hidden" value={productid} name="productId" /> {/* Include a hidden input field for productId */}
             <Modal productid={productid} isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>
     );
 };
 
-export default ReviewsModal
+export default ReviewsModal;

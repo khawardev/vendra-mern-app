@@ -111,7 +111,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                             </main>
                             <main  >
                                 <span className='flex items-center gap-1 mt-2 '>
-                                    <StarRatingAvg reviews={reviews.filter(review => review.productid === product?._id)} />
+                                    <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?._id)} />
                                 </span>
                                 <div className='flex justify-between items-center '>
 

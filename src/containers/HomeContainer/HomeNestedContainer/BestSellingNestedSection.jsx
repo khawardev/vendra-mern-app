@@ -81,10 +81,10 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                             <main>
                                 <div>
                                     <div className='md:top-[0.80rem]  top-[0.40rem]    md:right-[10px]   absolute z-10'>
-                                        <img src={fire} className=' w-[26px]' alt="" /> 
+                                        <img src={fire} className=' w-[26px]' alt="" />
                                     </div>
-                                  
-                                    
+
+
                                     <div onClick={() => {
                                         handleAddToWishList(
                                             product.id,
@@ -125,7 +125,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
 
 
                                 <span className='flex items-center gap-1  mt-2'>
-                                    <StarRatingAvg reviews={reviews.filter(review => review.productid === product?.id)} />
+                                    <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?.id)} />
                                 </span>
                                 <div className='flex justify-between items-center '>
                                     <div className='md:flex justify-center items-center gap-2 '>

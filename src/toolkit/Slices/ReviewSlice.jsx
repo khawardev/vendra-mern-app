@@ -12,11 +12,13 @@ const ReviewSlice = createSlice({
         addReview(state, action) {
             state.reviews.push(action.payload);
         },
-       
+        clearReviews(state) {
+            state.reviews = [];
+        },
     },
 });
 
-export const { addReview } = ReviewSlice.actions;
+export const { addReview, clearReviews } = ReviewSlice.actions;
 export const selectReviews = state => state.review.reviews;
 
 export default ReviewSlice.reducer;

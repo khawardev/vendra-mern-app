@@ -99,7 +99,7 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
                                     <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  tracking-tight  '>{product.description}</p>
                                 </div>
                                 <span className='flex items-center gap-1  mt-2  '>
-                                    <StarRatingAvg reviews={reviews.filter(review => review.productid === product?._id)} />
+                                    <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?._id)} />
                                 </span>
                                 <div className='flex justify-between items-center '>
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>

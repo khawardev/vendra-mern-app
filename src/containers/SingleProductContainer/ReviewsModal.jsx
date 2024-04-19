@@ -1,24 +1,19 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
 import StarsRating from './StarsRating';
 import { IoClose } from 'react-icons/io5';
 import { CiCirclePlus } from 'react-icons/ci';
+import toast from 'react-hot-toast';
+import { useContext } from 'react'
+import { Context } from "../../context/AppContext";
 
 const Modal = ({ isOpen, onClose, productid }) => {
     const [name, setName] = useState('');
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0);
-    const [currentDate, setCurrentDate] = useState('')
+    const { isReviewload, setReviewload } = useContext(Context);
 
-    useEffect(() => {
-        const formatDate = () => {
-            const date = new Date();
-            const options = { month: 'long', day: 'numeric', year: 'numeric' };
-            const formattedDate = date.toLocaleDateString('en-US', options);
-            setCurrentDate(formattedDate);
-        };
-
-        formatDate();
-    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,9 +22,7 @@ const Modal = ({ isOpen, onClose, productid }) => {
             name: name,
             review: review,
             rating: rating,
-            currentDate: currentDate,
         };
-        console.log(productid);
 
         try {
             const response = await fetch('http://localhost:5000/api/reviews', {
@@ -47,6 +40,8 @@ const Modal = ({ isOpen, onClose, productid }) => {
             setName('');
             setReview('');
             setRating(0);
+            setReviewload(true)
+            toast.success(<span style={{ fontWeight: 'bold' }}>Product Successfully Reviewed </span>);
             onClose(); // Close the form
         } catch (error) {
             console.error('Error submitting review:', error);
@@ -62,12 +57,12 @@ const Modal = ({ isOpen, onClose, productid }) => {
                 </div>
                 <p className='text-center text-3xl font-bold'>Add a Review</p>
                 <div className='flex gap-10 my-3 justify-center items-center'>
-                    <p>Assessment</p>
+                    <p className='font-bold'>Assessment</p>
                     <StarsRating onChange={(newRating) => setRating(newRating)} />
                     <p>{rating} out of 5 stars</p>
                 </div>
                 <form onSubmit={handleSubmit}>
-                <input type="hidden" value={productid} name="productId" /> {/* Include a hidden input field for productId */}
+                    <input type="hidden" value={productid} name="productId" /> {/* Include a hidden input field for productId */}
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name*</label>
                         <input
@@ -93,7 +88,7 @@ const Modal = ({ isOpen, onClose, productid }) => {
                             onChange={(e) => setReview(e.target.value)}
                         ></textarea>
                     </div>
-                    <button type='submit' className="px-4 py-2 bg-blue-800 hover:bg-blue-900 font-bold  transition-all ease-in text-white rounded-md">Submit</button>
+                    <button type='submit'className="px-4 py-2 bg-blue-800 hover:bg-blue-900 font-bold  transition-all ease-in text-white rounded-md">Submit</button>
                 </form>
             </div>
         </div>
@@ -103,13 +98,15 @@ const Modal = ({ isOpen, onClose, productid }) => {
 
 const ReviewsModal = ({ productid }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const { isReviewload, setReviewload } = useContext(Context);
     const handleOpenModal = () => {
         setIsModalOpen(true);
+        setReviewload(false)
     };
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+
     };
 
     return (
@@ -117,7 +114,7 @@ const ReviewsModal = ({ productid }) => {
             <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full" onClick={handleOpenModal}>
                 Add Review <CiCirclePlus strokeWidth={1.5} className=' opacity-100' size={16} />
             </p>
-            
+
             <input type="hidden" value={productid} name="productId" /> {/* Include a hidden input field for productId */}
             <Modal productid={productid} isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>

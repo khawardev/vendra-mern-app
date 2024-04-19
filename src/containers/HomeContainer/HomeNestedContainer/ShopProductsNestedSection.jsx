@@ -122,7 +122,7 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                 </div> */}
                                 <div className='flex justify-between items-center mt-2'>
                                     <span className='flex items-center gap-1  '>
-                                        <StarRatingAvg reviews={reviews.filter(review => review.productid === product?._id)} />
+                                        <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?._id)} />
                                     </span>
                                 </div>
                                 <div className='flex justify-between items-center  '>

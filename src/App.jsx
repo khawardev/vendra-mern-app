@@ -31,7 +31,6 @@ import ReviewsModal from './containers/SingleProductContainer/ReviewsModal';
 import LightBox from './components/WebScrapper/Lightbox';
 import MasonryGallery from './components/WebScrapper/MasonryGallery';
 import Resizecall from './components/WebScrapper/Resizecall';
-import { Dashboard } from './components/WebScrapper/Dashboard';
 
 
 function App() {
@@ -46,7 +45,6 @@ function App() {
         <MasonryGallery />
       </div> */}
       {/* <Resizecall/> */}
-      {/* <Dashboard/> */}
    <BrowserRouter>
         <AppContext>
           <Header />

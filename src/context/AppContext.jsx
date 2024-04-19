@@ -16,6 +16,7 @@ function Appcontext({ children }) {
     const [Token, setToken] = useState()
     const location = useLocation();
     const [searchText, setSearchText] = useState('');
+    const [isReviewload, setReviewload] = useState(false);
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [location])
@@ -30,7 +31,8 @@ function Appcontext({ children }) {
             categoryproductlength, setcategoryproductlength,
             Thankyou, setThankyou,
             Token, setToken,
-            searchText, setSearchText
+            searchText, setSearchText,
+            isReviewload, setReviewload
         }}
         >
             {children}

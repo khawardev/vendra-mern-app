@@ -86,7 +86,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                             product.name,
                                             product.description,
                                             product.price,
-                                            product.image[0],
+                                            product.image,
                                             1
                                         );
                                         setwishlistTragetid(product._id);
@@ -123,7 +123,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                             product?.name,
                                             product?.description,
                                             product?.price,
-                                            product?.image[0],
+                                            product?.image,
                                             1
                                         );
                                         setcartTragetid(product._id);

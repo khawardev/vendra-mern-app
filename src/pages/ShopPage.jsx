@@ -12,14 +12,14 @@ import { selectdiscount } from '../toolkit/Slices/DicountSlice'
 import { selectbestSelling } from '../toolkit/Slices/BestSellingSlice'
 
 const ShopPage = () => {
+
     const Navigate = useNavigate();
     const products = useSelector(selectProducts);
     const [priceFilter, setPriceFilter] = useState(''); // State to hold the selected price filter option
-    const [selectedOption, setSelectedOption] = useState(''); // State to keep track of selected option
+    const [ProductStatus, setProductStatus] = useState(''); // State to keep track of selected option
     const [selectedRadio, setSelectedRadio] = useState(false); // State to keep track of selected option
     const discount = useSelector(selectdiscount);
     const bestSelling = useSelector(selectbestSelling);
-    console.log( bestSelling)
 
 
     const filteredProducts = () => {
@@ -34,19 +34,24 @@ const ShopPage = () => {
         return (filtered.reverse())
     };
 
-
     // Function to handle price filter change
     const handlePriceFilterChange = (event) => {
+        
+        setProductStatus('');
         setPriceFilter(event.target.value);
     };
+
     // Function to handle dropdown change
-    const handleDropdownChange = (event) => {
-        setSelectedOption(event.target.value);
+    const handleProductStatusChange = (event) => {
+        let filtered = [...products];
+        setPriceFilter('none')
+        filtered.reverse()
+        setProductStatus(event.target.value);
     };
 
     // Render the selected component based on the selected option
     const renderComponent = () => {
-        switch (selectedOption) {
+        switch (ProductStatus) {
             case 'In stock':
                 return <BestSellingNestedSection />;
             case 'Best Selling':
@@ -71,13 +76,13 @@ const ShopPage = () => {
 
             <main className="flex items-center justify-between">
                 <section>
-                    {selectedOption === 'On Discount' ? (
+                    {ProductStatus === 'On Discount' ? (
                         <>
                             <section>
                                 <p className="font-bold">Showing {discount.length}-{discount.length} of {discount.length} results</p>
                             </section>
                         </>
-                    ) : selectedOption === 'Best Selling' ? (
+                    ) : ProductStatus === 'Best Selling' ? (
                         <>
                             <section>
                                     <p className="font-bold">Showing {bestSelling.length}-{bestSelling.length} of {bestSelling.length} results</p>
@@ -114,9 +119,9 @@ const ShopPage = () => {
 
 
                         <select
-                            onChange={handleDropdownChange}
-                            value={selectedOption}
-                            className="  text-sm  rounded-full py-2 px-1   border   hover:cursor-pointer "
+                            onChange={handleProductStatusChange}
+                            value={ProductStatus}
+                            className="text-sm rounded-full py-2 px-1 border hover:cursor-pointer "
                         >
                             <option value="">Product Status</option>
                             <option value="Best Selling">Best Selling</option>
@@ -140,15 +145,16 @@ const ShopPage = () => {
             <div>
 
             </div>
-            {selectedOption ? renderComponent() : <NewProducts
+            {ProductStatus ? renderComponent() : <NewProducts
                 url="shop"
                 sliceProducts={false}
                 viewmore={true}
                 NewProductBanner={false}
                 grid={` ${selectedRadio === false ? 'grid-cols-5' : 'grid-cols-1'} `}
-                sectionClasses={` ${selectedRadio === true && 'grid grid-cols-11 gap-4'}`}
+                sectionClasses={` ${selectedRadio === true && '  grid grid-cols-8 gap-6 items-end   '}`}
                 imageClasses={` ${selectedRadio === true && 'col-span-2'}`}
-                TextClasses={` ${selectedRadio === true && 'col-span-9   flex flex-col  justify-end'}`}
+                imageClasses2={` ${selectedRadio === true && 'col-span-6'}`}
+                TextClasses={` ${selectedRadio === true && ' line-clamp-6 '}`}
                 filteredProducts={filteredProducts()} // Pass filtered products to NewProducts component
             />
             }

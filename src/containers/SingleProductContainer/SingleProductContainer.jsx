@@ -39,11 +39,35 @@ import { Context } from "../../context/AppContext";
 const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
 
     const [reviews, setReviews] = useState([]);
+<<<<<<< HEAD
+    useEffect(() => {
+    const fetchReviews = async () => {
+        try {
+   
+        //    const response = await fetch(`http://localhost:5000/api/reviews/${filteredProduct.id}`);
+           const response = await fetch(`${window.location.origin}/api/reviews/`);
+                        if (!response.ok) {
+                throw new Error('Failed to fetch reviews');
+            }
+            const data = await response.json();
+            setReviews(data); // Set the fetched reviews in state
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            // Handle error, maybe show an error message to the user
+        }
+    };
+    console.log(filteredProduct);
+        fetchReviews();
+// Call fetchReviews when component mounts to fetch initial reviews
+}, []);
+   // const reviews = useSelector(selectReviews);
+=======
     console.log("🚀 ~ SingleProductContainer ~ reviews:", reviews)
     const { isReviewload } = useContext(Context);
     const toolkitreviews = useSelector(selectReviews);
     console.log("🚀 ~ SingleProductContainer ~ toolkitreviews:", toolkitreviews.flat())
 
+>>>>>>> b92fe3bb048e19f3e7857dc8234f9596ba0c223b
     const dispatch = useDispatch();
     const comparedProducts = useSelector(selectCompare);
 

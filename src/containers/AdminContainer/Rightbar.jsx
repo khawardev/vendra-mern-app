@@ -8,17 +8,21 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-import jszip from "jszip";
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+//import jszip from "jszip";
+// import pdfMake from "pdfmake/build/pdfmake";
+// import vfsFonts from "pdfmake/build/vfs_fonts";
+// import 'datatables.net-buttons-dt/css/buttons.dataTables.css';
+// import 'datatables.net-buttons/js/dataTables.buttons.min.js';
+// import 'datatables.net-buttons/js/buttons.html5.min.js';
+// import 'datatables.net-buttons/js/buttons.print.min.js';
+// import 'datatables.net-buttons/js/buttons.colVis.min.js'; // For Excel button
+// import * as pdfFonts from "pdfmake/build/vfs_fonts.js"; // <-- vfs_fonts has to be imported before pdfmake
+// import pdfMake from 'pdfmake';
 import 'datatables.net-buttons-dt/css/buttons.dataTables.css';
 import 'datatables.net-buttons/js/dataTables.buttons.min.js';
-import 'datatables.net-buttons/js/buttons.html5.min.js';
-import 'datatables.net-buttons/js/buttons.print.min.js';
-import 'datatables.net-buttons/js/buttons.colVis.min.js'; // For Excel button
 // For PDF butto
 import VendorList from './VendorList';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function Rightbar({ userData }) {
     //setting state
@@ -33,7 +37,7 @@ export default function Rightbar({ userData }) {
     //   };
 
     const getAllUser = () => {
-        fetch("http://localhost:5000/getAllUser", {
+        fetch(`${window.location.origin}/getAllUser`, {
             method: "GET",
         })
             .then((res) => res.json())
@@ -43,7 +47,7 @@ export default function Rightbar({ userData }) {
             });
     };
     useEffect(() => {
-        fetch("http://localhost:5000/getAllUser", {
+        fetch(`${window.location.origin}/getAllUser`, {
             method: "GET",
         })
             .then((res) => res.json())
@@ -123,7 +127,7 @@ export default function Rightbar({ userData }) {
 
         if (window.confirm(`Are you sure you want to delete ${name}`)) {
             console.log("Entering");
-            fetch("http://localhost:5000/deleteUser", {
+            fetch(`${window.location.origin}/deleteUser`, {
                 method: "POST",
                 crossDomain: true,
                 headers: {

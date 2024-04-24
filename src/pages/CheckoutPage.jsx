@@ -47,7 +47,7 @@ const CheckoutPage = () => {
                 // Add other form fields as needed
             };
     
-            const response = await fetch('http://localhost:5000/api/orders', {
+            const response = await fetch(`${window.location.origin}/api/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

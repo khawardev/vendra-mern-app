@@ -28,7 +28,7 @@ const AuthPage = () => {
         setSubmittedData(formData);
         clearFormData(setFormData);
         const { username, email, password } = formData;
-        const url = isRegistering ? "http://localhost:5000/register" : "http://localhost:5000/login-user";
+        const url = isRegistering ? `${window.location.origin}register` : `${window.location.origin}/login-user`;
         // const requestBody = JSON.stringify({ username, email, password, hCaptchaToken });
         const requestBody = isRegistering
             ? JSON.stringify({ username, email, password, hCaptchaToken })

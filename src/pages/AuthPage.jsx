@@ -85,8 +85,8 @@ const AuthPage = () => {
     });
     const { username, email, password } = formData;
     const url = isRegistering
-      ? "http://localhost:5000/register"
-      : "http://localhost:5000/login-user";
+      ? `${window.location.origin}/register`
+      : `${window.location.origin}/login-user`;
 
     // Create the request body based on the action
     const requestBody = isRegistering

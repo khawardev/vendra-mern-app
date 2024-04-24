@@ -42,7 +42,7 @@ const SingleProductContainer = ({ productid ,filteredProduct, filteredcategory, 
         try {
    
         //    const response = await fetch(`http://localhost:5000/api/reviews/${filteredProduct.id}`);
-           const response = await fetch(`http://localhost:5000/api/reviews/`);
+           const response = await fetch(`${window.location.origin}/api/reviews/`);
                         if (!response.ok) {
                 throw new Error('Failed to fetch reviews');
             }

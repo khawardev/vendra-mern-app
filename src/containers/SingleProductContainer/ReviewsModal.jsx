@@ -32,7 +32,7 @@ const Modal = ({ isOpen, onClose, productid }) => {
         console.log(productid);
 
         try {
-            const response = await fetch('http://localhost:5000/api/reviews', {
+            const response = await fetch(`${window.location.origin}/api/reviews`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

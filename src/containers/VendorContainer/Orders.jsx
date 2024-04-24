@@ -7,8 +7,7 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+// import pdfFonts from "pdfmake/build/vfs_fonts";
 import "datatables.net-buttons-dt/css/buttons.dataTables.css";
 import "datatables.net-buttons/js/dataTables.buttons.min.js";
 import "datatables.net-buttons/js/buttons.html5.min.js";
@@ -16,7 +15,10 @@ import "datatables.net-buttons/js/buttons.print.min.js";
 import "datatables.net-buttons/js/buttons.colVis.min.js";
 import { BiTrash } from "react-icons/bi";
 import OrderDetailsContainer from './OrderDetailsContainer';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// import * as pdfFonts from "pdfmake/build/vfs_fonts.js"; // <-- vfs_fonts has to be imported before pdfmake
+// import pdfMake from 'pdfmake';
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 export default function Order() {
   const [orderData, setOrderData] = useState([]);
@@ -25,7 +27,7 @@ export default function Order() {
   const tableRef = useRef(null);
   const fetchOrderDetails = async (orderId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${orderId}`);
+      const response = await fetch(`${window.location.origin}/api/orders/${orderId}`);
       if (!response.ok) {
         throw new Error(`Error fetching order details: ${response.statusText}`);
       }
@@ -61,7 +63,7 @@ export default function Order() {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/orders`);
+      const response = await fetch(`${window.location.origin}/api/orders`);
       const orders = await response.json();
       setOrderData(orders);
     } catch (error) {
@@ -75,7 +77,7 @@ export default function Order() {
   };
   const handleDeleteOrder = (orderId) => {
     // Send a DELETE request to the server
-    fetch(`http://localhost:5000/api/orders/${orderId}`, {
+    fetch(`${window.location.origin}/api/orders/${orderId}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())

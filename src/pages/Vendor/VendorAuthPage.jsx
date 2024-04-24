@@ -33,8 +33,8 @@ const VendorAuthPage = () => {
     });
     const { username, email, password } = formData;
     const url = isRegistering
-      ? `${window.location.origin}api/vendor/register`
-      : `${window.location.origin}/api/vendor/login`;
+      ? "http://localhost:5000/api/vendor/register"
+      : "http://localhost:5000/api/vendor/login";
 
     // Create the request body based on the action
     console.log(hCaptchaToken);

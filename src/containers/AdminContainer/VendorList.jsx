@@ -5,22 +5,19 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-// import jszip from "jszip";
-
-//import pdfFonts from "pdfmake/build/vfs_fonts";
+import jszip from "jszip";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import 'datatables.net-buttons-dt/css/buttons.dataTables.css';
 import 'datatables.net-buttons/js/dataTables.buttons.min.js';
 import 'datatables.net-buttons/js/buttons.html5.min.js';
 import 'datatables.net-buttons/js/buttons.print.min.js';
 import 'datatables.net-buttons/js/buttons.colVis.min.js'; // For Excel button
-// import * as pdfFonts from "pdfmake/build/vfs_fonts.js"; // <-- vfs_fonts has to be imported before pdfmake
-// import pdfMake from 'pdfmake';
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 const VendorList = () => {
   const [vendors, setVendors] = useState([]);
   const tableRef = useRef(null);
   useEffect(() => {
-    fetch(`${window.location.origin}/api/vendor/getallvendors`) // Make sure the endpoint is correct
+    fetch('http://localhost:5000/api/vendor/getallvendors') // Make sure the endpoint is correct
       .then((res) => res.json())
       .then((data) => {
         setVendors(data.data);
@@ -33,7 +30,7 @@ const VendorList = () => {
   const handleApprovalChange = (vendorId, isApproved) => {
     // Make a request to update the approval status
     // You can use fetch or your preferred HTTP library (axios, etc.)
-    fetch(`${window.location.origin}/api/vendor/updateApproval/${vendorId}`, {
+    fetch(`http://localhost:5000/api/vendor/updateApproval/${vendorId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ const ContactPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${window.location.origin}/api/contact/submit`, {
+      const response = await fetch("http://localhost:5000/api/contact/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -33,16 +33,10 @@ export const HomePage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchData = async () => {
-<<<<<<< HEAD
-            const productsResponse = await fetch(`${window.location.origin}/api/products`);
-            const categoriesResponse = await fetch(`${window.location.origin}/api/categories`);
-            const UserinfoResponse = await fetch(`${window.location.origin}/getAllUser`);
-=======
             const productsResponse = await fetch('http://localhost:5000/api/products');
             const categoriesResponse = await fetch('http://localhost:5000/api/categories');
             const UserinfoResponse = await fetch('http://localhost:5000/getAllUser');
             const UserReview = await fetch(`http://localhost:5000/api/reviews/`);
->>>>>>> b92fe3bb048e19f3e7857dc8234f9596ba0c223b
 
             const productsData = await productsResponse.json();
             const categoriesData = await categoriesResponse.json();
@@ -66,7 +60,7 @@ export const HomePage = () => {
     const token = localStorage.getItem('token');
     useEffect(() => {
         const fetchData = async () => {
-            const SingleUserinfoResponse = await fetch(`${window.location.origin}/data`, {
+            const SingleUserinfoResponse = await fetch('http://localhost:5000/data', {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${token}`,

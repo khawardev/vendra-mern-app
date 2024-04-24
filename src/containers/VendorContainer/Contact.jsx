@@ -7,16 +7,14 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-// import pdfFonts from "pdfmake/build/vfs_fonts";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import "datatables.net-buttons-dt/css/buttons.dataTables.css";
 import "datatables.net-buttons/js/dataTables.buttons.min.js";
 import "datatables.net-buttons/js/buttons.html5.min.js";
 import "datatables.net-buttons/js/buttons.print.min.js";
 import "datatables.net-buttons/js/buttons.colVis.min.js";
-// import * as pdfFonts from "pdfmake/build/vfs_fonts.js"; // <-- vfs_fonts has to be imported before pdfmake
-// import pdfMake from 'pdfmake';
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function Contact() {
   const [contactData, setContactData] = useState([]);
@@ -24,7 +22,7 @@ export default function Contact() {
   const tableRef = useRef(null);
   const fetchContact = async () => {
     try {
-      const response = await fetch(`${window.location.origin}/api/contact/all`);
+      const response = await fetch(`http://localhost:5000/api/contact/all`);
       const contact = await response.json();
       setContactData(contact);
     } catch (error) {

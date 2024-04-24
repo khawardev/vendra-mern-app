@@ -8,17 +8,16 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-//import { pdfFonts } from "pdfmake/build/vfs_fonts";
-// import * as pdfFonts from "pdfmake/build/vfs_fonts.js"; // <-- vfs_fonts has to be imported before pdfmake
-// import pdfMake from 'pdfmake';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import 'datatables.net-buttons-dt/css/buttons.dataTables.css';
 import 'datatables.net-buttons/js/dataTables.buttons.min.js';
 import 'datatables.net-buttons/js/buttons.html5.min.js';
 import 'datatables.net-buttons/js/buttons.print.min.js';
 import 'datatables.net-buttons/js/buttons.colVis.min.js'; // For Excel button
 // For PDF butto
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
-//import EditProduct from './EditProduct'; // Update the path as per your folder structure
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import EditProduct from './EditProduct'; // Update the path as per your folder structure
 
 export default function Rightbar() {
     //setting state
@@ -32,8 +31,8 @@ export default function Rightbar() {
     };
     useEffect(() => {
         Promise.all([
-            fetch(`${window.location.origin}/api/products`).then((res) => res.json()),
-            fetch(`${window.location.origin}/api/categories`).then((res) => res.json()),
+            fetch("http://localhost:5000/api/products").then((res) => res.json()),
+            fetch("http://localhost:5000/api/categories").then((res) => res.json()),
         ])
             .then(([productData, categoryData]) => {
                 console.log(productData, "productData");
@@ -99,7 +98,7 @@ export default function Rightbar() {
 
         if (window.confirm(`Are you sure you want to delete ${name}`)) {
             console.log("Entering");
-            fetch(`${window.location.origin}/api/deleteProducts`, {
+            fetch("http://localhost:5000/api/deleteProducts", {
                 method: "POST",
                 crossDomain: true,
                 headers: {

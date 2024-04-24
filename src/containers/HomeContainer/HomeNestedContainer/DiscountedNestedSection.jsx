@@ -98,7 +98,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                 <div>
 
                                     <div className='md:top-[-0.40rem]  top-[0.40rem] py-1   md:right-[-10px]   rounded-full    text-green-800 font-bold    bg-green-300 md:px-4 px-2 absolute z-10'>
-                                            {calculateDiscountPercentage(product?.price, product?.inputDescount)}%
+                                        {calculateDiscountPercentage(product?.price, product?.inputDescount)}%
                                     </div>
                                     <div onClick={() => {
                                         handleAddToWishList(
@@ -140,7 +140,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                     <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  '>{product.desc}</p>
                                 </div>
                                 <span className='flex items-center gap-1  mt-2'>
-                                    <StarRatingAvg reviews={reviews.filter(review => review.productid === product?.id)} />
+                                    <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?.id)} />
 
                                 </span>
                                 <div className='flex justify-between items-center '>
@@ -168,7 +168,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                         )}
                                     </div>
                                 </div>
-                               
+
                             </main>
                         </article>
                     ))}

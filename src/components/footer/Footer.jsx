@@ -4,23 +4,21 @@ import { FiLinkedin } from 'react-icons/fi';
 import { SlSocialPintarest } from 'react-icons/sl';
 import { BsInstagram } from 'react-icons/bs';
 import logo from '../../assets/images/logo.png';
-const Footer = () => {
-    const items = Array.from({ length: 4 }, (_, index) => (
-        <section key={index} >
-            <p className=" mb-4 font-extrabold">Make Money with Us</p>
-            <li className=" list-none ">
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell on Vendra</span> <br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell Your Services on Vendra</span><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell on Vendra Business</span><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell Your Apps on Vendra</span><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Become an Affilate</span><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Advertise Your Products</span ><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Sell - Publish with Us</span ><br />
-                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Become an Vendra Vendor</span ><br />
-            </li>
+import { GoDotFill } from 'react-icons/go';
 
-        </section>
-    ));
+const Footer = () => {
+    // const items = Array.from({ length: 4 }, (_, index) => (
+    //     <section key={index} >
+    //         <p className=" mb-4 font-extrabold">Make Money with Us</p>
+    //         <li className=" list-none ">
+    //             <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Home</span> <br />
+    //             <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Shop</span><br />
+    //             <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> About</span><br />
+    //             <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Contact</span><br />
+    //         </li>
+
+    //     </section>
+    // ));
     return (
         <>
             <main className=" bg-[#041E42] ">
@@ -48,15 +46,72 @@ const Footer = () => {
 
             <main className=" pt-16 pb-20 bg-[#F7F8F9]">
                 <div className="w-11/12 m-auto">
-                    <section className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1  whitespace-nowrap gap-10" >
-                        {items}
+                    <section className="grid grid-cols-6 gap-10   whitespace-nowrap justify-between items-end" >
+                        <section className='  col-span-1'  >
+                            <p className=" mb-4 font-extrabold">Vendra Pages</p>
+                            <li className=" list-none ">
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Home</span> <br />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Shop</span><br />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> About</span><br />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Contact</span><br />
+                                <GoDotFill size={10} className='my-3 ' />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Cart</span> <br />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Whishlist</span><br />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Compare</span><br />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Discount</span><br />
+                                <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Best Selling</span><br />
+                            </li>
+                        </section>
+
+                        
+                        <main className='w-full col-span-5' >
+                            <main className="md:flex md:justify-between text-center items-center ">
+                                <section className=' flex gap-1 items-center '>
+                                    <img src={logo} width={35} />
+                                    <p className='text-4xl font-extrabold  '>Vendra<sup className=' font-light text-sm'> &reg; </sup></p>
+
+                                </section>
+
+                                <section className="flex justify-center items-center gap-3 md:mt-0 mt-4">
+                                    <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                        <SlSocialFacebook size={20} />
+                                    </div>
+                                    <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                        <RiTwitterXFill size={20} />
+                                    </div>
+                                    <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                        <FiLinkedin size={20} />
+                                    </div>
+                                    <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                        <SlSocialPintarest size={20} />
+                                    </div>
+                                    <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
+                                        <BsInstagram size={20} />
+                                    </div>
+                                </section>
+                            </main>
+                            <hr className='my-6' />
+                            <main className="flex justify-between items-center md:flex-row  flex-col-reverse ">
+                                <section className='text-sm md:mt-0 mt-4 flex items-center gap-2' >
+
+                                    © Copyright 2023 All Right Reserved
+                                    <span className=" text-[#FFC21F]   "><b>Vendra</b><sup className=' font-light text-sm'> &reg; </sup></span>
+
+                                </section>
+                                <section>
+                                    <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694950874/payment_mbisbh.png" alt="" />
+                                </section>
+                            </main>
+                        </main>
+
+
                     </section>
+
                 </div>
             </main>
 
-            <main className="w-11/12 m-auto md:my-16 my-10">
+            {/* <main className="w-11/12 m-auto md:my-16 my-10">
                 <main className="md:flex md:justify-between text-center items-center ">
-
                     <section className=' flex gap-1 items-center '>
                         <img src={logo} width={35} />
                         <p className='text-4xl font-extrabold  '>Vendra<sup className=' font-light text-sm'> &reg; </sup></p>
@@ -93,7 +148,7 @@ const Footer = () => {
                         <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694950874/payment_mbisbh.png" alt="" />
                     </section>
                 </main>
-            </main>
+            </main> */}
 
         </>
     )

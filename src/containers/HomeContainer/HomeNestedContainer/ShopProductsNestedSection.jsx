@@ -19,7 +19,7 @@ import toast from 'react-hot-toast';
 import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
 import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 
-const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasses, TextClasses }) => {
+const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasses, TextClasses, imageClasses2 }) => {
 
     const reviews = useSelector(selectReviews);
 
@@ -73,7 +73,7 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
     return (
         <>
             {filteredProducts &&
-                <div className={`my-7 grid  gap-7 ${grid}`}>
+                <div className={`my-7 grid  gap-7  ${grid}`}>
                     {filteredProducts?.map((product) => (
                         <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
@@ -84,7 +84,7 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                             product.name,
                                             product.description,
                                             product.price,
-                                            product.image[0],
+                                            product.image,
                                             1
                                         );
                                         setwishlistTragetid(product._id);
@@ -102,13 +102,19 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                 </div>
 
 
-                                <section className={`${sectionClasses}   rounded-2xl ${imageClasses}  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                <section className={`${sectionClasses}    rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
 
-                                    <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
+                                    <div className={`${imageClasses}`}>
+                                        <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
+                                    </div>
 
-                                    <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg    hover:cursor-pointer hover:underline font-bold  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5   tracking-tight  '>{product.description}</p>
+                                    <div className={`${imageClasses2}`}>
+                                        <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg    hover:cursor-pointer hover:underline font-bold  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                        <p className={`    mb-3   line-clamp-3 ${TextClasses}  hover:cursor-pointer  text-gray-400  leading-5   tracking-tight  `}>{product.description}</p>
+
+                                    </div>
+
                                 </section>
 
 
@@ -122,20 +128,20 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                 </div> */}
                                 <div className='flex justify-between items-center mt-2'>
                                     <span className='flex items-center gap-1  '>
-                                        <StarRatingAvg reviews={reviews.filter(review => review.productid === product?._id)} />
+                                        <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?._id)} />
                                     </span>
                                 </div>
                                 <div className='flex justify-between items-center  '>
 
                                     <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
-                                    
+
                                     <div onClick={() => {
                                         handleAddToCart(
                                             product?._id,
                                             product?.name,
                                             product?.description,
                                             product?.price,
-                                            product?.image[0],
+                                            product?.image,
                                             1
                                         );
                                         setcartTragetid(product._id);

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from "react";
 
 const OrderDetailsContainer = ({ orderDetails, onClose }) => {
@@ -67,14 +69,14 @@ const OrderDetailsContainer = ({ orderDetails, onClose }) => {
           <li>First Name: {orderDetails.customerInfo.firstName}</li>
           <li>Last Name: {orderDetails.customerInfo.lastName}</li>
           <li>Company Name: {orderDetails.customerInfo.companyName}</li>
-          <li>Country: {orderDetails.customerInfo.country.label}</li>
+          {/* <li>Country: {orderDetails.customerInfo.country.label}</li> */}
           <li>Street Address: {orderDetails.customerInfo.streetAddress}</li>
-          <li>City: {orderDetails.customerInfo.city}</li>
-          <li>State: {orderDetails.customerInfo.state.label}</li>
+          {/* <li>City: {orderDetails.customerInfo.city}</li> */}
+          {/* <li>State: {orderDetails.customerInfo.state.label}</li> */}
           <li>Zip Code: {orderDetails.customerInfo.zipCode}</li>
           <li>Phone Number: {orderDetails.customerInfo.phoneNumber}</li>
           <li>Email Address: {orderDetails.customerInfo.emailAddress}</li>
-          <li>Username: {orderDetails.customerInfo.username}</li>
+          {/* <li>Username: {orderDetails.customerInfo.username}</li> */}
           <li>Order Notes: {orderDetails.customerInfo.orderNotes}</li>
         </ul>
       </div>

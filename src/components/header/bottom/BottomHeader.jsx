@@ -31,7 +31,7 @@ const BottomHeader = () => {
     <div>
 
       <main className='   items-center justify-between list-none lg:flex hidden '>
-        <main className='  flex justify-center items-center gap-12 bg-gray-100 cursor-pointer py-4 px-6 rounded-tr-lg  rounded-tl-lg'>
+        <main className='  flex invisible justify-center items-center gap-12 bg-gray-100 cursor-pointer py-4 px-6 rounded-tr-lg  rounded-tl-lg'>
           <section className='  flex justify-center items-center gap-2'>
             <BiCategory className="stroke-custom" size={24} />
             <p >All Departments</p>

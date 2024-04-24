@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { FaArrowRightLong } from "react-icons/fa6";
 import '../assets/styles/CartPage.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, updateQuantity, setTotalSubtotal, selectCartItems } from '../toolkit/Slices/CartSlice';
+import { removeFromCart, updateQuantity, setTotalSubtotal, selectCartItems, clearCart, selectProductQuantities } from '../toolkit/Slices/CartSlice';
 import { BsCartX } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/CartPage.scss';
@@ -12,7 +12,9 @@ import '../assets/styles/CartPage.scss';
 import { BsCreditCard2Front } from "react-icons/bs";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { IoMdArrowForward } from "react-icons/io";
+import { MdClose } from 'react-icons/md';
 
+import toast from 'react-hot-toast';
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -21,6 +23,7 @@ const CartPage = () => {
     const [quantity, setQuantity] = useState(1);
     const cartItems = useSelector(selectCartItems);
     const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
+    const productQuantity = useSelector(selectProductQuantities);
 
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -32,7 +35,7 @@ const CartPage = () => {
 
 
 
-    
+
     const handleDecrement = (productId) => {
         const currentQuantity = cartItems.find(item => item.id === productId).quantity;
         const updatedQuantity = Math.max(1, currentQuantity - 1);
@@ -49,7 +52,11 @@ const CartPage = () => {
     const handleRemoveFromCart = (productId) => {
         dispatch(removeFromCart(productId));
     };
+    const handleClearCart = () => {
+        toast.success(<span style={{ fontWeight: 'bold' }}>Items Removed</span>);
 
+        dispatch(clearCart());
+    };
     useEffect(() => {
         const newTotalSubtotal = cartItems.reduce((total, item) => {
             return total + (item.price * item.quantity);
@@ -57,6 +64,32 @@ const CartPage = () => {
         dispatch(setTotalSubtotal(newTotalSubtotal));
         // dispatch(setProductQuantity([item?.quantity]));
     }, [cartItems]);
+
+    const [couponCode, setCouponCode] = useState('');
+    const [discountApplied, setDiscountApplied] = useState(false);
+
+    const handleCouponApply = () => {
+        if (discountApplied === true) {
+            toast.error(<span style={{ fontWeight: 'bold' }}>Coupon Already Applied</span>)
+        }
+        else {
+            if (couponCode === 'VEND123') {
+                setDiscountApplied(true);
+                toast.success(<span style={{ fontWeight: 'bold' }}>Coupon Applied</span>);
+
+            } else {
+                toast.error(<span style={{ fontWeight: 'bold' }}>Invalid Coupon</span>);
+
+            }
+        }
+        setCouponCode('')
+    };
+
+    const handleCouponDiscard = () => {
+        toast.success(<span style={{ fontWeight: 'bold' }}>Coupon Discarded</span>);
+        setDiscountApplied(false)
+    };
+
 
     return (
         <div className=" w-11/12 m-auto my-20">
@@ -97,11 +130,11 @@ const CartPage = () => {
                                     {cartItems?.map((cartItems) => (
 
                                         <tr key={cartItems.id} className=" select-none">
-                                           
+
                                             <td className="flex py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <div className='   flex items-center justify-center'>
                                                     <img
-                                                        src={`https://ucarecdn.com/${cartItems?.imageurl}/`}
+                                                        src={`https://ucarecdn.com/${cartItems?.imageurl[0]}/`}
                                                         alt="iMac Front Image"
                                                         className=" w-14 mix-blend-multiply rounded-md "
                                                     />
@@ -213,14 +246,14 @@ const CartPage = () => {
                                         type="text"
                                         name="firstName"
                                         className='border px-2 rounded-md text-sm '
-                                        // value={formData.firstName}
-                                        // onChange={handleInputChange}
+                                        value={couponCode}
+                                        onChange={(e) => setCouponCode(e.target.value)}
                                         required
                                         placeholder=' Coupon Code'
                                     />
-                                    <button className='rounded-md cursor-pointer w-full justify-center p-3 text-sm  bg-black  text-white  flex items-center gap-2 transition-all ease-in-out' >Apply Coupon</button>
+                                    <button onClick={handleCouponApply} className='rounded-md cursor-pointer w-full justify-center p-3 text-sm  bg-black  text-white  flex items-center gap-2 transition-all ease-in-out' >Apply Coupon</button>
                                 </div>
-                                <button className='rounded-md cursor-pointer  justify-center p-3 text-sm  bg-black  text-white  flex items-center gap-2 transition-all ease-in-out' >Remove All</button>
+                                <button onClick={() => handleClearCart()} className='rounded-md cursor-pointer  justify-center p-3 text-sm  bg-black  text-white  flex items-center gap-2 transition-all ease-in-out' >Remove All</button>
 
 
 
@@ -238,8 +271,20 @@ const CartPage = () => {
                                         <p className='font-bold   text-lg'>Subtotal</p>
                                         <p>${totalSubtotal.toFixed(2)}</p>
                                     </main>
+
+
                                     <hr className=' my-3' />
-                                    <main >
+                                    <main>
+                                        {cartItems?.map((cartItems, index) => (
+                                            <div key={cartItems.id}>
+                                                <main className='my-3 flex justify-between items-center'>
+                                                    <p className=' flex items-center   w-10/12'>{productQuantity[index]} <div className='mx-1'>x</div> <span className='text-gray-500 line-clamp-1'> {cartItems.name}</span></p>
+                                                    <p className=' text-gray-500'>${cartItems.price}</p>
+                                                </main>
+                                            </div>
+                                        ))}
+                                    </main>
+                                    {/* <main >
                                         <p className='font-bold   mb-2 text-lg'>Shipping</p>
                                         <div className="flex flex-col space-y-2 ">
                                             <label className={`cursor-pointer flex justify-between border py-2 transition-all ease-in 
@@ -276,16 +321,28 @@ const CartPage = () => {
                                             </label>
 
                                         </div>
-                                    </main>
+                                    </main> */}
                                     <hr className=' mt-3 mb-4' />
+                                    {discountApplied && (
+                                        <main className='my-3 flex justify-between items-center'>
+                                            <p className='font-bold '>10% Coupon Discount </p>
+                                            <div className='flex justify-between items-center gap-2'>
+                                                <p>-${(totalSubtotal * 0.1).toFixed(2)}</p>
+                                                <button className=' rounded-full p-1  bg-red-300' onClick={handleCouponDiscard}><MdClose stroke-width={0.1} /></button>
+
+                                            </div>
+                                        </main>
+                                    )}
                                     <main className=' flex justify-between items-center '>
 
                                         <p className='font-bold   text-lg'>Total</p>
-                                        <p className=' font-bold   text-xl  '>${totalSubtotal.toFixed(2)}</p>
+                                        <p className=' font-bold   text-xl  '>${discountApplied ? `${(totalSubtotal - (totalSubtotal * 0.1)).toFixed(2)}` : `${totalSubtotal}`}</p>
+
+
                                     </main>
                                     <hr className=' mt-3 mb-4' />
 
-                                    <button onClick={() => Navigate(`/checkout`)} className='cart-button rounded-lg cursor-pointer w-full justify-center py-[11px]  bg-black  text-white  flex items-center gap-2 transition-all ease-in-out'>
+                                    <button onClick={() => Navigate(`/checkout/${discountApplied}`)}  className='cart-button rounded-lg cursor-pointer w-full justify-center py-[11px]  bg-black  text-white  flex items-center gap-2 transition-all ease-in-out'>
                                         Checkout
                                         <span className=' cart-span transition-all ease-in-out transform'>
                                             <IoMdArrowForward />

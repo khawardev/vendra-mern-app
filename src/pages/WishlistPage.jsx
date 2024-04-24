@@ -75,7 +75,7 @@ const WishlistPage = () => {
                                     <td className="flex py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div className='   flex items-center justify-center'>
                                             <img
-                                                src={`https://ucarecdn.com/${WishlistItems?.imageurl}/`}
+                                                src={`https://ucarecdn.com/${WishlistItems?.imageurl[0]}/`}
                                                 alt="iMac Front Image"
                                                 className=" w-14 mix-blend-multiply rounded-md "
                                             />

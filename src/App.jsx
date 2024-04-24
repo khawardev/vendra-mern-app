@@ -31,6 +31,8 @@ import ReviewsModal from './containers/SingleProductContainer/ReviewsModal';
 import LightBox from './components/WebScrapper/Lightbox';
 import MasonryGallery from './components/WebScrapper/MasonryGallery';
 import Resizecall from './components/WebScrapper/Resizecall';
+
+
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -43,8 +45,7 @@ function App() {
         <MasonryGallery />
       </div> */}
       {/* <Resizecall/> */}
-
-      <BrowserRouter>
+   <BrowserRouter>
         <AppContext>
           <Header />
           <Routes>
@@ -54,7 +55,6 @@ function App() {
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/uploadcare' element={<UploadcarePage />} />
-            <Route path="/OrderManage" Component={OrderManage} />
             <Route path="/OrderManage" Component={OrderManage} />
             <Route path="/ContactManage" Component={ContactManage} />
             <Route exact path='/user-account' element={isLoggedIn == "true" ? <UserPage /> : < VendorAuthPage />} />
@@ -67,7 +67,7 @@ function App() {
             <Route exact path={`/edit/:productid`} element={<EditProduct />} />
             <Route exact path={`/bestselling`} element={<TrendingProductsPage />} />
             <Route exact path={`/discount`} element={<DiscountedProductPage />} />
-            <Route exact path={`/checkout`} element={<CheckoutPage />} />
+            <Route exact path={`/checkout/:discountApplied`} element={<CheckoutPage />} />
             <Route exact path='/vendoraccount' element={<VendorAuthPage />} />
             <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < VendorAuthPage />} />
             <Route exact path='/compare' element={<ComparePage />} />
@@ -76,7 +76,7 @@ function App() {
           <Footer />
 
         </AppContext>
-      </BrowserRouter>
+      </BrowserRouter> 
 
     </>
   )

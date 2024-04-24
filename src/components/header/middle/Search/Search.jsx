@@ -44,7 +44,7 @@ const Search = ({ setShowSearch }) => {
                             <div className="flex items-center gap-5 py-3   transition-all ease-in-out cursor-pointer"
                               onClick={() => {
                                 console.log("Product ID:", product._id);
-                                Navigate(`/viewsingleproduct/${product?._id}`);
+                                  Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`);
                                 setShowSearch(false);
                             }}
                             >

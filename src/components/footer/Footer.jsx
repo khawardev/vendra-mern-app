@@ -4,7 +4,7 @@ import { FiLinkedin } from 'react-icons/fi';
 import { SlSocialPintarest } from 'react-icons/sl';
 import { BsInstagram } from 'react-icons/bs';
 import logo from '../../assets/images/logo.png';
-import { GoDotFill } from 'react-icons/go';
+// import { GoDotFill } from 'react-icons/go';
 
 const Footer = () => {
     // const items = Array.from({ length: 4 }, (_, index) => (
@@ -54,7 +54,7 @@ const Footer = () => {
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Shop</span><br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> About</span><br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Contact</span><br />
-                                <GoDotFill size={10} className='my-3 ' />
+                                {/* <GoDotFill size={10} className='my-3 ' /> */}
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Cart</span> <br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Whishlist</span><br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Compare</span><br />

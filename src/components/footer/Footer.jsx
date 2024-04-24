@@ -54,7 +54,6 @@ const Footer = () => {
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Shop</span><br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> About</span><br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Contact</span><br />
-                                <GoDotFill size={10} className='my-3 ' />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Cart</span> <br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Whishlist</span><br />
                                 <span className=" cursor-pointer hover:underline opacity-60 hover:opacity-100"> Compare</span><br />

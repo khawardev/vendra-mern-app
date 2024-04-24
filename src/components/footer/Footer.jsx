@@ -4,7 +4,7 @@ import { FiLinkedin } from 'react-icons/fi';
 import { SlSocialPintarest } from 'react-icons/sl';
 import { BsInstagram } from 'react-icons/bs';
 import logo from '../../assets/images/logo.png';
-import { GoDotFill } from 'react-icons/go';
+// import { GoDotFill } from 'react-icons/go';
 
 const Footer = () => {
     // const items = Array.from({ length: 4 }, (_, index) => (

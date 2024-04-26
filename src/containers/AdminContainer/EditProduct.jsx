@@ -1,76 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const EditProduct = ({ product, onClose }) => {
+export default function EditProduct({ product, onSave, onCancel }) {
   const [editedProduct, setEditedProduct] = useState({
     name: product.name,
     description: product.description,
     price: product.price,
     category: product.category,
-    // Add other fields you want to edit
   });
 
-  // Add a handler to update the edited product state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditedProduct({ ...editedProduct, [name]: value });
+    setEditedProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
   };
 
-  // Function to submit changes
-  const handleSaveChanges = () => {
-    // Make an API call to save the changes using editedProduct
-    // Ensure to handle errors and update the table after success
-    // Then, close the edit form using onClose()
-  fetch(`http://localhost:5000/api/updateProduct/${product._id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(editedProduct),
-  })
-    .then((response) => {
-      if (response.ok) {
-        // Product updated successfully, handle the response as needed
-        // Close the edit form
-        onClose();
-      } else {
-        // Handle errors, such as displaying an error message
-        console.error('Failed to update product.');
-      }
-    })
-    .catch((error) => {
-      console.error('Error updating product:', error);
+  const handleSave = () => {
+    // Include _id when calling onSave
+    onSave({
+      ...editedProduct,
+      _id: product._id,
     });
+    onCancel();
   };
-  
-  return (
-    // The form for editing
-    <div>
-      <h2>Edit Product</h2>
-      <form onSubmit={handleSaveChanges}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={editedProduct.name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Price:
-          <input
-            type="text"
-            name="price"
-            value={editedProduct.price}
-            onChange={handleInputChange}
-          />
-        </label>
-        {/* Add similar fields for description, price, category, etc. */}
-        <button type="submit">Save Changes</button>
-        <button onClick={onClose}>Cancel</button>
-      </form>
-    </div>
-  );
-};
+  const handleCancel = () => {
+    // Cancel editing and close the edit form
+    onCancel();
+  };
 
-export default EditProduct;
+  return (
+    <tr className="w-full text-sm text-left">
+      <td>
+        <input
+          type="text"
+          name="name"
+          value={editedProduct.name}
+          onChange={handleInputChange}
+        />
+      </td>
+      <br />
+      <td>
+        <input
+          type="text"
+          name="description"
+          value={editedProduct.description}
+          onChange={handleInputChange}
+        />
+      </td>
+      <td>
+        <input
+          type="number"
+          name="price"
+          value={editedProduct.price}
+          onChange={handleInputChange}
+        />
+      </td>
+      <td>
+        <input
+          type="text"
+          name="category"
+          value={editedProduct.category}
+          onChange={handleInputChange}
+        />
+      </td>
+      <td>
+        <button  className="font-medium bg-green-500 rounded py-1 px-3" onClick={handleSave}>Save</button>
+        <button  className="font-medium bg-red-500 rounded py-1 px-3" onClick={handleCancel}>Cancel</button>
+      </td>
+    </tr>
+  );
+}

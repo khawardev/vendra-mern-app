@@ -37,12 +37,17 @@
     "lucide-react": "^0.292.0",
     "pdfmake": "^0.2.9",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
 =======
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
 >>>>>>> 3008541b27cfafd4b2f2a45b699f5fff62ce8a4c
+=======
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+>>>>>>> parent of 73de62a (react)
     "react-drag-drop-files": "^2.3.10",
     "react-dropzone": "^14.2.3",
     "react-hcaptcha": "^0.1.1",

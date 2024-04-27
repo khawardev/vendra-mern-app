@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import HCaptcha from "react-hcaptcha";
 
@@ -22,11 +22,15 @@ import HCaptcha from "react-hcaptcha";
 const AuthPage = () => {
   const [isRegistering, setIsRegistering] = useState(true);
   const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
+
   const handleHCaptchaVerify = (token) => {
     // Callback function to handle the hCaptcha token
     console.log('hCaptcha sadsdas token:', token);
     setHCaptchaToken(token);
   };
+  useEffect(() => {
+    setHCaptchaToken(''); 
+  }, [isRegistering]);
   const [formData, setFormData] = useState({
     username: "",
     email: "",

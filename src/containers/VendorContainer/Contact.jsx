@@ -7,14 +7,14 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+// import pdfMake from "pdfmake/build/pdfmake";
+// import pdfFonts from "pdfmake/build/vfs_fonts";
 import "datatables.net-buttons-dt/css/buttons.dataTables.css";
 import "datatables.net-buttons/js/dataTables.buttons.min.js";
 import "datatables.net-buttons/js/buttons.html5.min.js";
 import "datatables.net-buttons/js/buttons.print.min.js";
 import "datatables.net-buttons/js/buttons.colVis.min.js";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function Contact() {
   const [contactData, setContactData] = useState([]);

@@ -8,7 +8,7 @@ const AuthPage = () => {
   const handleHCaptchaVerify = (token) => {
     console.log('hCaptcha token:', token);
     setHCaptchaToken(token);
-  };
+  }; 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -39,8 +39,10 @@ const AuthPage = () => {
     // Create the request body based on the action
     console.log(hCaptchaToken);
     const requestBody = isRegistering
-      ? JSON.stringify({ username, email, password, hCaptchaToken }) // Update field names here
-      : JSON.stringify({ username, password: password, hCaptchaToken: hCaptchaToken }); // Update field names here
+      // ? JSON.stringify({ username, email, password, hCaptchaToken }) // Update field names here
+      // : JSON.stringify({ username, password: password, hCaptchaToken: hCaptchaToken }); // Update field names here
+      ? JSON.stringify({ username, email, password, }) // Update field names here
+      : JSON.stringify({ username, password: password }); // Update field names here
     fetch(url, {
       method: "POST",
       headers: {
@@ -213,12 +215,12 @@ const AuthPage = () => {
 
           </>
         )}
-        <div className="mb-7">
+        {/* <div className="mb-7">
           <HCaptcha
             sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
             onVerify={handleHCaptchaVerify}
           />
-        </div>
+        </div> */}
         {/* Registration */}
         {isRegistering ? (
           <div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import HCaptcha from "react-hcaptcha";
+// import HCaptcha from "react-hcaptcha";
 
 // import { GoogleLogin } from "react-google-login";
 
@@ -21,7 +21,7 @@ import HCaptcha from "react-hcaptcha";
 // };
 const VendorAuthPage = () => {
   const [isRegistering, setIsRegistering] = useState(true);
-  const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
+  // const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
 
 
   const [formData, setFormData] = useState({
@@ -71,18 +71,18 @@ const VendorAuthPage = () => {
   const [submittedData, setSubmittedData] = useState(null);
 
 
-useEffect(() => {
-    // Reset hCaptcha token when switching between register and login modes
-    setHCaptchaToken('');
-    // Reset the HCaptcha component by updating its key
-  }, [isRegistering]);
+// useEffect(() => {
+//     // Reset hCaptcha token when switching between register and login modes
+//     setHCaptchaToken('');
+//     // Reset the HCaptcha component by updating its key
+//   }, [isRegistering]);
 
 
-  const handleHCaptchaVerify = (token) => {
-    // Callback function to handle the hCaptcha token
-    console.log('hCaptcha sadsdas token:', token);
-    setHCaptchaToken(token);
-  };
+//   const handleHCaptchaVerify = (token) => {
+//     // Callback function to handle the hCaptcha token
+//     console.log('hCaptcha sadsdas token:', token);
+//     setHCaptchaToken(token);
+//   // };
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmittedData(formData);
@@ -100,8 +100,11 @@ useEffect(() => {
 
     // Create the request body based on the action
     const requestBody = isRegistering
-      ? JSON.stringify({ username, email, password, hCaptchaToken }) // Update field names here
-      : JSON.stringify({ username, password: password, hCaptchaToken: hCaptchaToken }); // Update field names here
+          ? JSON.stringify({ username, email, password,}) // Update field names here
+      : JSON.stringify({ username, password: password,}); // Update field names here
+
+      // ? JSON.stringify({ username, email, password, hCaptchaToken }) // Update field names here
+      // : JSON.stringify({ username, password: password, hCaptchaToken: hCaptchaToken }); // Update field names here
     console.log("isRegistering before fetch:", isRegistering);
     fetch(url, {
       method: "POST",
@@ -303,13 +306,13 @@ useEffect(() => {
 
           </>
         )}
-        <div className="mb-4 w-full">
+        {/* <div className="mb-4 w-full">
           <HCaptcha
             sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880"
             onVerify={handleHCaptchaVerify}
             size="normal"
           />
-        </div>
+        </div> */}
         
         {/* <div className="mb-7">
           <GoogleSignIn />

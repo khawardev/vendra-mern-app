@@ -31,8 +31,10 @@ const AuthPage = () => {
         const url = isRegistering ? "http://localhost:5000/register" : "http://localhost:5000/login-user";
         // const requestBody = JSON.stringify({ username, email, password, hCaptchaToken });
         const requestBody = isRegistering
-            ? JSON.stringify({ username, email, password, hCaptchaToken })
-            : JSON.stringify({ username, password: password, hCaptchaToken: hCaptchaToken });
+        // ? JSON.stringify({ username, email, password, hCaptchaToken })
+        // : JSON.stringify({ username, password: password, hCaptchaToken: hCaptchaToken });
+        ? JSON.stringify({ username, email, password })
+        : JSON.stringify({ username, password: password });
         processForm(url, requestBody);
     };
 

@@ -8,17 +8,23 @@ import { selectCartItems, selectProductQuantities } from '../toolkit/Slices/Cart
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import '../assets/styles/Checkout.scss';
-import { useParams } from 'react-router-dom';
-
-
+import  {useParams} from 'react-router-dom';
+ import {useNavigate  } from 'react-router-dom';
 const CheckoutPage = () => {
-
-    const cartItems = useSelector(selectCartItems);
+    const navigate = useNavigate();
+        const loggedIn = localStorage.getItem('loggedIn');
+        const cartItems = useSelector(selectCartItems);
     const productQuantity = useSelector(selectProductQuantities);
     const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
     const { discountApplied } = useParams();
     console.log(discountApplied)
-
+    useEffect(() => {
+        // Redirect to login page if user is not logged in
+        if (!loggedIn) {
+            navigate('/account');
+        }
+    }, [loggedIn, history]);
+    
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -334,6 +340,7 @@ const CheckoutPage = () => {
                                                 className="mr-2 cursor-pointer p-3"
                                             />
                                             <b>Card payment</b>
+                        
                                         </div>
 
                                         <CiDeliveryTruck size={20} />
@@ -341,7 +348,7 @@ const CheckoutPage = () => {
 
                                     {showPaymentCOD && (
                                         <div className=" leading-5 text-sm text-gray-500 my-4 ">
-                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
+                                            <p> <b>Online Payment Method Will be Comming Soon!</b> 
                                             </p>
                                         </div>
 

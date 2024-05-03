@@ -140,7 +140,7 @@ const AuthPage = () => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'hCaptcha verification failed!',
+            text: 'SSS verification failed!',
           });
           // Handle cases where login or registration fails
         }
@@ -297,13 +297,13 @@ const AuthPage = () => {
 
           </>
         )}
-        <div className="mb-4 w-full">
+        {/* <div className="mb-4 w-full">
           <HCaptcha
             sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880"
             onVerify={handleHCaptchaVerify}
             size="normal"
           />
-        </div>
+        </div> */}
         
         {/* <div className="mb-7">
           <GoogleSignIn />

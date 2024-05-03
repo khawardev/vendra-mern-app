@@ -58,11 +58,11 @@ const RegisterForm = ({ formData, handleChange, handleHCaptchaVerify, handleSubm
             />
 
         </div>
-
+{/* 
         <HCaptcha
             sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
             onVerify={handleHCaptchaVerify}
-        />
+        /> */}
 
         <div>
             <p className="leading-5 mb-7 text-xs text-gray-600">

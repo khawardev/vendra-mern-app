@@ -51,7 +51,7 @@ export default function Rightbar() {
 
     // Destroy DataTable if already initialized
     if ($.fn.DataTable.isDataTable(tableRef.current)) {
-      $(tableRef.current).DataTable().destroy();
+      // $(tableRef.current).DataTable().destroy();
     }
 
     // Initialize DataTable

@@ -7,61 +7,82 @@ import { useSelector } from 'react-redux';
 import { selectProducts } from '../../toolkit/Slices/ProductsSlice'
 import { useParams } from 'react-router-dom';
 import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
+import toast from 'react-hot-toast';
 
 const EditProduct = () => {
-    const products = useSelector(selectProducts);
     const { productid } = useParams();
-    const [SingleProduct, setSingleProduct] = useState()
-
+    const products = useSelector(selectProducts);
     const categories = useSelector(selectCategories);
-
-    const [productName, setProductName] = useState();
-    const [productDescription, setProductDescription] = useState();
-    const [productStock, setProductStock] = useState();
-    const [productPrice, setProductPrice] = useState();
-
+    const [singleProduct, setSingleProduct] = useState(null);
+    const [editedProduct, setEditedProduct] = useState(null);
 
     useEffect(() => {
-        const productsDetails = products?.find(item => item?._id === productid);
-        setSingleProduct(productsDetails)
-    }, [productid])
+        const productDetails = products?.find(item => item?._id === productid);
+        setSingleProduct(productDetails);
+        setEditedProduct(productDetails);
+    }, [productid, products]);
 
-
-
-    const handleProductNameChange = (e) => {
-        setProductName(e.target.value);
-    };
-    const handleProductDescriptionChange = (e) => {
-        setProductDescription(e.target.value);
-    };
-    const handleProductStockChange = (e) => {
-        setProductStock(e.target.value);
-    };
-    const handleProductPriceChange = (e) => {
-        setProductPrice(e.target.value);
-    };
-    const handleCategoryChange = (e) => {
-        const selectedCategoryName = e.target.value;
-        console.log(selectedCategoryName)
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        console.log(value)
+        console.log(name)
+        setEditedProduct(prevProduct => ({
+            ...prevProduct,
+            [name]: value,
+        }));
     };
 
-    useEffect(() => {
-        setProductName(SingleProduct?.name);
-        setProductDescription(SingleProduct?.description);
-        setProductStock(SingleProduct?.stock);
-        setProductPrice(SingleProduct?.price);
-    }, [SingleProduct]);
+    
+    const handleImageChange = (index) => {
+        toast.success(<span style={{ fontWeight: 'bold' }}>Image Deleted</span>);
 
+        const updatedImages = [...editedProduct.image];
+        const updatedSingleProductImages = singleProduct.image.filter((_, i) => i !== index);
+        updatedImages.splice(index, 1); // Remove the image at the specified index
+        setSingleProduct(prevProduct => ({
+            ...prevProduct,
+            image: updatedSingleProductImages,
+        }));
 
+        setEditedProduct(prevProduct => ({
+            ...prevProduct,
+            image: updatedImages,
+        }));
+    };
+    const filteredCategory = singleProduct ? categories.filter(category => category._id === singleProduct.category) : [];
+    const filteredRelatedProducts = singleProduct ? products.filter(product => product.category === filteredCategory[0]?._id) : [];
 
-    const filteredcategory = categories.filter(categories => categories?._id === SingleProduct?.category);
-    console.log(filteredcategory[0]?.name)
-    const filteredRelatedProducts = products.filter(products => products?.category === filteredcategory[0]?._id);
+    // const handleUpdate = (event) => {
+    //     event.preventDefault();
+    //     console.log("Updated Product:", editedProduct);
+    // };
+
+    const handleUpdate = (event) => {
+        event.preventDefault();
+        const { _id, ...productData } = editedProduct;
+        fetch(`http://localhost:5000/api/updateProduct/${_id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(editedProduct),
+        })
+            .then((response) => {
+                    toast.success(<span style={{ fontWeight: 'bold' }}>Product updated successfully!</span>);
+                return response.json();
+            })
+            .catch((error) => {
+                console.error("Error updating product:", error);
+                // Optionally display an error message or perform other actions
+                toast.error(<span style={{ fontWeight: 'bold' }}>Error updating product!</span>);
+
+            });
+    };
 
 
     return (
         <form
-            className='py-10'>
+            className='py-10' >
             <div className="relative m-auto p-4 w-11/12 h-full md:h-auto">
                 <div className="relative p-4 bg-white rounded-lg  dark:bg-gray-800 sm:p-5">
                     <h5
@@ -86,8 +107,9 @@ const EditProduct = () => {
                                     id="name"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Write product name here"
-                                    value={productName}
-                                    onChange={handleProductNameChange}
+                                    value={editedProduct ? editedProduct.name : ''}
+                                    onChange={handleInputChange}
+
                                     required=""
                                 />
                             </div>
@@ -134,9 +156,9 @@ const EditProduct = () => {
                                             className=" p-2 block w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                                             required=""
                                             placeholder="Write product description here"
-                                            value={productDescription}
-                                            onChange={handleProductDescriptionChange}
-
+                                            value={editedProduct ? editedProduct.description : ''}
+                                            onChange={handleInputChange}
+                                            name="description"
                                         />
                                     </div>
                                 </div>
@@ -146,114 +168,37 @@ const EditProduct = () => {
                                     Product Images
                                 </span>
                                 <div className="grid grid-cols-4 gap-4  ">
-                                    <div className="relative p-9  bg-gray-100 rounded-lg dark:bg-gray-700">
-                                        <div>
-                                            {/* <div className=' p-4 border  flex justify-center items-center rounded-xl   cursor-pointer  '>
-                                                <img className='mix-blend-multiply ' src={`https://ucarecdn.com/${filteredProduct?.image}/`} alt="" />
-                                            </div> */}
-                                            <img
-                                                className='mix-blend-multiply w-full'
-                                                src={`https://ucarecdn.com/${SingleProduct?.image}/`}
-                                                alt="imac image"
-                                            />
-                                            <button
-                                                type="button"
-                                                className="absolute text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400 p-2 bg-red-200 rounded-full left-3 bottom-3"
-                                            >
-                                                <svg
-                                                    aria-hidden="true"
-                                                    className="w-5 h-5"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                    {singleProduct?.image.map((image, index) => (
+                                        <div key={index} className="relative rounded-lg ">
+                                            <div>
+                                                <img
+                                                    className='mix-blend-multiply w-full rounded-lg'
+                                                    src={`https://ucarecdn.com/${image}/`}
+                                                    alt={`Image ${index}`}
+                                                />
+                                                <button
+                                                    type="button"
+                                                    className="absolute text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400 p-2 bg-red-200 rounded-full left-3 bottom-3"
+                                                    onClick={() => handleImageChange(index)}
                                                 >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
+                                                    <svg
+                                                        aria-hidden="true"
+                                                        className="w-5 h-5"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/* <div className="relative p-2 bg-gray-100 rounded-lg dark:bg-gray-700">
+                                    ))}
 
-                                        <img
-                                            src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                            alt="imac image"
-                                        />
-                                        <button
-                                            type="button"
-                                            className="absolute text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400 bottom-1 left-1"
-                                        >
-                                            <svg
-                                                aria-hidden="true"
-                                                className="w-5 h-5"
-                                                fill="currentColor"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                            <span className="sr-only">Remove image</span>
-                                        </button>
-                                    </div>
-                                    <div className="relative p-2 bg-gray-100 rounded-lg dark:bg-gray-700">
-
-                                        <img
-                                            src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-back-image.png"
-                                            alt="imac image"
-                                        />
-                                        <button
-                                            type="button"
-                                            className="absolute text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400 bottom-1 left-1"
-                                        >
-                                            <svg
-                                                aria-hidden="true"
-                                                className="w-5 h-5"
-                                                fill="currentColor"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                            <span className="sr-only">Remove image</span>
-                                        </button>
-                                    </div>
-                                    <div className="relative p-2 bg-gray-100 rounded-lg dark:bg-gray-700">
-
-                                        <img
-                                            src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-side-image.png"
-                                            alt="imac image"
-                                        />
-                                        <button
-                                            type="button"
-                                            className="absolute text-red-600 dark:text-red-500 hover:text-red-500 dark:hover:text-red-400 bottom-1 left-1"
-                                        >
-                                            <svg
-                                                aria-hidden="true"
-                                                className="w-5 h-5"
-                                                fill="currentColor"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                            <span className="sr-only">Remove image</span>
-                                        </button>
-                                    </div> */}
                                 </div>
 
                             </div>
@@ -275,9 +220,8 @@ const EditProduct = () => {
                                         id="stock"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Write product stock here"
-                                        value={productStock}
-                                        onChange={handleProductStockChange}
-
+                                        value={editedProduct ? editedProduct.stock : ''}
+                                        onChange={handleInputChange}
                                         required=""
                                     />
                                 </div>
@@ -294,8 +238,8 @@ const EditProduct = () => {
                                         id="price"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Write product price here"
-                                        value={productPrice}
-                                        onChange={handleProductPriceChange}
+                                        value={editedProduct ? editedProduct.price : ''}
+                                        onChange={handleInputChange}
 
                                         required=""
                                     />
@@ -307,9 +251,9 @@ const EditProduct = () => {
                                     >
                                         Category
                                     </label>
-                                    <select onChange={handleCategoryChange} id="category" className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        <option value={filteredcategory[0]?.id}>
-                                            {filteredcategory[0]?.name}
+                                    <select onChange={handleInputChange} name="category" id="category" className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        <option value={filteredCategory[0]?.id}>
+                                            {filteredCategory[0]?.name}
                                         </option>
                                         {categories.map((cat) => (
                                             <option key={cat._id} value={cat._id}>
@@ -357,7 +301,7 @@ const EditProduct = () => {
 
                             <div className="w-full  flex items-center justify-between gap-3  mt-5 ">
                                 <button
-                                    type="submit"
+                                    onClick={handleUpdate}
                                     className="text-white w-full bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold   rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                 >
                                     Update product

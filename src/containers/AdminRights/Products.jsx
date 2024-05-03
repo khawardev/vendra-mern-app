@@ -33,8 +33,6 @@ export default function Rightbar() {
       fetch("http://localhost:5000/api/categories").then((res) => res.json()),
     ])
       .then(([productData, categoryData]) => {
-        console.log(productData, "productData");
-        console.log(categoryData, "categoriesData");
 
         setProductData(productData);
         setCategoryData(categoryData);
@@ -78,9 +76,11 @@ export default function Rightbar() {
     // Initialize DataTable when productData changes
     initializeDataTable();
   }, [productData]);
+  
   const handleEdit = (product) => {
     setEditProductId(product._id);
   };
+
   const handleSaveProduct = (editedProduct) => {
     const { _id, ...productData } = editedProduct;
     fetch(`http://localhost:5000/api/updateProduct/${_id}`, {

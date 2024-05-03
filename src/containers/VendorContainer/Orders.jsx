@@ -124,17 +124,17 @@ export default function Order() {
   }
 
   return (
-    <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
+    <div className="relative overflow-x-auto ">
       <div className="auth-inner" style={{ width: "auto" }}>
-        <div className="flex justify-between items-center mb-4">
-          <p className="my-4 text-2xl   font-extrabold ml-1">Order Details</p>
+        <div className=" my-16 text-center">
+          <p className=" text-4xl    font-extrabold ">Order Details</p>
 
-          <button
+          {/* <button
             onClick={logOut}
-            className="font-small bg-red-500 rounded py-1 px-2"
+            className="font-small bg-red-500 rounded-full py-1 px-2"
           >
             Logout
-          </button>
+          </button> */}
         </div>
         {Array.isArray(orderData) && orderData.length === 0 ? (
           <p>No orders available.</p>
@@ -171,22 +171,22 @@ export default function Order() {
                   <td className="text-white flex px-6 py-3 gap-2">
                     <button
                       href="#"
-                      className="font-medium bg-blue-500 rounded py-1 px-3"
+                      className="font-medium bg-blue-500 rounded-full py-[6px] px-3"
                       onClick={() => handleViewClick(order._id)}
 
                     >
                       <span className="flex justify-between items-center gap-2">
                         {/* {" "} */}
-                        <BiEditAlt size={16} /> View
+                        <BiEditAlt size={16} /> <b>View</b>
                       </span>
                     </button>
                     <button
                       href="#"
-                      className="font-medium bg-red-500 rounded py-1 px-3"
+                      className="font-medium bg-red-500 rounded-full py-[6px] px-3"
                       onClick={() => handleDeleteOrder(order._id)} // Assuming you have a function to handle delete
                     >
                       <span className="flex justify-between items-center gap-2">
-                        <BiTrash size={16} /> Delete
+                        <BiTrash size={16} /> <b>Delete</b>
                       </span>
                     </button>
                   </td>

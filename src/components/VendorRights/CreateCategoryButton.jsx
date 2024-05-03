@@ -120,7 +120,7 @@ const CreateCategoryButton = () => {
     return (
         <div>
             {/* w-5/6  */}
-            <button
+            {/* <button
                 type="button"
                 id="createProductButton"
                 data-modal-toggle="createProductModal"
@@ -129,6 +129,19 @@ const CreateCategoryButton = () => {
             >
 
                 <TbCategory size={17} />
+                Add Category
+            </button> */}
+
+
+            <button
+                type="button"
+                id="createProductButton"
+                data-modal-toggle="createProductModal"
+                className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                role="menuitem"
+                onClick={IsHiddenFunction}
+            >
+                <TbCategory size={14} />
                 Add Category
             </button>
             <div

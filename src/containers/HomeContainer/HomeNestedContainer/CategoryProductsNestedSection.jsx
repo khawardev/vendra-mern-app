@@ -86,18 +86,23 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
                                         )}
                                     </div>
                                 </div>
-                                <section className={` rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
-                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/`} alt="" />
+                                {/* <section className={` rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
+                                    <div className='upper  mt-4 ' onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                        <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                        <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  tracking-tight  '>{product.description}</p>
+                                    </div>
+                                </section> */}
+                                <section className={` rounded-xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                    <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
+                                    <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5   tracking-tight   '>{product.description}</p>
                                 </section>
-
 
                             </main>
                             <div></div>
                             <main  >
-                                <div className='upper  mt-4 ' onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
-                                    <span className=' md:leading-5 mb-3  text-lg leading-5 line-clamp-2 font-bold     hover:cursor-pointer hover:underline   Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className=' md:leading-5  leading-5 mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  tracking-tight  '>{product.description}</p>
-                                </div>
+                                
                                 <span className='flex items-center gap-1  mt-2  '>
                                     <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?._id)} />
                                 </span>

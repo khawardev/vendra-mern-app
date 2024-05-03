@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import  { useState } from "react";
 
 export default function EditProduct({ product, onSave, onCancel }) {
   const [editedProduct, setEditedProduct] = useState({

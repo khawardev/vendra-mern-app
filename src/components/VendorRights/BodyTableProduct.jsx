@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 // import EditProduct from './EditProduct';
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { Context } from "../../context/AppContext";
 import { useSelector } from 'react-redux';
 import { selectProducts } from '../../toolkit/Slices/ProductsSlice'
@@ -21,6 +21,11 @@ import { IoSaveOutline } from "react-icons/io5";
 import { CiSaveUp2 } from "react-icons/ci";
 import { MdSaveAlt } from "react-icons/md";
 import { IoImagesOutline } from "react-icons/io5";
+import { SlOptions } from "react-icons/sl";
+import { FaRegEdit } from "react-icons/fa";
+import { AiOutlineDelete } from "react-icons/ai";
+import { CiDiscount1 } from "react-icons/ci";
+import { MdOutlineSell } from "react-icons/md";
 
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
@@ -185,6 +190,36 @@ const BodyTableProduct = () => {
     };
 
 
+
+
+
+
+
+
+
+    const [showActions, setShowActions] = useState(false);
+    const dropdownRef = useRef(null);
+
+    const handleButtonClick = (productId) => {
+        setShowActions((prev) => ({
+            ...prev,
+            [productId]: !prev[productId],
+        }));
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        };
+    }, []);
+
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setShowActions(false);
+        }
+    };
+
     return (
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
@@ -246,18 +281,7 @@ const BodyTableProduct = () => {
             }
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" className="p-4">
-                        <div className="flex items-center">
-                            <input
-                                id="checkbox-all"
-                                type="checkbox"
-                                className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            />
-                            <label htmlFor="checkbox-all" className="sr-only">
-                                checkbox
-                            </label>
-                        </div>
-                    </th>
+                    
                     <th scope="col" className="p-4">
 
                     </th>
@@ -286,25 +310,16 @@ const BodyTableProduct = () => {
             </thead>
 
             <tbody>
+
+               
+
+
+
+
                 {records?.map((product) => (
                     <>
                         <tr key={product?._id} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                            <td className="p-4 w-4">
-                                <div className="flex items-center">
-                                    <input
-                                        id="checkbox-table-search-1"
-                                        type="checkbox"
-                                        onClick="event.stopPropagation()"
-                                        className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                    />
-                                    <label
-                                        htmlFor="checkbox-table-search-1"
-                                        className="sr-only"
-                                    >
-                                        checkbox
-                                    </label>
-                                </div>
-                            </td>
+                            
                             <td scope="row" className="px-4 py-3 w-[10%] font-medium text-gray-900 dark:text-white ">
                                 <div className="flex items-center    ">
                                     <img
@@ -350,108 +365,87 @@ const BodyTableProduct = () => {
                                 <div className="flex items-center space-x-4">
                                     <div className=' space-y-2'>
 
-                                        <button
-                                            onClick={() => Navigate(`/edit/${product?._id}`)}
-                                            type="button"
-                                            data-drawer-target="drawer-update-product"
-                                            data-drawer-show="drawer-update-product"
-                                            aria-controls="drawer-update-product"
-                                            className="py-2 px-3 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-4 w-4 mr-2 -ml-0.5"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                                aria-hidden="true"
-                                            >
-                                                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                            Update
 
-                                        </button>
-
-                                        <button
-                                            onClick={() => deleteProduct(product._id, product.name)}
-                                            type="button"
-                                            data-modal-target="delete-modal"
-                                            data-modal-toggle="delete-modal"
-                                            className="flex items-center transition-all ease-in text-red-700 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-4 w-4 mr-2 -ml-0.5"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                                aria-hidden="true"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                            Delete
-                                        </button>
-                                    </div>
-                                    <div className=' space-y-2'>
-                                        <button
-                                            onClick={() => {
-                                                handleAddToBestSell(
-                                                    product?._id,
-                                                    product?.name,
-                                                    product?.description,
-                                                    product?.price,
-                                                    product?.image,
-                                                    1
-                                                );
-                                                // setwishlistTragetid(product._id);
-                                            }}
-                                            // onClick={() => deleteProduct(product._id, product.name)}
-                                            type="button"
-                                            data-modal-target="delete-modal"
-                                            data-modal-toggle="delete-modal"
-                                            className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-orange-700 rounded-full hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
-                                        >
-                                            <FaFire />
-
-                                            Best Sell
-                                        </button>
-
-                                        <button
-                                            onClick={() => {
-                                                handleAddToDiscount(
-                                                    product?._id,
-                                                    product?.name,
-                                                    product?.description,
-                                                    product?.price,
-                                                    product?.image,
-                                                    1
-                                                );
-                                                handleModal();
-                                            }}
-
-                                            type="button"
-                                            data-drawer-target="drawer-update-product"
-                                            data-drawer-show="drawer-update-product"
-                                            aria-controls="drawer-update-product"
-                                            className="flex items-center gap-2 transition-all text-white ease-in  border border-green-600 bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-
-                                        // className="py-2 px-3 gap-2 flex items-center  transition-all ease-in text-sm font-medium text-center text-white bg-green-700 rounded-full hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                                        >
-
-                                            <MdDiscount /> Discount
-                                            {/* {isModalOpen ? <>
-                                                <IoClose className=' text-white' onClick={() => Navigate(() => handleModal(false))} /> <input  type="number" name="" id="" />
-                                            </> : <div className='flex justify-center items-center gap-2  text-white' onClick={() => Navigate(handleModal())}>
+                                        <div className="relative inline-block text-left" ref={dropdownRef} >
+                                            <div>
+                                                <button
+                                                   
+                                                    onClick={() => handleButtonClick(product._id)}
+                                                    className={`inline-flex justify-center p-2 rounded-full ${showActions[product._id] && "bg-gray-200"
+                                                        } border hover:bg-gray-200`}
+                                                >
+                                                    <SlOptions />
+                                                </button>
+                                            </div>
+                                            {showActions[product._id] &&  (
+                                                <div
+                                                    ref={dropdownRef}
+                                                    className="origin-top-right z-30  absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                    role="menu"
+                                                    aria-orientation="vertical"
+                                                    aria-labelledby="options-menu"
                                                     
-                                            </div>} */}
-                                        </button>
+                                                >
+                                                    <div className="py-1" role="none">
+                                                        <button
+                                                            className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                            role="menuitem"
+                                                            onClick={() => Navigate(`/edit/${product?._id}`)}
+                                                        >
+                                                            <FaRegEdit />   Edit
+                                                        </button>
+                                                        <button
+                                                            className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                            role="menuitem"
+                                                            onClick={() => deleteProduct(product._id, product.name)}
+                                                        >
+                                                            <AiOutlineDelete />  Delete
+                                                        </button>
+                                                        <button
+                                                            className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                            role="menuitem"
+                                                            onClick={() => {
+                                                                handleAddToBestSell(
+                                                                    product?._id,
+                                                                    product?.name,
+                                                                    product?.description,
+                                                                    product?.price,
+                                                                    product?.image,
+                                                                    1
+                                                                );
+                                                                // setwishlistTragetid(product._id);
+                                                            }}
+                                                        >
+                                                            <MdOutlineSell /> Best Sell
+                                                        </button>
+                                                        <button
+                                                            className="w-full  text-left gap-2 items-center flex px-4 py-2  text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                            role="menuitem"
+                                                            onClick={() => {
+                                                                handleAddToDiscount(
+                                                                    product?._id,
+                                                                    product?.name,
+                                                                    product?.description,
+                                                                    product?.price,
+                                                                    product?.image,
+                                                                    1
+                                                                );
+                                                                handleModal();
+                                                            }}
+                                                        >
+                                                            <CiDiscount1 stroke-width={0.4} /> Discount
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+
+                                     
+
+
+
+
 
 
                                     </div>

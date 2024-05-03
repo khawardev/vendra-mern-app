@@ -49,7 +49,7 @@ export const handleLoginSuccess = (data) => {
         window.location.href = "/";
     } else {
         console.log("Redirecting to user-account page...");
-        window.location.href = "/uploadcare";
+        window.location.href = "/vendorpanel";
     }
 };
 

@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, updateQuantity, setTotalSubtotal, selectCartItems, clearCart, selectProductQuantities } from '../toolkit/Slices/CartSlice';
 import { BsCartX } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/CartPage.scss';
 
 import { BsCreditCard2Front } from "react-icons/bs";
 import { CiDeliveryTruck } from "react-icons/ci";

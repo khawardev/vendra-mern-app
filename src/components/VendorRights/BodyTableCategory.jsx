@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import EditProduct from './EditProduct';
 import { useContext } from 'react'
 import { Context } from "../../context/AppContext";
 import { useSelector } from 'react-redux';
 import { selectProducts } from '../../toolkit/Slices/ProductsSlice'
-import { selectCategories } from '../../toolkit/Slices/CategoriesSlice'
+import { selectCategories, setCategories } from '../../toolkit/Slices/CategoriesSlice'
+import Swal from "sweetalert2";
+
 // import AnimateWrapper from '../WebScrapper/AnimateWrapper';
 // <AnimateWrapper key={category._id} transition={{ duration: 1, delay: i * .1 }} >
 // </AnimateWrapper>
@@ -16,6 +19,45 @@ const BodyTableCategory = () => {
 
     const categories = useSelector(selectCategories);
     const products = useSelector(selectProducts);
+
+
+    const deleteCategory = (categoryId, categoryName) => {
+        if (window.confirm(`Are you sure you want to delete the category "${categoryName}"?`)) {
+            fetch("http://localhost:5000/api/deleteCategory", {
+                method: "POST",
+                crossDomain: true,
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json", "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({
+                    categoryId: categoryId,
+                }),
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    } else {
+                        throw new Error(`Failed to delete category: ${res.status}`);
+                    }
+                })
+                .then((data) => {
+                    if (data.status === "Ok") {
+                        Swal.fire("Category Successfully Deleted");
+                        setCategories((categories) => categories.filter(Categories => Categories._id !== categoryId));
+                        // Handle UI updates or any other actions here
+                    } else {
+                        Swal.fire("Deletion Failed", "error");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error deleting category:", error);
+                });
+        }
+    };
+
+
+
 
     return (
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -70,7 +112,7 @@ const BodyTableCategory = () => {
                             {isHiddenEdit && <EditProduct />}
 
                             <div className="flex items-center space-x-4 " >
-                                <button
+                                {/* <button
                                     onClick={isHiddenEditFunction}
                                     type="button"
                                     data-drawer-target="drawer-update-product"
@@ -94,14 +136,14 @@ const BodyTableCategory = () => {
                                     </svg>
                                     Edit
 
-                                </button>
+                                </button> */}
 
                                 <button
-
+                                    onClick={() => deleteCategory(category._id, category.name)}
                                     type="button"
                                     data-modal-target="delete-modal"
                                     data-modal-toggle="delete-modal"
-                                    className="flex items-center transition-all w-full justify-center ease-in text-red-700 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                    className="flex items-center transition-all w-full justify-center ease-in text-red-700 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-3 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

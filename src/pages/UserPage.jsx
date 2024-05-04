@@ -88,11 +88,11 @@ const UserPage = () => {
     <div className=" w-11/12 m-auto md:py-16 md:px-12 py-6  md:border my-10 rounded-xl ">
       <section className='md:flex flex-row-reverse justify-between items-center'>
         <div className='rounded-full  md:mb-0 mb-6 flex justify-center'>
-          {/* <img src={User} className='rounded-full p-1 border-2 md:w-[75px] w-[130px]' alt="" /> */}
+          {/* <img src={User1} className='rounded-full p-1 border-2 md:w-[75px] w-[130px]' alt="" /> */}
         </div>
         <div>
-          <p className="text-lg text-gray-500  leading-3">Manage your account</p>
-          <p className="text-lg text-gray-500 my-3 leading-6">Click <span className="font-bold   text-black hover:cursor-pointer hover:underline hover:text-blue-500">here</span> to edit your information</p>
+          {/* <p className="text-lg text-gray-500  leading-3">Manage your account</p> */}
+          {/* <p className="text-lg text-gray-500 my-3 leading-16">Click <span className="font-bold   text-black hover:cursor-pointer hover:underline hover:text-blue-500">here</span> to edit your information</p> */}
         </div>
       </section>
 

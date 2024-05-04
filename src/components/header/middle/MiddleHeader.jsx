@@ -94,17 +94,17 @@ const MiddleHeader = () => {
           ) : (
             <>
               <div
-                className="md:bg-transparent bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
+                className="md:bg-transparent bg-slate-100 flex md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
                 onClick={() => Navigate("/vendoraccount")}
               >
                 <BsPerson size={28} />
-                <div className="lg:block hidden">
+                <div className="lg:block hidden ">
                   <span className="text-xs text-gray-800">Sign in</span> <br />
                   <p className="font-bold">Vendor</p>
                 </div>
               </div>
               <div
-                className="md:bg-transparent bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
+                  className="md:bg-transparent bg-slate-100 flex md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
                 onClick={() => Navigate("/account")}
               >
                 <BsPerson size={28} />

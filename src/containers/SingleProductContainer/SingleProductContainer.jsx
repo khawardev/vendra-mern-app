@@ -35,14 +35,14 @@ import { CiDiscount1 } from 'react-icons/ci';
 import fire from '../../assets/images/fire.svg'
 import { useContext } from 'react'
 import { Context } from "../../context/AppContext";
+import { selectExchangeRate } from '../../toolkit/Slices/CompareSlice';
 
 const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, BestSell, Discount, DiscountedPrice }) => {
+    const ExchangeRate = useSelector(selectExchangeRate);
 
     const [reviews, setReviews] = useState([]);
-    console.log("🚀 ~ SingleProductContainer ~ reviews:", reviews)
     const { isReviewload } = useContext(Context);
     const toolkitreviews = useSelector(selectReviews);
-    console.log("🚀 ~ SingleProductContainer ~ toolkitreviews:", toolkitreviews.flat())
 
     const dispatch = useDispatch();
     const comparedProducts = useSelector(selectCompare);
@@ -190,10 +190,10 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                             <div className='flex items-center gap-3'>
                                 {Discount === 'true' ?
                                     <>
-                                        <p className=" text-3xl font-bold   text-red-500"> ${DiscountedPrice}.00 </p>
-                                        <p className=" text-xl    text-gray-300 line-through"> ${filteredProduct?.price}.00 </p>
+                                        <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span>{DiscountedPrice}.00 </p>
+                                        <p className=" text-xl    text-gray-300 line-through"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span><span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}</span> </p>
                                     </>
-                                    : <p className=" text-3xl font-bold   text-red-500"> ${filteredProduct?.price}.00 </p>}
+                                    : <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}.00</span> </p>}
 
 
 

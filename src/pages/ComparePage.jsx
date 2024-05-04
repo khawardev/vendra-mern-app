@@ -8,9 +8,9 @@ import CategoryProductsNestedSection from '../containers/HomeContainer/HomeNeste
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { addToCart } from '../toolkit/Slices/CartSlice';
-
 import StarRatingAvg from '../containers/SingleProductContainer/StarRatingAvg'
 import { selectReviews } from '../toolkit/Slices/ReviewSlice';
+import { selectExchangeRate } from '../toolkit/Slices/CompareSlice';
 
 
 
@@ -19,6 +19,7 @@ const ComparePage = () => {
     const reviews = useSelector(selectReviews);
     const comparedProducts = useSelector(selectCompare);
     const dispatch = useDispatch();
+    const ExchangeRate = useSelector(selectExchangeRate);
 
     const handleRemovefromCompare = (id) => {
         toast.success(<span style={{ fontWeight: 'bold' }}>Removed from Compare</span>);
@@ -70,13 +71,14 @@ const ComparePage = () => {
                             <tr>
                                 <td className="border   px-4 py-2 font-bold uppercase">Price</td>
                                 {comparedProducts.map((product, index) => (
-                                    <td key={index} className="border   px-4 py-2">${product.price}</td>
+                                    <td key={index} className="border   px-4 py-2 font-bold"><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : '$'}</span> {ExchangeRate ? (ExchangeRate.value * product?.price).toFixed(0) : product?.price}</td>
+
                                 ))}
                             </tr>
                             <tr>
                                 <td className="border   px-4 py-2 font-bold uppercase">Stock</td>
                                 {comparedProducts.map((product, index) => (
-                                    <td key={index} className="border   px-4 py-2">{product.stock}</td>
+                                    <td key={index} className="border   px-4 py-2 font-bold">{product.stock}</td>
                                 ))}
                             </tr>
                             <tr>

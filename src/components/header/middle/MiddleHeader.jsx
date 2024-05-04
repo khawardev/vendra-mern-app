@@ -10,9 +10,11 @@ import logo from "../../../assets/images/logo.png";
 
 import { selectUsers } from "../../../toolkit/Slices/UserSlice";
 import { selectSingleUsers } from "../../../toolkit/Slices/UserSlice";
-
+import { selectExchangeRate } from '../../../toolkit/Slices/CompareSlice';
 const MiddleHeader = () => {
   const Navigate = useNavigate();
+  const ExchangeRate = useSelector(selectExchangeRate);
+
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   const userRole = window.localStorage.getItem("role");
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -146,7 +148,13 @@ const MiddleHeader = () => {
               {totalSubtotal !== 0 && (
                 <>
                   <span className="text-xs text-gray-800">Total</span> <br />
-                  <b>${totalSubtotal && totalSubtotal.toFixed(2)}</b>
+                  {/* <b>${totalSubtotal && totalSubtotal.toFixed(2)}</b> */}
+                  {/* <b> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}.00</span> </b>} */}
+                  <b>
+                    <span className='text-xs mr-1'>{ExchangeRate ? ExchangeRate.code : '$'}</span> 
+                     <span>{ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}</span>
+                  </b>
+
                 </>
               )}
             </div>

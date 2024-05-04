@@ -10,12 +10,16 @@ import { selectCategories } from '../toolkit/Slices/CategoriesSlice'
 const ViewSingleProductPage = () => {
     const { productid, BestSell, Discount, DiscountedPrice } = useParams();
     const products = useSelector(selectProducts);
-    const categories = useSelector(selectCategories);
-    
     const filteredProduct = products.filter(product => product?._id === productid);
+
+
+    const categories = useSelector(selectCategories);
     const filteredcategory = categories.filter(categories => categories?._id === filteredProduct[0]?.category);
     const filteredRelatedProducts = products.filter(products => products?.category === filteredcategory[0]?._id);
 
+
+
+    // const filteredRelatedProducts = filteredRelatedProducts.filter(product => product?.category === filteredProduct[0]?._id);
 
     return (
         <div>

@@ -27,9 +27,11 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { CiDiscount1 } from "react-icons/ci";
 import { MdOutlineSell } from "react-icons/md";
 import { MdDownload } from "react-icons/md";
+import { selectExchangeRate } from '../../toolkit/Slices/CompareSlice';
 
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
+    const ExchangeRate = useSelector(selectExchangeRate);
 
 
     const bestSelling = useSelector(selectbestSelling);
@@ -257,7 +259,7 @@ const BodyTableProduct = () => {
 
                                         />
 
-                                        <p className=' text-lg  font-bold  '>Price: ${discountedProducts[0]?.price}</p>
+                                        <p className=' text-lg  font-bold  '>Price: <span >$</span><span className=' text-xl'> { discountedProducts[0]?.price}</span></p>
                                         <p className='text-lg  font-bold  '>
                                             Discount : {calculateDiscountPercentage()}%
                                         </p>
@@ -353,10 +355,12 @@ const BodyTableProduct = () => {
                             </td>
                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div className="flex items-center">
-                                    <span className="bg-green-100 mr-1  text-green-800 text-xs font-medium flex justify-center items-center  h-4 w-4   rounded-full dark:bg-green-900 dark:text-green-300">
-                                        $
+                                    <span className="bg-green-100 mr-2  text-green-800 text-xs font-medium flex justify-center items-center  h-4 w-4   rounded-full dark:bg-green-900 dark:text-green-300">
+                                        {ExchangeRate ? ExchangeRate.code : '$'} 
                                     </span>
-                                    {product.price}
+                                    <span className=' text-sm'></span><span className=' text-xl'> </span>
+                                    {/* {product.price} */}
+                                     {ExchangeRate ? (ExchangeRate.value * product?.price).toFixed(0) : product?.price}
                                 </div>
 
                             </td>

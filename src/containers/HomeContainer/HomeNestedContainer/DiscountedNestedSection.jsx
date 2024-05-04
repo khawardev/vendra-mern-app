@@ -25,12 +25,13 @@ import toast from 'react-hot-toast';
 import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
 
+import { selectExchangeRate } from '../../../toolkit/Slices/CompareSlice';
 
 
 const DiscountedNestedSection = ({ sliceProducts, grid }) => {
 
     const reviews = useSelector(selectReviews);
-
+    const ExchangeRate = useSelector(selectExchangeRate);
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const discount = useSelector(selectdiscount);
@@ -98,7 +99,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                 <div>
 
                                     <div className='md:top-[-0.40rem]  top-[0.40rem] py-1   md:right-[-10px]   rounded-full    text-green-800 font-bold    bg-green-300 md:px-4 px-2 absolute z-10'>
-                                        {calculateDiscountPercentage(product?.price, product?.inputDescount)}%
+                                        {calculateDiscountPercentage(product.price, product?.inputDescount)}%
                                     </div>
                                     <div onClick={() => {
                                         handleAddToWishList(
@@ -145,8 +146,8 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                 </span>
                                 <div className='flex justify-between items-center '>
                                     <div className='md:flex justify-center items-center gap-2 '>
-                                        <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product?.inputDescount}</p>
-                                        <p className='  text-sm  font-bold  line-through  text-red-500 ' >${product?.price}</p>
+                                        <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span > <span className=' text-xl'>{product?.inputDescount}</span></p>
+                                        <p className='  text-sm  font-bold  line-through  text-red-500 ' >{ExchangeRate ? ExchangeRate.code : '$'}{ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</p>
                                     </div>
 
                                     <div onClick={() => {

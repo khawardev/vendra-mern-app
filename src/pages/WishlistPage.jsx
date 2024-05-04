@@ -11,12 +11,14 @@ import '../assets/styles/CartPage.scss';
 import { BsCart2 } from 'react-icons/bs';
 import { IoMdArrowForward } from "react-icons/io";
 import toast from 'react-hot-toast';
+import { selectExchangeRate } from '../toolkit/Slices/CompareSlice';
 
 // import { addToWishlist, removeFromWishlist, clearWishlist, selectWishlistItems } from './wishlistSlice';
 
 const WishlistPage = () => {
     const dispatch = useDispatch();
     const Navigate = useNavigate();
+    const ExchangeRate = useSelector(selectExchangeRate);
 
     const wishlistItems = useSelector(selectWishlistItems);
     const handleRemoveFromWishlist = (productId) => {
@@ -96,8 +98,9 @@ const WishlistPage = () => {
                                     </td>
 
                                     <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <div className="flex items-center font-bold   text-gray-500">
-                                            ${WishlistItems?.price}
+                                        <div className=" font-bold   text-gray-500">
+                                            <span className=" text-xs">{ExchangeRate ? ExchangeRate.code : '$'}</span> {ExchangeRate ? (ExchangeRate.value * WishlistItems?.price).toFixed(0) : WishlistItems?.price}
+
                                         </div>
                                     </td>
 

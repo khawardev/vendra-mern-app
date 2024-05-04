@@ -19,12 +19,13 @@ import toast from 'react-hot-toast';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
-
+import { addToExchange, selectExchangeRate } from '../../../toolkit/Slices/CompareSlice';
 
 
 const NewProductsNestedSection = ({ sliceProducts, grid }) => {
 
     const reviews = useSelector(selectReviews);
+    const ExchangeRate = useSelector(selectExchangeRate);
 
     const Navigate = useNavigate();
     const dispatch = useDispatch();
@@ -115,7 +116,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                 </span>
                                 <div className='flex justify-between items-center '>
 
-                                    <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
+                                    <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
                                     
                                     <div onClick={() => {
                                         handleAddToCart(

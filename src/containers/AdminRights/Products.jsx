@@ -18,6 +18,7 @@ import "datatables.net-buttons/js/buttons.colVis.min.js"; // For Excel button
 // For PDF butto
 // pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import EditProduct from "./EditProduct"; // Update the path as per your folder structure
+import { selectExchangeRate } from '../../toolkit/Slices/CompareSlice';
 
 export default function Rightbar() {
   //setting state
@@ -26,6 +27,7 @@ export default function Rightbar() {
   const [editProductId, setEditProductId] = useState(null); // Update the variable name
   const [productData, setProductData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const ExchangeRate = useSelector(selectExchangeRate);
 
   useEffect(() => {
     Promise.all([
@@ -219,7 +221,7 @@ export default function Rightbar() {
                   </td>
                   <td className="px-6 py-4">{product.name}</td>
                   <td className="px-6 py-4">{product.description}</td>
-                  <td className="px-6 py-4">${product.price}</td>
+                <td className="px-6 py-4">{ExchangeRate ? ExchangeRate.code : '$'}{ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</td>
                   <td className="px-6 py-4">{product.category}</td>
                   <td className="text-white flex px-6 py-3 gap-2">
                     <button

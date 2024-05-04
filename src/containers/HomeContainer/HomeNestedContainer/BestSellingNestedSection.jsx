@@ -24,10 +24,12 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
 import fire from '../../../assets/images/fire.svg'
+import { selectExchangeRate } from '../../../toolkit/Slices/CompareSlice';
 
 
 const BestSellingNestedSection = ({ sliceProducts, grid }) => {
     const reviews = useSelector(selectReviews);
+    const ExchangeRate = useSelector(selectExchangeRate);
 
     const Navigate = useNavigate();
     const dispatch = useDispatch();
@@ -129,7 +131,9 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                 </span>
                                 <div className='flex justify-between items-center '>
                                     <div className='md:flex justify-center items-center gap-2 '>
-                                        <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p>
+                                        <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
+
+                                        {/* <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p> */}
                                     </div>
 
                                     <div onClick={() => {

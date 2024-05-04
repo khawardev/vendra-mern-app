@@ -9,7 +9,6 @@ import Select from 'react-select'
 const CurencyConverter = () => {
     const [selectedCurrency, setSelectedCurrency] = useState('');
     const dispatch = useDispatch();
-    const ExchangeRate = useSelector(selectExchangeRate);
 
     useEffect(() => {
         const currencyApi = new CurrencyAPI('cur_live_zo3SNsyrE33qwfyIRATycSlvKygALqHT97nNiEtj');
@@ -21,7 +20,7 @@ const CurencyConverter = () => {
                     currencies: selectedCurrency.trim()
                 });
                 console.log(response?.data[selectedCurrency]);
-                // dispatch(addToExchange(response?.data[selectedCurrency]);
+                dispatch(addToExchange(response?.data[selectedCurrency]))
             } catch (error) {
                 console.error('Error fetching latest rates:', error);
             }

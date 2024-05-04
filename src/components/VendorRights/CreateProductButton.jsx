@@ -11,7 +11,6 @@ import { LuUploadCloud } from "react-icons/lu";
 
 const CreateProductButton = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-    console.log( selectedFile)
     const [uploading, setUploading] = useState(false);
     const [uploadingProduct, setUploadingProduct] = useState(false);
     const [name, setName] = useState("");
@@ -24,7 +23,6 @@ const CreateProductButton = () => {
     const fileInputRef = useRef(null);
     const categories = useSelector(selectCategories);
     const [Thankyou, setThankyou] = useState(false)
-    console.log(imageuuid);
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {

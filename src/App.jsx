@@ -55,7 +55,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<HomePage />} />
             <Route exact path='/account' element={<AuthPage />} />
-            <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} />
+            {/* <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} /> */}
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/vendorpanel' element={<VendorPanelPage />} />

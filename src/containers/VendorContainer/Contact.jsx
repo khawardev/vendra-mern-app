@@ -71,20 +71,21 @@ export default function Contact() {
   }
 
   return (
-    <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
+    <div className="relative overflow-x-auto ">
       <div className="auth-inner" style={{ width: "auto" }}>
-        <div className="flex justify-between items-center mb-4">
-          <p className="my-4 text-2xl   font-extrabold ml-1">Contact Details</p>
+        <div className=" my-16 text-center">
+          {/* <p className=" text-4xl    font-extrabold ">Contact Details</p> */}
+          <p className=' font-bold   text-6xl  text-center my-12'>Contact Details</p>
 
-          <button
+          {/* <button
             onClick={logOut}
             className="font-small bg-red-500 rounded py-1 px-2"
           >
             Logout
-          </button>
+          </button> */}
         </div>
         {Array.isArray(contactData) && contactData.length === 0 ? (
-          <p>No Contacts.</p>
+          <p>Loading Contacts...</p>
         ) : (
           <table ref={tableRef} className="w-full text-sm text-left">
             <thead>

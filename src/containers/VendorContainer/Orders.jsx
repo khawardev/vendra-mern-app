@@ -17,6 +17,7 @@ import "datatables.net-buttons/js/buttons.colVis.min.js";
 import { BiTrash } from "react-icons/bi";
 import OrderDetailsContainer from './OrderDetailsContainer';
 // pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import { GrView } from "react-icons/gr";
 
 export default function Order() {
   const [orderData, setOrderData] = useState([]);
@@ -127,7 +128,8 @@ export default function Order() {
     <div className="relative overflow-x-auto ">
       <div className="auth-inner" style={{ width: "auto" }}>
         <div className=" my-16 text-center">
-          <p className=" text-4xl    font-extrabold ">Order Details</p>
+          {/* <p className=" text-4xl    font-extrabold ">Order Details</p> */}
+          <p className=' font-bold   text-6xl  text-center my-12'>Order Details</p>
 
           {/* <button
             onClick={logOut}
@@ -137,7 +139,7 @@ export default function Order() {
           </button> */}
         </div>
         {Array.isArray(orderData) && orderData.length === 0 ? (
-          <p>No orders available.</p>
+          <p>Loading Orders ....</p>
         ) : (
           <table ref={tableRef} className="w-full text-sm text-left">
             <thead>
@@ -168,25 +170,25 @@ export default function Order() {
                     {order.products.map((product) => product.name).join(", ")}
                   </td>
                   <td className="px-6 py-4">{order.status}</td>
-                  <td className="text-white flex px-6 py-3 gap-2">
+                  <td className=" flex px-6 py-3 gap-2">
                     <button
                       href="#"
-                      className="font-medium bg-blue-500 rounded-full py-[6px] px-3"
+                      className="font-medium  rounded-full "
                       onClick={() => handleViewClick(order._id)}
 
                     >
-                      <span className="flex justify-between items-center gap-2">
+                      <span className="flex justify-between items-center gap-2  p-3 bg-blue-200 rounded-md">
                         {/* {" "} */}
-                        <BiEditAlt size={16} /> <b>View</b>
+                        <GrView size={16} />
                       </span>
                     </button>
                     <button
                       href="#"
-                      className="font-medium bg-red-500 rounded-full py-[6px] px-3"
+                      className="   hover:underline"
                       onClick={() => handleDeleteOrder(order._id)} // Assuming you have a function to handle delete
                     >
-                      <span className="flex justify-between items-center gap-2">
-                        <BiTrash size={16} /> <b>Delete</b>
+                      <span className="flex justify-between items-center gap-1 p-3 bg-red-200 rounded-md">
+                        <BiTrash size={16} />
                       </span>
                     </button>
                   </td>

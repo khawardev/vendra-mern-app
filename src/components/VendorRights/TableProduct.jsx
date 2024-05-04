@@ -18,6 +18,7 @@ import { CiDiscount1 } from "react-icons/ci";
 import { MdOutlineSell } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 import { LuContact } from "react-icons/lu";
+import { CgArrowsExchangeAlt } from "react-icons/cg";
 
 
 const TableProduct = () => {
@@ -64,7 +65,7 @@ const TableProduct = () => {
                         <div className="  flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-8  dark:border-gray-700">
                             <div className='w-full  flex items-center  gap-3   '>
 
-                                <button
+                                {/* <button
                                     onClick={toggleProduct}
                                     type="button"
                                     id="createProductButton"
@@ -73,7 +74,7 @@ const TableProduct = () => {
                                 >
                                     <FaCircle size={12} />
                                     {isDropdownVisible ? 'View Products' : 'View Category'}
-                                </button>
+                                </button> */}
 
                             </div>
 
@@ -103,9 +104,9 @@ const TableProduct = () => {
 
                                         >
                                             <div className="py-1" role="none">
-                                                
-                                                    <CreateProductButton />
-                                                    <CreateCategoryButton />
+
+                                                <CreateProductButton />
+                                                <CreateCategoryButton />
 
                                                 <button
                                                     className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -119,14 +120,24 @@ const TableProduct = () => {
                                                     role="menuitem"
                                                     onClick={() => Navigate("/ContactManage")}
                                                 >
-                                                    <LuContact  /> Contact Manage
+                                                    <LuContact /> Contact Manage
+                                                </button>
+                                                <button
+                                                    onClick={toggleProduct}
+                                                    type="button"
+                                                    id="createProductButton"
+                                                    data-modal-toggle="createProductModal"
+                                                    className="w-full  text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                >
+                                                    <CgArrowsExchangeAlt size={20} />
+                                                    {isDropdownVisible ? 'View Products' : 'View Category'}
                                                 </button>
                                             </div>
                                         </div>
                                     )}
                                 </div>
-                               
-                         </div>
+
+                            </div>
                         </div>
                         <div className="overflow-x-auto">
                             {isDropdownVisible ? <BodyTableCategory /> : <BodyTableProduct />}

@@ -26,6 +26,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CiDiscount1 } from "react-icons/ci";
 import { MdOutlineSell } from "react-icons/md";
+import { MdDownload } from "react-icons/md";
 
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
@@ -229,14 +230,20 @@ const BodyTableProduct = () => {
                     <>
                         <div className={`fixed inset-0 z-50 bg-black/50 ${isModalOpen ? 'fadeIn' : 'fadeOut'}`} >
                             <div className="flex items-center justify-center h-2/3">
-                                <div className="bg-green-700 p-6 rounded-2xl shadow-lg sm:w-1/3 w-11/12 transition-opacity ease-in-out duration-1000">
-
-                                    <h2 className="text-xl   font-semibold  text-slate-100">Enter Discount of Product</h2>
-                                    <h2 className="text-sm mb-4 text-slate-200">{discountedProducts[0]?.name}</h2>
-                                    <div className='flex gap-3 items-center'>
+                                
+                                <div className="bg-white p-6 rounded-2xl shadow-lg sm:w-1/3 w-11/12 transition-opacity ease-in-out duration-1000">
+                                  
+                                    <div className=' flex justify-end'>
+                                        <button className='p-2    rounded-full  bg-gray-200  hover:bg-gray-30' onClick={handleModal}>
+                                            <IoClose size={18} />
+                                        </button>
+                                    </div>
+                                    <h2 className="text-xl   font-semibold  mb-3">Enter Discount Price of Product</h2>
+                                    <h2 className="text-sm mb-4 text-gray-600">{discountedProducts[0]?.name}</h2>
+                                    <div className='flex gap-3 items-center my-6'>
                                         <input
                                             type="number"
-                                            className='py-2 search-input-header outline-none px-2 rounded-full'
+                                            className='py-2 search-input-header outline-none px-2 rounded-full border'
                                             autoFocus
                                             placeholder='Discounted price'
                                             value={discountedPriceInput}
@@ -250,15 +257,13 @@ const BodyTableProduct = () => {
 
                                         />
 
-                                        <p className='text-white text-lg  font-bold  '>Price: ${discountedProducts[0]?.price}</p>
-                                        <p className='text-white text-lg  font-bold  '>
+                                        <p className=' text-lg  font-bold  '>Price: ${discountedProducts[0]?.price}</p>
+                                        <p className='text-lg  font-bold  '>
                                             Discount : {calculateDiscountPercentage()}%
                                         </p>
                                     </div>
-                                    <div className="flex justify-end gap-2 items-center">
-                                        <button className=' shadow-xl p-2 flex items-center justify-center gap-1  rounded-full  bg-green-600  text-white hover:bg-green-500' onClick={handleModal}>
-                                            <IoClose size={18} />
-                                        </button>
+                                    <div className="flex justify-start gap-2 items-center">
+                                       
                                         <button onClick={() => {
                                             handleSave(
                                                 discountedProducts[0]?.id,
@@ -268,8 +273,8 @@ const BodyTableProduct = () => {
                                                 discountedProducts[0]?.imageurl,
                                                 discountedPriceInput,
                                             );
-                                        }} disabled={isSaveButtonDisabled} className='shadow-xl  px-5 py-2 flex items-center justify-center gap-1    rounded-full bg-green-500 text-white hover:bg-green-600'>
-                                            <MdSaveAlt /> save
+                                        }} disabled={isSaveButtonDisabled} className='  px-5 py-2 flex items-center justify-center gap-1    rounded-full bg-blue-500 font-bold text-white hover:bg-blue-600'>
+                                            <MdDownload  /> Save
                                         </button>
                                     </div>
                                 </div>
@@ -371,7 +376,7 @@ const BodyTableProduct = () => {
                                                 <button
                                                    
                                                     onClick={() => handleButtonClick(product._id)}
-                                                    className={`inline-flex justify-center p-2 rounded-full ${showActions[product._id] && "bg-gray-200"
+                                                    className={`inline-flex justify-center p-2 rounded-md ${showActions[product._id] && "bg-gray-200"
                                                         } border hover:bg-gray-200`}
                                                 >
                                                     <SlOptions />

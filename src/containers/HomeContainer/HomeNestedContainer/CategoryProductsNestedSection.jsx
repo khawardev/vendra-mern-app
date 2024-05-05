@@ -104,13 +104,13 @@ const CategoryProductsNestedSection = ({ filteredProducts, grid, name }) => {
                             </main>
                             <div></div>
                             <main  >
-                                
+
                                 <span className='flex items-center gap-1  mt-2  '>
                                     <StarRatingAvg reviews={reviews.flat().filter(review => review.productid === product?._id)} />
                                 </span>
                                 <div className='flex justify-between items-center '>
                                     {/* <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p> */}
-                                    <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
+                                    <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
 
                                     <div onClick={() => {
                                         handleAddToCart(

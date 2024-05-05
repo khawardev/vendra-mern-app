@@ -20,6 +20,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { LuContact } from "react-icons/lu";
 import { CgArrowsExchangeAlt } from "react-icons/cg";
 
+import { FaListUl } from "react-icons/fa6";
 
 const TableProduct = () => {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -89,9 +90,9 @@ const TableProduct = () => {
 
                                             onClick={() => handleButtonClick()}
                                             className={`inline-flex justify-center p-4 rounded-md ${showActions && "bg-gray-200"
-                                                } border hover:bg-gray-200`}
+                                                } border hover:bg-gray-200 bg-gray-100`}
                                         >
-                                            <SlOptionsVertical />
+                                            <FaListUl />
                                         </button>
                                     </div>
                                     {showActions && (

@@ -98,7 +98,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                             <main>
                                 <div>
 
-                                    <div className='md:top-[-0.40rem]  top-[0.40rem] py-1   md:right-[-10px]   rounded-full    text-green-800 font-bold    bg-green-300 md:px-4 px-2 absolute z-10'>
+                                    <div className='md:top-[-0.40rem]  top-[0.40rem] py-1   md:right-[-10px]   rounded-full    text-green-800 font-bold    bg-green-300 md:px-3 px-2 absolute z-10'>
                                         {calculateDiscountPercentage(product.price, product?.inputDescount)}%
                                     </div>
                                     <div onClick={() => {
@@ -107,19 +107,20 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                             product.name,
                                             product.desc,
                                             product.inputDescount,
-                                            product.imageurl[0],
+                                            product.imageurl,
                                             1
                                         );
                                         setwishlistTragetid(product._id);
-                                    }} className='md:top-[13rem] top-[10.80rem] md:right-[10px] right-[10px]  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
+                                    }} className='md:top-[14.5rem]  top-[10.80rem] md:right-[10px] right-[10px]  bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
                                         {wishlistloading && wishlistTragetid == product._id ? (
                                             <HiOutlineCheck size={20} />
                                         ) : (
                                             <VscHeart size={20} />
                                         )}
                                         {RemovedProductIds.includes(product.id) && (
-                                            <div className='md:top-[-0.0rem] top-[0.40rem] p-[8px] md:left-[-40px]    rounded-full    text-orange-700 bg-orange-300  absolute z-10'>
-                                                <FaFire />
+                                            <div className='md:top-[-0.1rem] top-[0.40rem] p-[4px] md:left-[-40px]    rounded-full    text-orange-700 bg-orange-300  absolute z-10'>
+                                                <img src="   https://cdn-icons-png.flaticon.com/512/4715/4715576.png " className=' w-[26px]' alt="" />
+
                                             </div>
                                         )}
                                     </div>
@@ -129,7 +130,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
 
                                 </div>
                                 <section className={` rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${RemovedProductIds.includes(product.id) ? true : false}/${true}/${product?.inputDescount}`)}>
-                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.imageurl[0]}/`} alt="" />
+                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.imageurl[0]}/-/scale_crop/500x500/`} alt="" />
                                 </section>
 
 
@@ -146,8 +147,8 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                 </span>
                                 <div className='flex justify-between items-center '>
                                     <div className='md:flex justify-center items-center gap-2 '>
-                                        <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span > <span className=' text-xl'>{product?.inputDescount}</span></p>
-                                        <p className='  text-sm  font-bold  line-through  text-red-500 ' >{ExchangeRate ? ExchangeRate.code : '$'}{ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</p>
+                                        <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span > <span className=' text-xl'>{product?.inputDescount}</span></p>
+                                        <p className='  text-sm  font-bold  line-through  text-red-500 ' >{ExchangeRate ? ExchangeRate.code : 'USD'} {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</p>
                                     </div>
 
                                     <div onClick={() => {
@@ -156,7 +157,7 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                             product?.name,
                                             product?.desc,
                                             product?.inputDescount,
-                                            product?.imageurl[0],
+                                            product?.imageurl,
                                             1
                                         );
                                         setcartTragetid(product.id);

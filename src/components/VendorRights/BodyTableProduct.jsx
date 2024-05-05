@@ -28,6 +28,7 @@ import { CiDiscount1 } from "react-icons/ci";
 import { MdOutlineSell } from "react-icons/md";
 import { MdDownload } from "react-icons/md";
 import { selectExchangeRate } from '../../toolkit/Slices/CompareSlice';
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 const itemsPerPage = 10;
 const BodyTableProduct = () => {
@@ -232,9 +233,9 @@ const BodyTableProduct = () => {
                     <>
                         <div className={`fixed inset-0 z-50 bg-black/50 ${isModalOpen ? 'fadeIn' : 'fadeOut'}`} >
                             <div className="flex items-center justify-center h-2/3">
-                                
+
                                 <div className="bg-white p-6 rounded-2xl shadow-lg sm:w-1/3 w-11/12 transition-opacity ease-in-out duration-1000">
-                                  
+
                                     <div className=' flex justify-end'>
                                         <button className='p-2    rounded-full  bg-gray-200  hover:bg-gray-30' onClick={handleModal}>
                                             <IoClose size={18} />
@@ -259,13 +260,13 @@ const BodyTableProduct = () => {
 
                                         />
 
-                                        <p className=' text-lg  font-bold  '>Price: <span >$</span><span className=' text-xl'> { discountedProducts[0]?.price}</span></p>
+                                        <p className=' text-lg  font-bold  '>Price: <span >$</span><span className=' text-xl'> {discountedProducts[0]?.price}</span></p>
                                         <p className='text-lg  font-bold  '>
                                             Discount : {calculateDiscountPercentage()}%
                                         </p>
                                     </div>
                                     <div className="flex justify-start gap-2 items-center">
-                                       
+
                                         <button onClick={() => {
                                             handleSave(
                                                 discountedProducts[0]?.id,
@@ -276,7 +277,7 @@ const BodyTableProduct = () => {
                                                 discountedPriceInput,
                                             );
                                         }} disabled={isSaveButtonDisabled} className='  px-5 py-2 flex items-center justify-center gap-1    rounded-full bg-blue-500 font-bold text-white hover:bg-blue-600'>
-                                            <MdDownload  /> Save
+                                            <IoCheckmarkCircleOutline size={17}  /> Save
                                         </button>
                                     </div>
                                 </div>
@@ -288,7 +289,7 @@ const BodyTableProduct = () => {
             }
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    
+
                     <th scope="col" className="p-4">
 
                     </th>
@@ -318,7 +319,7 @@ const BodyTableProduct = () => {
 
             <tbody>
 
-               
+
 
 
 
@@ -326,7 +327,7 @@ const BodyTableProduct = () => {
                 {records?.map((product) => (
                     <>
                         <tr key={product?._id} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 ">
-                            
+
                             <td scope="row" className="px-4 py-3 w-[10%] font-medium text-gray-900 dark:text-white ">
                                 <div className="flex items-center    ">
                                     <img
@@ -356,11 +357,11 @@ const BodyTableProduct = () => {
                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div className="flex items-center">
                                     <span className="bg-green-100 mr-2  text-green-800 text-xs font-medium flex justify-center items-center  h-4 w-4   rounded-full dark:bg-green-900 dark:text-green-300">
-                                        {ExchangeRate ? ExchangeRate.code : '$'} 
+                                        {ExchangeRate ? ExchangeRate.code : 'USD'}
                                     </span>
                                     <span className=' text-sm'></span><span className=' text-xl'> </span>
                                     {/* {product.price} */}
-                                     {ExchangeRate ? (ExchangeRate.value * product?.price).toFixed(0) : product?.price}
+                                    {ExchangeRate ? (ExchangeRate.value * product?.price).toFixed(0) : product?.price}
                                 </div>
 
                             </td>
@@ -378,7 +379,7 @@ const BodyTableProduct = () => {
                                         <div className="relative inline-block text-left" ref={dropdownRef} >
                                             <div>
                                                 <button
-                                                   
+
                                                     onClick={() => handleButtonClick(product._id)}
                                                     className={`inline-flex justify-center p-2 rounded-md ${showActions[product._id] && "bg-gray-200"
                                                         } border hover:bg-gray-200`}
@@ -386,14 +387,14 @@ const BodyTableProduct = () => {
                                                     <SlOptions />
                                                 </button>
                                             </div>
-                                            {showActions[product._id] &&  (
+                                            {showActions[product._id] && (
                                                 <div
                                                     ref={dropdownRef}
                                                     className="origin-top-right z-30  absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                                     role="menu"
                                                     aria-orientation="vertical"
                                                     aria-labelledby="options-menu"
-                                                    
+
                                                 >
                                                     <div className="py-1" role="none">
                                                         <button
@@ -450,7 +451,7 @@ const BodyTableProduct = () => {
                                         </div>
 
 
-                                     
+
 
 
 

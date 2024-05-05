@@ -311,7 +311,7 @@ const CheckoutPage = () => {
                                 <main className='my-3 flex justify-between items-center'>
                                     <p className=' flex items-center   w-10/12'>{productQuantity[index]} <div className='mx-1'>x</div> <span className='text-gray-500 line-clamp-1'> {cartItems.name}</span></p>
                                     {/* <p className=' text-gray-500'>${cartItems.price}</p> */}
-                                    <p className=' flex items-center  gap-1'><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : '$'}</span> {ExchangeRate ? (ExchangeRate.value * cartItems?.price).toFixed(0) : cartItems?.price}</p>
+                                    <p className=' flex items-center  gap-1'><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> {ExchangeRate ? (ExchangeRate.value * cartItems?.price).toFixed(0) : cartItems?.price}</p>
 
                                 </main>
                             </div>
@@ -322,14 +322,14 @@ const CheckoutPage = () => {
                                 <p className='font-bold '>10% Coupon Discount </p>
                                 <div className='flex justify-between items-center gap-2'>
                                     {/* <p>-${(totalSubtotal * 0.1).toFixed(2)}</p> */}
-                                    <p  >- <span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : '$'} </span>{ExchangeRate ? (ExchangeRate.value * totalSubtotal * 0.1).toFixed(0) : totalSubtotal * 0.1.toFixed(0)} </p>
+                                    <p  >- <span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'} </span>{ExchangeRate ? (ExchangeRate.value * totalSubtotal * 0.1).toFixed(0) : totalSubtotal * 0.1.toFixed(0)} </p>
 
                                 </div>
                             </main>
                         )}
                         <main className='my-3 flex justify-between items-center'>
                             <p className='font-bold   text-lg'>Subtotal</p>
-                            <p className=' font-bold   text-xl  '><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : '$'} </span> {discountApplied === 'true' ? `${ExchangeRate ? (ExchangeRate.value * (totalSubtotal - (totalSubtotal * 0.1))).toFixed(0) : totalSubtotal - (totalSubtotal * 0.1).toFixed(2)}  ` : `${ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}`}</p>
+                            <p className=' font-bold   text-xl  '><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'} </span> {discountApplied === 'true' ? `${ExchangeRate ? (ExchangeRate.value * (totalSubtotal - (totalSubtotal * 0.1))).toFixed(0) : totalSubtotal - (totalSubtotal * 0.1).toFixed(2)}  ` : `${ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}`}</p>
 
                             {/* <p>${discountApplied === 'true' ? `${(totalSubtotal - (totalSubtotal * 0.1)).toFixed(2)}` : `${totalSubtotal}`}</p> */}
                         </main>
@@ -392,7 +392,7 @@ const CheckoutPage = () => {
                         <main className=' flex justify-between items-center  '>
 
                             <p className='font-bold   text-lg'>Total</p>
-                            <p className=' font-bold   text-xl  '><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : '$'} </span> {discountApplied === 'true' ? `${ExchangeRate ? (ExchangeRate.value * (totalSubtotal - (totalSubtotal * 0.1))).toFixed(0) : totalSubtotal - (totalSubtotal * 0.1).toFixed(2)}  ` : `${ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}`}</p>
+                            <p className=' font-bold   text-xl  '><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'} </span> {discountApplied === 'true' ? `${ExchangeRate ? (ExchangeRate.value * (totalSubtotal - (totalSubtotal * 0.1))).toFixed(0) : totalSubtotal - (totalSubtotal * 0.1).toFixed(2)}  ` : `${ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}`}</p>
 
                             {/* <p className=' font-bold   text-xl  '>${discountApplied === 'true' ? `${(totalSubtotal - (totalSubtotal * 0.1)).toFixed(2)}` : `${totalSubtotal}`}</p> */}
                         </main>

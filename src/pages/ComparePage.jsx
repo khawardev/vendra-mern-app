@@ -71,7 +71,7 @@ const ComparePage = () => {
                             <tr>
                                 <td className="border   px-4 py-2 font-bold uppercase">Price</td>
                                 {comparedProducts.map((product, index) => (
-                                    <td key={index} className="border   px-4 py-2 font-bold"><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : '$'}</span> {ExchangeRate ? (ExchangeRate.value * product?.price).toFixed(0) : product?.price}</td>
+                                    <td key={index} className="border   px-4 py-2 font-bold"><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> {ExchangeRate ? (ExchangeRate.value * product?.price).toFixed(0) : product?.price}</td>
 
                                 ))}
                             </tr>

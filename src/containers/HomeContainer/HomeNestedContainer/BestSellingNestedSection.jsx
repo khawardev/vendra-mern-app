@@ -18,9 +18,7 @@ import { HiOutlineCheck } from "react-icons/hi";
 import { FaFire } from "react-icons/fa";
 import { IoMdArrowForward } from "react-icons/io";
 import toast from 'react-hot-toast';
-
 import { MdOutlineErrorOutline } from "react-icons/md";
-
 import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
 import fire from '../../../assets/images/fire.svg'
@@ -82,8 +80,8 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                         <article key={product?.id} className="cursor-pointer  select-none flex flex-col justify-between  Parent-Col-Hover relative">
                             <main>
                                 <div>
-                                    <div className='md:top-[0.80rem]  top-[0.40rem]    md:right-[10px]   absolute z-10'>
-                                        <img src={fire} className=' w-[26px]' alt="" />
+                                    <div className='md:top-[-1rem]  top-[0.20rem]    md:right-[-10px]   absolute z-10'>
+                                        <img src="   https://cdn-icons-png.flaticon.com/512/4715/4715576.png " className=' w-[36px]' alt="" />
                                     </div>
 
 
@@ -93,11 +91,11 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                             product.name,
                                             product.desc,
                                             product.price,
-                                            product.imageurl[0],
+                                            product.imageurl,
                                             1
                                         );
                                         setwishlistTragetid(product.id);
-                                    }} className='md:top-[13rem] top-[10.80rem] md:right-[10px] right-[10px]    bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
+                                    }} className='md:top-[14.5rem] top-[10.80rem] md:right-[10px] right-[10px]    bg-gray-300 hover:bg-gray-200 rounded-full  p-[0.40rem] absolute  cursor-pointer z-10'>
                                         {wishlistloading && wishlistTragetid == product.id ? (
                                             <HiOutlineCheck size={20} />
                                         ) : (
@@ -114,7 +112,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
 
 
                                 <section className={` rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${true}/${false}/bestSell`)}>
-                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.imageurl[0]}/`} alt="" />
+                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.imageurl[0]}/-/scale_crop/500x500/`} alt="" />
                                 </section>
 
 
@@ -131,7 +129,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                 </span>
                                 <div className='flex justify-between items-center '>
                                     <div className='md:flex justify-center items-center gap-2 '>
-                                        <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
+                                        <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
 
                                         {/* <p className=' text-lg text-gray-800 font-extrabold font-price leading-5'>${product.price}</p> */}
                                     </div>
@@ -142,7 +140,7 @@ const BestSellingNestedSection = ({ sliceProducts, grid }) => {
                                             product?.name,
                                             product?.desc,
                                             product?.price,
-                                            product?.imageurl[0],
+                                            product?.imageurl,
                                             1
                                         );
                                         setcartTragetid(product._id);

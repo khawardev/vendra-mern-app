@@ -81,18 +81,18 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
     const handleIncrement = () => {
         setQuantity(quantity + 1);
     };
-    const handleAddToCart = () => {
+    const handleAddToCart = (DiscountedPrice) => {
         toast.success(
             <div style={{ display: 'flex' }}>
                 <span style={{ fontWeight: 'bold' }}>Added to cart </span>
             </div>
         );
-        dispatch(addToCart({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
+        dispatch(addToCart({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: DiscountedPrice ? DiscountedPrice : filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
         setQuantity(1); // Reset quantity after adding to cart
     };
-    const handleAddToWishList = () => {
+    const handleAddToWishList = (DiscountedPrice) => {
         toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
-        dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
+        dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price:  DiscountedPrice ? DiscountedPrice : filteredProduct.price , imageurl: filteredProduct.image, quantity: quantity }));
     };
 
 
@@ -190,10 +190,10 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                             <div className='flex items-center gap-3'>
                                 {Discount === 'true' ?
                                     <>
-                                        <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span>{DiscountedPrice}.00 </p>
-                                        <p className=" text-xl    text-gray-300 line-through"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span><span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}</span> </p>
+                                        <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> {ExchangeRate ? (ExchangeRate.value * DiscountedPrice).toFixed(0) : DiscountedPrice} </p>
+                                        <p className=" text-xl    text-gray-300 line-through"> {ExchangeRate ? ExchangeRate.code : 'USD'}  {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}  </p>
                                     </>
-                                    : <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}.00</span> </p>}
+                                    : <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}</span> </p>}
 
 
 
@@ -207,9 +207,8 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                                 </div>
                                 }
                                 {BestSell === 'true' && <div className='  flex  '>
-                                    <img src={fire} className=' w-6' alt="" />
-                                    <img src={fire} className=' w-6' alt="" />
-                                    <img src={fire} className=' w-6' alt="" />
+                                    <img src="   https://cdn-icons-png.flaticon.com/512/4715/4715576.png " className=' w-[36px]' alt="" />
+
 
                                 </div>
                                 }
@@ -274,10 +273,10 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                         </section>
 
                         <div className=" space-y-3 ">
-                            <p onClick={() => { handleAddToWishList() }} className=" px-5 w-full py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
+                            <p onClick={() => { handleAddToWishList(Discount === 'true' && DiscountedPrice ) }} className=" px-5 w-full py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
 
                             <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold    rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
-                                handleAddToCart();
+                                handleAddToCart(Discount === 'true' && DiscountedPrice);
                             }}  >  <span> Add to cart </span> <BsCart2 stroke-width='0.5' size={18} /> </p>
                         </div>
                     </main>

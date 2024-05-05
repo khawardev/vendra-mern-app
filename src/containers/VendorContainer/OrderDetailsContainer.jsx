@@ -56,7 +56,7 @@ const OrderDetailsContainer = ({ orderDetails, onClose }) => {
               </div>
               <div className="mb-2">
                 <p className="font-bold">Price:</p>
-                <p>{ExchangeRate ? ExchangeRate.code : '$'} {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</p>
+                <p>{ExchangeRate ? ExchangeRate.code : 'USD'} {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</p>
               </div>
               {/* <div className="mb-2">
                 <p className="font-bold">Image:</p>

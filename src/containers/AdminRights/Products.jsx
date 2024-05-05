@@ -78,7 +78,7 @@ export default function Rightbar() {
     // Initialize DataTable when productData changes
     initializeDataTable();
   }, [productData]);
-  
+
   const handleEdit = (product) => {
     setEditProductId(product._id);
   };
@@ -182,83 +182,83 @@ export default function Rightbar() {
           </button>
         </div>
         {
-        Array.isArray(productData) && productData.length === 0 ? (
-    <p>Currently No Product add in database</p>
-  ) : (
-          <table ref={tableRef} className="w-full text-sm text-left">
-            <thead>
-              <tr>
-                <th className="px-6 py-4">Porduct ID</th>
-                <th className="px-6 py-4">Product Name</th>
-                <th className="px-6 py-4">Product Discription</th>
-                <th className="px-6 py-4">Product Price</th>
-                <th className="px-6 py-4">Catagory ID</th>
-                <th scope="col" className="px-6 py-3">
-                  ACTION
-                </th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th className="px-6 py-4">Porduct ID</th>
-                <th className="px-6 py-4">Product Name</th>
-                <th className="px-6 py-4">Product Discription</th>
-                <th className="px-6 py-4">Product Price</th>
-                <th className="px-6 py-4">Catagory ID</th>
-                <th scope="col" className="px-6 py-3">
-                  ACTION
-                </th>
-              </tr>
-            </tfoot>
-            <tbody>
-            {productData && Array.isArray(productData) && productData.length > 0 && productData.map((product, index) => (
-                <tr
-                  key={product._id}
-                  className={index % 2 === 0 ? "bg-gray-200" : ""}
-                >
-                  <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {product._id}
-                  </td>
-                  <td className="px-6 py-4">{product.name}</td>
-                  <td className="px-6 py-4">{product.description}</td>
-                <td className="px-6 py-4">{ExchangeRate ? ExchangeRate.code : '$'}{ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</td>
-                  <td className="px-6 py-4">{product.category}</td>
-                  <td className="text-white flex px-6 py-3 gap-2">
-                    <button
-                      href="#"
-                      className="font-medium bg-blue-500 rounded py-1 px-3"
-                      onClick={() => handleEdit(product)} // Add handleEdit function
-                    >
-                      <span className="flex justify-between items-center gap-2">
-                        {" "}
-                        <BiEditAlt size={16} /> Edit
-                      </span>
-                    </button>
-                    <button
-                      href="#"
-                      className="font-medium bg-red-500 rounded py-1 px-3"
-                      onClick={() => deleteProduct(product._id, product.name)}
-                    >
-                      <span className="flex justify-between items-center gap-1">
-                        {" "}
-                        <MdOutlineDeleteSweep size={18} /> Delete
-                      </span>
-                    </button>
-                  </td>
-                  {editProductId && (
-                    <EditProduct
-                      product={productData.find(
-                        (product) => product._id === editProductId
-                      )}
-                      onSave={handleSaveProduct}
-                      onCancel={() => setEditProductId(null)}
-                    />
-                  )}
+          Array.isArray(productData) && productData.length === 0 ? (
+            <p>Currently No Product add in database</p>
+          ) : (
+            <table ref={tableRef} className="w-full text-sm text-left">
+              <thead>
+                <tr>
+                  <th className="px-6 py-4">Porduct ID</th>
+                  <th className="px-6 py-4">Product Name</th>
+                  <th className="px-6 py-4">Product Discription</th>
+                  <th className="px-6 py-4">Product Price</th>
+                  <th className="px-6 py-4">Catagory ID</th>
+                  <th scope="col" className="px-6 py-3">
+                    ACTION
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+              </thead>
+              <tfoot>
+                <tr>
+                  <th className="px-6 py-4">Porduct ID</th>
+                  <th className="px-6 py-4">Product Name</th>
+                  <th className="px-6 py-4">Product Discription</th>
+                  <th className="px-6 py-4">Product Price</th>
+                  <th className="px-6 py-4">Catagory ID</th>
+                  <th scope="col" className="px-6 py-3">
+                    ACTION
+                  </th>
+                </tr>
+              </tfoot>
+              <tbody>
+                {productData && Array.isArray(productData) && productData.length > 0 && productData.map((product, index) => (
+                  <tr
+                    key={product._id}
+                    className={index % 2 === 0 ? "bg-gray-200" : ""}
+                  >
+                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                      {product._id}
+                    </td>
+                    <td className="px-6 py-4">{product.name}</td>
+                    <td className="px-6 py-4">{product.description}</td>
+                    <td className="px-6 py-4">{ExchangeRate ? ExchangeRate.code : 'USD'}{ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</td>
+                    <td className="px-6 py-4">{product.category}</td>
+                    <td className="text-white flex px-6 py-3 gap-2">
+                      <button
+                        href="#"
+                        className="font-medium bg-blue-500 rounded py-1 px-3"
+                        onClick={() => handleEdit(product)} // Add handleEdit function
+                      >
+                        <span className="flex justify-between items-center gap-2">
+                          {" "}
+                          <BiEditAlt size={16} /> Edit
+                        </span>
+                      </button>
+                      <button
+                        href="#"
+                        className="font-medium bg-red-500 rounded py-1 px-3"
+                        onClick={() => deleteProduct(product._id, product.name)}
+                      >
+                        <span className="flex justify-between items-center gap-1">
+                          {" "}
+                          <MdOutlineDeleteSweep size={18} /> Delete
+                        </span>
+                      </button>
+                    </td>
+                    {editProductId && (
+                      <EditProduct
+                        product={productData.find(
+                          (product) => product._id === editProductId
+                        )}
+                        onSave={handleSaveProduct}
+                        onCancel={() => setEditProductId(null)}
+                      />
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
       </div>
     </div>
   );

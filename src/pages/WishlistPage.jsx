@@ -99,7 +99,7 @@ const WishlistPage = () => {
 
                                     <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div className=" font-bold   text-gray-500">
-                                            <span className=" text-xs">{ExchangeRate ? ExchangeRate.code : '$'}</span> {ExchangeRate ? (ExchangeRate.value * WishlistItems?.price).toFixed(0) : WishlistItems?.price}
+                                            <span className=" text-xs">{ExchangeRate ? ExchangeRate.code : 'USD'}</span> {ExchangeRate ? (ExchangeRate.value * WishlistItems?.price).toFixed(0) : WishlistItems?.price}
 
                                         </div>
                                     </td>
@@ -178,8 +178,8 @@ const WishlistPage = () => {
                     <hr />
                 </>
                 :
-                
-                 <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
+
+                <div className='  pb-28 pt-24 justify-center items-center flex flex-col gap-3'>
                     <FaHeartBroken size={130} className=' mb-3  opacity-10' />
                     <span className=' font-bold  ' >No Product In Wishlist  </span>
                     <p className=" cursor-pointer text-indigo-700 flex items-center  font-bold   bg-indigo-100 gap-2  transition-all ease-in px-4 py-2 rounded-full"

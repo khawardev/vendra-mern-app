@@ -20,20 +20,32 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
 import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
 import { addToExchange, selectExchangeRate } from '../../../toolkit/Slices/CompareSlice';
+import { selectdiscount } from '../../../toolkit/Slices/DicountSlice'
+import { selectbestSelling } from '../../../toolkit/Slices/BestSellingSlice'
 
 
 const NewProductsNestedSection = ({ sliceProducts, grid }) => {
 
     const reviews = useSelector(selectReviews);
     const ExchangeRate = useSelector(selectExchangeRate);
+    const discount = useSelector(selectdiscount);
 
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
+    const bestSelling = useSelector(selectbestSelling);
     const [wishlistTragetid, setwishlistTragetid] = useState();
     const [cartTragetid, setcartTragetid] = useState();
     const [wishlistloading, setwishlistloading] = useState(false);
     const [cartloading, setcartloading] = useState(false);
+
+    const discountedProductIds = discount.map(item => item.id);
+    const bestSellingProductIds = bestSelling.map(item => item.id);
+    const discountedProducts = products.filter(product => !discountedProductIds.includes(product._id));
+    const bestSellingProducts = discountedProducts.filter(product => !bestSellingProductIds.includes(product._id));
+
+    
+
 
     const handleAddToWishList = (id, name, desc, price, imageurl, quantity) => {
         toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
@@ -68,15 +80,15 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
     const displayedProducts = Array.isArray(products)
         ? (sliceProducts ? [...products.slice(-8)] : [...products]).reverse()
         : [];
-    
-    
+
+
 
     return (
         <>
-            {products &&
+            {bestSellingProducts &&
                 <div className={`my-7 grid  gap-7 ${grid}`}>
 
-                    {products?.slice(-8).reverse()?.map((product) => (
+                    {bestSellingProducts?.slice(-8).reverse()?.map((product) => (
                         <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
                                 <div>
@@ -102,9 +114,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
 
                                 <section className={` rounded-xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
-
                                     <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
-
                                     <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
                                     <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5   tracking-tight   '>{product.description}</p>
                                 </section>
@@ -116,8 +126,8 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                 </span>
                                 <div className='flex justify-between items-center '>
 
-                                    <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
-                                    
+                                    <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
+
                                     <div onClick={() => {
                                         handleAddToCart(
                                             product?._id,

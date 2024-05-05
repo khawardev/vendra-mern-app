@@ -7,6 +7,7 @@ import { selectWishlistItems } from "../../../toolkit/Slices/WishlistSlice";
 import Search from "./Search/Search";
 import { useState, useEffect } from "react";
 import logo from "../../../assets/images/logo.png";
+import { TbLogout } from "react-icons/tb";
 
 import { selectUsers } from "../../../toolkit/Slices/UserSlice";
 import { selectSingleUsers } from "../../../toolkit/Slices/UserSlice";
@@ -69,11 +70,14 @@ const MiddleHeader = () => {
             userRole === "admin" || userRole === "vendor" ? (
               <div
                 className="md:bg-transparent bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
-             
+
               >
                 {/* <BsPerson size={18} /> */}
                 <div className="lg:block hidden">
-                  <p className="font-bold" onClick={logOut}>Logout</p>
+                  <p className="font-bold py-[10px] px-5 bg-red-500 text-white border hover:bg-red-600 border-red-300 
+                  rounded-full flex  justify-center items-center gap-2" onClick={logOut}>
+                    Logout <TbLogout size={18} />
+                  </p>
                 </div>
               </div>
             ) : (
@@ -86,7 +90,7 @@ const MiddleHeader = () => {
                   <span className="text-xs text-gray-800 ">
                     {foundUserDetails?.username
                       ? foundUserDetails?.username
-                      :"Account"}
+                      : "Account"}
                   </span>{" "}
                   <br />
                   <p className="font-bold"></p>
@@ -106,7 +110,7 @@ const MiddleHeader = () => {
                 </div>
               </div>
               <div
-                  className="md:bg-transparent bg-slate-100 flex md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
+                className="md:bg-transparent bg-slate-100 flex md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
                 onClick={() => Navigate("/account")}
               >
                 <BsPerson size={28} />
@@ -149,10 +153,10 @@ const MiddleHeader = () => {
                 <>
                   <span className="text-xs text-gray-800">Total</span> <br />
                   {/* <b>${totalSubtotal && totalSubtotal.toFixed(2)}</b> */}
-                  {/* <b> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : '$'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}.00</span> </b>} */}
+                  {/* <b> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}.00</span> </b>} */}
                   <b>
-                    <span className='text-xs mr-1'>{ExchangeRate ? ExchangeRate.code : '$'}</span> 
-                     <span>{ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}</span>
+                    <span className='text-xs mr-1'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span>
+                    <span>{ExchangeRate ? (ExchangeRate.value * totalSubtotal).toFixed(0) : totalSubtotal}</span>
                   </b>
 
                 </>

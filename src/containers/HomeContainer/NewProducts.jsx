@@ -11,6 +11,7 @@ import BestSellingNestedSection from './HomeNestedContainer/BestSellingNestedSec
 import DiscountedNestedSection from './HomeNestedContainer/DiscountedNestedSection';
 import ShopNestedSection from './HomeNestedContainer/ShopProductsNestedSection';
 const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling, sectionClasses, imageClasses, imageClasses2, TextClasses }) => {
+    console.log(grid)
     const Navigate = useNavigate();
     const URL = url === 'bestselling' ? '/bestselling' : url === 'discount' ? '/discount' : '/shop';
     // const sectionToRender = viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />

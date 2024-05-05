@@ -82,18 +82,17 @@ const MiddleHeader = () => {
               </div>
             ) : (
               <div
-                className="md:bg-transparent bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
+                className="md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
                 onClick={() => Navigate("/user-account")}
               >
                 <BsPerson size={28} />
-                <div className="lg:block hidden">
-                  <span className="text-xs text-gray-800 ">
-                    {foundUserDetails?.username
-                      ? foundUserDetails?.username
-                      : "Account"}
-                  </span>{" "}
-                  <br />
-                  <p className="font-bold"></p>
+                  <div className="lg:block hidden">
+                    <p className=" text-xs font-bold">User</p>
+                    <span className="font-bold text-gray-800 ">
+                      {foundUserDetails?.username
+                        ? foundUserDetails?.username
+                        : "Account"}
+                    </span>{" "}
                 </div>
               </div>
             )
@@ -109,9 +108,7 @@ const MiddleHeader = () => {
                   <p className="font-bold">Vendor</p>
                 </div>
               </div>
-              <div
-                className="md:bg-transparent bg-slate-100 flex md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
-                onClick={() => Navigate("/account")}
+              <div className="md:bg-transparent bg-slate-100 flex md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3" onClick={() => Navigate("/account")}
               >
                 <BsPerson size={28} />
                 <div className="lg:block hidden">

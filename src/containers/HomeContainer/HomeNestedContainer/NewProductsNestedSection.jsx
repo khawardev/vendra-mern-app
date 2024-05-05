@@ -28,10 +28,10 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
 
     const reviews = useSelector(selectReviews);
     const ExchangeRate = useSelector(selectExchangeRate);
-    const discount = useSelector(selectdiscount);
-
+    
     const Navigate = useNavigate();
     const dispatch = useDispatch();
+    const discount = useSelector(selectdiscount);
     const products = useSelector(selectProducts);
     const bestSelling = useSelector(selectbestSelling);
     const [wishlistTragetid, setwishlistTragetid] = useState();

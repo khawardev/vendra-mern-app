@@ -1,8 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
+import { selectExchangeRate } from '../../toolkit/Slices/CompareSlice';
+import { useSelector } from 'react-redux';
 
 const OrderDetailsContainer = ({ orderDetails, onClose }) => {
+  const ExchangeRate = useSelector(selectExchangeRate);
+
   return (
     <div className="order-details-modal p-8 bg-white rounded-md shadow-md">
       <p className="text-lg font-semibold mb-4">Order Details</p>
@@ -52,7 +56,7 @@ const OrderDetailsContainer = ({ orderDetails, onClose }) => {
               </div>
               <div className="mb-2">
                 <p className="font-bold">Price:</p>
-                <p>${product.price}</p>
+                <p>{ExchangeRate ? ExchangeRate.code : 'USD'} {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</p>
               </div>
               {/* <div className="mb-2">
                 <p className="font-bold">Image:</p>

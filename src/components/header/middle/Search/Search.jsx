@@ -49,7 +49,7 @@ const Search = ({ setShowSearch }) => {
                             }}
                             >
                                 <div className="">
-                                    <img src={`https://ucarecdn.com/${product?.image}/`} className=' mix-blend-multiply p-4  ' width={100} alt="" />
+                                    <img src={`https://ucarecdn.com/${product?.image[0]}/`} className=' mix-blend-multiply p-4  ' width={100} alt="" />
                                 </div>
                                 <div className="">
                                     <div className=' line-clamp-1 w-2/4'>

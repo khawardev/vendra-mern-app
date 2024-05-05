@@ -41,10 +41,10 @@ const LoginForm = ({ formData, handleChange, handleHCaptchaVerify, handleSubmit 
             />
 
         </div>
-        <HCaptcha
+        {/* <HCaptcha
             sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880" // Replace with your hCaptcha site key
             onVerify={handleHCaptchaVerify}
-        />
+        /> */}
         <div className="mb-3">
             <label className="flex items-center hover:cursor-pointer text-gray-500 font-bold   mb-2">
                 <input

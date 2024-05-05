@@ -1,0 +1,32 @@
+
+
+
+
+
+
+.timer-block {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 200px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.bg-grad{
+  background-image: linear-gradient(to right, #00f5a0, #00d9f5);
+
+}
+
+.cart-span {
+  transition: transform 0.18s ease-in-out; 
+  transform: translateX(0);
+}
+
+/* Style for the span on button hover */
+.cart-button:hover  .cart-span {
+  transform: translateX(2px); /* You can adjust the translation as per your requirement */
+}

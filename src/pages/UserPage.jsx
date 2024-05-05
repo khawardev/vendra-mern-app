@@ -10,6 +10,8 @@ import { Context } from "../context/AppContext";
 import { useSelector } from 'react-redux';
 import { selectUsers } from '../toolkit/Slices/UserSlice';
 import { selectSingleUsers } from '../toolkit/Slices/UserSlice';
+import { TbLogout } from "react-icons/tb";
+
 const UserPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [userDetails, setUserDetails] = useState({});
@@ -88,11 +90,11 @@ const UserPage = () => {
     <div className=" w-11/12 m-auto md:py-16 md:px-12 py-6  md:border my-10 rounded-xl ">
       <section className='md:flex flex-row-reverse justify-between items-center'>
         <div className='rounded-full  md:mb-0 mb-6 flex justify-center'>
-          {/* <img src={User} className='rounded-full p-1 border-2 md:w-[75px] w-[130px]' alt="" /> */}
+          {/* <img src={User1} className='rounded-full p-1 border-2 md:w-[75px] w-[130px]' alt="" /> */}
         </div>
         <div>
-          <p className="text-lg text-gray-500  leading-3">Manage your account</p>
-          <p className="text-lg text-gray-500 my-3 leading-6">Click <span className="font-bold   text-black hover:cursor-pointer hover:underline hover:text-blue-500">here</span> to edit your information</p>
+          {/* <p className="text-lg text-gray-500  leading-3">Manage your account</p> */}
+          {/* <p className="text-lg text-gray-500 my-3 leading-16">Click <span className="font-bold   text-black hover:cursor-pointer hover:underline hover:text-blue-500">here</span> to edit your information</p> */}
         </div>
       </section>
 
@@ -128,7 +130,11 @@ const UserPage = () => {
 
       </main>
       <div className='mt-10 flex justify-end items-center'>
-        <button className='py-3 px-8 rounded-lg hover:bg-red-700  cursor-pointer transition-all ease-in bg-red-600 text-white' onClick={logOut} ><strong>Logout</strong></button>
+        <button className="font-bold py-[10px] px-5 bg-red-600 text-white border hover:bg-red-700 border-red-300 
+                  rounded-lg flex  justify-center items-center gap-2" onClick={logOut}>
+          Logout <TbLogout size={18} />
+        </button>
+        {/* <button className='py-3 px-8 rounded-lg hover:bg-red-700  cursor-pointer transition-all ease-in bg-red-600 text-white' onClick={logOut} ><strong>Logout</strong></button> */}
       </div>
     </div>
   )

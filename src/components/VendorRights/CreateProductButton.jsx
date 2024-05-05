@@ -11,7 +11,6 @@ import { LuUploadCloud } from "react-icons/lu";
 
 const CreateProductButton = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-    console.log( selectedFile)
     const [uploading, setUploading] = useState(false);
     const [uploadingProduct, setUploadingProduct] = useState(false);
     const [name, setName] = useState("");
@@ -24,7 +23,6 @@ const CreateProductButton = () => {
     const fileInputRef = useRef(null);
     const categories = useSelector(selectCategories);
     const [Thankyou, setThankyou] = useState(false)
-    console.log(imageuuid);
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -162,7 +160,7 @@ const CreateProductButton = () => {
     return (
         <div>
             {/* w-5/6  */}
-            <button
+            {/* <button
                 type="button"
                 id="createProductButton"
                 data-modal-toggle="createProductModal"
@@ -171,8 +169,18 @@ const CreateProductButton = () => {
             >
                 <ImagePlus size={17} />
                 Add product
+            </button> */}
+            <button
+                type="button"
+                id="createProductButton"
+                data-modal-toggle="createProductModal"
+                className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                role="menuitem"
+                onClick={IsHiddenFunction}
+            >
+                <ImagePlus size={14} />
+                Add product
             </button>
-
 
 
 

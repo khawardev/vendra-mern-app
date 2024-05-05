@@ -18,14 +18,31 @@ import { HiOutlineCheck } from "react-icons/hi";
 import toast from 'react-hot-toast';
 import { selectReviews } from '../../../toolkit/Slices/ReviewSlice';
 import StarRatingAvg from '../../SingleProductContainer/StarRatingAvg'
+import { selectExchangeRate } from '../../../toolkit/Slices/CompareSlice';
+import { selectdiscount } from '../../../toolkit/Slices/DicountSlice'
+import { selectbestSelling } from '../../../toolkit/Slices/BestSellingSlice'
 
 const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasses, TextClasses, imageClasses2 }) => {
 
     const reviews = useSelector(selectReviews);
+    const ExchangeRate = useSelector(selectExchangeRate);
 
 
     const Navigate = useNavigate();
     const dispatch = useDispatch();
+    const discount = useSelector(selectdiscount);
+    const bestSelling = useSelector(selectbestSelling);
+
+    
+    const discountedProductIds = discount.map(item => item.id);
+    const bestSellingProductIds = bestSelling.map(item => item.id);
+    const discountedProducts = filteredProducts.filter(product => !discountedProductIds.includes(product._id));
+    const bestSellingProducts = discountedProducts.filter(product => !bestSellingProductIds.includes(product._id));
+
+
+
+
+    
     const [wishlistTragetid, setwishlistTragetid] = useState();
     const [cartTragetid, setcartTragetid] = useState();
     const [wishlistloading, setwishlistloading] = useState(false);
@@ -72,9 +89,9 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
 
     return (
         <>
-            {filteredProducts &&
+            {bestSellingProducts &&
                 <div className={`my-7 grid  gap-7  ${grid}`}>
-                    {filteredProducts?.map((product) => (
+                    {bestSellingProducts?.map((product) => (
                         <div key={product._id} className={`cursor-pointer   select-none flex flex-col justify-between  Parent-Col-Hover relative`}>
                             <main>
                                 <div>
@@ -133,7 +150,8 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                 </div>
                                 <div className='flex justify-between items-center  '>
 
-                                    <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p>
+                                    {/* <p className=' text-lg text-gray-800 font-extrabold font-price'>${product.price}</p> */}
+                                    <p className=' text-gray-800 font-extrabold font-price'><span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> <span className=' text-xl'> {ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</span>   </p>
 
                                     <div onClick={() => {
                                         handleAddToCart(

@@ -7,14 +7,14 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+// import pdfMake from "pdfmake/build/pdfmake";
+// import pdfFonts from "pdfmake/build/vfs_fonts";
 import "datatables.net-buttons-dt/css/buttons.dataTables.css";
 import "datatables.net-buttons/js/dataTables.buttons.min.js";
 import "datatables.net-buttons/js/buttons.html5.min.js";
 import "datatables.net-buttons/js/buttons.print.min.js";
 import "datatables.net-buttons/js/buttons.colVis.min.js";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function Contact() {
   const [contactData, setContactData] = useState([]);
@@ -71,20 +71,21 @@ export default function Contact() {
   }
 
   return (
-    <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
+    <div className="relative overflow-x-auto ">
       <div className="auth-inner" style={{ width: "auto" }}>
-        <div className="flex justify-between items-center mb-4">
-          <p className="my-4 text-2xl   font-extrabold ml-1">Contact Details</p>
+        <div className=" my-16 text-center">
+          {/* <p className=" text-4xl    font-extrabold ">Contact Details</p> */}
+          <p className=' font-bold   text-6xl  text-center my-12'>Contact Details</p>
 
-          <button
+          {/* <button
             onClick={logOut}
             className="font-small bg-red-500 rounded py-1 px-2"
           >
             Logout
-          </button>
+          </button> */}
         </div>
         {Array.isArray(contactData) && contactData.length === 0 ? (
-          <p>No Contacts.</p>
+          <p>Loading Contacts...</p>
         ) : (
           <table ref={tableRef} className="w-full text-sm text-left">
             <thead>

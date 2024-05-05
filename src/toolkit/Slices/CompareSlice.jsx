@@ -17,10 +17,13 @@ const CompareSlice = createSlice({
         addToExchange: (state, action) => {
             state.exchangeRate = action.payload;
         },
+        RemoveFromExchange: (state) => {
+            state.exchangeRate = null;
+        },
     },
 });
 
-export const { addToCompare, removeCompareProduct, addToExchange } = CompareSlice.actions;
+export const { addToCompare, removeCompareProduct, addToExchange, RemoveFromExchange } = CompareSlice.actions;
 export const selectCompare = (state) => state.compare.comparedProducts;
 export const selectExchangeRate = (state) => state.compare.exchangeRate; 
 

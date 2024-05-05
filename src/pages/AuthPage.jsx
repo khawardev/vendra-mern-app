@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import HCaptcha from "react-hcaptcha";
 
 // import { GoogleLogin } from "react-google-login";
 
@@ -22,11 +21,11 @@ import HCaptcha from "react-hcaptcha";
 const AuthPage = () => {
   const [isRegistering, setIsRegistering] = useState(true);
   const [hCaptchaToken, setHCaptchaToken] = useState('');    // Determine the URL based on whether the user is logging in or registering
-  const handleHCaptchaVerify = (token) => {
-    // Callback function to handle the hCaptcha token
-    console.log('hCaptcha sadsdas token:', token);
-    setHCaptchaToken(token);
-  };
+
+
+  useEffect(() => {
+    setHCaptchaToken(''); 
+  }, [isRegistering]);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -136,7 +135,7 @@ const AuthPage = () => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'hCaptcha verification failed!',
+            text: 'SSS verification failed!',
           });
           // Handle cases where login or registration fails
         }
@@ -293,13 +292,13 @@ const AuthPage = () => {
 
           </>
         )}
-        <div className="mb-4 w-full">
+        {/* <div className="mb-4 w-full">
           <HCaptcha
             sitekey="fe5c1dc3-8d54-4667-b450-1a035da75880"
             onVerify={handleHCaptchaVerify}
             size="normal"
           />
-        </div>
+        </div> */}
         
         {/* <div className="mb-7">
           <GoogleSignIn />

@@ -37,7 +37,7 @@ const ContactPage = () => {
 
         toast.success(() => (
           <div className=" text-center">
-            <p >Submitted, Our Team will contact you soon!</p>
+            <p ><b>Submitted, Our Team will contact you soon!</b></p>
           </div>
         ))
         setFormData({

@@ -13,7 +13,7 @@ const TopHeader = () => {
             {isLoggedIn === "true" && (userRole === "admin") &&   (
                <li className=" flex gap-4 justify-center items-center ">
                  {userRole === "admin" &&  (
-                    <ul className='   cursor-pointer text-blue-700  font-bold   bg-blue-100  hover:bg-blue-200 transition-all ease-in px-4 py-2 rounded-md  flex items-center gap-1' onClick={() => Navigate("/admin-account")}> <MdOutlineAdminPanelSettings size={20} /> Admin Panel</ul>
+                            <ul className=' border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-4  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/admin-account")}> <MdOutlineAdminPanelSettings size={20} /> Admin Panel</ul>
                 )}
                                      
                         {/* <ul className='cursor-pointer text-gray-700 font-bold   bg-gray-100  hover:bg-gray-300 border px-4 py-2 rounded-md  flex items-center gap-1' onClick={() => Navigate("/vendorpanel")}><TbShoppingCartQuestion size={20} /> Vendor Panel</ul> */}

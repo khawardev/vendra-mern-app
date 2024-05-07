@@ -176,15 +176,13 @@ export default function Rightbar({ userData }) {
         </span>
     </button>
     return (
-        <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-10 my-6">
+        <div className="relative overflow-x-auto ">
             <div className="auth-inner" style={{ width: "auto" }}>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="my-4 text-2xl   font-extrabold ml-1">
-                        <p className="my-4 text-2xl   font-extrabold ml-1"> Registered Users </p>
-                    </p>
-                    <button onClick={logOut} className="font-small bg-red-500 rounded py-1 px-2">
+                <div className="my-16 text-center ">
+                    <p className=' font-bold   text-5xl  text-center my-12'>Registered Users</p>
+                    {/* <button onClick={logOut} className="font-small bg-red-500 rounded py-1 px-2">
                         Logout
-                    </button>
+                    </button> */}
                 </div>
 
                 {data.length === 0 ? (
@@ -243,11 +241,11 @@ export default function Rightbar({ userData }) {
                         </tbody>
                     </table>
                 )}
-              
+
             </div>
-            <VendorList />        
+            <VendorList />
         </div>
-        
+
     );
-    
+
 }

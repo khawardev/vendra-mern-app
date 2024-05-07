@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import "datatables.net-dt";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import $ from "jquery";
+import { useSelector } from 'react-redux';
 // import pdfMake from "pdfmake/build/pdfmake";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 import "datatables.net-buttons-dt/css/buttons.dataTables.css";
@@ -169,17 +170,11 @@ export default function Rightbar() {
     }
   }
   return (
-    <div className="relative overflow-x-auto bg-gray-100 rounded-2xl p-8">
+    <div className="relative overflow-x-auto  ">
       <div className="auth-inner" style={{ width: "auto" }}>
-        <div className="flex justify-between items-center mb-4">
-          <p className="my-4 text-2xl   font-extrabold ml-1">Product Details</p>
-
-          <button
-            onClick={logOut}
-            className="font-small bg-red-500 rounded py-1 px-2"
-          >
-            Logout
-          </button>
+        <div className="my-16 text-center ">
+          <p className=' font-bold   text-5xl  text-center my-12'>Product Details</p>
+          
         </div>
         {
           Array.isArray(productData) && productData.length === 0 ? (
@@ -219,8 +214,8 @@ export default function Rightbar() {
                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                       {product._id}
                     </td>
-                    <td className="px-6 py-4">{product.name}</td>
-                    <td className="px-6 py-4">{product.description}</td>
+                    <td className="px-6 py-4 "><div className="line-clamp-2">{product.name}</div></td>
+                    <td className="px-6 py-4 "> <div className="line-clamp-3">{product.description}</div> </td>
                     <td className="px-6 py-4">{ExchangeRate ? ExchangeRate.code : 'USD'}{ExchangeRate ? (ExchangeRate.value * product.price).toFixed(0) : product.price}</td>
                     <td className="px-6 py-4">{product.category}</td>
                     <td className="text-white flex px-6 py-3 gap-2">

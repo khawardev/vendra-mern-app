@@ -144,8 +144,8 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
     const [selectedOption, setSelectedOption] = useState('Description');
     const [Showmodal, setShowmodal] = useState(false);
 
-    const filteredReviews = toolkitreviews.flat().filter(review => review.productid === filteredProduct?._id);
-    // const filteredReviews = reviews.flat().filter(review => review.productid === filteredProduct?._id);
+    // const filteredReviews = toolkitreviews.flat().filter(review => review.productid === filteredProduct?._id);
+    const filteredReviews = reviews.flat().filter(review => review.productid === filteredProduct?._id);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);

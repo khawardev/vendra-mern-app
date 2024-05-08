@@ -129,8 +129,8 @@ const DiscountedNestedSection = ({ sliceProducts, grid }) => {
                                     {/* md:top-[0.80rem] top-[0.30rem] */}
 
                                 </div>
-                                <section className={` rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${RemovedProductIds.includes(product.id) ? true : false}/${true}/${product?.inputDescount}`)}>
-                                    <img className='mix-blend-multiply flex rounded-xl w-full ' src={`https://ucarecdn.com/${product?.imageurl[0]}/-/scale_crop/500x500/`} alt="" />
+                                <section className={`  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?.id}/${RemovedProductIds.includes(product.id) ? true : false}/${true}/${product?.inputDescount}`)}>
+                                    <img className='mix-blend-multiply flex w-full ' src={`https://ucarecdn.com/${product?.imageurl[0]}/-/scale_crop/500x500/`} alt="" />
                                 </section>
 
 

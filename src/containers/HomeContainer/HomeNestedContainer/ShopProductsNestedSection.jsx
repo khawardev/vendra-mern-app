@@ -119,11 +119,11 @@ const ShopNestedSection = ({ grid, filteredProducts, sectionClasses, imageClasse
                                 </div>
 
 
-                                <section className={`${sectionClasses}    rounded-2xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                <section className={`${sectionClasses}      relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
 
                                     <div className={`${imageClasses}`}>
-                                        <img className='mix-blend-multiply flex rounded-2xl w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
+                                        <img className='mix-blend-multiply flex  w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
                                     </div>
 
                                     <div className={`${imageClasses2}`}>

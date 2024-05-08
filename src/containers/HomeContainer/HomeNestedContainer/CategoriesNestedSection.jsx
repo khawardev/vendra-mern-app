@@ -13,12 +13,11 @@ const CategoriesNested = ({ category }) => {
   return (
     <>
 
-
       <div className='carouselItem select-none  flex-col justify-center items-center   ' onClick={() => Navigate(`/viewcategoryproducts/${category?._id}`)}>
-        <div className='p-8      flex  justify-center items-center '>
+        <div className='p-6  flex  justify-center items-center w-full  '>
           <img
-            src={`https://ucarecdn.com/${category?.image}/`}
-            className="mix-blend-multiply  flex justify-center items-center h-[9rem]"
+            src={`https://ucarecdn.com/${category?.image}/-/scale_crop/500x500/`}
+            className="mix-blend-multiply  flex justify-center items-center w-full"
             alt={category.name}
           />
         </div>

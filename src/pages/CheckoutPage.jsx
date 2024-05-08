@@ -92,8 +92,8 @@ const CheckoutPage = () => {
     };
     // Sample options for country and state select
     const countryOptions = [
-        { value: 'us', label: 'United States' },
-        { value: 'ca', label: 'Canada' },
+        { value: 'pk', label: 'Pakistan' },
+        // { value: 'ca', label: 'Canada' },
         // Add more countries as needed
     ];
 

@@ -5,7 +5,11 @@ import { AiOutlineDollarCircle } from 'react-icons/ai';
 import { GoShieldCheck } from 'react-icons/go';
 import { GoPeople } from 'react-icons/go';
 import { TbTruckReturn } from 'react-icons/tb';
+import { useNavigate } from "react-router-dom";
+
 const ServicesSection = () => {
+    const Navigate = useNavigate();
+
     const ServicesData = [
         {
             icon: <LiaShippingFastSolid className=' text-yellow-500' size={25} />,
@@ -54,7 +58,7 @@ const ServicesSection = () => {
                         </div>
                     );
                 })}
-                <main className=' mt-10 relative    '>
+                <main className=' mt-10 relative    ' onClick={() => Navigate(`/viewcategoryproducts/663b05457234b185b146e2b2`)} >
                     <section className='absolute  top-12 left-9 '>
                         <div className='flex'>
                             <p className='px-3 mb-3  text-sm  items-center bg-yellow-400 rounded-full'>IPhone</p>

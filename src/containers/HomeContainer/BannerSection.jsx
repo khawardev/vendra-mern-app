@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router-dom";
 
 const BannerSection = () => {
+
+
+    const Navigate = useNavigate();
+
     return (
         <div>
-            <section className='w-11/12 mx-auto my-14 relative  '>
+            <section className='w-11/12 mx-auto my-14 relative  ' onClick={() => Navigate(`/viewcategoryproducts/663b07e27234b185b146e2e2`)} >
                 <div className='text-black absolute md:top-10 top-3 md:left-10 z-10  md:p-2 px-5'>
                     <div className='mt-3 leading-5'>
                         <h1 className='text-2xl    text-blue-500 mb-4 leading-6 font-bold   '>Elevate Your Fitness Journey</h1>

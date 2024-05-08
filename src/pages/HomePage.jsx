@@ -22,6 +22,11 @@ import { selectbestSelling } from '../toolkit/Slices/BestSellingSlice'
 import { selectdiscount } from '../toolkit/Slices/DicountSlice'
 import { addReview, clearReviews } from '../toolkit/Slices/ReviewSlice'
 
+
+import ProductData from '../data/ProductData'
+import CategoriesData from '../data/CategoriesData'
+import UserReviewData from '../data/UserReviewData'
+
 export const HomePage = () => {
     const bestSelling = useSelector(selectbestSelling);
     const discount = useSelector(selectdiscount);
@@ -33,25 +38,35 @@ export const HomePage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchData = async () => {
-            const productsResponse = await fetch('http://localhost:5000/api/products');
-            const categoriesResponse = await fetch('http://localhost:5000/api/categories');
-            const UserinfoResponse = await fetch('http://localhost:5000/getAllUser');
-            const UserReview = await fetch(`http://localhost:5000/api/reviews/`);
+            // const productsResponse = await fetch('http://localhost:5000/api/products');
+            // const categoriesResponse = await fetch('http://localhost:5000/api/categories');
+            // const UserinfoResponse = await fetch('http://localhost:5000/getAllUser');
+            // const UserReview = await fetch(`http://localhost:5000/api/reviews/`);
 
-            const productsData = await productsResponse.json();
-            const categoriesData = await categoriesResponse.json();
-            const UserinfoData = await UserinfoResponse.json();
-            const UserReviewData = await UserReview.json();
-            console.log('UserReviewData', UserReviewData)
+            // const productsData = await productsResponse.json();
+            // const categoriesData = await categoriesResponse.json();
+            // const UserinfoData = await UserinfoResponse.json();
+            // const UserReviewData = await UserReview.json();
 
-            // Dispatch actions to update the store
-            dispatch(setProducts(productsData));
-            dispatch(setCategories(categoriesData));
-            dispatch(setUser(UserinfoData?.data));
+            // dispatch(setProducts(productsData));
+            // dispatch(setCategories(categoriesData));
+            // dispatch(setUser(UserinfoData?.data));
 
+
+            // dispatch(clearReviews());
+            // dispatch(addReview(UserReviewData))
+
+
+
+            dispatch(setProducts(ProductData));
+            dispatch(setCategories(CategoriesData));
 
             dispatch(clearReviews());
             dispatch(addReview(UserReviewData))
+
+
+
+
         };
 
         fetchData();

@@ -11,7 +11,7 @@ const TopHeader = () => {
     return (
         <div>
             <main className=" flex md:justify-between justify-center gap-4 items-center   list-none md:py-5 py-3 text-sm select-none">
-                {/* {isLoggedIn === "true" && (userRole === "admin") && (
+               {isLoggedIn === "true" && (userRole === "admin") && (
                     <li className=" flex gap-4 justify-center items-center ">
                         {userRole === "admin" && (
                             <ul className=' border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-4  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/admin-account")}> <MdOutlineAdminPanelSettings size={20} /> Admin Panel</ul>
@@ -24,10 +24,10 @@ const TopHeader = () => {
                     <li className=" flex gap-4 justify-center items-center ">
                         <ul className='  border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-4  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/vendorpanel")}><TbShoppingCartQuestion size={20} /> Vendor Panel</ul>
                     </li>
-                )} */}
-                <li className=" flex gap-4 justify-center items-center ">
+                )} 
+                {/* <li className=" flex gap-4 justify-center items-center ">
                     <ul className='  border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-4   justify-center  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/vendorpanel")}><TbShoppingCartQuestion size={20} /> Vendor Panel</ul>
-                </li>
+                </li> */}
                 {/* <ul className='  cursor-pointer text-indigo-700  font-bold   bg-indigo-100  hover:bg-indigo-200 transition-all ease-in px-4 py-2 rounded-full ' onClick={() => Navigate("/background-remove")}>Remove BG</ul> */}
                 {/* <ul className=' px-3 py-1 bg-gray-200  hover:bg-gray-300 cursor-pointer rounded-full' onClick={() => Navigate("/add-category")}>Add Category</ul> */}
                 {/* <ul className=' px-3 py-1 bg-gray-200  hover:bg-gray-300 cursor-pointer rounded-full flex gap-1' onClick={() => Navigate("/add-categoryprodcuts")}> Add Products</ul> */}

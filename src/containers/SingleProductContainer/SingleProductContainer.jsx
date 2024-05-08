@@ -98,7 +98,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
 
 
     useEffect(() => {
-        const isCompared = comparedProducts.some(product => product.id === filteredProduct._id);
+        const isCompared = comparedProducts.some(product => product.id === filteredProduct?._id);
         setisProductCompared(isCompared)
     }, [filteredProduct?._id]);
 
@@ -193,9 +193,9 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                                 {Discount === 'true' ?
                                     <>
                                         <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span> {ExchangeRate ? (ExchangeRate.value * DiscountedPrice).toFixed(0) : DiscountedPrice} </p>
-                                        <p className=" text-xl    text-gray-300 line-through"> {ExchangeRate ? ExchangeRate.code : 'USD'}  {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}  </p>
+                                        <p className=" text-xl    text-gray-300 line-through"> {ExchangeRate ? ExchangeRate.code : 'USD'}  {ExchangeRate ? (ExchangeRate.value * filteredProduct?.price).toFixed(0) : filteredProduct?.price}  </p>
                                     </>
-                                    : <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * filteredProduct.price).toFixed(0) : filteredProduct.price}</span> </p>}
+                                    : <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * filteredProduct?.price).toFixed(0) : filteredProduct?.price}</span> </p>}
 
 
 
@@ -231,7 +231,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                                 {/* <p onClick={() => setShowmodal(!Showmodal)} className='font-bold border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center'>
                                     <FiPlus strokeWidth={3} /> Add Review
                                 </p> */}
-                                <ReviewsModal productid={filteredProduct._id} />
+                                <ReviewsModal productid={filteredProduct?._id} />
                             </div>
                         </div>
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">

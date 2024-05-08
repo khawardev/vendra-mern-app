@@ -58,14 +58,12 @@ function HeroSection() {
                                 <div className='flex'>
                                     <p className='md:px-4 px-3  md:py-1 text-sm items-center text-white bg-yellow-500 rounded-full  '>{slide.tag}</p>
                                 </div>
-                                <div className='md:mt-6 mt-2 md:leading-5 leading-2'>
+                                <div className='mt-6 md:leading-5 leading-2'>
                                     <h1 className='md:text-3xl text-xl     leading-2   tracking-tight  Alegreya font-bold ' >{slide.tagline1}</h1>
-                                    <h1 className='md:text-4xl text-3xl my-2 font-extrabold leading-2 tracking-tight  text-yellow-500 '>{slide.tagline2}</h1>
-                                    <p className='md:block hidden  text-xl     leading-2 text-gray-500   '>{slide.description}</p>
+                                    <h1 className='md:text-4xl text-3xl md:my-2 font-extrabold leading-2 tracking-tight  text-yellow-500 '>{slide.tagline2}</h1>
+                                    <p className='md:block hidden   text-xl      leading-2 text-gray-500   '>{slide.description}</p>
                                 </div>
-
-
-                                <button className="learn-more my-5">
+                                <button className="  lg:flex hidden my-5    learn-more ">
                                     <span className="circle" aria-hidden="true">
                                         <span className="icon arrow"></span>
                                     </span>
@@ -79,10 +77,10 @@ function HeroSection() {
                     )}
                 </div>
             ))}
-            <div className='md:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl   rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+            <div className='md:hidden hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl   rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                 <BsChevronCompactLeft onClick={prevSlide} size={30} />
             </div>
-            <div className='md:hidden block group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl   rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+            <div className='md:hidden hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl   rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                 <BsChevronCompactRight onClick={nextSlide} size={30} />
             </div>
 

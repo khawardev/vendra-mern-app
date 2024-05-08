@@ -22,7 +22,6 @@ import { addToCompare, removeCompareProduct, selectCompare } from '../../toolkit
 import { MdClose } from 'react-icons/md';
 import InnerImageZoom from 'react-inner-image-zoom'
 import '../../assets/styles/ZoomImage.scss'
-import ReactImageMagnify from 'react-image-magnify';
 import { FiPlus } from "react-icons/fi";
 import ReviewsModal from '../SingleProductContainer/ReviewsModal';
 import LightBox from '../../components/WebScrapper/Lightbox';
@@ -41,8 +40,10 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
     const ExchangeRate = useSelector(selectExchangeRate);
 
     const [reviews, setReviews] = useState([]);
+    console.log( reviews)
     const { isReviewload } = useContext(Context);
     const toolkitreviews = useSelector(selectReviews);
+    console.log(toolkitreviews.flat())
 
     const dispatch = useDispatch();
     const comparedProducts = useSelector(selectCompare);
@@ -143,7 +144,8 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
     const [selectedOption, setSelectedOption] = useState('Description');
     const [Showmodal, setShowmodal] = useState(false);
 
-    const filteredReviews = reviews.filter(review => review.productid === filteredProduct?._id);
+    const filteredReviews = toolkitreviews.flat().filter(review => review.productid === filteredProduct?._id);
+    // const filteredReviews = reviews.flat().filter(review => review.productid === filteredProduct?._id);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);

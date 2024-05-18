@@ -11,7 +11,6 @@ import BestSellingNestedSection from './HomeNestedContainer/BestSellingNestedSec
 import DiscountedNestedSection from './HomeNestedContainer/DiscountedNestedSection';
 import ShopNestedSection from './HomeNestedContainer/ShopProductsNestedSection';
 const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling, sectionClasses, imageClasses, imageClasses2, TextClasses }) => {
-    console.log(grid)
     const Navigate = useNavigate();
     const URL = url === 'bestselling' ? '/bestselling' : url === 'discount' ? '/discount' : '/shop';
     // const sectionToRender = viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
@@ -75,7 +74,7 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
 
                 <main>
                     {NewProductBanner &&
-                        <section className='relative '>
+                        <section className='relative ' onClick={() => Navigate(`/viewcategoryproducts/663b070c7234b185b146e2d6`)}>
                             <div className='text-black absolute md:top-6 top-4 md:left-10  z-10  p-2'>
 
                                 <div className='mt-5'>

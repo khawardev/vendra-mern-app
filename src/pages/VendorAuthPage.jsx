@@ -149,9 +149,9 @@ const VendorAuthPage = () => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'hCaptcha verification failed!',
+            text: 'verification failed!',
           });
-          // Handle cases where login or registration fails
+          // Handle cases where login or W fails
         }
       })
 

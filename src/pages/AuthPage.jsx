@@ -147,7 +147,7 @@ const AuthPage = () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'hCaptcha verification failed!',
+          text: 'verification failed!',
         });
       });
   };

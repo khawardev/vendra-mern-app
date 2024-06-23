@@ -79,9 +79,9 @@ const ContactPage = () => {
         </p>
       </section>
 
-      <section className="md:flex gap-32 py-20 ">
+      <section className="md:flex gap-32 md:py-20 py-6  ">
         <div className="w-full flex flex-col justify-between ">
-          <p className=" text-xl   mb-10">
+          <p className=" md:text-xl   mb-10">
             If you have any general inquiries or feedback for us, please dont
             hesitate to get in touch.insights help us enhance the Vendra
             Ecommerce experience for everyone.

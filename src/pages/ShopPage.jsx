@@ -65,7 +65,7 @@ const ShopPage = () => {
 
     return (
         <main className="w-11/12 m-auto md:py-20 py-3">
-            <p className="text-sm mb-4">
+            <p className="text-sm md:mb-4 mb-2">
                 <span className="text-gray-400">
                     <span className="cursor-pointer" onClick={() => Navigate(`/`)}>
                         Home
@@ -74,8 +74,8 @@ const ShopPage = () => {
                 </span>
             </p>
 
-            <main className="flex items-center justify-between">
-                <section>
+            <main className="md:flex  items-center justify-between">
+                <section className='md:mb-0 mb-2'>
                     {ProductStatus === 'On Discount' ? (
                         <>
                             <section>
@@ -97,16 +97,6 @@ const ShopPage = () => {
 
                 <section className="flex items-center gap-5 ">
                     <form className=" flex gap-3 ">
-                        {/* <select
-                            className="  text-sm  rounded-full py-2 px-1   border   hover:cursor-pointer "
-                        >
-                            <option selected="">Sort  Product</option>
-                            <option selected="">By Latest</option>
-                            <option selected="">By  Rating</option>
-
-                        </select> */}
-
-
                         <select
                             className="text-sm rounded-full py-2 px-1 border hover:cursor-pointer"
                             onChange={handlePriceFilterChange}
@@ -116,8 +106,6 @@ const ShopPage = () => {
                             <option value="lowToHigh">Low to High</option>
                             <option value="highToLow">High to Low</option>
                         </select>
-
-
                         <select
                             onChange={handleProductStatusChange}
                             value={ProductStatus}
@@ -128,8 +116,8 @@ const ShopPage = () => {
                             <option value="On Discount">On Discount</option>
                         </select>
                     </form>
-                    <GoDotFill />
-                    <div className="flex items-center justify-center gap-1">
+                    <GoDotFill className=' md:block hidden' />
+                    <div className="md:flex items-center justify-center gap-1">
                         <p className={`hover:cursor-pointer p-2 rounded-full ${selectedRadio === false && 'bg-gray-100'} hover:bg-gray-100`} onClick={() => { setSelectedRadio(false) }} >
                             <TbCategory />
                         </p>
@@ -150,7 +138,7 @@ const ShopPage = () => {
                 sliceProducts={false}
                 viewmore={true}
                 NewProductBanner={false}
-                grid={` ${selectedRadio === false ? 'grid-cols-5' : 'grid-cols-1'} `}
+                grid={` ${selectedRadio === false ? 'md:grid-cols-5 sm:grid-cols-3 grid-cols-2' : 'grid-cols-1'} `}
                 sectionClasses={` ${selectedRadio === true && '  grid grid-cols-8 gap-6 items-end   '}`}
                 imageClasses={` ${selectedRadio === true && 'col-span-2'}`}
                 imageClasses2={` ${selectedRadio === true && 'col-span-6'}`}

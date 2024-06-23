@@ -87,7 +87,7 @@ const UserPage = () => {
   // }, []);
 
   return (
-    <div className=" w-11/12 m-auto md:py-16 md:px-12 py-6  md:border my-10 rounded-xl ">
+    <div className=" w-11/12 m-auto md:py-12 md:px-12 py-6  md:border my-10 rounded-xl ">
       <section className='md:flex flex-row-reverse justify-between items-center'>
         <div className='rounded-full  md:mb-0 mb-6 flex justify-center'>
           {/* <img src={User1} className='rounded-full p-1 border-2 md:w-[75px] w-[130px]' alt="" /> */}
@@ -100,7 +100,7 @@ const UserPage = () => {
 
 
 
-      <p className=" text-2xl   font-bold   my-10 ">Your account details</p>
+      <p className=" text-2xl   font-bold   my-6 ">Your account details</p>
 
       <main className=" gap-6">
         <section className=" border  md:px-10 md:py-10 px-5 py-10 w-full rounded-xl ">
@@ -112,11 +112,11 @@ const UserPage = () => {
             <div className='flex'>
               <p className=" text-black font-bold  ">PASSWORD: </p>
               <div className='ml-3 text-gray-500'>
-                {passwordVisible ? foundUserDetails?.password : '*'.repeat(foundUserDetails?.password?.length)}
+                {passwordVisible ? foundUserDetails?.password : '*'.repeat(Math.min(20, foundUserDetails?.password?.length))}
               </div>
             </div>
 
-            <button onClick={togglePasswordVisibility}>
+            <button className=' md:block hidden' onClick={togglePasswordVisibility}>
               {passwordVisible ? <AiOutlineEyeInvisible size={24} /> : <AiOutlineEye size={24} />}
             </button>
           </div>
@@ -129,13 +129,14 @@ const UserPage = () => {
         </section> */}
 
       </main>
-      <div className='mt-10 flex justify-end items-center'>
+      {/* <div className='mt-10 flex justify-end items-center'>
         <button className="font-bold py-[10px] px-5 bg-red-600 text-white border hover:bg-red-700 border-red-300 
                   rounded-lg flex  justify-center items-center gap-2" onClick={logOut}>
           Logout <TbLogout size={18} />
         </button>
-        {/* <button className='py-3 px-8 rounded-lg hover:bg-red-700  cursor-pointer transition-all ease-in bg-red-600 text-white' onClick={logOut} ><strong>Logout</strong></button> */}
-      </div>
+      </div> */}
+      {/* <button className='py-3 px-8 rounded-lg hover:bg-red-700  cursor-pointer transition-all ease-in bg-red-600 text-white' onClick={logOut} ><strong>Logout</strong></button> */}
+
     </div>
   )
 }

@@ -54,12 +54,11 @@ const Modal = ({ isOpen, onClose, productid }) => {
 
   return (
     <div
-      className={`fixed inset-0  z-50 flex items-center  justify-center ${
-        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+      className={`fixed inset-0  z-50 flex items-center  justify-center 
+                 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
     >
       <div className="fixed inset-0   z-50 bg-black opacity-60 transition-opacity"></div>
-      <div className="bg-white p-8 w-[80%] rounded-md z-50 transition-opacity">
+      <div className="bg-white p-7 md:w-[80%] rounded-md z-50 transition-opacity">
         <div className="flex justify-end items-end">
           <button
             className=" px-4 py-3 bg-gray-100 hover:bg-gray-200  rounded-md"
@@ -69,11 +68,13 @@ const Modal = ({ isOpen, onClose, productid }) => {
           </button>
         </div>
         <p className="text-center text-3xl font-bold">Add a Review</p>
-        <div className="flex gap-10 my-3 justify-center items-center">
+
+        <div className="md:flex gap-10 my-3 space-y-2 text-center justify-center items-center">
           <p className="font-bold">Assessment</p>
           <StarsRating onChange={(newRating) => setRating(newRating)} />
           <p>{rating} out of 5 stars</p>
         </div>
+
         <form onSubmit={handleSubmit}>
           <input type="hidden" value={productid} name="productId" />{" "}
           {/* Include a hidden input field for productId */}

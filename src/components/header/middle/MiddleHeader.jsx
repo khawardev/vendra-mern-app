@@ -66,19 +66,13 @@ const MiddleHeader = () => {
         </section>
         <section className="flex lg:gap-4 gap-1  justify-center items-center">
           {/* User/Vendor/Logout Section */}
-          {isLoggedIn === "true" ? (
-            userRole === "admin" || userRole === "vendor" ? (
-              <div
-                className="md:bg-transparent bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
-
-              >
+          {isLoggedIn === "true" ? ( userRole === "admin" || userRole === "vendor" ? (
+            <div className="md:bg-transparent md:block hidden bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3">
                 {/* <BsPerson size={18} /> */}
-                <div className="lg:block hidden">
                   <p className="font-bold py-[10px] px-5 bg-red-500 text-white border hover:bg-red-600 border-red-300 
                   rounded-full flex  justify-center items-center gap-2" onClick={logOut}>
                     Logout <TbLogout size={18} />
                   </p>
-                </div>
               </div>
             ) : (
               <div

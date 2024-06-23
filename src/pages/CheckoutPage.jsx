@@ -151,7 +151,7 @@ const CheckoutPage = () => {
             <div className="checkout-form w-11/12 m-auto grid md:grid-cols-3 grid-cols-2 items-start gap-10 py-14">
 
                 <div className=' col-span-2'>
-                    <p className=' text-2xl '>BILLING DETAILS</p>
+                    <p className=' text-2xl font-bold '>BILLING DETAILS</p>
                     <hr className=' mt-2 mb-7' />
                     <form id="checkoutForm" onSubmit={handleSubmit}>
                         <div className="form-row flex gap-5">
@@ -297,7 +297,7 @@ const CheckoutPage = () => {
                         {/* <button type="submit">Place Order</button> */}
                     </form>
                 </div>
-                <div className='md:col-span-1 col-span-2 p-8  rounded-md  border-2 border-black w-full   '>
+                <div className='md:col-span-1 col-span-2 md:p-8 p-4  rounded-md  border-2 border-black w-full   '>
                     <p className=' text-2xl   font-bold   mb-6'>YOUR ORDER</p>
 
                     <main className=' '>

@@ -49,7 +49,7 @@ const CurencyConverter = () => {
                     value={selectedCurrency}
                     onChange={handleCurrencyChange}
 
-                    className="font-bold   border bg-gray-100 text-sm  rounded-full py-[6px] p-2  hover:cursor-pointer  "
+                    className="font-bold   border bg-gray-100 text-sm  rounded-full py-[7px] p-2  hover:cursor-pointer  "
                 >
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>

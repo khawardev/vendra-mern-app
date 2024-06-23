@@ -5,14 +5,14 @@ const AboutPage = () => {
     return (
         <main className=" w-11/12  m-auto md:py-20 py-3">
 
-            <main className="my-10">
-                <p className=" text-2xl   text-gray-400 mb-4 font-bold   leading-6">Our Mission, About Vendra</p>
+            <main className="md:my-10 ">
+                <p className=" md:text-2xl sm:text-3xl  text-4xl text-center  text-gray-400 mb-4 font-bold   md:leading-6 leading-8">Our Mission, About Vendra</p>
                 <p className=" md:text-6xl text-xl   mb-4 font-bold   leading-6  ">We belive the best experience always wins</p>
-                <p className=" text-lg  mb-4 w-3/5 leading-6  text-justify">At Vendra, we're not just another online store we're your one-stop destination for all things shopping. Whether you're looking for the latest fashion trends, cutting-edge gadgets, or everyday essentials, we've got you covered. </p>
+                <p className=" text-lg  mb-4 md:w-3/5 leading-6  text-justify">At Vendra, we're not just another online store we're your one-stop destination for all things shopping. Whether you're looking for the latest fashion trends, cutting-edge gadgets, or everyday essentials, we've got you covered. </p>
             </main>
 
 
-            <main className=' grid grid-cols-3 gap-3  py-10 '>
+            <main className=' grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3  md:py-10 py-8 '>
                 <section className='flex gap-3 '>
                     <div >
                         <IoRemoveOutline size={29} />
@@ -47,10 +47,10 @@ const AboutPage = () => {
                 <img src={about1} className=" w-full" />
             </main>
 
-            <main className=" grid grid-cols-6 py-20">
-                <section className=" col-span-1">
+            <main className=" grid grid-cols-6 md:py-20 py-8">
+                <section className=" md:col-span-1 ">
                 </section>
-                <section className=" col-span-5">
+                <section className=" md:col-span-5 col-span-6">
                     <p className=" leading-7 text-lg  " >
                          we understand that our success is directly linked to the satisfaction of our customers. That's why we go above and beyond to ensure that every interaction, from browsing our website to receiving your order, exceeds your expectations. Our dedicated customer support team is available around the clock to address any questions or concerns you may have, providing personalized assistance to make your shopping experience as smooth and enjoyable as possible. We believe that by putting our customers first and prioritizing their needs, we can build long-lasting relationships built on trust and reliability. <br /><br />
                         Innovation is at the heart of everything we do at Vendra. We are constantly exploring new technologies and trends in ecommerce to stay ahead of the curve and provide our customers with cutting-edge solutions. From implementing artificial intelligence and machine learning algorithms to enhance product recommendations to optimizing our logistics network for faster and more efficient deliveries, we are committed to leveraging technology to drive positive change and improve the ecommerce experience for everyone. By investing in innovation, we aim to create a future where shopping is not just convenient, but truly transformative.<br /><br />
@@ -63,11 +63,11 @@ const AboutPage = () => {
                 <p className=" md:text-5xl text-xl   mb-4 font-bold   leading-6  ">Vendra's Mission to Revolutionize Ecommerce for a Seamless, Inclusive, and Sustainable Future</p>
             </main>
 
-            <main className=" grid grid-cols-3 gap-16 my-20">
-                <section className=" col-span-1">
+            <main className=" grid grid-cols-3 gap-16 md:my-20 my-8">
+                <section className=" md:col-span-1 col-span-3 ">
                     <img src={about2} className=" w-full" />
                 </section>
-                <section className='col-span-2'>
+                <section className='md:col-span-2 col-span-3'>
                     <p className=" leading-7   " >
                         In the digital age, convenience is king. Our mission at Vendra is to streamline the ecommerce experience, making it as effortless and efficient as possible for both consumers and merchants. From intuitive user interfaces to secure payment gateways, we are committed to removing friction points and ensuring that every transaction is a seamless journey from browsing to checkout. <br /><br />
                         Ecommerce is not just about buying and selling—it's about fostering connections and empowering individuals and businesses on a global scale. We strive to democratize commerce by providing a platform where startups, small businesses, and multinational corporations alike can thrive. Our mission is to break down barriers and open doors to new opportunities, regardless of geographical location or company size. <br /><br />
@@ -77,10 +77,10 @@ const AboutPage = () => {
                     </p>
                 </section>
             </main>
-            <main className=" grid grid-cols-6 py-10">
-                <section className=" col-span-1">
+            <main className=" grid grid-cols-6 md:py-10 py-2">
+                <section className=" md:col-span-1">
                 </section>
-                <section className=" col-span-5">
+                <section className=" md:col-span-5 col-span-6">
                     <p className=" leading-7 text-lg  " >
                         Trust is the cornerstone of any successful ecommerce ecosystem. Our mission at Vendra is to cultivate trust and transparency at every touchpoint, from product discovery to post-purchase support. We believe in fostering open and honest relationships with our customers and partners, ensuring that every interaction is guided by integrity, accountability, and respect.<br /><br />
                         At Vendra, we recognize the profound impact that ecommerce can have on communities and the environment. Our mission is to harness the power of commerce for good, supporting local economies, promoting fair labor practices, and minimizing our environmental footprint. From sourcing ethically produced products to reducing packaging waste, we are committed to building a more sustainable and inclusive future for all.<br /><br />
@@ -90,7 +90,7 @@ const AboutPage = () => {
                 </section>
             </main>
 
-            <main className=' grid grid-cols-3 gap-3  py-10 '>
+            <main className=' grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3  md:py-10 pb-6 '>
                 <section className='flex gap-3 '>
                     <div >
                         <IoRemoveOutline size={29} />

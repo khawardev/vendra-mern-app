@@ -40,7 +40,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
     const ExchangeRate = useSelector(selectExchangeRate);
 
     const [reviews, setReviews] = useState([]);
-    console.log( reviews)
+    console.log(reviews)
     const { isReviewload } = useContext(Context);
     const toolkitreviews = useSelector(selectReviews);
     console.log(toolkitreviews.flat())
@@ -93,7 +93,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
     };
     const handleAddToWishList = (DiscountedPrice) => {
         toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
-        dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price:  DiscountedPrice ? DiscountedPrice : filteredProduct.price , imageurl: filteredProduct.image, quantity: quantity }));
+        dispatch(addToWishlist({ id: filteredProduct._id, name: filteredProduct.name, desc: filteredProduct.description, price: DiscountedPrice ? DiscountedPrice : filteredProduct.price, imageurl: filteredProduct.image, quantity: quantity }));
     };
 
 
@@ -161,34 +161,47 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
 
             <p className=" text-sm mb-8"><span className=" text-gray-400"> <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=' cursor-pointer' onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name} </span>  /</span> <b>{Productname}</b>  </p>
 
-            <main className=" grid grid-cols-4 gap-12 mb-18  ">
-                <section className='grid grid-cols-5 gap-6 col-span-2'>
-                    <section className='flex flex-col gap-5 col-span-1'>
+            <main className=" grid grid-cols-4 md:gap-12 gap-4 mb-18   ">
+                <section className='grid grid-cols-5 gap-6 md:col-span-2 col-span-4'>
 
+
+                    <section className='md:flex hidden flex-col gap-5 col-span-1  '>
                         {filteredProduct?.image.map((imageUUID, index) => (
                             <img
                                 key={index} // Make sure to use a unique key for each image
-                                className='mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer'
+                                className='mix-blend-multiply flex justify-center items-center  cursor-pointer'
                                 src={`https://ucarecdn.com/${imageUUID}/`} // Assuming imageUUID is the actual UUID of the image
                                 alt={`Image ${index + 1}`} // Add alt text to improve accessibility
                                 onClick={() => handleImageClick(imageUUID)} // Pass the imageUUID to the click handler
                             />
                         ))}
-
-
                     </section>
-                    <section className='flex justify-start col-span-4'>
-                        <div className=' rounded-2xl px-3'>
-                            <LightBox zoomedImageSrc={zoomedImageSrc} filteredProduct={filteredProduct} />
 
+                    <section className='flex justify-start md:col-span-4 col-span-5'>
+                        <div className='  '>
+                            <LightBox zoomedImageSrc={zoomedImageSrc} filteredProduct={filteredProduct} />
                         </div>
                     </section>
+                    <div className='md:hidden flex   col-span-5'>
+                        <section className='   grid grid-cols-4 gap-2   '>
+                            {filteredProduct?.image.map((imageUUID, index) => (
+                                <img
+                                    key={index} // Make sure to use a unique key for each image
+                                    className='mix-blend-multiply flex justify-center border items-center cursor-pointer'
+                                    src={`https://ucarecdn.com/${imageUUID}/`} // Assuming imageUUID is the actual UUID of the image
+                                    alt={`Image ${index + 1}`} // Add alt text to improve accessibility
+                                    onClick={() => handleImageClick(imageUUID)} // Pass the imageUUID to the click handler
+                                />
+                            ))}
+                        </section>
+                    </div>
+                    
                 </section>
-                <section className=' flex flex-col justify-between col-span-2 py-2'>
 
+                <section className=' flex flex-col justify-between  md:py-2 md:col-span-2 col-span-4 '>
                     <main className='mb-8'>
-                        <p className=" text-3xl   font-bold    mb-8 leading-8 "> {filteredProduct?.name} </p>
-                        <div className="my-8 flex items-center justify-between ">
+                        <p className=" md:text-3xl  md:leading-8  text-xl leading-6  font-bold      "> {filteredProduct?.name} </p>
+                        <div className="md:my-8 my-4 flex items-center justify-between ">
                             <div className='flex items-center gap-3'>
                                 {Discount === 'true' ?
                                     <>
@@ -196,13 +209,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                                         <p className=" text-xl    text-gray-300 line-through"> {ExchangeRate ? ExchangeRate.code : 'USD'}  {ExchangeRate ? (ExchangeRate.value * filteredProduct?.price).toFixed(0) : filteredProduct?.price}  </p>
                                     </>
                                     : <p className=" text-3xl font-bold   text-red-500"> <span className=' text-sm'>{ExchangeRate ? ExchangeRate.code : 'USD'}</span><span className=' '> {ExchangeRate ? (ExchangeRate.value * filteredProduct?.price).toFixed(0) : filteredProduct?.price}</span> </p>}
-
-
-
                             </div>
-
-
-
                             <section className='flex items-center gap-2'>
                                 {Discount === 'true' && <div className='rounded-full flex items-center gap-1  text-green-800 bg-green-200  font-bold py-1  md:px-3 px-2 '>
                                     {calculateDiscountPercentage(filteredProduct?.price, DiscountedPrice)}%
@@ -210,16 +217,12 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                                 }
                                 {BestSell === 'true' && <div className='  flex  '>
                                     <img src="   https://cdn-icons-png.flaticon.com/512/4715/4715576.png " className=' w-[36px]' alt="" />
-
-
                                 </div>
                                 }
 
                             </section>
-
-
                         </div>
-                        <div className='my-8 flex justify-between items-center'>
+                        <div className='md:my-8 my-4 space-y-4 md:flex justify-between items-center'>
 
                             <span className=" select-none px-3  font-bold   bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
                             <div className='flex justify-between items-center gap-3'>
@@ -275,7 +278,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                         </section>
 
                         <div className=" space-y-3 ">
-                            <p onClick={() => { handleAddToWishList(Discount === 'true' && DiscountedPrice ) }} className=" px-5 w-full py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
+                            <p onClick={() => { handleAddToWishList(Discount === 'true' && DiscountedPrice) }} className=" px-5 w-full py-2 border bg-blue-100  text-blue-600 font-bold   hover:border-blue-300  rounded-full  cursor-pointer flex  justify-center items-center gap-2">Wishlist  <FaRegHeart /></p>
 
                             <p className="px-5 py-2   w-full border bg-yellow-100  hover:border-yellow-300 text-yellow-600 font-bold    rounded-full  cursor-pointer flex justify-center items-center gap-2" onClick={() => {
                                 handleAddToCart(Discount === 'true' && DiscountedPrice);
@@ -334,7 +337,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                 ) : (
                     <ul>
                         {filteredReviews.length !== 0 ? (
-                            <main className='grid grid-cols-2 gap-4'>
+                            <main className='grid md:grid-cols-2 gap-4'>
                                 {filteredReviews.reverse().map(review => (
                                     <main key={review._id} className='flex gap-4 py-4 px-3 border-b'>
                                         <section>

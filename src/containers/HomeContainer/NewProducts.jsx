@@ -74,18 +74,18 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
 
                 <main>
                     {NewProductBanner &&
-                        <section className='relative ' onClick={() => Navigate(`/viewcategoryproducts/663b070c7234b185b146e2d6`)}>
-                            <div className='text-black absolute md:top-6 top-4 md:left-10  z-10  p-2'>
+                        <section className='relative ' >
+                            <div className='text-black absolute md:top-6 top-2  md:left-10 left-4  z-10  p-1'>
 
                                 <div className='mt-5'>
-                                    <h1 className='md:text-2xl   text-lg leading-6 md:block hidden tracking-tight text-gray-500'>Immerse yourself in pure sound</h1>
-                                    <h1 className='md:text-4xl text-2xl   font-extrabold leading-6 tracking-tight'>Discover Premium Headphones</h1>
+                                    <h1 className='md:text-2xl   text-lg leading-6  tracking-tight text-gray-500'>Immerse yourself in pure sound</h1>
+                                    <h1 className='md:text-4xl text-xl   font-extrabold leading-6 tracking-tight'>Discover Premium Headphones</h1>
                                 </div>
-                                <button className='px-5 py-2  text-sm font-semibold   bg-blue-500 rounded-full text-white  transition-all ease-in  mt-4'>
+                                <button onClick={() => Navigate(`/viewcategoryproducts/663b070c7234b185b146e2d6`)} className='md:px-5 px-3 md:py-2 py-1  text-sm font-semibold   bg-blue-500 rounded-full text-white  transition-all ease-in  md:mt-4 mt-2'>
                                     <b>Shop now</b>
                                 </button>
                             </div>
-                            <div className='h-full w-full border'>
+                            <div className='md:h-full h-[150px] w-full border'>
                                 <img src="https://res.cloudinary.com/denajbnh4/image/upload/v1694938129/banner-4_uoyebo.jpg" className='object-cover w-full h-full' alt="" />
                             </div>
                         </section>

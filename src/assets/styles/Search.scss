@@ -8,7 +8,7 @@
   left: 0;
   background-color: white;
   transform: translateY(100%);
-  animation: slideSearchWindow 0.5s ease forwards;
+  animation: slideSearchWindow 0.4s ease forwards;
   .form-field {
     width: 100%;
     display: flex;
@@ -50,7 +50,7 @@
 }
 @keyframes slideSearchWindow {
   0% {
-    transform: translateY(100%);
+    transform: translateY(80%);
   }
   100% {
     transform: translateY(0%);

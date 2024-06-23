@@ -34,6 +34,7 @@ import Resizecall from './components/WebScrapper/Resizecall';
 import AshanCardHover from './components/WebScrapper/AshanCardHover';
 import AshanStepsComp from './components/WebScrapper/AshanStepper/AshanStepsComp';
 import Stepper from './components/WebScrapper/AshanStepper/Stepper'
+import TextEditor2 from './components/WebScrapper/TextEditor2';
 function App() {
 
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -48,14 +49,19 @@ function App() {
       {/* <Resizecall/> */}
       {/* <AshanCardHover /> */}
       {/* <AshanStepsComp /> */}
+      {/* <TextEditor2 /> */}
 
-    <BrowserRouter>
+
+
+
+
+
+      <BrowserRouter>
         <AppContext>
           <Header />
           <Routes>
             <Route exact path='/' element={<HomePage />} />
             <Route exact path='/account' element={<AuthPage />} />
-            {/* <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < AuthPage />} /> */}
             <Route exact path='/background-remove' element={isLoggedIn == "true" ? <BackgroundRemoval /> : < AuthPage />} />
             <Route exact path='/contact' element={<ContactPage />} />
             <Route exact path='/vendorpanel' element={<VendorPanelPage />} />
@@ -76,9 +82,7 @@ function App() {
             <Route exact path='/admin-account' element={isLoggedIn == "true" ? <AdminPage /> : < VendorAuthPage />} />
             <Route exact path='/compare' element={<ComparePage />} />
           </Routes>
-
           <Footer />
-
         </AppContext>
       </BrowserRouter> 
 

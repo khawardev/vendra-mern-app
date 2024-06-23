@@ -112,11 +112,11 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
                                     </div>
                                 </div>
 
-                                <section className={` rounded-xl  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
+                                <section className={`  relative    Parent-product-Image-Hover  `} onClick={() => Navigate(`/viewsingleproduct/${product?._id}/${false}/${false}/newProduct`)}>
                                     {/* <BackgroundRemoval Imageurl={`https://ucarecdn.com/${product?.image}/`} /> */}
                                     <img className='mix-blend-multiply flex  w-full ' src={`https://ucarecdn.com/${product?.image[0]}/-/scale_crop/500x500/`} alt="" />
-                                    <span className=' md:leading-5 mb-3 mt-4   leading-5 line-clamp-2   text-lg font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
-                                    <p className='    mb-3  line-clamp-3  hover:cursor-pointer  text-gray-400  leading-5   tracking-tight   '>{product.description}</p>
+                                    <span className=' md:leading-5 mb-2 mt-4   leading-5 line-clamp-2   md:text-lg font-bold   hover:cursor-pointer hover:underline  Parent-product-text-Hover  capitalize  '>{product.name}</span>
+                                    <p className='  mb-3  line-clamp-2   hover:cursor-pointer  text-gray-400  leading-5   tracking-tight   '>{product.description}</p>
                                 </section>
 
                             </main>

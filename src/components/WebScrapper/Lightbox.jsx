@@ -21,11 +21,11 @@ export default function LightBox({ filteredProduct, zoomedImageSrc }) {
     return (
         <>
             {zoomedImageSrc ? <img
-                className="mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer"
+                className="mix-blend-multiply flex justify-center items-center  cursor-pointer"
                 src={`https://ucarecdn.com/${zoomedImageSrc}/`}
                 onClick={() => handleImageClick(0)}
             /> : <img
-                className="mix-blend-multiply flex justify-center items-center rounded-xl cursor-pointer"
+                className="mix-blend-multiply flex justify-center items-center  cursor-pointer"
                 src={`https://ucarecdn.com/${filteredProduct?.image?.[0]}/`}
                 onClick={() => handleImageClick(0)}
             /> }

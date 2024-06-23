@@ -1,0 +1,44 @@
+/* CheckoutPage.css */
+
+.container {
+    max-width: 1200px;
+  }
+  
+  .checkout-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  
+  .form-container {
+    flex: 1;
+  }
+  
+  .order-summary {
+    flex: 0 0 300px;
+  }
+  
+  .order-summary h2 {
+    font-size: 1.875rem;
+  }
+  
+  .order-summary .order-items {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .order-summary .order-items li {
+    padding: 0.75rem 0;
+  }
+  
+  .order-summary .order-items li:not(:last-child) {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .order-summary .order-total {
+    padding: 0.75rem 0;
+  }
+  
+  .order-summary .order-total .total-amount {
+    font-size: 1.125rem;
+  }
+  

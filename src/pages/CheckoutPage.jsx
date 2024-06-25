@@ -352,8 +352,8 @@ const CheckoutPage = () => {
                       <b>Card payment</b>
 
                     </div>
+                    <BsCreditCard2Front size={18} />
 
-                    <CiDeliveryTruck size={20} />
                   </label>
 
                   {showPaymentCOD && (
@@ -377,8 +377,8 @@ const CheckoutPage = () => {
                     <span className=""></span>
                     <b>Cash on delivery</b>
                   </div>
+                  <CiDeliveryTruck size={20} />
 
-                  <BsCreditCard2Front size={18} />
                 </label>
                 {showPaymentCARD && (
                   <div className=" leading-5 text-sm text-gray-500 my-5 ">

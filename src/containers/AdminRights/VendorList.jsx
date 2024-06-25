@@ -87,8 +87,8 @@ const VendorList = () => {
   return (
     <div className="relative overflow-x-auto ">
       <div className="auth-inner" style={{ width: "auto" }}>
-          <div className="my-16 text-center ">
-            <p className=' font-bold   text-5xl  text-center my-12'>Registered Vendors</p>
+          <div className="my-16  ">
+            <p className=' font-bold   text-3xl   my-12'>Registered Vendors</p>
             {/* <button onClick={logOut} className="font-small bg-red-500 rounded py-1 px-2">
               Logout
             </button> */}

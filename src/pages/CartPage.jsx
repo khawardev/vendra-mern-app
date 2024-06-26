@@ -109,7 +109,7 @@ const CartPage = () => {
                                                 <img
                                                     src={`https://ucarecdn.com/${cartItems?.imageurl[0]}/`}
                                                     alt="iMac Front Image"
-                                                    className="  mix-blend-multiply w-[1800px]"
+                                                    className="  mix-blend-multiply w-[3000px]"
                                                 />
                                             </section>
 

@@ -35,6 +35,7 @@ import AshanCardHover from './components/WebScrapper/AshanCardHover';
 import AshanStepsComp from './components/WebScrapper/AshanStepper/AshanStepsComp';
 import Stepper from './components/WebScrapper/AshanStepper/Stepper'
 import TextEditor2 from './components/WebScrapper/TextEditor2';
+import Api from './api/api';
 
 
 function App() {
@@ -52,7 +53,6 @@ function App() {
       {/* <AshanCardHover /> */}
       {/* <AshanStepsComp /> */}
       {/* <TextEditor2 /> */}
-
 
 
 
@@ -86,7 +86,7 @@ function App() {
           </Routes>
           <Footer />
         </AppContext>
-      </BrowserRouter> 
+      </BrowserRouter>
 
     </>
   )

@@ -51,22 +51,12 @@ export const HomePage = () => {
             dispatch(setProducts(productsData));
             dispatch(setCategories(categoriesData));
             dispatch(setUser(UserinfoData?.data));
-
-
             dispatch(clearReviews());
             dispatch(addReview(UserReviewData))
-
-
-
             // dispatch(setProducts(ProductData));
             // dispatch(setCategories(CategoriesData));
-
             // dispatch(clearReviews());
             // dispatch(addReview(UserReviewData))
-
-
-
-
         };
 
         fetchData();
@@ -90,11 +80,10 @@ export const HomePage = () => {
 
     return (
         <>
-
             {/* <ApiController /> */}
             {/* <WebScrapper /> */}
             <HeroSection />
-            <CompaniesSection />
+            {/* <CompaniesSection /> */}
             <CategoriesSection />
 
             <section className='w-11/12 mx-auto mt-14 mb-10  '>
@@ -108,9 +97,7 @@ export const HomePage = () => {
             {/* lg:grid-cols-4 md:grid-cols-3 grid-cols-2 */}
             {bestSelling[0]?.id && <TrendingProducts />}
             {discount[0]?.id && <DiscountProducts />}
-            <BannerSection />
-
-
+            {/* <BannerSection /> */}
         </>
     )
 }

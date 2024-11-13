@@ -19,10 +19,6 @@ const CategoriesSection = () => {
     });
   };
 
-
-
-
-
   return (
     <div className="my-7 w-11/12  m-auto ">
       <div className=" carousel relative flex justify-center items-center">

@@ -63,7 +63,6 @@ const CartPage = () => {
             return total + (item.price * item.quantity);
         }, 0);
         dispatch(setTotalSubtotal(newTotalSubtotal));
-        // dispatch(setProductQuantity([item?.quantity]));
     }, [cartItems]);
 
     const [couponCode, setCouponCode] = useState('');

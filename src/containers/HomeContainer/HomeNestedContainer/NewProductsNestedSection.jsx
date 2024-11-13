@@ -28,7 +28,7 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
 
     const reviews = useSelector(selectReviews);
     const ExchangeRate = useSelector(selectExchangeRate);
-    
+
     const Navigate = useNavigate();
     const dispatch = useDispatch();
     const discount = useSelector(selectdiscount);
@@ -44,8 +44,8 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
     const discountedProducts = products.filter(product => !discountedProductIds.includes(product._id));
     const bestSellingProducts = discountedProducts.filter(product => !bestSellingProductIds.includes(product._id));
 
-    
 
+    console.log(products, 'productsproductsproducts')
 
     const handleAddToWishList = (id, name, desc, price, imageurl, quantity) => {
         toast.success(<span style={{ fontWeight: 'bold' }}>Added to wishlist</span>);
@@ -58,7 +58,6 @@ const NewProductsNestedSection = ({ sliceProducts, grid }) => {
         dispatch(addToCart({ id: id, name: name, desc: desc, price: price, imageurl: imageurl, quantity: quantity }));
         setcartloading(true);
     };
-
 
     useEffect(() => {
 

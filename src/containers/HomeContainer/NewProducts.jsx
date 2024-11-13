@@ -13,21 +13,6 @@ import ShopNestedSection from './HomeNestedContainer/ShopProductsNestedSection';
 const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore, Related, sliceProducts, url, bestselling, sectionClasses, imageClasses, imageClasses2, TextClasses }) => {
     const Navigate = useNavigate();
     const URL = url === 'bestselling' ? '/bestselling' : url === 'discount' ? '/discount' : '/shop';
-    // const sectionToRender = viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
-    //     : viewmore === 'discount' ? <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />
-    //         : viewmore === 'newProducts' ? <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />
-    //             : viewmore === 'discount' ? <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />  
-
-
-    // if (viewmore === 'newProducts') {
-    //     sectionToRender = <NewProductsNestedSection sliceProducts={sliceProducts === false ? false : true} />;
-    // } else if (viewmore === 'discount') {
-    //     sectionToRender = <DiscountedNestedSection sliceProducts={sliceProducts === false ? false : true} />;
-    // } else if (viewmore === 'bestselling') {
-    //     sectionToRender = <BestSellingNestedSection sliceProducts={sliceProducts === false ? false : true} />;
-    // } else {
-    //     sectionToRender = <CategoryProductsNestedSection filteredProducts={filteredProducts} />;
-    // }
     return (
         <>
             <main className=' md:mt-0 mt-6 flex flex-col justify-between  '>
@@ -53,15 +38,15 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
 
                     }
 
-                    {url === 'newProducts' 
-                        ? <NewProductsNestedSection   grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                    {url === 'newProducts'
+                        ? <NewProductsNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
                         : url === 'discount'
                             ? <DiscountedNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
                             : url === 'shop'
-                                ? <ShopNestedSection filteredProducts={filteredProducts} grid={grid} sectionClasses={sectionClasses} imageClasses={imageClasses} TextClasses={TextClasses} imageClasses2={imageClasses2}  />
-                            : url === 'bestselling'
-                                ? <BestSellingNestedSection grid={grid}  sliceProducts={sliceProducts === false ? false : true} />
-                                : <CategoryProductsNestedSection grid={grid} name={'category'} filteredProducts={filteredProducts} />
+                                ? <ShopNestedSection filteredProducts={filteredProducts} grid={grid} sectionClasses={sectionClasses} imageClasses={imageClasses} TextClasses={TextClasses} imageClasses2={imageClasses2} />
+                                : url === 'bestselling'
+                                    ? <BestSellingNestedSection grid={grid} sliceProducts={sliceProducts === false ? false : true} />
+                                    : <CategoryProductsNestedSection grid={grid} name={'category'} filteredProducts={filteredProducts} />
                     }
 
                     {/* {url === 'shop' &&
@@ -72,7 +57,7 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
 
                 </main>
 
-                <main>
+                {/* <main>
                     {NewProductBanner &&
                         <section className='relative ' >
                             <div className='text-black absolute md:top-6 top-2  md:left-10 left-4  z-10  p-1'>
@@ -90,7 +75,7 @@ const NewProducts = ({ title, NewProductBanner, grid, filteredProducts, viewmore
                             </div>
                         </section>
                     }
-                </main>
+                </main> */}
             </main>
 
 

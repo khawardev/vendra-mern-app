@@ -46,7 +46,7 @@ const MiddleHeader = () => {
           onClick={() => Navigate("/")}
         >
           <img src={logo} width={35} />
-          Vendra<sup className="font-bold text-xl"> &reg; </sup>
+          Electra Mart<sup className="font-bold text-xl"> &reg; </sup>
         </section>
         <section className="lg:flex hidden justify-center items-center border rounded-full">
           {/* Search Section */}

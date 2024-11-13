@@ -83,7 +83,7 @@ const ContactPage = () => {
         <div className="w-full flex flex-col justify-between ">
           <p className=" md:text-xl   mb-10">
             If you have any general inquiries or feedback for us, please dont
-            hesitate to get in touch.insights help us enhance the Vendra
+            hesitate to get in touch.insights help us enhance the Electra Mart
             Ecommerce experience for everyone.
           </p>
           <img src={contact} alt="" />

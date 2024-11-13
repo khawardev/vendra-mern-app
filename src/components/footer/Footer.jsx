@@ -36,7 +36,7 @@ const Footer = () => {
                 <main className="md:flex md:justify-between text-center items-center ">
                     <section className=' flex gap-1 items-center md:justify-start justify-center'>
                         <img src={logo} width={35} />
-                        <p className='text-4xl font-extrabold  '>Vendra<sup className=' font-light text-sm'> &reg; </sup></p>
+                        <p className='text-4xl font-extrabold  '>Electra Mart<sup className=' font-light text-sm'> &reg; </sup></p>
                     </section>
 
                     <section className="flex justify-center items-center gap-3 md:mt-0 mt-4">
@@ -62,7 +62,7 @@ const Footer = () => {
                     <section className='text-sm md:mt-0 mt-4 flex items-center gap-2' >
 
                         © Copyright 2023 All Right Reserved
-                        <span className=" text-[#FFC21F]   "><b>Vendra</b><sup className=' font-light text-sm'> &reg; </sup></span>
+                        <span className=" text-[#FFC21F]   "><b>Electra Mart</b><sup className=' font-light text-sm'> &reg; </sup></span>
 
                     </section>
                     <section>

@@ -2,7 +2,7 @@ const slidesData = [
     {
         url: 'https://res.cloudinary.com/denajbnh4/image/upload/v1694852444/slider-banner-9_igby6u.jpg',
         tag: 'Smartphones',
-        tagline1: 'Joyful Vendra Shopping',
+        tagline1: 'Joyful Electra Mart Shopping',
         tagline2: 'Shop what you desire',
         description: 'Big screens in incredibly slim designs in your hand.',
         buttonLabel: 'Shop Now',

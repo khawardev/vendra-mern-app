@@ -11,10 +11,10 @@ const TopHeader = () => {
     const isLoggedIn = window.localStorage.getItem("loggedIn");
     const userRole = window.localStorage.getItem("role");
 
-    const logOut = () => {
-        window.localStorage.clear();
-        window.location.href = "/account";
-    };
+    // const logOut = () => {
+    //     window.localStorage.clear();
+    //     window.location.href = "/account";
+    // };
     return (
         <div>
             <main className=" flex justify-between  gap-4 items-center   list-none  pt-5 text-sm select-none">
@@ -51,7 +51,7 @@ const TopHeader = () => {
                     </li>
 
                 </div>
-                {isLoggedIn === "true" ? (userRole !== "admin" && userRole !== "vendor") && (
+                {/* {isLoggedIn === "true" ? (userRole !== "admin" && userRole !== "vendor") && (
                     <p className="font-bold py-[6px] px-3 bg-red-500 text-white cursor-pointer border hover:bg-red-600 border-red-300 rounded-full flex  justify-center items-center gap-2" onClick={logOut}>
                         Logout <TbLogout size={18} />
                     </p>
@@ -61,7 +61,7 @@ const TopHeader = () => {
                         Logout <TbLogout size={18} />
                     </p>
                 </div>
-                }
+                } */}
 
 
             </main>

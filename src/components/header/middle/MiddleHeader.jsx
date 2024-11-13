@@ -39,10 +39,10 @@ const MiddleHeader = () => {
   // };
 
   return (
-    <div className=" py-6">
+    <div className=" md:py-6 pt-2 pb-6">
       <main className="flex justify-between items-center mt-3  ">
         <section
-          className="text-4xl font-extrabold cursor-pointer flex items-center gap-1"
+          className="text-3xl font-extrabold tracking-tighter cursor-pointer flex items-center gap-1"
           onClick={() => Navigate("/")}
         >
           <img src={logo} width={35} />

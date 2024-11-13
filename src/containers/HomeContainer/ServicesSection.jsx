@@ -6,7 +6,7 @@ import { GoShieldCheck } from 'react-icons/go';
 import { GoPeople } from 'react-icons/go';
 import { TbTruckReturn } from 'react-icons/tb';
 import { useNavigate } from "react-router-dom";
-
+import banner3 from '../../assets/images/banner-3.jpg'
 const ServicesSection = () => {
     const Navigate = useNavigate();
 
@@ -67,7 +67,7 @@ const ServicesSection = () => {
                         <p className='mb-4  text-gray-500'>Don&rsquo;t miss out latest oppurtunity</p>
                         <button className='px-4 py-1 text-white text-sm tracking-tight font-semibold rounded-full bg-blue-500'>Shop now</button>
                     </section>
-                    <img src={'https://res.cloudinary.com/denajbnh4/image/upload/v1694878173/banner-3_arubwp.jpg'} className='w-full ' alt="" />
+                    <img src={banner3} className='w-full ' alt="" />
                 </main>
             </main>
 

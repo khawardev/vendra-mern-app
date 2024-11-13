@@ -14,10 +14,10 @@ const Header = () => {
         <>
             {ShowSearch && <Search setShowSearch={setShowSearch} />}
 
-            <div className='w-11/12 my-1  m-auto'>
+            <div className='w-11/12   m-auto'>
                 <TopHeader />
             </div>
-            <hr className='lg:hidden block' />
+            {/* <hr className='lg:hidden block' /> */}
             <main className='w-11/12  m-auto select-none'>
                 <MiddleHeader />
                 <section className='lg:hidden flex justify-between items-center border rounded-full mb-4'>

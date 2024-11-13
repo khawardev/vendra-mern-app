@@ -74,7 +74,7 @@ function App() {
             <Route exact path={`/viewsingleproduct/:productid/:BestSell/:Discount/:DiscountedPrice`} element={<ViewSingleProduct />} />
             <Route exact path={`/cart`} element={<CartPage />} />
             <Route exact path={`/wishlist`} element={<WishlistPage />} />
-            <Route exact path={`/about`} element={<AboutPage />} />
+            <Route exact path={`/about`} element={<AboutPage />} />1
             <Route exact path={`/shop`} element={<ShopPage />} />
             <Route exact path={`/edit/:productid`} element={<EditProduct />} />
             <Route exact path={`/bestselling`} element={<TrendingProductsPage />} />

@@ -58,7 +58,7 @@ const TableProduct = () => {
     return (
         <div>
             <section className=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
-                <p className=' font-bold   text-6xl  text-center my-12 '>Vendor Panel </p>
+                <p className=' font-bold text-yellow-500   text-6xl  text-center my-12 '>Vendor Panel </p>
                 <div className="mx-auto max-w-screen-2xl px-4 lg:px-12">
                     <div className="  relative   overflow-hidden">
                         <div className="  flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-8  dark:border-gray-700">
@@ -87,7 +87,7 @@ const TableProduct = () => {
                                         <button
 
                                             onClick={() => handleButtonClick()}
-                                            className={`inline-flex justify-center p-4 rounded-md ${showActions && "bg-gray-200"
+                                            className={`inline-flex justify-center p-2 rounded-md ${showActions && "bg-gray-200"
                                                 } border hover:bg-gray-200 bg-gray-100`}
                                         >
                                             <FaListUl />
@@ -105,15 +105,15 @@ const TableProduct = () => {
                                             <div className="py-1" role="none">
 
                                                 <CreateProductButton />
-                                                <CreateCategoryButton />
+                                                {/* <CreateCategoryButton /> */}
 
-                                                <button
+                                                {/* <button
                                                     className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                                     role="menuitem"
                                                     onClick={() => Navigate("/OrderManage")}
                                                 >
                                                     <MdOutlineSell /> Order Manage
-                                                </button>
+                                                </button> */}
                                                 <button
                                                     className="w-full  text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                                     role="menuitem"
@@ -121,7 +121,7 @@ const TableProduct = () => {
                                                 >
                                                     <LuContact /> Contact Manage
                                                 </button>
-                                                <button
+                                                {/* <button
                                                     onClick={toggleProduct}
                                                     type="button"
                                                     id="createProductButton"
@@ -130,7 +130,7 @@ const TableProduct = () => {
                                                 >
                                                     <CgArrowsExchangeAlt size={20} />
                                                     {isDropdownVisible ? 'View Products' : 'View Category'}
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </div>
                                     )}

@@ -84,7 +84,7 @@ export const HomePage = () => {
             {/* <WebScrapper /> */}
             <HeroSection />
             {/* <CompaniesSection /> */}
-            <CategoriesSection />
+            {/* <CategoriesSection /> */}
 
             <section className='w-11/12 mx-auto mt-14 mb-10  '>
                 <div className='grid md:grid-cols-4 grid-cols-1 md:gap-6  '>

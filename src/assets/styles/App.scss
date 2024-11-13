@@ -9,6 +9,7 @@
   font-family: "Circular-Std";
   src: url(../fonts/FontsFree-Net-Circular-Std-Book.ttf);
 }
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
 
 @font-face {
   font-family: "Klarna Display";
@@ -33,14 +34,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   // font-family: "Circular-Std
   // font-family: "Klarna Display
-  font-family: "Bricolage Grotesque", sans-serif;
+  // font-family: "Bricolage Grotesque", sans-serif;
+  font-family: "Archivo", sans-serif;
   // font-optical-sizing: auto;
   // font-style: normal;
   // font-variation-settings: "wdth" 100;

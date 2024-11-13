@@ -74,7 +74,7 @@ const WishlistPage = () => {
                         <div>
                             {wishlistItems?.map((WishlistItems) => (
                                 <>
-                                    <div key={WishlistItems.id} className=" select-none  w-full p-3  flex gap-6 border rounded-xl my-4">
+                                    <div key={WishlistItems.id} className=" select-none  w-full p-3  flex gap-6  rounded-xl my-4">
                                         <section className=" py-4    font-medium text-gray-900  dark:text-white">
                                             <img
                                                 src={`https://ucarecdn.com/${WishlistItems?.imageurl[0]}/-/scale_crop/500x500/`}

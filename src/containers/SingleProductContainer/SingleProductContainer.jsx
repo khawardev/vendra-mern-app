@@ -157,14 +157,9 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
 
     return (
         <>
-
-
             <p className=" text-sm mb-8"><span className=" text-gray-400"> <span className=' cursor-pointer' onClick={() => Navigate(`/`)}>Home</span> / <span className=' cursor-pointer' onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name} </span>  /</span> <b>{Productname}</b>  </p>
-
             <main className=" grid grid-cols-4 md:gap-12 gap-4 mb-18   ">
                 <section className='grid grid-cols-5 gap-6 md:col-span-2 col-span-4'>
-
-
                     <section className='md:flex hidden flex-col gap-5 col-span-1  '>
                         {filteredProduct?.image.map((imageUUID, index) => (
                             <img
@@ -195,7 +190,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                             ))}
                         </section>
                     </div>
-                    
+
                 </section>
 
                 <section className=' flex flex-col justify-between  md:py-2 md:col-span-2 col-span-4 '>
@@ -222,21 +217,15 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
 
                             </section>
                         </div>
-                        <div className='md:my-8 my-4 space-y-4 md:flex justify-between items-center'>
-
+                        {/* <div className='md:my-8 my-4 space-y-4 md:flex justify-between items-center'>
                             <span className=" select-none px-3  font-bold   bg-green-100 border rounded-full  border-green-300 text-green-700"> In Stock </span>
                             <div className='flex justify-between items-center gap-3'>
                                 <span className='flex items-center gap-1'>
                                     <StarRatingAvg reviews={filteredReviews} />
                                 </span>
-                                {/* <p onClick={<ModalComponent />} className='font-bold    border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center '> <FiPlus stroke-width={3} /> Add Review</p> */}
-
-                                {/* <p onClick={() => setShowmodal(!Showmodal)} className='font-bold border px-2 py-1 rounded-full bg-gray-100 cursor-pointer flex gap-1 justify-center items-center'>
-                                    <FiPlus strokeWidth={3} /> Add Review
-                                </p> */}
                                 <ReviewsModal productid={filteredProduct?._id} />
                             </div>
-                        </div>
+                        </div> */}
                         <section className=" mb-4 flex justify-between items-center  py-3 select-none ">
                             <div className=" flex justify-between items-center gap-8 border rounded-full px-4 py-2 ">
                                 <div className='px-3 font-bold  '>
@@ -287,7 +276,7 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                     </main>
 
                     <main  >
-                        <p className="mb-3" ><b>Categories:</b><span className=" text-blue-500 cursor-pointer text-sm   " onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name}</span></p>
+                        {/* <p className="mb-3" ><b>Categories:</b><span className=" text-blue-500 cursor-pointer text-sm   " onClick={() => Navigate(`/viewcategoryproducts/${filteredcategory?._id}`)}> {filteredcategory?.name}</span></p> */}
                         <section className="flex justify-start items-center gap-3 ">
                             <p><b>Socials: </b></p>
                             <div className='p-2  bg-slate-200 rounded-full cursor-pointer'>
@@ -320,12 +309,12 @@ const SingleProductContainer = ({ productid, filteredProduct, filteredcategory, 
                     >
                         Description
                     </p>
-                    <p
+                    {/* <p
                         className={`text-xl cursor-pointer font-bold ${selectedOption === 'Reviews' ? 'text-black' : 'text-gray-400'} transition-all ease-in hover:duration-100`}
                         onClick={() => setSelectedOption('Reviews')}
                     >
                         Reviews
-                    </p>
+                    </p> */}
                 </section>
 
                 <hr className='my-3' />

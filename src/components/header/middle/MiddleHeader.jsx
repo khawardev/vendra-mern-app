@@ -1,46 +1,46 @@
 import { VscHeart } from "react-icons/vsc";
-import { BsCart2, BsPerson } from "react-icons/bs";
+import { BsCart2 } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectWishlistItems } from "../../../toolkit/Slices/WishlistSlice";
 import Search from "./Search/Search";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import logo from "../../../assets/images/logo.png";
-import { TbLogout } from "react-icons/tb";
+// import { TbLogout } from "react-icons/tb";
 
-import { selectUsers } from "../../../toolkit/Slices/UserSlice";
-import { selectSingleUsers } from "../../../toolkit/Slices/UserSlice";
+// import { selectUsers } from "../../../toolkit/Slices/UserSlice";
+// import { selectSingleUsers } from "../../../toolkit/Slices/UserSlice";
 import { selectExchangeRate } from '../../../toolkit/Slices/CompareSlice';
 const MiddleHeader = () => {
   const Navigate = useNavigate();
   const ExchangeRate = useSelector(selectExchangeRate);
 
-  const isLoggedIn = window.localStorage.getItem("loggedIn");
-  const userRole = window.localStorage.getItem("role");
+  // const isLoggedIn = window.localStorage.getItem("loggedIn");
+  // const userRole = window.localStorage.getItem("role");
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
   const wishlistItems = useSelector(selectWishlistItems);
   const [ShowSearch, setShowSearch] = useState(false);
-  const users = useSelector(selectUsers);
-  const Singleusers = useSelector(selectSingleUsers);
-  const [foundUserDetails, setfoundUserDetails] = useState({});
+  // const users = useSelector(selectUsers);
+  // const Singleusers = useSelector(selectSingleUsers);
+  // const [foundUserDetails, setfoundUserDetails] = useState({});
 
-  useEffect(() => {
-    const flattenedArray = users?.flat(1);
-    const foundUserDetails1 = flattenedArray?.find(
-      (item) => item?.email === Singleusers?.slice(-1)[0]
-    );
-    setfoundUserDetails(foundUserDetails1);
-  }, []);
-  const logOut = () => {
-    window.localStorage.clear();
-    window.location.href = "/account";
-  };
+  // useEffect(() => {
+  //   const flattenedArray = users?.flat(1);
+  //   // const foundUserDetails1 = flattenedArray?.find(
+  //     (item) => item?.email === Singleusers?.slice(-1)[0]
+  //   );
+  //   // setfoundUserDetails(foundUserDetails1);
+  // }, []);
+  // const logOut = () => {
+  //   window.localStorage.clear();
+  //   window.location.href = "/account";
+  // };
 
   return (
-    <div>
-      <main className="flex justify-between items-center mt-3 mb-8 ">
+    <div className=" py-6">
+      <main className="flex justify-between items-center mt-3  ">
         <section
           className="text-4xl font-extrabold cursor-pointer flex items-center gap-1"
           onClick={() => Navigate("/")}
@@ -65,31 +65,29 @@ const MiddleHeader = () => {
           </button>
         </section>
         <section className="flex lg:gap-4 gap-1  justify-center items-center">
-          {/* User/Vendor/Logout Section */}
-          {isLoggedIn === "true" ? ( userRole === "admin" || userRole === "vendor" ? (
+          {/* {isLoggedIn === "true" ? (userRole === "admin" || userRole === "vendor" ? (
             <div className="md:bg-transparent md:block hidden bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3">
-                {/* <BsPerson size={18} /> */}
-                  <p className="font-bold py-[10px] px-5 bg-red-500 text-white border hover:bg-red-600 border-red-300 
+              <p className="font-bold py-[10px] px-5 bg-red-500 text-white border hover:bg-red-600 border-red-300 
                   rounded-full flex  justify-center items-center gap-2" onClick={logOut}>
-                    Logout <TbLogout size={18} />
-                  </p>
+                Logout <TbLogout size={18} />
+              </p>
+            </div>
+          ) : (
+            <div
+              className="md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
+              onClick={() => Navigate("/user-account")}
+            >
+              <BsPerson size={28} />
+              <div className="lg:block hidden">
+                <p className=" text-xs font-bold">User</p>
+                <span className="font-bold text-gray-800 ">
+                  {foundUserDetails?.username
+                    ? foundUserDetails?.username
+                    : "Account"}
+                </span>{" "}
               </div>
-            ) : (
-              <div
-                className="md:bg-transparent flex bg-slate-100 md:p-0 p-2 md:border-none border rounded-full gap-2 justify-center items-center cursor-pointer leading-3"
-                onClick={() => Navigate("/user-account")}
-              >
-                <BsPerson size={28} />
-                  <div className="lg:block hidden">
-                    <p className=" text-xs font-bold">User</p>
-                    <span className="font-bold text-gray-800 ">
-                      {foundUserDetails?.username
-                        ? foundUserDetails?.username
-                        : "Account"}
-                    </span>{" "}
-                </div>
-              </div>
-            )
+            </div>
+          )
           ) : (
             <>
               <div
@@ -116,7 +114,7 @@ const MiddleHeader = () => {
                 </div>
               </div>
             </>
-          )}
+          )} */}
 
           {/* Wishlist Section */}
           <div className="px-1" onClick={() => Navigate("/wishlist")}>

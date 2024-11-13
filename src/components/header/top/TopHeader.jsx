@@ -17,9 +17,9 @@ const TopHeader = () => {
     };
     return (
         <div>
-            <main className=" flex justify-between  gap-4 items-center   list-none md:py-5 py-3 text-sm select-none">
+            <main className=" flex justify-between  gap-4 items-center   list-none  pt-5 text-sm select-none">
                 <div className="flex gap-2">
-                    {isLoggedIn === "true" && (userRole === "admin") && (
+                    {/* {isLoggedIn === "true" && (userRole === "admin") && (
                         <li className=" flex gap-4 justify-center items-center ">
                             {userRole === "admin" && (
                                 <ul className=' border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-3  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/admin-account")}> <MdOutlineAdminPanelSettings size={20} /> Admin Panel</ul>
@@ -33,9 +33,8 @@ const TopHeader = () => {
                             <ul className='  border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-3 whitespace-nowrap  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/vendorpanel")}> Vendor Panel</ul>
                         </li>
                         // <TbShoppingCartQuestion size={20} />
-                    )}
-
-
+                    )} */}
+                    <ul className='  border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-3 whitespace-nowrap  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/vendorpanel")}> Vendor Panel</ul>
                     {/* <li className=" flex gap-4 justify-center items-center ">
                     <ul className='  border bg-gray-100 hover:bg-gray-200 text-sm  rounded-full py-[6px] px-4   justify-center  hover:cursor-pointer font-bold  flex items-center gap-1' onClick={() => Navigate("/vendorpanel")}><TbShoppingCartQuestion size={20} /> Vendor Panel</ul>
                 </li> */}
@@ -48,7 +47,7 @@ const TopHeader = () => {
                     <li>
                         {/* <ul className=' flex justify-center items-center gap-2'>English <HiOutlineChevronDown /></ul>
                     <ul className=' flex justify-center items-center gap-2'>USD <HiOutlineChevronDown /></ul> */}
-                        <CurencyConverter />
+                        {/* <CurencyConverter /> */}
                     </li>
 
                 </div>
@@ -58,7 +57,7 @@ const TopHeader = () => {
                     </p>
                     // <TbShoppingCartQuestion size={20} />
                 ) : <div className=" lg:hidden block ">
-                        <p className="font-bold py-[6px] px-3 bg-red-500 text-white cursor-pointer border hover:bg-red-600 border-red-300 rounded-full flex  justify-center items-center gap-2" onClick={logOut}>
+                    <p className="font-bold py-[6px] px-3 bg-red-500 text-white cursor-pointer border hover:bg-red-600 border-red-300 rounded-full flex  justify-center items-center gap-2" onClick={logOut}>
                         Logout <TbLogout size={18} />
                     </p>
                 </div>

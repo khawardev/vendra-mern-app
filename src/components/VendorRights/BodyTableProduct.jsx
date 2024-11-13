@@ -277,7 +277,7 @@ const BodyTableProduct = () => {
                                                 discountedPriceInput,
                                             );
                                         }} disabled={isSaveButtonDisabled} className='  px-5 py-2 flex items-center justify-center gap-1    rounded-full bg-blue-500 font-bold text-white hover:bg-blue-600'>
-                                            <IoCheckmarkCircleOutline size={17}  /> Save
+                                            <IoCheckmarkCircleOutline size={17} /> Save
                                         </button>
                                     </div>
                                 </div>
@@ -411,7 +411,7 @@ const BodyTableProduct = () => {
                                                         >
                                                             <AiOutlineDelete />  Delete
                                                         </button>
-                                                        <button
+                                                        {/* <button
                                                             className="w-full text-left gap-2 items-center flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                                             role="menuitem"
                                                             onClick={() => {
@@ -444,7 +444,7 @@ const BodyTableProduct = () => {
                                                             }}
                                                         >
                                                             <CiDiscount1 stroke-width={0.4} /> Discount
-                                                        </button>
+                                                        </button> */}
                                                     </div>
                                                 </div>
                                             )}

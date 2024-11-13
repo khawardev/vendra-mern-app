@@ -103,116 +103,116 @@ const CartPage = () => {
                             <div>
                                 {cartItems?.map((cartItems) => (
 
-                                    <tr key={cartItems.id} className=" select-none   p-3   flex items-center gap-3   border rounded-xl my-4">
-                                            <section className="  w-full  font-medium text-gray-900  dark:text-white">
-                                                <img
-                                                    src={`https://ucarecdn.com/${cartItems?.imageurl[0]}/`}
-                                                    alt="iMac Front Image"
-                                                    className="  mix-blend-multiply w-[3000px]"
-                                                />
+                                    <tr key={cartItems.id} className=" select-none   p-3   flex items-center gap-3    rounded-xl my-4">
+                                        <section className="  w-full  font-medium text-gray-900  dark:text-white">
+                                            <img
+                                                src={`https://ucarecdn.com/${cartItems?.imageurl[0]}/`}
+                                                alt="iMac Front Image"
+                                                className="  mix-blend-multiply w-[3000px]"
+                                            />
+                                        </section>
+
+                                        <section className='md:flex   items-center gap-5 space-y-1     w-full'>
+
+                                            <section className="font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <div className='  font-bold    md:w-[449px] w-[209px]  line-clamp-1 '>
+                                                    <p >{cartItems.name}</p>
+                                                    <p >{cartItems.name}</p>
+
+                                                </div>
+                                                <div className='   text-gray-500  md:w-[249px] w-[159px] line-clamp-1 '>
+                                                    <p >{cartItems.desc}</p>
+                                                    <p >{cartItems.desc}</p>
+
+                                                </div>
                                             </section>
 
-                                            <section className='md:flex   items-center gap-5 space-y-1     w-full'>
 
-                                                <section className="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    <div className='  font-bold    md:w-[449px] w-[209px]  line-clamp-1 '>
-                                                        <p >{cartItems.name}</p>
-                                                        <p >{cartItems.name}</p>
 
-                                                    </div>
-                                                    <div className='   text-gray-500  md:w-[249px] w-[159px] line-clamp-1 '>
-                                                        <p >{cartItems.desc}</p>
-                                                        <p >{cartItems.desc}</p>
+                                            <section className='flex items-center justify-between gap-5'>
+
+                                                <td className=" font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <div className="flex items-center font-bold   text-gray-500">
+                                                        {/* ${cartItems?.price} */}
+                                                        <p><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'} </span>{ExchangeRate ? (ExchangeRate.value * cartItems.price).toFixed(0) : cartItems.price}</p>
 
                                                     </div>
-                                                </section>
+                                                </td>
 
-
-
-                                                <section className='flex items-center justify-between gap-5'>
-
-                                                    <td className=" font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                        <div className="flex items-center font-bold   text-gray-500">
-                                                            {/* ${cartItems?.price} */}
-                                                            <p><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'} </span>{ExchangeRate ? (ExchangeRate.value * cartItems.price).toFixed(0) : cartItems.price}</p>
-
+                                                <td scope="row" className="font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <div className=" flex justify-between items-center gap-8 border rounded-full py-2 px-3">
+                                                        <div className='px-3 font-bold  '>
+                                                            {/* {quantity} */}
+                                                            <input type="text" size={1} value={cartItems?.quantity || quantity} name="" disabled id="" />
                                                         </div>
-                                                    </td>
-
-                                                    <td scope="row" className="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                        <div className=" flex justify-between items-center gap-8 border rounded-full py-2 px-3">
-                                                            <div className='px-3 font-bold  '>
-                                                                {/* {quantity} */}
-                                                                <input type="text" size={1} value={cartItems?.quantity || quantity} name="" disabled id="" />
-                                                            </div>
-                                                            <div className="flex  items-center gap-1">
-                                                                <p
-                                                                    type="button"
-                                                                    className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
-                                                                    data-hs-input-number-decrement
-                                                                    onClick={() => handleDecrement(cartItems?.id)}
-                                                                >
-                                                                    <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /></svg>
-
-                                                                </p>
-                                                                <p
-                                                                    type="button"
-                                                                    className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
-                                                                    data-hs-input-number-increment
-                                                                    onClick={() => handleIncrement(cartItems?.id)}
-                                                                >
-                                                                    <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </td>
-                                                </section>
-
-                                                <section className='flex justify-between items-center gap-5 '>
-
-                                                    <td className="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                        <div className="flex items-center font-bold   text-gray-500">
-                                                            {/* ${(cartItems?.price * cartItems.quantity).toFixed(2)} */}
-                                                            <p><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'} </span>{ExchangeRate ? (ExchangeRate.value * cartItems?.price * cartItems.quantity).toFixed(0) : (cartItems?.price * cartItems.quantity).toFixed(2)}</p>
-
-                                                        </div>
-                                                    </td>
-                                                    <td className="  font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                        <div className="flex items-center space-x-4">
-
-                                                            <button
-                                                                onClick={() => handleRemoveFromCart(cartItems.id)}
+                                                        <div className="flex  items-center gap-1">
+                                                            <p
                                                                 type="button"
-                                                                data-modal-target="delete-modal"
-                                                                data-modal-toggle="delete-modal"
-                                                                className="flex items-center text-red-600  border  hover:bg-red-100 transition-all ease-in  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                                                className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
+                                                                data-hs-input-number-decrement
+                                                                onClick={() => handleDecrement(cartItems?.id)}
                                                             >
-                                                                <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    className="h-4 w-4 mr-2 -ml-0.5"
-                                                                    viewBox="0 0 20 20"
-                                                                    fill="currentColor"
-                                                                    aria-hidden="true"
-                                                                >
-                                                                    <path
-                                                                        fillRule="evenodd"
-                                                                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                                        clipRule="evenodd"
-                                                                    />
-                                                                </svg>
-                                                                <b>Delete</b>
-                                                            </button>
+                                                                <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /></svg>
+
+                                                            </p>
+                                                            <p
+                                                                type="button"
+                                                                className="w-6 h-6 inline-flex justify-center  items-center text-sm font-medium rounded-full cursor-pointer text-gray-800 shadow-lg border hover:bg-gray-100"
+                                                                data-hs-input-number-increment
+                                                                onClick={() => handleIncrement(cartItems?.id)}
+                                                            >
+                                                                <svg className="flex-shrink-0 w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                                                            </p>
                                                         </div>
-
-                                                    </td>
-                                                </section>
+                                                    </div>
 
 
 
+                                                </td>
                                             </section>
+
+                                            <section className='flex justify-between items-center gap-5 '>
+
+                                                <td className="font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <div className="flex items-center font-bold   text-gray-500">
+                                                        {/* ${(cartItems?.price * cartItems.quantity).toFixed(2)} */}
+                                                        <p><span className=' text-xs'>{ExchangeRate ? ExchangeRate.code : 'USD'} </span>{ExchangeRate ? (ExchangeRate.value * cartItems?.price * cartItems.quantity).toFixed(0) : (cartItems?.price * cartItems.quantity).toFixed(2)}</p>
+
+                                                    </div>
+                                                </td>
+                                                <td className="  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <div className="flex items-center space-x-4">
+
+                                                        <button
+                                                            onClick={() => handleRemoveFromCart(cartItems.id)}
+                                                            type="button"
+                                                            data-modal-target="delete-modal"
+                                                            data-modal-toggle="delete-modal"
+                                                            className="flex items-center text-red-600  border  hover:bg-red-100 transition-all ease-in  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                                        >
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                className="h-4 w-4 mr-2 -ml-0.5"
+                                                                viewBox="0 0 20 20"
+                                                                fill="currentColor"
+                                                                aria-hidden="true"
+                                                            >
+                                                                <path
+                                                                    fillRule="evenodd"
+                                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                    clipRule="evenodd"
+                                                                />
+                                                            </svg>
+                                                            <b>Delete</b>
+                                                        </button>
+                                                    </div>
+
+                                                </td>
+                                            </section>
+
+
+
+                                        </section>
 
 
 

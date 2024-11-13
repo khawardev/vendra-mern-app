@@ -57,17 +57,16 @@ const BottomHeader = () => {
                 Compare <LuGitCompare />
             </section>
             {comparedProducts[0] && <div className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-1 -end-1 dark:border-gray-900"></div> }
-              
           </div>
       
-          <main className='  flex items-center justify-center gap-3 leading-4 hover:cursor-pointer' onClick={() => Navigate(`/discount`)}>
+          {/* <main className='  flex items-center justify-center gap-3 leading-4 hover:cursor-pointer' onClick={() => Navigate(`/discount`)}>
             <CiDiscount1 size={28} />
             <section>
               <span className='text-xs text-gray-500'>Only this weekend </span> <br />
               Super Discount
             </section>
             <HiOutlineChevronDown />
-          </main>
+          </main> */}
         </main>
       </main>
 

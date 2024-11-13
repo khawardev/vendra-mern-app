@@ -23,12 +23,11 @@ const CheckoutPage = () => {
   const totalSubtotal = useSelector((state) => state.cart.totalSubtotal);
   const { discountApplied } = useParams();
   console.log(discountApplied)
-  useEffect(() => {
-    // Redirect to login page if user is not logged in
-    if (!loggedIn) {
-      navigate('/account');
-    }
-  }, [loggedIn, history]);
+  // useEffect(() => {
+  //   if (!loggedIn) {
+  //     navigate('/account');
+  //   }
+  // }, [loggedIn, history]);
 
   const [formData, setFormData] = useState({
     firstName: '',
